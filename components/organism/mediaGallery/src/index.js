@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import ReactSlidy from 'react-slidy'
 
 const BASE_CLASS = 'sui-OrganismMediaGallery'
@@ -19,7 +19,15 @@ OrganismMediaGallery.displayName = 'OrganismMediaGallery'
 
 // Remove these comments if you need
 // OrganismMediaGallery.contextTypes = {i18n: PropTypes.object}
-// OrganismMediaGallery.propTypes = {}
-// OrganismMediaGallery.defaultProps = {}
+OrganismMediaGallery.propTypes = {
+  /**
+   * True to insert MediaGallery in a Modal
+   */
+  inMoleculeModal: PropTypes.bool
+}
+
+OrganismMediaGallery.defaultProps = {
+  inMoleculeModal: false
+}
 
 export default OrganismMediaGallery
