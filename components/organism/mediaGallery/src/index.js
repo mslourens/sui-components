@@ -1,14 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
+import ReactSlidy from 'react-slidy'
 
-class OrganismMediaGallery extends Component {
-  render() {
-    return (
-      <div className="react-OrganismMediaGallery">
-        <h1>OrganismMediaGallery</h1>
-      </div>
-    )
-  }
+const BASE_CLASS = 'sui-OrganismMediaGallery'
+
+function OrganismMediaGallery(props) {
+  return (
+    <div className={BASE_CLASS}>
+      <ReactSlidy keyboardNavigation>
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+      </ReactSlidy>
+    </div>
+  )
 }
 
 OrganismMediaGallery.displayName = 'OrganismMediaGallery'
