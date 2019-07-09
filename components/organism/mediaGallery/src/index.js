@@ -1,29 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactSlidy from 'react-slidy'
+import {Video, Video3d, Video360} from './mediaItems'
+import AtomImage from '@s-ui/react-atom-image'
 
 const BASE_CLASS = 'sui-OrganismMediaGallery'
 
+const isAcceptedMediaItem = (
+  propValue,
+  key,
+  componentName,
+  location,
+  propFullName
+) => {
+  return (
+    propValue instanceof AtomImage ||
+    propValue instanceof Video ||
+    propValue instanceof Video3d ||
+    propValue instanceof Video360
+  )
+}
+
 function OrganismMediaGallery(props) {
+  const {children} = props
   return (
     <div className={BASE_CLASS}>
-      <ReactSlidy keyboardNavigation>
-        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
-        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
-      </ReactSlidy>
+      <ReactSlidy keyboardNavigation>{children}</ReactSlidy>
     </div>
   )
 }
 
 OrganismMediaGallery.displayName = 'OrganismMediaGallery'
 
-// Remove these comments if you need
-// OrganismMediaGallery.contextTypes = {i18n: PropTypes.object}
 OrganismMediaGallery.propTypes = {
   /**
    * True to insert MediaGallery in a Modal
    */
-  inMoleculeModal: PropTypes.bool
+  inMoleculeModal: PropTypes.bool,
+  /**
+   * Media Items as children
+   */
+  children: PropTypes.arrayOf(isAcceptedMediaItem)
 }
 
 OrganismMediaGallery.defaultProps = {
