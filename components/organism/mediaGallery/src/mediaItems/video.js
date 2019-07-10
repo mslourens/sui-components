@@ -21,7 +21,7 @@ Video.propTypes = {
   inIframe: PropTypes.bool
 }
 
-Video.propTypes.default = {
+Video.defaultProps = {
   inIframe: false
 }
 

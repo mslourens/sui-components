@@ -13,8 +13,4 @@ video360.propTypes = {
   src: PropTypes.string.isRequired
 }
 
-video360.propTypes.default = {
-  inIframe: false
-}
-
 export default video360

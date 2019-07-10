@@ -13,8 +13,4 @@ video3d.propTypes = {
   src: PropTypes.string.isRequired
 }
 
-video3d.propTypes.default = {
-  inIframe: false
-}
-
 export default video3d
