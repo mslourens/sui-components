@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
-import {atomButtonTypes} from '@schibstedspain/sui-atom-button'
-
 const BASE_CLASS = 'sui-MoleculeButtonGroup'
 
 const getGroupPosition = (groupPositions, numChildren, index) => {
@@ -13,10 +11,9 @@ const getGroupPosition = (groupPositions, numChildren, index) => {
 }
 
 const MoleculeButtonGroup = ({
-  children, // eslint-disable-line react/prop-types
+  children,
   fullWidth,
   groupPositions,
-  type,
   ...props
 }) => {
   const numChildren = children.length
@@ -31,7 +28,6 @@ const MoleculeButtonGroup = ({
       const groupPosition = getGroupPositionByIndex(index)
       return React.cloneElement(child, {
         ...props,
-        type,
         groupPosition,
         fullWidth
       })
@@ -46,8 +42,7 @@ const MoleculeButtonGroup = ({
 MoleculeButtonGroup.displayName = 'MoleculeButtonGroup'
 
 MoleculeButtonGroup.propTypes = {
-  /** Type of button: 'primary' (default), 'accent', 'secondary', 'tertiary' */
-  type: PropTypes.oneOf(atomButtonTypes),
+  children: PropTypes.arrayOf(PropTypes.element),
 
   /** If buttons should stretch to fit the width of container */
   fullWidth: PropTypes.bool,
@@ -61,8 +56,7 @@ MoleculeButtonGroup.defaultProps = {
     FIRST: 'first',
     MIDDLE: 'middle',
     LAST: 'last'
-  },
-  type: 'secondary'
+  }
 }
 
 export default MoleculeButtonGroup

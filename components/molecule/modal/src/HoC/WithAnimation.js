@@ -8,11 +8,15 @@ export default BaseComponent => {
     static displayName = `withAnimation(${displayName})`
 
     static contextTypes = BaseComponent.contextTypes
+
     static propTypes = {
-      onClose: PropTypes.func
+      onClose: PropTypes.func,
+      onAnimationEnd: PropTypes.func
     }
+
     static defaultProps = {
-      onClose: () => {}
+      onClose: () => {},
+      onAnimationEnd: () => {}
     }
 
     state = {
@@ -20,8 +24,11 @@ export default BaseComponent => {
     }
 
     _onAnimationEnd = ev => {
+      const {onAnimationEnd, onClose} = this.props
+
+      onAnimationEnd()
       if (!this.state.closing) return
-      this.setState({closing: false}, () => this.props.onClose())
+      this.setState({closing: false}, () => onClose())
     }
 
     _onClose = () => {

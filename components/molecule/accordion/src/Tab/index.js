@@ -21,10 +21,13 @@ const Tab = ({
   withScrollVisible,
   withTransition,
   isOpen,
-  maxHeight
+  maxHeight,
+  autoHeight,
+  withGap
 }) => {
   const wrapperClassName = cx(BASE_CLASS, {
-    [OPEN_CLASS]: isOpen
+    [OPEN_CLASS]: isOpen,
+    [`${BASE_CLASS}--withGap`]: withGap
   })
   const iconClassName = cx(ICON_CLASS, {
     [OPEN_CLASS]: isOpen
@@ -36,7 +39,9 @@ const Tab = ({
     [`${CONTENT_CONTAINER_CLASS}--withTransition`]: withTransition,
     [`${CONTENT_CONTAINER_CLASS}--withScrollVisible`]: withScrollVisible
   })
-  const containerHeight = isOpen ? `${maxHeight}px` : `0px`
+
+  const maxHeightType = autoHeight ? '' : `${maxHeight}px`
+  const containerHeight = isOpen ? maxHeightType : `0px`
 
   return (
     <div className={wrapperClassName}>
@@ -70,6 +75,10 @@ Tab.propTypes = {
    */
   maxHeight: PropTypes.number,
   /**
+   * Define the content auto height
+   */
+  autoHeight: PropTypes.bool,
+  /**
    * Icon to be added on the right of the content
    */
   icon: PropTypes.node.isRequired,
@@ -92,15 +101,21 @@ Tab.propTypes = {
   /**
    * Initial collapsed state
    */
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  /**
+   * Add gap between tabs
+   */
+  withGap: PropTypes.bool
 }
 
 Tab.defaultProps = {
   isOpen: false,
   maxHeight: MAX_HEIGHT,
+  autoHeight: false,
   onToggle: () => {},
   withScrollVisible: false,
-  withTransition: true
+  withTransition: true,
+  withGap: false
 }
 
 export default Tab

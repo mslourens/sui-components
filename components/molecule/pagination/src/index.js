@@ -1,9 +1,6 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-
-import MoleculeButtonGroup from '@s-ui/react-molecule-button-group'
-import AtomButtom from '@schibstedspain/sui-atom-button'
-
+import AtomButton from '@s-ui/react-atom-button'
 import * as pagination from './helpers/pagination'
 import {
   isValidPage,
@@ -14,98 +11,148 @@ import {
 const BASE_CLASS = 'sui-MoleculePagination'
 const CLASS_PREV_BUTTON_ICON = 'sui-MoleculePagination-prevButtonIcon'
 const CLASS_NEXT_BUTTON_ICON = 'sui-MoleculePagination-nextButtonIcon'
+const PAGE_NUMBER_HOLDER = '%{pageNumber}'
 
-// eslint-disable-next-line react/prop-types
-const PageButton = ({onSelectPage, page, ...props}) => {
+const PageButton = ({onSelectPage, page, design, ...props}) => {
   const _onSelectPage = e => {
     onSelectPage(e, {page})
   }
-  return <AtomButtom onClick={_onSelectPage} {...props} />
+  return (
+    <li className={`${BASE_CLASS}-item`}>
+      <AtomButton onClick={_onSelectPage} design={design} {...props} />
+    </li>
+  )
 }
 
-class MoleculePagination extends Component {
-  handleClickNext = e => {
-    const {onSelectNext, ...props} = this.props
-    const page = pagination.nextPage(props)
+PageButton.propTypes = {
+  /** Callback that will be called with (event, page) on each page button click */
+  onSelectPage: PropTypes.func,
+  /** Current page selected */
+  page: isValidPage,
+  /** Design to be used for the page button. Design types 'solid', 'outline' or 'flat' */
+  design: PropTypes.string,
+  /** Factory used to create navigation links */
+  linkFactory: PropTypes.func
+}
+
+const defaultCreateUrl = ({pageNumber, urlPattern}) =>
+  urlPattern.replace(PAGE_NUMBER_HOLDER, pageNumber)
+
+const MoleculePagination = ({
+  onSelectNext = () => {},
+  onSelectPage = () => {},
+  onSelectPrev = () => {},
+  page,
+  totalPages,
+  showPages = 10,
+  prevButtonText = 'Previous',
+  prevButtonIcon: PrevButtonIcon,
+  nextButtonText = 'Next',
+  nextButtonIcon: NextButtonIcon,
+  compressed = false,
+  hideDisabled,
+  selectedPageButtonDesign = 'solid',
+  nonSelectedPageButtonDesign = 'flat',
+  prevButtonDesign = 'flat',
+  nextButtonDesign = 'flat',
+  linkFactory,
+  createUrl = defaultCreateUrl,
+  urlPattern = '#',
+  renderLinks = false
+}) => {
+  const paramsPagination = {
+    page,
+    totalPages,
+    showPages
+  }
+
+  const handleClickNext = e => {
+    const page = pagination.nextPage(paramsPagination)
     onSelectNext(e, {page})
   }
 
-  handleClickPrev = e => {
-    const {onSelectPrev, ...props} = this.props
-    const page = pagination.prevPage(props)
+  const handleClickPrev = e => {
+    const page = pagination.prevPage(paramsPagination)
     onSelectPrev(e, {page})
   }
 
-  render() {
-    const {
-      page,
-      totalPages,
-      showPages,
-      prevButtonText,
-      prevButtonIcon: PrevButtonIcon,
-      nextButtonText,
-      nextButtonIcon: NextButtonIcon,
-      onSelectPage,
-      compressed,
-      hideDisabled
-    } = this.props
+  const range = pagination.range(paramsPagination)
+  const nextPage = pagination.nextPage(paramsPagination)
+  const prevPage = pagination.prevPage(paramsPagination)
+  const isHidePrev = hideDisabled && !prevPage
+  const isHideNext = hideDisabled && !nextPage
 
-    const paramsPagination = {
-      page,
-      totalPages,
-      showPages
+  const linkProps = pageNumber =>
+    renderLinks && {
+      link: true,
+      href: createUrl({pageNumber, urlPattern}),
+      ...(linkFactory && {linkFactory})
     }
 
-    const range = pagination.range(paramsPagination)
-    const nextPage = pagination.nextPage(paramsPagination)
-    const prevPage = pagination.prevPage(paramsPagination)
-
-    const isHidePrev = hideDisabled && !prevPage
-    const isHideNext = hideDisabled && !nextPage
-
-    return (
-      <div className={BASE_CLASS}>
-        <MoleculeButtonGroup type="tertiary">
-          {!isHidePrev && (
-            <AtomButtom onClick={this.handleClickPrev} disabled={!prevPage}>
-              {PrevButtonIcon && (
-                <span className={CLASS_PREV_BUTTON_ICON}>
-                  <PrevButtonIcon />
-                </span>
-              )}
-              {prevButtonText}
-            </AtomButtom>
-          )}
-          {compressed ? (
-            <PageButton page={page} focused onSelectPage={onSelectPage}>
-              {page}
-            </PageButton>
-          ) : (
-            range.map(pageRange => (
-              <PageButton
-                key={pageRange}
-                page={pageRange}
-                focused={pageRange === page}
-                onSelectPage={onSelectPage}
-              >
-                {pageRange}
-              </PageButton>
-            ))
-          )}
-          {!isHideNext && (
-            <AtomButtom onClick={this.handleClickNext} disabled={!nextPage}>
-              {nextButtonText}
-              {NextButtonIcon && (
-                <span className={CLASS_NEXT_BUTTON_ICON}>
-                  <NextButtonIcon />
-                </span>
-              )}
-            </AtomButtom>
-          )}
-        </MoleculeButtonGroup>
-      </div>
-    )
-  }
+  return (
+    <ul className={BASE_CLASS}>
+      {!isHidePrev && (
+        <li className={`${BASE_CLASS}-item`}>
+          <AtomButton
+            onClick={handleClickPrev}
+            design={prevButtonDesign}
+            disabled={!prevPage}
+            {...linkProps(prevPage)}
+          >
+            {PrevButtonIcon && (
+              <span className={CLASS_PREV_BUTTON_ICON}>
+                <PrevButtonIcon />
+              </span>
+            )}
+            {prevButtonText}
+          </AtomButton>
+        </li>
+      )}
+      {compressed ? (
+        <PageButton
+          page={page}
+          design={selectedPageButtonDesign}
+          onSelectPage={onSelectPage}
+          {...linkProps(page)}
+        >
+          {page}
+        </PageButton>
+      ) : (
+        range.map(pageRange => (
+          <PageButton
+            key={pageRange}
+            page={pageRange}
+            design={
+              pageRange === page
+                ? selectedPageButtonDesign
+                : nonSelectedPageButtonDesign
+            }
+            onSelectPage={onSelectPage}
+            {...linkProps(pageRange)}
+          >
+            {pageRange}
+          </PageButton>
+        ))
+      )}
+      {!isHideNext && (
+        <li className={`${BASE_CLASS}-item`}>
+          <AtomButton
+            onClick={handleClickNext}
+            design={nextButtonDesign}
+            disabled={!nextPage}
+            {...linkProps(nextPage)}
+          >
+            {nextButtonText}
+            {NextButtonIcon && (
+              <span className={CLASS_NEXT_BUTTON_ICON}>
+                <NextButtonIcon />
+              </span>
+            )}
+          </AtomButton>
+        </li>
+      )}
+    </ul>
+  )
 }
 
 MoleculePagination.displayName = 'MoleculePagination'
@@ -145,17 +192,31 @@ MoleculePagination.propTypes = {
   onSelectPage: PropTypes.func,
 
   /** Hide Previous/Next buttons if they're disabled */
-  hideDisabled: PropTypes.bool
-}
+  hideDisabled: PropTypes.bool,
 
-MoleculePagination.defaultProps = {
-  showPages: 10,
-  compressed: false,
-  prevButtonText: 'Previous',
-  nextButtonText: 'Next',
-  onSelectPrev: () => {},
-  onSelectNext: () => {},
-  onSelectPage: () => {}
+  /** Design to be used for the selected page. Design types 'solid', 'outline' or 'flat' */
+  selectedPageButtonDesign: PropTypes.string,
+
+  /** Design to be used for the selected page. Design types 'solid', 'outline' or 'flat' */
+  nonSelectedPageButtonDesign: PropTypes.string,
+
+  /** Design to be used for the previous button if its visible. Design types 'solid', 'outline' or 'flat' */
+  prevButtonDesign: PropTypes.string,
+
+  /** Design to be used for the next button if its visible. Design types 'solid', 'outline' or 'flat */
+  nextButtonDesign: PropTypes.string,
+
+  /** Factory used to create navigation links */
+  linkFactory: PropTypes.func,
+
+  /** Factory used to create the urls */
+  createUrl: PropTypes.func,
+
+  /** URL patterns */
+  urlPattern: PropTypes.string,
+
+  /** tells wether to render links as anchor tags or as buttons */
+  renderLinks: PropTypes.bool
 }
 
 export default MoleculePagination

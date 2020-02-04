@@ -1,0 +1,64 @@
+@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/react-atom-button/lib/index';
+@import './settings';
+
+.sui-MoleculeSelectPopover {
+  display: inline-block;
+
+  &-select {
+    $select: &;
+    border-radius: $bdrs-select-popover;
+    border: 1px solid $c-gray-light-2;
+    color: $c-black;
+    display: flex;
+    justify-content: space-between;
+    max-width: $mw-select-popover;
+    padding: $p-m $p-l;
+
+    &Text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &Icon {
+      margin-left: $m-m;
+    }
+
+    &:hover,
+    &.is-open,
+    &.is-selected {
+      background-color: $c-primary-light-4;
+      border-color: $c-primary-light-4;
+    }
+
+    &.is-open {
+      color: $c-primary;
+
+      #{$select}Icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.is-selected {
+      border-color: $c-primary;
+      color: $c-primary;
+    }
+  }
+
+  &-popover {
+    background-color: $c-white;
+    border: solid 1px $c-gray-light-3;
+    box-shadow: $bxsh-select-popover;
+    margin-top: $m-m;
+    position: absolute;
+    width: $w-select-popover;
+    z-index: $z-tooltips;
+
+    &ActionBar {
+      border-top: solid 1px $c-gray-light-3;
+      padding: $p-l;
+      text-align: right;
+    }
+  }
+}

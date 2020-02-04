@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -8,29 +8,46 @@ const SIZES = {
   LONG: 'long'
 }
 
-class AtomTextarea extends Component {
-  getClassNames(size) {
-    return cx(BASE_CLASS, `${BASE_CLASS}--${size}`)
+const TEXTAREA_STATES = {
+  ERROR: 'error',
+  SUCCESS: 'success',
+  ALERT: 'alert'
+}
+
+const DEFAULT_PROPS = {
+  size: SIZES.SHORT,
+  onChange: () => {}
+}
+
+const AtomTextarea = ({
+  onChange = DEFAULT_PROPS.onChange,
+  size = DEFAULT_PROPS.size,
+  value,
+  errorState,
+  state,
+  ...props
+}) => {
+  const className = cx(
+    BASE_CLASS,
+    `${BASE_CLASS}--${size}`,
+    errorState && `${BASE_CLASS}--${TEXTAREA_STATES.ERROR}`,
+    errorState === false && `${BASE_CLASS}--${TEXTAREA_STATES.SUCCESS}`,
+    state && `${BASE_CLASS}--${state}`
+  )
+
+  const handleChange = ev => {
+    const {value, name} = ev.target
+    onChange(ev, {value, name})
   }
 
-  handleChange = ev => {
-    const {value} = ev.target
-    const {onChange} = this.props
-    onChange(ev, {value})
-  }
-
-  render() {
-    const {onChange, size, value, ...props} = this.props
-    const {handleChange} = this
-    return (
-      <textarea
-        {...props}
-        onChange={handleChange}
-        className={this.getClassNames(size)}
-        value={value}
-      />
-    )
-  }
+  return (
+    <textarea
+      {...props}
+      onChange={handleChange}
+      className={className}
+      value={value}
+    />
+  )
 }
 
 AtomTextarea.displayName = 'AtomTextarea'
@@ -43,13 +60,14 @@ AtomTextarea.propTypes = {
   onChange: PropTypes.func,
 
   /** Value (content) of the textarea */
-  value: PropTypes.string
-}
+  value: PropTypes.string,
 
-AtomTextarea.defaultProps = {
-  size: SIZES.SHORT,
-  onChange: () => {}
+  /** true = error, false = success, null = neutral */
+  errorState: PropTypes.bool,
+
+  /* Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
+  state: PropTypes.oneOf(Object.values(TEXTAREA_STATES))
 }
 
 export default AtomTextarea
-export {SIZES as AtomTextareaSizes}
+export {SIZES as AtomTextareaSizes, TEXTAREA_STATES as AtomTextareaStates}

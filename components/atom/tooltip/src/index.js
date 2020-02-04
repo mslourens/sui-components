@@ -1,8 +1,7 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import withIntersectionObserver from './hoc/withIntersectionObserver'
 
-import {withOpenToggle} from '@s-ui/hoc'
+import {withIntersectionObserver, withOpenToggle} from '@s-ui/hoc'
 
 const BASE_CLASS = 'sui-AtomTooltip'
 const CLASS_INNER = `${BASE_CLASS}-inner`
@@ -27,24 +26,31 @@ const PLACEMENTS = {
 
 class AtomTooltip extends Component {
   state = {Tooltip: null}
+
   preventNonTouchEvents = false
+
   hasTouchEnded = false
+
   touchTimer = null
+
   onClickTarget = null
+
   title = null
+
   refTooltip = React.createRef()
+
   refTarget = React.createRef()
 
   loadAsyncReacstrap(e) {
-    require.ensure(
-      [],
-      require => {
-        const Tooltip = require('reactstrap/lib/Tooltip').default
+    import(
+      /* webpackChunkName: "reactstrap-Tooltip" */
+      'reactstrap/lib/Tooltip'
+    )
+      .then(module => module.default)
+      .then(Tooltip => {
         this.setState({Tooltip})
         this.handleToggle(e)
-      },
-      'reactstrap-Tooltip'
-    )
+      })
   }
 
   extendChildren() {
@@ -204,25 +210,24 @@ class AtomTooltip extends Component {
     if (!isVisible && isOpen) isOpen = false
 
     return (
-      <Fragment>
+      <>
         {this.extendChildren()}
-        {target &&
-          Tooltip && (
-            <Tooltip
-              {...restrictedProps}
-              isOpen={isOpen}
-              toggle={this.handleToggle}
-              className={BASE_CLASS}
-              innerClassName={CLASS_INNER}
-              arrowClassName={CLASS_ARROW}
-              placementPrefix={PREFIX_PLACEMENT}
-              innerRef={this.refTooltip}
-              offset="auto,4px"
-            >
-              {HtmlContent ? <HtmlContent /> : this.title}
-            </Tooltip>
-          )}
-      </Fragment>
+        {target && Tooltip && (
+          <Tooltip
+            {...restrictedProps}
+            isOpen={isOpen}
+            toggle={this.handleToggle} // eslint-disable-line
+            className={BASE_CLASS}
+            innerClassName={CLASS_INNER}
+            arrowClassName={CLASS_ARROW}
+            placementPrefix={PREFIX_PLACEMENT}
+            innerRef={this.refTooltip}
+            offset="auto,4px"
+          >
+            {HtmlContent ? <HtmlContent /> : this.title}
+          </Tooltip>
+        )}
+      </>
     )
   }
 }
@@ -277,4 +282,4 @@ AtomTooltip.propTypes = {
 }
 
 export default withIntersectionObserver(withOpenToggle(AtomTooltip))
-export {PLACEMENTS as atomTooltipPlacements}
+export {AtomTooltip as AtomTooltipBase, PLACEMENTS as atomTooltipPlacements}

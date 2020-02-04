@@ -1,7 +1,7 @@
 @import '~@schibstedspain/sui-theme/lib/index';
 @import './SUILoader/index';
 
-$bgc-atom-spinner: rgba($c-white, .6) !default;
+$bgc-atom-spinner: rgba($c-white, 0.6) !default;
 $z-atom-spinner: 1 !default;
 
 %spinner-layer {
@@ -11,19 +11,22 @@ $z-atom-spinner: 1 !default;
   left: 0;
   right: 0;
   top: 0;
+  z-index: $z-atom-spinner;
 }
 
 .sui-AtomSpinner {
   position: relative;
-  z-index: $z-atom-spinner;
 
   &::before {
     @extend %spinner-layer;
     position: absolute;
   }
 
-  &--fullPage {
+  &--noBackground::before {
+    background-color: transparent;
+  }
 
+  &--fullPage {
     &::before {
       @extend %spinner-layer;
       position: fixed;
@@ -37,5 +40,4 @@ $z-atom-spinner: 1 !default;
   #{&}-loader {
     display: block;
   }
-
 }

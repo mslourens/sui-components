@@ -1,4 +1,4 @@
-@import '~@schibstedspain/sui-atom-button/lib/index';
+@import '~@s-ui/react-atom-button/lib/index';
 @import '~@s-ui/react-molecule-button-group/lib/index';
 
 .DemoMoleculePagination {
@@ -18,7 +18,9 @@
   }
 
   .sui-MoleculePagination {
+    @include reset-list;
     background: white;
+    display: flex;
     padding: 10px;
   }
 

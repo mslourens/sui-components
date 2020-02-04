@@ -2,14 +2,24 @@
 @import '~rc-slider/dist/rc-slider';
 
 $c-atom-slider: $c-gray !default;
+$c-atom-slider-text: $c-gray-light-2 !default;
 $c-atom-slider-tooltip: $c-gray-dark !default;
 
 $c-atom-slider-rail: $c-gray-light-4 !default;
 $c-atom-slider-track: $c-gray-light !default;
 
-
 $ff-atom-slider: $ff-sans-serif !default;
 $fz-atom-slider: $fz-m !default;
+
+$h-atom-slider-handle: 24px !default;
+$ml-atom-slider-handle: -11px !default;
+$ml-atom-slider-label: 0 !default;
+$w-atom-slider-handle: 24px !default;
+
+$h-atom-slider-track: 8px !default;
+$p-atom-slider: $p-l !default;
+
+$mt-atom-slider-mark: 10px !default;
 
 $base-class-rc-slider: '.rc-slider';
 $class-handle: '#{$base-class-rc-slider}-handle';
@@ -18,17 +28,18 @@ $class-rail: '#{$base-class-rc-slider}-rail';
 $class-track: '#{$base-class-rc-slider}-track';
 $class-dot: '#{$base-class-rc-slider}-dot';
 $class-mark: '#{$base-class-rc-slider}-mark';
+$class-mark-text: '#{$base-class-rc-slider}-mark-text';
+$class-mark-text-active: '#{$base-class-rc-slider}-mark-text-active';
 $class-tooltip: '#{$base-class-rc-slider}-tooltip';
 $class-tooltip-content: '#{$class-tooltip}-content';
 $class-tooltip-inner: '#{$class-tooltip}-inner';
 $class-tooltip-arrow: '#{$class-tooltip}-arrow';
 $class-tooltip-hidden: '#{$class-tooltip}-hidden';
 
-
 .sui-AtomSlider {
   font-family: $ff-atom-slider;
   font-size: $fz-atom-slider;
-  padding: 20px;
+  padding: $p-atom-slider;
   position: relative;
 
   input[type='range'] {
@@ -64,20 +75,20 @@ $class-tooltip-hidden: '#{$class-tooltip}-hidden';
   #{$class-handle} {
     background-color: $c-white;
     border: solid 1px $c-primary;
-    height: 24px;
-    margin-left: -11px;
+    height: $h-atom-slider-handle;
+    margin-left: $ml-atom-slider-handle;
     margin-top: -8px;
-    width: 24px;
+    width: $w-atom-slider-handle;
   }
 
   #{$class-rail} {
     background: $c-atom-slider-rail;
-    height: 8px;
+    height: $h-atom-slider-track;
   }
 
   #{$class-track} {
     background: $c-primary;
-    height: 8px;
+    height: $h-atom-slider-track;
   }
 
   #{$class-dot} {
@@ -88,13 +99,26 @@ $class-tooltip-hidden: '#{$class-tooltip}-hidden';
     color: $c-atom-slider;
     font-family: $ff-atom-slider;
     font-size: $fz-atom-slider;
-    margin-top: 10px;
+    margin-top: $mt-atom-slider-mark;
+  }
+
+  #{$class-mark-text} {
+    color: $c-atom-slider-text;
+  }
+
+  #{$class-mark-text-active} {
+    color: $c-atom-slider;
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: $m-m;
+    margin-left: $ml-atom-slider-label;
   }
 
   &--disabled {
-    
     #{$class-disabled} {
-      background-color: transparent; 
+      background-color: transparent;
     }
 
     #{$class-handle} {
@@ -107,17 +131,26 @@ $class-tooltip-hidden: '#{$class-tooltip}-hidden';
 
     #{$class-track} {
       background: $c-atom-slider-track;
-      height: 8px;
+      height: $h-atom-slider-track;
+    }
+  }
+
+  &--inverse {
+    #{$class-rail} {
+      background: $c-primary;
+    }
+
+    #{$class-track} {
+      background: $c-atom-slider-rail;
     }
   }
 }
 
 #{$class-tooltip-hidden} {
-  display: block; 
+  display: block;
 }
 
 #{$class-tooltip} {
-  
   #{$class-tooltip-inner} {
     background: transparent;
     border-color: transparent;
@@ -132,5 +165,4 @@ $class-tooltip-hidden: '#{$class-tooltip}-hidden';
     border-color: transparent;
     color: transparent;
   }
-
 }

@@ -7,7 +7,7 @@
 ## Installation
 
 ```sh
-$ npm install @schibstedspain/sui-atom-button --save
+$ npm install @s-ui/react-atom-button --save
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ $ npm install @schibstedspain/sui-atom-button --save
 ### Basic usage
 
 ```js
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 return (<div>
   <Button>Normal</Button>
@@ -30,7 +30,7 @@ return (<div>
 All props available from regular buttons can be used.
 
 ```js
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 return (<div>
   <Button onClick={() => alert('Primary with onClick')}>
@@ -43,7 +43,31 @@ return (<div>
     Secondary with className
   </Button>
 </div>)
+```
 
+### Button with AtomIcon
+
+You could use the `AtomButton` along the `AtomIcon` in order to show the button text with an icon. The proper `size` and `color` of the `AtomIcon` will be used according to the needs of the `AtomButton` definition.
+
+```js
+import Button from '@s-ui/react-atom-button'
+import AtomIcon from '@s-ui/react-atom-icon'
+
+const Icon = <AtomIcon>
+  <svg viewBox="0 0 24 24">
+    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+  </svg>
+</AtomIcon>
+
+return (<div>
+  <Button leftIcon={Icon} />
+  <Button size="large" rightIcon={Icon} >
+    Large icon
+  </Button>
+  <Button size="small" rightIcon={Icon} >
+    Small icon
+  </Button>
+</div>)
 ```
 
 ### Button inside Form
@@ -51,7 +75,7 @@ return (<div>
 By default `AtomButton` inside a `form` will submit the form
 
 ```js
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 return (
   <form onSubmit={() => window.alert('Submit!')}>
@@ -68,7 +92,7 @@ return (
 If we need several `AtomButton` inside a form we can specify which one we want to submit the form w/ props `isButton` and `isSubmit`
 
 ```js
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 return (
   <form onSubmit={() => window.alert('Submit!')}>
@@ -90,7 +114,7 @@ return (
 When `link` property is passed, the component will render an html link.
 
 ```js
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 return (
   <Button link href='http://www.schibsted.com/' target='_blank'>Link</Button>

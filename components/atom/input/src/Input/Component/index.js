@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -6,99 +6,125 @@ const BASE_CLASS = 'sui-AtomInput-input'
 
 const SIZES = {
   MEDIUM: 'm',
-  SMALL: 's'
+  SMALL: 's',
+  XSMALL: 'xs'
 }
 
-const ERROR_STATES = {
+const INPUT_STATES = {
   ERROR: 'error',
-  SUCCESS: 'success'
+  SUCCESS: 'success',
+  ALERT: 'alert'
 }
 
-class Input extends Component {
-  changeHandler = ev => {
-    const {onChange} = this.props
+const DEFAULT_PROPS = {
+  SIZE: SIZES.MEDIUM,
+  ON_ENTER_KEY: 'Enter',
+  TAB_INDEX: -1,
+  ON_KEY_DOWN: () => {},
+  ON_ENTER: () => {},
+  ON_CHANGE: () => {}
+}
+
+const getClassNames = ({
+  size,
+  charsSize,
+  hideInput,
+  noBorder,
+  readOnly,
+  errorState,
+  state
+}) => {
+  return cx(
+    BASE_CLASS,
+    `${BASE_CLASS}-${size}`,
+    charsSize && `${BASE_CLASS}--size`,
+    hideInput && `${BASE_CLASS}--hidden`,
+    noBorder && `${BASE_CLASS}--noBorder`,
+    readOnly && `${BASE_CLASS}--readOnly`,
+    errorState && `${BASE_CLASS}--${INPUT_STATES.ERROR}`,
+    errorState === false && `${BASE_CLASS}--${INPUT_STATES.SUCCESS}`,
+    state && `${BASE_CLASS}--${state}`
+  )
+}
+
+const Input = ({
+  disabled,
+  readOnly,
+  hideInput,
+  noBorder,
+  id,
+  name,
+  onBlur,
+  onFocus,
+  placeholder,
+  reference,
+  size = DEFAULT_PROPS.SIZE,
+  errorState,
+  state,
+  type,
+  value,
+  charsSize,
+  tabIndex = DEFAULT_PROPS.TAB_INDEX,
+  maxLength,
+  minLength,
+  autoComplete,
+  onChange = DEFAULT_PROPS.ON_CHANGE,
+  onEnter = DEFAULT_PROPS.ON_ENTER,
+  onEnterKey = DEFAULT_PROPS.ON_ENTER_KEY,
+  onKeyDown = DEFAULT_PROPS.ON_KEY_DOWN,
+  required,
+  pattern
+}) => {
+  const changeHandler = ev => {
     const {
-      target: {value}
+      target: {value, name}
     } = ev
-    onChange(ev, {value})
+    onChange(ev, {value, name})
   }
 
-  handleKeyDown = ev => {
-    const {onEnter, onEnterKey, onKeyDown} = this.props
+  const handleKeyDown = ev => {
     const {
-      target: {value}
+      target: {value, name}
     } = ev
     const {key} = ev
-    onKeyDown(ev, {value})
-    if (key === onEnterKey) onEnter(ev, {value})
+    onKeyDown(ev, {value, name})
+    if (key === onEnterKey) onEnter(ev, {value, name})
   }
 
-  getErrorStateClass(errorState) {
-    if (errorState) return `${BASE_CLASS}--${ERROR_STATES.ERROR}`
-    if (errorState === false) return `${BASE_CLASS}--${ERROR_STATES.SUCCESS}`
-    return ''
-  }
+  const className = getClassNames({
+    size,
+    charsSize,
+    hideInput,
+    noBorder,
+    readOnly,
+    errorState,
+    state
+  })
 
-  getClassNames({size, charsSize, hideInput, noBorder, readOnly, errorState}) {
-    return cx(
-      BASE_CLASS,
-      `${BASE_CLASS}-${size}`,
-      charsSize && `${BASE_CLASS}--size`,
-      hideInput && `${BASE_CLASS}--hidden`,
-      noBorder && `${BASE_CLASS}--noBorder`,
-      readOnly && `${BASE_CLASS}--readOnly`,
-      this.getErrorStateClass(errorState)
-    )
-  }
-
-  render() {
-    const {
-      checked,
-      disabled,
-      readOnly,
-      hideInput,
-      noBorder,
-      id,
-      name,
-      onBlur,
-      onFocus,
-      placeholder,
-      reference,
-      size,
-      errorState,
-      type,
-      value,
-      charsSize,
-      tabIndex
-    } = this.props
-
-    return (
-      <input
-        className={this.getClassNames({
-          size,
-          charsSize,
-          hideInput,
-          noBorder,
-          readOnly,
-          errorState
-        })}
-        tabIndex={tabIndex}
-        checked={checked}
-        disabled={disabled || readOnly}
-        id={id}
-        name={name}
-        onChange={this.changeHandler}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onKeyDown={this.handleKeyDown}
-        placeholder={placeholder}
-        ref={reference}
-        type={type}
-        value={value}
-        size={charsSize}
-      />
-    )
-  }
+  return (
+    <input
+      className={className}
+      tabIndex={tabIndex}
+      disabled={disabled || readOnly}
+      readOnly={readOnly}
+      id={id}
+      name={name}
+      onChange={changeHandler}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onKeyDown={handleKeyDown}
+      placeholder={placeholder}
+      ref={reference}
+      type={type}
+      value={value}
+      size={charsSize}
+      maxLength={maxLength}
+      minLength={minLength}
+      autoComplete={autoComplete}
+      required={required}
+      pattern={pattern}
+    />
+  )
 }
 
 Input.propTypes = {
@@ -106,8 +132,6 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   /* This Boolean attribute prevents the user from interacting with the input but without disabled styles */
   readOnly: PropTypes.bool,
-  /* Mark the input as selected */
-  checked: PropTypes.bool,
   /* The DOM id global attribute. */
   id: PropTypes.string,
   /* sets the name property of an element in the DOM */
@@ -130,6 +154,12 @@ Input.propTypes = {
   size: PropTypes.oneOf(Object.values(SIZES)),
   /* width of input based in number of characters (native "size" attribute) */
   charsSize: PropTypes.number,
+  /* specifies the maximum number of characters (native "maxlength" attribute) */
+  maxLength: PropTypes.number,
+  /* specifies the minimum number of characters (native "minlength" attribute) */
+  minLength: PropTypes.number,
+  /** specifies whether or not an input field should have autocomplete enabled (on|off) */
+  autoComplete: PropTypes.string,
   /* text, password, date or number */
   type: PropTypes.string,
   /* value of the control */
@@ -140,20 +170,17 @@ Input.propTypes = {
   hideInput: PropTypes.bool,
   /* Will set a red/green border if set to true/false */
   errorState: PropTypes.bool,
+  /* Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
+  state: PropTypes.oneOf(Object.values(INPUT_STATES)),
   /** Wether to hide the input border or not */
   noBorder: PropTypes.bool,
   /** tabindex value */
-  tabIndex: PropTypes.number
-}
-
-Input.defaultProps = {
-  size: SIZES.MEDIUM,
-  onEnterKey: 'Enter',
-  tabIndex: -1,
-  onKeyDown: () => {},
-  onEnter: () => {},
-  onChange: () => {}
+  tabIndex: PropTypes.number,
+  /** native required attribtue  */
+  required: PropTypes.bool,
+  /** native pattern attribute */
+  pattern: PropTypes.string
 }
 
 export default Input
-export {SIZES as inputSizes}
+export {SIZES as inputSizes, INPUT_STATES as inputStates}
