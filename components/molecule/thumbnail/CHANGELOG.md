@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="2.2.0"></a>
+# 2.2.0 (2019-11-13)
+
+
+### Features
+
+* add var for overflow ([0bc9fdc](https://github.com/SUI-Components/sui-components/commit/0bc9fdc))
+
+
+
+<a name="2.1.0"></a>
+# 2.1.0 (2019-11-07)
+
+
+### Features
+
+* add border radius var ([c6e3962](https://github.com/SUI-Components/sui-components/commit/c6e3962))
+* fix name var ([636da09](https://github.com/SUI-Components/sui-components/commit/636da09))
+* fix name var ([63c62ee](https://github.com/SUI-Components/sui-components/commit/63c62ee))
+
+
+
+<a name="2.0.0"></a>
+# 2.0.0 (2019-07-17)
+
+
+### Bug Fixes
+
+* fix sass lint errors to prevent commit blocks ([8bff90f](https://github.com/SUI-Components/sui-components/commit/8bff90f))
+
+
+### Features
+
+* first commit with only Schibsted Spain Components ([c0814de](https://github.com/SUI-Components/sui-components/commit/c0814de))
+* fixed issues detected in PR ([b9fde28](https://github.com/SUI-Components/sui-components/commit/b9fde28))
+* fixed issues detected in PR ([ad9d1f8](https://github.com/SUI-Components/sui-components/commit/ad9d1f8))
+* removed dependencies atomImage SASS ([0383441](https://github.com/SUI-Components/sui-components/commit/0383441))
+* updated README accorging to new props available ([eaf6ce6](https://github.com/SUI-Components/sui-components/commit/eaf6ce6))
+* use of AtomImage ([3d80d48](https://github.com/SUI-Components/sui-components/commit/3d80d48))
+* using last version of AtomImage and demo updated ([501b83b](https://github.com/SUI-Components/sui-components/commit/501b83b))
+
+
+### BREAKING CHANGES
+
+* new props caused by internal use of AtomImage
+
+
+
 <a name="1.3.0"></a>
 # 1.3.0 (2018-06-07)
 

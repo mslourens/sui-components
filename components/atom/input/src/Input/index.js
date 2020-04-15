@@ -1,6 +1,7 @@
 import AddonHoc from './Features/Addon'
 import IconHoc from './Features/Icon'
-import Component, {inputSizes} from './Component'
+import WithButtonHoc from './Features/WithButton'
+import Component, {inputStates, inputSizes} from './Component'
 
-export default AddonHoc(IconHoc(Component))
-export {inputSizes}
+export default WithButtonHoc(AddonHoc(IconHoc(Component)))
+export {inputSizes, inputStates}

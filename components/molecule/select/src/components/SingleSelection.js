@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
 import MoleculeDropdownList from '@s-ui/react-molecule-dropdown-list'
 import AtomInput from '@s-ui/react-atom-input'
@@ -20,25 +20,36 @@ const MoleculeSelectSingleSelection = props => {
     size,
     placeholder,
     id,
-    disabled
+    disabled,
+    optionsData = {},
+    required,
+    selectSize,
+    tabIndex
   } = props
 
   const handleSelection = (ev, {value}) => {
     onChange(ev, {value})
     onToggle(ev, {isOpen: false})
-    refMoleculeSelect.current.focus()
+    refMoleculeSelect &&
+      refMoleculeSelect.current &&
+      refMoleculeSelect.current.focus()
   }
 
   return (
-    <Fragment>
+    <>
       <MoleculeInputSelect
         disabled={disabled}
         id={id}
         isOpen={isOpen}
-        value={value}
+        value={optionsData[value] || ''}
         onClick={onToggle}
         iconArrowDown={iconArrowDown}
         placeholder={placeholder}
+        autoComplete="off"
+        readOnly
+        required={required}
+        size={selectSize}
+        tabIndex={tabIndex}
       />
       <MoleculeDropdownList
         size={size}
@@ -48,7 +59,7 @@ const MoleculeSelectSingleSelection = props => {
       >
         {children}
       </MoleculeDropdownList>
-    </Fragment>
+    </>
   )
 }
 

@@ -4,13 +4,16 @@ import React from 'react'
 import {withStateValue, withStateValueTags} from '@s-ui/hoc'
 
 import MoleculeAutosuggest, {
-  MoleculeAutosuggestDropdownListSizes
+  MoleculeAutosuggestDropdownListSizes,
+  MoleculeAutosuggestStates
 } from '../../../../components/molecule/autosuggest/src'
 import MoleculeAutosuggestOption from '@s-ui/react-molecule-dropdown-option'
 
 import withDynamicOptions from './hoc/withDynamicOptions'
 
 import AutosuggestSingleWithAsyncOptions from './components/AutosuggestSingleFromAjax'
+
+import ComboCountries from './components/ComboCountries'
 
 import {IconClose} from './Icons'
 import {getAsyncCountriesFromQuery} from './services'
@@ -57,6 +60,7 @@ const Demo = () => (
       <MoleculeAutosuggestWithState
         placeholder="Type a Country name..."
         onChange={(_, {value}) => console.log(value)}
+        onEnter={() => console.log('Enter pressed')}
         iconClear={<IconClose />}
       />
     </div>
@@ -66,6 +70,67 @@ const Demo = () => (
       <MoleculeAutosuggestWithState
         value="Luxembourg"
         onChange={(_, {value}) => console.log(value)}
+        iconClear={<IconClose />}
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>disabled</h3>
+      <MoleculeAutosuggestWithState
+        value="Luxembourg"
+        onChange={(_, {value}) => console.log(value)}
+        iconClear={<IconClose />}
+        disabled
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>Whit autocomplete "off"</h3>
+      <MoleculeAutosuggestWithState
+        value="Luxembourg"
+        onChange={(_, {value}) => console.log(value)}
+        iconClear={<IconClose />}
+        autoComplete="off"
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With no clear icon</h3>
+      <MoleculeAutosuggestWithState
+        value="Luxembourg"
+        onChange={(_, {value}) => console.log(value)}
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>with Success State</h3>
+      <MoleculeAutosuggestWithState
+        placeholder="Type a Country name..."
+        onChange={(_, {value}) => console.log(value)}
+        onEnter={() => console.log('Enter pressed')}
+        state={MoleculeAutosuggestStates.SUCCESS}
+        iconClear={<IconClose />}
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>with Error State</h3>
+      <MoleculeAutosuggestWithState
+        placeholder="Type a Country name..."
+        onChange={(_, {value}) => console.log(value)}
+        onEnter={() => console.log('Enter pressed')}
+        state={MoleculeAutosuggestStates.ERROR}
+        iconClear={<IconClose />}
+      />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>with Alert State</h3>
+      <MoleculeAutosuggestWithState
+        placeholder="Type a Country name..."
+        onChange={(_, {value}) => console.log(value)}
+        onEnter={() => console.log('Enter pressed')}
+        state={MoleculeAutosuggestStates.ALERT}
         iconClear={<IconClose />}
       />
     </div>
@@ -95,6 +160,24 @@ const Demo = () => (
         iconClear={<IconClose />}
         multiselection
       />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>Disabled</h3>
+      <MoleculeAutosuggestWithStateTags
+        tags={['India', 'Luxembourg']}
+        onChangeTags={(_, {tags}) => console.log(tags)}
+        iconCloseTag={<IconClose />}
+        iconClear={<IconClose />}
+        multiselection
+        disabled
+      />
+    </div>
+
+    <h2>Dependant Selection</h2>
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With Placeholder</h3>
+      <ComboCountries />
     </div>
   </div>
 )

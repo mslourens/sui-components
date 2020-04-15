@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Input, {inputSizes} from './Input'
+import Input, {inputSizes, inputStates} from './Input'
 import Password from './Password'
 import Mask from './Mask'
 
@@ -12,8 +12,6 @@ const TYPES = {
   PASSWORD: 'password',
   SUI_PASSWORD: 'sui-password',
   TEXT: 'text',
-  RADIO: 'radio',
-  CHECKBOX: 'checkbox',
   TEL: 'tel',
   EMAIL: 'email'
 }
@@ -81,17 +79,32 @@ AtomInput.propTypes = {
   /** width of input based in number of characters (native "size" attribute) */
   charsSize: PropTypes.number,
 
+  /** specifies the maximum number of characters (native "maxlength" attribute) */
+  maxLength: PropTypes.number,
+
+  /** specifies the minimum number of characters (native "minlength" attribute) */
+  minLength: PropTypes.number,
+
+  /** specifies whether or not an input field should have autocomplete enabled (on|off) */
+  autoComplete: PropTypes.string,
+
   /** true = error, false = success, null = neutral */
   errorState: PropTypes.bool,
+
+  /** 'success', 'error' or 'alert' */
+  state: PropTypes.oneOf(Object.values(inputStates)),
 
   /** value of the control */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
   /** mask object, see https://unmanner.github.io/imaskjs/ */
-  mask: PropTypes.object
+  mask: PropTypes.object,
+
+  /** a button to be added on the right side of the input */
+  button: PropTypes.node
 }
 
 AtomInput.displayName = 'AtomInput'
 
 export default AtomInput
-export {inputSizes}
+export {inputSizes, inputStates}

@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.12.0"></a>
+# 1.12.0 (2019-12-10)
+
+
+### Features
+
+* update reacstrap version ([de774a7](https://github.com/SUI-Components/sui-components/commit/de774a7))
+
+
+
+<a name="1.11.0"></a>
+# 1.11.0 (2019-10-29)
+
+
+### Features
+
+* use sui-hoc for intersection observer and dynamic import ([e93b423](https://github.com/SUI-Components/sui-components/commit/e93b423))
+
+
+
+<a name="1.10.0"></a>
+# 1.10.0 (2019-10-10)
+
+
+### Bug Fixes
+
+* disable linter for external lib case use ([1d863e2](https://github.com/SUI-Components/sui-components/commit/1d863e2))
+
+
+
+<a name="1.9.0"></a>
+# 1.9.0 (2019-07-01)
+
+
+### Features
+
+* fixed issue w/ export ([503ec61](https://github.com/SUI-Components/sui-components/commit/503ec61))
+
+
+
+<a name="1.8.0"></a>
+# 1.8.0 (2019-06-06)
+
+
+### Features
+
+* named export barebone component AtomTooltipo without HoC ([22ca4ab](https://github.com/SUI-Components/sui-components/commit/22ca4ab))
+
+
+
 <a name="1.7.0"></a>
 # 1.7.0 (2019-02-21)
 

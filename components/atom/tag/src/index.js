@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-
 import ActionableTag from './Actionable'
 import StandardTag from './Standard'
 
@@ -10,7 +9,8 @@ const ACTIONABLE_ONLY_PROPS = [
   'iconPlacement',
   'target',
   'actionable',
-  'linkFactory'
+  'linkFactory',
+  'rel'
 ]
 const STANDARD_ONLY_PROPS = ['closeIcon', 'onClose']
 const SIZES = {
@@ -18,7 +18,14 @@ const SIZES = {
   MEDIUM: 'medium',
   SMALL: 'small'
 }
-
+const LINK_TYPES = {
+  NOFOLLOW: 'nofollow',
+  NOOPENER: 'noopener',
+  NOREFERRER: 'noreferrer',
+  PREV: 'prev',
+  NEXT: 'next',
+  TAG: 'tag'
+}
 /**
  * returns key:value in obj except for those keys defined in props
  * @param {Object} obj
@@ -34,12 +41,12 @@ const filterKeys = (obj, listOfProps) =>
   }, {})
 
 const AtomTag = props => {
-  const {href, icon, onClick, size, responsive} = props
-
+  const {href, icon, onClick, size, responsive, type} = props
   const isActionable = onClick || href
   const classNames = cx(
     'sui-AtomTag',
     `sui-AtomTag-${size}`,
+    type && `sui-AtomTag--${type}`,
     responsive && 'sui-AtomTag--responsive',
     icon && 'sui-AtomTag-hasIcon'
   )
@@ -98,6 +105,10 @@ AtomTag.propTypes = {
    */
   target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
   /**
+   * To be used if href is defined
+   */
+  rel: PropTypes.arrayOf(PropTypes.oneOf(Object.values(LINK_TYPES))),
+  /**
    * Actionable tags can have iconPlacement='right'
    */
   iconPlacement: PropTypes.oneOf(['right', 'left']),
@@ -105,6 +116,11 @@ AtomTag.propTypes = {
    * Tag size
    */
   size: PropTypes.oneOf(Object.values(SIZES)),
+  /**
+   * Tag type in order to color it as desired
+   * from a high order component.
+   */
+  type: PropTypes.string,
   /**
    * true for make responsive layout. keep large size in mobile
    */
@@ -117,3 +133,4 @@ AtomTag.defaultProps = {
 
 export default AtomTag
 export {SIZES as atomTagSizes}
+export {LINK_TYPES as linkTypes}

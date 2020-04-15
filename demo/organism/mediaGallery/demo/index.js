@@ -5,6 +5,7 @@ import './index.scss'
 
 import OrganismMediaGallery from '../../../../components/organism/mediaGallery/src'
 import Video from '../../../../components/organism/mediaGallery/src/mediaItems/video'
+import Video3d from '../../../../components/organism/mediaGallery/src/mediaItems/video3d'
 import Image from '../../../../components/organism/mediaGallery/src/mediaItems/image'
 
 const BASE_CLASS_DEMO = 'DemoOrganismMediaGallery'
@@ -22,7 +23,12 @@ const Demo = () => (
           src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
           alt="Image"
         />
+        <Image
+          src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
+          alt="Image"
+        />
         <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
+        <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
       </OrganismMediaGallery>
     </div>
   </div>

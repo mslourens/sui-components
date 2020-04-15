@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
 import {moleculeDropdownListSizes as SIZES} from '@s-ui/react-molecule-dropdown-list'
+import {inputSizes as SELECT_SIZES} from '@s-ui/react-atom-input'
 
 import MoleculeSelectSingleSelection from './components/SingleSelection'
 import MoleculeSelectMultipleSelection from './components/MultipleSelection'
@@ -15,96 +16,92 @@ const BASE_CLASS = `sui-MoleculeSelect`
 const CLASS_FOCUS = `${BASE_CLASS}--focus`
 const CLASS_DISABLED = `is-disabled`
 
-const ERROR_STATES = {
+const SELECT_STATES = {
   ERROR: 'error',
-  SUCCESS: 'success'
+  SUCCESS: 'success',
+  ALERT: 'alert'
 }
 
-class MoleculeSelect extends Component {
-  refMoleculeSelect = this.props.refMoleculeSelect || React.createRef()
-  refsMoleculeSelectOptions = []
-  state = {
-    focus: false
-  }
+const ENABLED_KEYS = ['Enter', 'ArrowDown', 'ArrowUp']
 
-  get extendedChildren() {
-    const {children, keysSelection} = this.props // eslint-disable-line react/prop-types
-    const {refsMoleculeSelectOptions} = this
-    return React.Children.toArray(children)
-      .filter(Boolean)
-      .map((child, index) => {
-        refsMoleculeSelectOptions[index] = React.createRef()
-        return React.cloneElement(child, {
-          innerRef: refsMoleculeSelectOptions[index],
-          onSelectKey: keysSelection
-        })
+const getOptionData = children => {
+  const optionsData = {}
+  React.Children.forEach(children, child => {
+    const {children, value} = child.props
+    optionsData[value] = children
+  })
+  return optionsData
+}
+
+const MoleculeSelect = props => {
+  const {
+    isOpen,
+    onToggle,
+    children,
+    errorState,
+    state,
+    disabled,
+    keysSelection,
+    refMoleculeSelect: refMoleculeSelectFromProps
+  } = props
+  const refMoleculeSelect = useRef(refMoleculeSelectFromProps)
+  const refsMoleculeSelectOptions = useRef([])
+
+  const [optionsData, setOptionsData] = useState(getOptionData(children))
+  const [focus, setFocus] = useState(false)
+
+  const extendedChildren = React.Children.toArray(children)
+    .filter(Boolean)
+    .map((child, index) => {
+      refsMoleculeSelectOptions.current[index] = React.createRef()
+      return React.cloneElement(child, {
+        innerRef: refsMoleculeSelectOptions.current[index],
+        onSelectKey: keysSelection
       })
-  }
+    })
 
-  get className() {
-    const {focus} = this.state
-    const {disabled} = this.props
-    const {errorStateClass} = this
-    return cx(
-      BASE_CLASS,
-      {
-        [CLASS_FOCUS]: focus,
-        [CLASS_DISABLED]: disabled
-      },
-      errorStateClass
-    )
-  }
+  const className = cx(
+    BASE_CLASS,
+    errorState && `${BASE_CLASS}--${SELECT_STATES.ERROR}`,
+    errorState === false && `${BASE_CLASS}--${SELECT_STATES.SUCCESS}`,
+    state && `${BASE_CLASS}--${state}`,
+    {
+      [CLASS_FOCUS]: focus,
+      [CLASS_DISABLED]: disabled
+    }
+  )
 
-  get errorStateClass() {
-    const {errorState} = this.props
-    if (errorState) return `${BASE_CLASS}--${ERROR_STATES.ERROR}`
-    if (errorState === false) return `${BASE_CLASS}--${ERROR_STATES.SUCCESS}`
-    return ''
-  }
+  useEffect(() => {
+    setOptionsData(getOptionData(children))
+  }, [children])
 
-  closeList = ev => {
-    const {onToggle} = this.props
-    const {
-      refMoleculeSelect: {current: domMoleculeSelect}
-    } = this
+  const closeList = ev => {
     onToggle(ev, {isOpen: false})
-    domMoleculeSelect.focus()
     ev.preventDefault()
     ev.stopPropagation()
   }
 
-  focusFirstOption = (ev, {options}) => {
+  const focusFirstOption = (ev, {options}) => {
     options[0].focus()
     ev.preventDefault()
     ev.stopPropagation()
   }
 
-  handleToggle = ev => {
-    const {onToggle} = this.props
+  const handleToggle = ev => {
     onToggle(ev, {})
     ev.preventDefault()
     ev.stopPropagation()
   }
 
-  handleKeyDown = ev => {
+  const handleKeyDown = ev => {
     ev.persist()
-    const {isOpen} = this.props
-    const {
-      refMoleculeSelect,
-      refsMoleculeSelectOptions,
-      closeList,
-      focusFirstOption,
-      handleToggle
-    } = this
-
-    const options = refsMoleculeSelectOptions.map(getTarget)
+    const isEnabledKey = ENABLED_KEYS.includes(ev.key)
+    const options = refsMoleculeSelectOptions.current.map(getTarget)
     const domSourceEvent = ev.target
     const domMoleculeSelect = refMoleculeSelect.current
-    if (!isOpen) {
-      if (['Enter', 'ArrowDown', 'ArrowUp'].includes(ev.key)) {
-        if (domSourceEvent === domMoleculeSelect) handleToggle(ev)
-        else closeList(ev)
-      }
+
+    if (!isOpen && isEnabledKey) {
+      domSourceEvent === domMoleculeSelect && handleToggle(ev)
     } else {
       const currentElementFocused = getCurrentElementFocused()
       const isSomeOptionFocused = [...options].includes(currentElementFocused)
@@ -114,20 +111,13 @@ class MoleculeSelect extends Component {
     }
   }
 
-  handleSelect = () => {
-    this.setState({focus: true})
+  const handleFocusIn = () => {
+    !disabled && setFocus(true)
   }
 
-  handleFocusIn = () => {
-    const {disabled} = this.props
-    !disabled && this.setState({focus: true})
-  }
-
-  handleFocusOut = ev => {
+  const handleFocusOut = ev => {
     ev.persist()
-    const {refsMoleculeSelectOptions, closeList} = this
-    const {isOpen} = this.props
-    const options = refsMoleculeSelectOptions.map(getTarget)
+    const options = refsMoleculeSelectOptions.current.map(getTarget)
     const firstOption = options[0]
     setTimeout(() => {
       const currentElementFocused = getCurrentElementFocused()
@@ -140,50 +130,45 @@ class MoleculeSelect extends Component {
         closeList(ev)
       }
     }, 1)
-    this.setState({focus: false})
+    setFocus(false)
   }
 
-  render() {
-    const {multiselection, ..._props} = this.props
-    const {
-      className,
-      handleKeyDown,
-      extendedChildren,
-      refMoleculeSelect,
-      handleFocusIn,
-      handleFocusOut
-    } = this
+  const {multiselection, ...propsFromProps} = props
 
-    return (
-      <div
-        ref={refMoleculeSelect}
-        tabIndex="0"
-        className={className}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocusIn}
-        onBlur={handleFocusOut}
-      >
-        {multiselection ? (
-          <MoleculeSelectMultipleSelection
-            refMoleculeSelect={refMoleculeSelect}
-            {..._props}
-          >
-            {extendedChildren}
-          </MoleculeSelectMultipleSelection>
-        ) : (
-          <MoleculeSelectSingleSelection
-            refMoleculeSelect={refMoleculeSelect}
-            {..._props}
-          >
-            {extendedChildren}
-          </MoleculeSelectSingleSelection>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div
+      ref={refMoleculeSelect}
+      tabIndex="0"
+      className={className}
+      onKeyDown={handleKeyDown}
+      onFocus={handleFocusIn}
+      onBlur={handleFocusOut}
+    >
+      {multiselection ? (
+        <MoleculeSelectMultipleSelection
+          refMoleculeSelect={refMoleculeSelect}
+          optionsData={optionsData}
+          {...propsFromProps}
+        >
+          {extendedChildren}
+        </MoleculeSelectMultipleSelection>
+      ) : (
+        <MoleculeSelectSingleSelection
+          refMoleculeSelect={refMoleculeSelect}
+          optionsData={optionsData}
+          {...propsFromProps}
+        >
+          {extendedChildren}
+        </MoleculeSelectSingleSelection>
+      )}
+    </div>
+  )
 }
 
 MoleculeSelect.propTypes = {
+  /** children */
+  children: PropTypes.any,
+
   /** The DOM id global attribute. */
   id: PropTypes.string,
 
@@ -223,16 +208,32 @@ MoleculeSelect.propTypes = {
   /** true = error, false = success, null = neutral */
   errorState: PropTypes.bool,
 
+  /* Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
+  state: PropTypes.oneOf(Object.values(SELECT_STATES)),
+
   /** This Boolean attribute prevents the user from interacting with the select */
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+
+  /** This Boolean attribute prevents the user from interacting with the input but without disabled styles  */
+  readOnly: PropTypes.bool,
+
+  /** Size of the select(input) */
+  selectSize: PropTypes.oneOf(Object.values(SELECT_SIZES)),
+
+  /* native tabIndex html attribute */
+  tabIndex: PropTypes.number
 }
 
 MoleculeSelect.defaultProps = {
+  disabled: false,
+  keysSelection: [' ', 'Enter'],
   onChange: () => {},
   onToggle: () => {},
-  keysSelection: [' ', 'Enter'],
-  disabled: false
+  readOnly: false,
+  selectSize: SELECT_SIZES.MEDIUM
 }
 
 export default withOpenToggle(MoleculeSelect)
 export {SIZES as moleculeSelectDropdownListSizes}
+export {SELECT_SIZES as moleculeSelectSizes}
+export {SELECT_STATES as moleculeSelectStates}

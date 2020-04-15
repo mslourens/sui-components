@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
 import MoleculeDropdownList from '@s-ui/react-molecule-dropdown-list'
 import MoleculeInputTags from '@s-ui/react-molecule-input-tags'
@@ -21,7 +21,11 @@ const MoleculeSelectFieldMultiSelection = props => {
     placeholder,
     keysSelection,
     id,
-    size
+    size,
+    required,
+    optionsData = {},
+    selectSize,
+    tabIndex
   } = props
 
   const handleMultiSelection = (ev, {value: valueOptionSelected}) => {
@@ -39,18 +43,26 @@ const MoleculeSelectFieldMultiSelection = props => {
     refMoleculeSelect.current.focus()
   }
 
+  const tags = values.map(value => optionsData[value])
+
   return (
-    <Fragment>
+    <>
       <MoleculeInputSelect
         id={id}
-        tags={values}
+        tags={tags}
         onClick={onToggle}
         tagsCloseIcon={iconCloseTag}
         iconArrowDown={iconArrowDown}
         onChangeTags={handleChangeTags}
         isOpen={isOpen}
         placeholder={!values.length ? placeholder : ''}
+        optionsData={optionsData}
+        autoComplete="off"
+        readOnly
         noBorder
+        required={required}
+        size={selectSize}
+        tabIndex={tabIndex}
       />
       <MoleculeDropdownList
         checkbox
@@ -61,7 +73,7 @@ const MoleculeSelectFieldMultiSelection = props => {
       >
         {children}
       </MoleculeDropdownList>
-    </Fragment>
+    </>
   )
 }
 

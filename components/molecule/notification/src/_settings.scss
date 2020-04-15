@@ -3,6 +3,14 @@ $z-notification: 1000 !default;
 $mh-notification: 500px !default;
 $sz-notification-icon: $sz-icon-m !default;
 
+$bdrs-notification: (
+  xl: $bdrs-base * 4,
+  l: $bdrs-base * 2,
+  m: $bdrs-base,
+  s: $bdrs-base / 2,
+  xs: $bdrs-base / 4
+) !default;
+
 // Colors
 
 $notification-type-colors: (
@@ -10,7 +18,7 @@ $notification-type-colors: (
   success: $c-success,
   warning: $c-alert,
   error: $c-error,
-  system: $c-system,
+  system: $c-system
 ) !default;
 
 $notification-type-font-colors: (
@@ -18,14 +26,36 @@ $notification-type-font-colors: (
   success: $c-white,
   warning: $c-white,
   error: $c-white,
-  system: $c-white,
+  system: $c-white
+) !default;
+
+// Positive Text color
+
+$notification-type-positive-text-colors: (
+  info: $c-primary,
+  success: $c-success,
+  warning: $c-alert,
+  error: $c-error,
+  system: $c-system
+) !default;
+
+// Positive Icon color
+
+$notification-type-positive-icon-colors: (
+  info: $c-primary,
+  success: $c-success,
+  warning: $c-alert,
+  error: $c-error,
+  system: $c-system
 ) !default;
 
 // Effects
 
-$notification-effect-slide-top-in: top .5s ease-out !default;
-$notification-effect-slide-top-out: top .3s ease-in !default;
-$notification-effect-slide-bottom-in: bottom .5s ease-out !default;
-$notification-effect-slide-bottom-out: bottom .3s ease-in !default;
-$notification-effect-fade-in: opacity .5s ease-out .5s, max-height .5s ease 0s !default;
-$notification-effect-fade-out: opacity .3s ease-in 0s, max-height .5s ease .3s !default;
+$notification-effect-slide-top-in: top 0.5s ease-out !default;
+$notification-effect-slide-top-out: top 0.3s ease-in !default;
+$notification-effect-slide-bottom-in: bottom 0.5s ease-out !default;
+$notification-effect-slide-bottom-out: bottom 0.3s ease-in !default;
+$notification-effect-fade-in: opacity 0.5s ease-out 0.5s,
+  max-height 0.5s ease 0s !default;
+$notification-effect-fade-out: opacity 0.3s ease-in 0s,
+  max-height 0.5s ease 0.3s !default;

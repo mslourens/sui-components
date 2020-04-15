@@ -1,6 +1,6 @@
 {
-  "name": "@schibstedspain/sui-molecule-tabs",
-  "version": "2.1.0",
+  "name": "@s-ui/react-molecule-tabs",
+  "version": "2.5.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

@@ -60,7 +60,14 @@ const bankAccountMask = { // checkout all options here https://unmanner.github.i
 
 ### Sizes
 
-There are defined 2 sizes (`MEDIUM` and `SMALL`) available at the exported object `inputSizes` and that can be set through the prop `size`
+There are defined 3 sizes (`MEDIUM`, `SMALL` and `XSMALL`) available at the exported object `inputSizes` and that can be set through the prop `size`
+
+Related size Sass vars are:
+```scss
+$h-atom-input--m: 40px;
+$h-atom-input--s: 32px;
+$h-atom-input--xs: 24px;
+```
 
 ```js
 <AtomInput
@@ -128,6 +135,26 @@ There are 3 error states:
 />
 ```
 
+
+### Input states
+
+There are 3 error states:
+
+* input state = **'error'**, will show a **red** border around the input field
+* input state = **'success'**, will show a **green** border around the input field
+* input state = **'alert'**, will show a **orange** border around the input field
+* input state = **null**, will show the by **default** border around the input field
+
+```js
+<AtomInput 
+  name="second" 
+  placeholder="Success input" 
+  state="alert"
+/>
+```
+
+
+
 ### Form Usage
 
 Each field returns its value on every onChange event so you can save it inside your form state.
@@ -136,7 +163,7 @@ Each field returns its value on every onChange event so you can save it inside y
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Input from '@s-ui/react-atom-input'
-import Button from '@schibstedspain/sui-atom-button'
+import Button from '@s-ui/react-atom-button'
 
 class SimpleLoginForm extends React.Component {
   constructor() {

@@ -1,6 +1,6 @@
 {
   "name": "@s-ui/react-molecule-thumbnail",
-  "version": "1.3.0",
+  "version": "2.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@s-ui/component-dependencies": "1",
-    "@schibstedspain/sui-image-placeholder": "2"
+    "@s-ui/react-atom-image": "2"
   },
   "keywords": [],
   "author": "",

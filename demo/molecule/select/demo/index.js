@@ -3,13 +3,20 @@ import React from 'react'
 
 import {withStateValue} from '@s-ui/hoc'
 
-import MoleculeSelect from '../../../../components/molecule/select/src'
+import MoleculeSelect, {
+  moleculeSelectSizes,
+  moleculeSelectStates
+} from '../../../../components/molecule/select/src'
 
 import MoleculeSelectOption from '@s-ui/react-molecule-dropdown-option'
 
 import {IconCloseTag, IconArrowDown} from './Icons'
 
-import {countries} from './data'
+import ComboCountries from './components/ComboCountries'
+import MoleculeSelectUseEffect from './components/MoleculeSelectUseEffect'
+
+import {countries as countriesList} from './data'
+import countriesData from './data/countries.json'
 import './index.scss'
 
 const MoleculeSelectWithState = withStateValue(MoleculeSelect)
@@ -33,6 +40,7 @@ const Demo = () => (
       <code>DropdownOption</code>. Recuerda que en dichos componentes existen
       más posibilidades si son necesarias
     </p>
+
     <h2>Single Selection</h2>
     <div className={CLASS_DEMO_SECTION}>
       <h3>With Placeholder</h3>
@@ -41,12 +49,17 @@ const Demo = () => (
         onChange={(_, {value}) => console.log(value)}
         iconArrowDown={<IconArrowDown />}
       >
-        {countries.map((country, i) => (
+        {countriesList.map((country, i) => (
           <MoleculeSelectOption key={i} value={country}>
             {country}
           </MoleculeSelectOption>
         ))}
       </MoleculeSelectWithState>
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With useEffect and preselected Value</h3>
+      <MoleculeSelectUseEffect value="EFTA" />
     </div>
 
     <div className={CLASS_DEMO_SECTION}>
@@ -56,7 +69,7 @@ const Demo = () => (
         onChange={(_, {value}) => console.log(value)}
         iconArrowDown={<IconArrowDown />}
       >
-        {countries.map((country, i) => (
+        {countriesList.map((country, i) => (
           <MoleculeSelectOption key={i} value={country}>
             {country}
           </MoleculeSelectOption>
@@ -72,12 +85,64 @@ const Demo = () => (
         onChange={(_, {value}) => console.log(value)}
         iconArrowDown={<IconArrowDown />}
       >
-        {countries.map((country, i) => (
+        {countriesList.map((country, i) => (
           <MoleculeSelectOption key={i} value={country}>
             {country}
           </MoleculeSelectOption>
         ))}
       </MoleculeSelectWithState>
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With different value and displayed text</h3>
+      <MoleculeSelectWithState
+        placeholder="Select some countries..."
+        onChange={(_, {value}) => console.log(value)}
+        iconCloseTag={<IconCloseTag />}
+        iconArrowDown={<IconArrowDown />}
+      >
+        {countriesData.map(({name, code}, i) => (
+          <MoleculeSelectOption key={i} value={code}>
+            {name}
+          </MoleculeSelectOption>
+        ))}
+      </MoleculeSelectWithState>
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>Small size</h3>
+      <MoleculeSelect
+        placeholder="Select a Country..."
+        onChange={(_, {value}) => console.log(value)}
+        iconArrowDown={<IconArrowDown />}
+        selectSize={moleculeSelectSizes.SMALL}
+      >
+        {countriesData.map(({name, code}, i) => (
+          <MoleculeSelectOption key={i} value={code}>
+            {name}
+          </MoleculeSelectOption>
+        ))}
+      </MoleculeSelect>
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With state</h3>
+      <p>
+        State to highlight that can be <code>success</code>, <code>error</code>{' '}
+        or <code>alert</code>
+      </p>
+      <MoleculeSelect
+        placeholder="Select a Country..."
+        onChange={(_, {value}) => console.log(value)}
+        iconArrowDown={<IconArrowDown />}
+        state={moleculeSelectStates.ALERT}
+      >
+        {countriesData.map(({name, code}, i) => (
+          <MoleculeSelectOption key={i} value={code}>
+            {name}
+          </MoleculeSelectOption>
+        ))}
+      </MoleculeSelect>
     </div>
 
     <h2>Multiple Selection</h2>
@@ -90,7 +155,7 @@ const Demo = () => (
         iconArrowDown={<IconArrowDown />}
         multiselection
       >
-        {countries.map((country, i) => (
+        {countriesList.map((country, i) => (
           <MoleculeSelectOption key={i} value={country}>
             {country}
           </MoleculeSelectOption>
@@ -108,9 +173,50 @@ const Demo = () => (
         iconArrowDown={<IconArrowDown />}
         multiselection
       >
-        {countries.map((country, i) => (
+        {countriesList.map((country, i) => (
           <MoleculeSelectOption key={i} value={country}>
             {country}
+          </MoleculeSelectOption>
+        ))}
+      </MoleculeSelectWithState>
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With different value and displayed text</h3>
+      <MoleculeSelectWithState
+        placeholder="Select some countries..."
+        onChange={(_, {value}) => console.log(value)}
+        iconCloseTag={<IconCloseTag />}
+        iconArrowDown={<IconArrowDown />}
+        multiselection
+      >
+        {countriesData.map(({name, code}, i) => (
+          <MoleculeSelectOption key={i} value={code}>
+            {name}
+          </MoleculeSelectOption>
+        ))}
+      </MoleculeSelectWithState>
+    </div>
+
+    <h2>Dependant Selection</h2>
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>With Placeholder</h3>
+      <ComboCountries />
+    </div>
+
+    <div className={CLASS_DEMO_SECTION}>
+      <h3>Small size</h3>
+      <MoleculeSelectWithState
+        placeholder="Select some countries..."
+        onChange={(_, {value}) => console.log(value)}
+        iconCloseTag={<IconCloseTag />}
+        iconArrowDown={<IconArrowDown />}
+        multiselection
+        selectSize={moleculeSelectSizes.SMALL}
+      >
+        {countriesData.map(({name, code}, i) => (
+          <MoleculeSelectOption key={i} value={code}>
+            {name}
           </MoleculeSelectOption>
         ))}
       </MoleculeSelectWithState>

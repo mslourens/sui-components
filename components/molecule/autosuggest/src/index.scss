@@ -4,14 +4,19 @@
 @import '~@s-ui/react-molecule-dropdown-list/lib/index';
 
 $base-class: '.sui-MoleculeAutosuggest';
+$base-class-atom-input: '.sui-AtomInput';
 $class-input: '#{$base-class}-input';
+$base-class-atom-input-input: '#{$base-class-atom-input}-input';
 
 $z-autosuggest-list: $z-navigation !default;
 $mr-autosuggest-icon-clear: -34px !default;
 $w-autosuggest-icon-clear: 20px !default;
 
+$bdw-autosuggest-container: $bdw-s !default;
+
 #{$base-class} {
   position: relative;
+  outline: none;
 
   .sui-MoleculeDropdownList {
     position: absolute;
@@ -25,7 +30,15 @@ $w-autosuggest-icon-clear: 20px !default;
   &--focus {
     #{$class-input} {
       &-container {
-        @extend %sui-atom-input-input-focus;
+        @extend %sui-molecule-autosuggest-focus;
+      }
+    }
+  }
+
+  &--disabled {
+    #{$class-input}-container {
+      #{$base-class-atom-input}--withTags {
+        background: $c-gray-lightest;
       }
     }
   }
@@ -33,7 +46,7 @@ $w-autosuggest-icon-clear: 20px !default;
   #{$class-input} {
     &-container {
       align-items: center;
-      border: 1px solid transparent;
+      border: $bdw-autosuggest-container solid transparent;
       cursor: pointer;
       display: flex;
       min-height: $h-atom-input--m;
@@ -46,6 +59,12 @@ $w-autosuggest-icon-clear: 20px !default;
       justify-content: center;
       margin-left: $mr-autosuggest-icon-clear;
       width: $w-autosuggest-icon-clear;
+    }
+  }
+
+  @each $state, $color in $states-atom-input {
+    &#{$base-class}--#{$state} #{$base-class-atom-input-input} {
+      border-color: $color;
     }
   }
 }

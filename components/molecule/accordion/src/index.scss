@@ -18,6 +18,11 @@
     border-bottom: $bd-accordion-tab-container;
   }
 
+  &--withGap {
+    border-bottom: $bd-accordion-tab-container;
+    margin-bottom: $m-accordion-tab-btn;
+  }
+
   &Btn {
     background: none;
     border: 0;
@@ -42,7 +47,7 @@
       white-space: nowrap;
     }
 
-    &:focus, 
+    &:focus,
     &Content:focus {
       outline: none;
     }
@@ -50,7 +55,6 @@
     &:focus &Content {
       box-shadow: 0 0 6px 3px color-variation($c-primary, 1);
     }
-
   }
 
   &Content {
@@ -87,7 +91,6 @@
         }
       }
     }
-
   }
 
   &TitleContainer {
@@ -97,6 +100,7 @@
   }
 
   &Icon {
+    color: $c-accordion-tab-icon;
     padding-left: $p-accordion-tab-btn;
     padding-right: $p-accordion-tab-btn;
     vertical-align: middle;
@@ -104,7 +108,7 @@
     svg {
       fill: currentColor;
       transform: scale(1);
-      width: 10px;
+      width: $sz-accordion-tab-icon;
     }
 
     &.is-open {
@@ -112,6 +116,5 @@
         transform: scale(-1);
       }
     }
-
   }
 }
