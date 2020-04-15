@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import AtomImage from '@s-ui/react-atom-image'
 
-function image(props) {
+function Image(props) {
   const {src, ...imageProps} = props
   return <AtomImage src={src} {...imageProps} />
 }
 
-image.propTypes = {
+Image.propTypes = {
   /**
    * Image source
    */
@@ -18,4 +18,4 @@ image.propTypes = {
   alt: PropTypes.string.isRequired
 }
 
-export default image
+export default Image
