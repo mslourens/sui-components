@@ -1,5 +1,5 @@
 /* sass-lint:disable no-important, class-name-format*/
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 @import './settings';
 
 .sui-BreadcrumbBasic {
@@ -20,7 +20,8 @@
     color: $c-breadcrumb-link;
     margin-right: $m-breadcrumb-items;
 
-    .is-expanded & {
+    .is-expanded &,
+    .is-scrollable & {
       display: none;
     }
   }
@@ -29,6 +30,12 @@
     @include reset-list;
     display: flex;
     flex-wrap: wrap;
+
+    .is-scrollable & {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
 
     &Item {
       align-items: center;
@@ -47,7 +54,8 @@
         }
       }
 
-      .is-expanded & {
+      .is-expanded &,
+      .is-scrollable & {
         display: inline-flex;
       }
     }

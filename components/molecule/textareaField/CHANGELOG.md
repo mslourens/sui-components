@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+# 3.0.0 (2020-04-08)
+
+
+### Features
+
+* added prop updateInternalValue in order to update the internal value o ([18307a3](https://github.com/SUI-Components/sui-components/commit/18307a3b83631b94260f250ceba3b0f9d25ae2bc))
+* modify value prop to update the internalValue ([314e91c](https://github.com/SUI-Components/sui-components/commit/314e91cb82b1ffc9e3f0bd0a41a126d0e8e571de))
+
+
+### BREAKING CHANGES
+
+* value prop
+
+
+
+# 2.8.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([187d23e](https://github.com/SUI-Components/sui-components/commit/187d23eff8dda3508c640fc16087ec52e60b0eef))
+
+
+
+# 2.7.0 (2020-03-02)
+
+
+### Features
+
+* add autohide prop ([3e15a4d](https://github.com/SUI-Components/sui-components/commit/3e15a4d30644eb346a5f4850290e1d1c12667f17))
+
+
+
+# 2.6.0 (2020-02-24)
+
+
+### Bug Fixes
+
+* copy paste not working when value is empty (some refactor also) ([8bddd11](https://github.com/SUI-Components/sui-components/commit/8bddd110b386ce6be7eb35eaacbb46592d8e6886))
+
+
+
 # 2.5.0 (2020-01-31)
 
 

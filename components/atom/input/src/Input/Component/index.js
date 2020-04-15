@@ -67,13 +67,17 @@ const Input = ({
   tabIndex = DEFAULT_PROPS.TAB_INDEX,
   maxLength,
   minLength,
+  min,
+  max,
+  step,
   autoComplete,
   onChange = DEFAULT_PROPS.ON_CHANGE,
   onEnter = DEFAULT_PROPS.ON_ENTER,
   onEnterKey = DEFAULT_PROPS.ON_ENTER_KEY,
   onKeyDown = DEFAULT_PROPS.ON_KEY_DOWN,
   required,
-  pattern
+  pattern,
+  inputMode
 }) => {
   const changeHandler = ev => {
     const {
@@ -120,9 +124,13 @@ const Input = ({
       size={charsSize}
       maxLength={maxLength}
       minLength={minLength}
+      max={max}
+      min={min}
+      step={step}
       autoComplete={autoComplete}
       required={required}
       pattern={pattern}
+      inputMode={inputMode}
     />
   )
 }
@@ -158,6 +166,12 @@ Input.propTypes = {
   maxLength: PropTypes.number,
   /* specifies the minimum number of characters (native "minlength" attribute) */
   minLength: PropTypes.number,
+  /* specifies the maximum number allowed (native "max" attribute) */
+  max: PropTypes.number,
+  /* specifies the minimum number allowed (native "min" attribute) */
+  min: PropTypes.number,
+  /** stepping interval to use when using up and down arrows to adjust the value, as well as for validation (native "step" attribute) */
+  step: PropTypes.number,
   /** specifies whether or not an input field should have autocomplete enabled (on|off) */
   autoComplete: PropTypes.string,
   /* text, password, date or number */
@@ -179,7 +193,9 @@ Input.propTypes = {
   /** native required attribtue  */
   required: PropTypes.bool,
   /** native pattern attribute */
-  pattern: PropTypes.string
+  pattern: PropTypes.string,
+  /** To select input keyboard mode on mobile. It can be 'numeric', 'decimal', 'email', etc */
+  inputMode: PropTypes.string
 }
 
 export default Input

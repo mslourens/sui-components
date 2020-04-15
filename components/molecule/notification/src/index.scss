@@ -1,10 +1,11 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 @import '~@s-ui/react-atom-button/lib/index';
 @import './settings';
 
 $base-class: '.sui-MoleculeNotification';
 
 #{$base-class} {
+  border-radius: $bdrs-notification-content;
   max-height: $mh-notification;
 
   &-content {
@@ -15,6 +16,8 @@ $base-class: '.sui-MoleculeNotification';
 
   &-children,
   &-text {
+    align-items: $ai-notification-content;
+    display: flex;
     flex: 1 1 auto;
     font-size: $fz-m;
   }
@@ -27,6 +30,7 @@ $base-class: '.sui-MoleculeNotification';
 
   &-icon {
     svg {
+      fill: currentColor !important;
       height: $sz-notification-icon;
       width: $sz-notification-icon;
     }
@@ -55,10 +59,6 @@ $base-class: '.sui-MoleculeNotification';
     &--#{$key} {
       background-color: #{$value};
       color: $color;
-
-      svg {
-        fill: $color !important;
-      }
     }
   }
 
@@ -73,17 +73,10 @@ $base-class: '.sui-MoleculeNotification';
       }
     }
 
-    // Type text in positive variations
-    @each $key, $value in $notification-type-positive-icon-colors {
-      &#{$base-class}--#{$key} #{$base-class}-icon svg {
-        fill: $value !important;
-      }
-    }
-
     // Type variations
     @each $key, $value in $notification-type-colors {
       &#{$base-class}--#{$key} {
-        background-color: color-variation($value, $c-light-step * 2);
+        background: color-variation($value, $c-light-step * 2);
       }
     }
   }

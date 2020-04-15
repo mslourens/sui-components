@@ -2,10 +2,19 @@ import React, {useState, useEffect, useRef, useCallback} from 'react'
 import Button from '@s-ui/react-atom-button'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
+import {SIZES, PLACEMENTS} from './config'
 
-const BASE_CLASS = `sui-MoleculeSelectPopover`
+const BASE_CLASS = 'sui-MoleculeSelectPopover'
 
-export default function MoleculeSelectPopover({
+function usePrevious(value) {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+  return ref.current
+}
+
+function MoleculeSelectPopover({
   acceptButtonText,
   cancelButtonText,
   children,
@@ -13,17 +22,45 @@ export default function MoleculeSelectPopover({
   isSelected = false,
   onAccept = () => {},
   onCancel = () => {},
-  selectText
+  onClose = () => {},
+  onOpen = () => {},
+  placement = PLACEMENTS.RIGHT,
+  selectText,
+  size = 'm',
+  title
 }) {
   const [isOpen, setIsOpen] = useState(false)
+  const previousIsOpen = usePrevious(isOpen)
+
+  useEffect(() => {
+    /**
+     * Only run open events:
+     *  - After first render
+     *  - When isOpen actually changes
+     **/
+    if (typeof previousIsOpen === 'undefined' || isOpen === previousIsOpen) {
+      return
+    }
+    const openEvent = isOpen ? onOpen : onClose
+    openEvent()
+  }, [isOpen, onClose, onOpen, previousIsOpen])
 
   const selectRef = useRef()
   const popoverRef = useRef()
 
-  const selectClassName = cx(`${BASE_CLASS}-select`, {
-    'is-open': isOpen,
-    'is-selected': isSelected
-  })
+  const selectClassName = cx(
+    `${BASE_CLASS}-select`,
+    `${BASE_CLASS}-select--${size}`,
+    {
+      'is-open': isOpen,
+      'is-selected': isSelected
+    }
+  )
+
+  const popoverClassName = cx(
+    `${BASE_CLASS}-popover`,
+    `${BASE_CLASS}-popover--${placement}`
+  )
 
   const handleOnAccept = () => {
     setIsOpen(false)
@@ -52,12 +89,21 @@ export default function MoleculeSelectPopover({
     }
   }, [handleOnCancel, isOpen])
 
+  const handleOpenToggle = () => {
+    if (isOpen) {
+      setIsOpen(false)
+      handleOnCancel()
+      return
+    }
+    setIsOpen(true)
+  }
+
   return (
-    <div className={BASE_CLASS}>
+    <div className={BASE_CLASS} title={title}>
       <div
         ref={selectRef}
         className={selectClassName}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleOpenToggle}
       >
         <span className={`${BASE_CLASS}-selectText`}>{selectText}</span>
         <div className={`${BASE_CLASS}-selectIcon`}>
@@ -65,7 +111,7 @@ export default function MoleculeSelectPopover({
         </div>
       </div>
       {isOpen && (
-        <div className={`${BASE_CLASS}-popover`} ref={popoverRef}>
+        <div className={popoverClassName} ref={popoverRef}>
           <div className={`${BASE_CLASS}-popoverContent`}>{children}</div>
           <div className={`${BASE_CLASS}-popoverActionBar`}>
             <Button onClick={handleOnCancel} design="flat">
@@ -88,5 +134,13 @@ MoleculeSelectPopover.propTypes = {
   isSelected: PropTypes.bool,
   onAccept: PropTypes.func,
   onCancel: PropTypes.func,
-  selectText: PropTypes.string.isRequired
+  onClose: PropTypes.func,
+  onOpen: PropTypes.func,
+  placement: PropTypes.string,
+  selectText: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  title: PropTypes.string
 }
+
+export default MoleculeSelectPopover
+export {SIZES as selectPopoverSizes, PLACEMENTS as selectPopoverPlacements}

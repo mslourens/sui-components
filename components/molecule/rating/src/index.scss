@@ -1,13 +1,13 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 
-$h-molecule-rating-small: $sz-icon-m !default;
-$w-molecule-rating-small: $sz-icon-m !default;
+$h-molecule-rating-small: $sz-icon-s !default;
+$w-molecule-rating-small: $sz-icon-s !default;
 
-$h-molecule-rating-medium: $sz-icon-l !default;
-$w-molecule-rating-medium: $sz-icon-l !default;
+$h-molecule-rating-medium: $sz-icon-m !default;
+$w-molecule-rating-medium: $sz-icon-m !default;
 
-$h-molecule-rating-large: $sz-icon-xl !default;
-$w-molecule-rating-large: $sz-icon-xl !default;
+$h-molecule-rating-large: $sz-icon-l !default;
+$w-molecule-rating-large: $sz-icon-l !default;
 
 $fz-molecule-rating-small: $fz-s !default;
 $fz-molecule-rating-medium: $fz-m !default;
@@ -19,9 +19,17 @@ $bg-molecule-rating-hover: $c-primary-light-5 !default;
 
 $m-molecule-rating-label: 0 0 0 $m-m !default;
 
+$c-molecule-rating-svg: $c-system !default;
+
 $base-class: '.sui-MoleculeRating';
 $class-star: '#{$base-class}-Star';
 $class-label: '#{$base-class}-label';
+
+#{$class-star} {
+  svg {
+    fill: $c-molecule-rating-svg;
+  }
+}
 
 #{$base-class} {
   align-items: center;

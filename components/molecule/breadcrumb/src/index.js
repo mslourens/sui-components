@@ -2,15 +2,21 @@
 import PropTypes from 'prop-types'
 
 import React, {useState} from 'react'
-import Chevronright from '@schibstedspain/sui-svgiconset/lib/Chevronright'
+import Chevronright from '@s-ui/react-icons/lib/Chevronright'
 import cx from 'classnames'
 
-const breadcrumbClassName = isExpanded =>
+const breadcrumbClassName = ({isExpanded, isScrollable}) =>
   cx('sui-BreadcrumbBasic', {
-    'is-expanded': isExpanded
+    'is-expanded': isExpanded,
+    'is-scrollable': isScrollable
   })
 
-export default function BreadcrumbBasic({items, icon, linkFactory: Link}) {
+export default function BreadcrumbBasic({
+  items,
+  icon,
+  linkFactory: Link,
+  isScrollable = false
+}) {
   const [isExpanded, setIsExpanded] = useState(false)
   const expandBreadcrumb = () => setIsExpanded(true)
 
@@ -19,7 +25,7 @@ export default function BreadcrumbBasic({items, icon, linkFactory: Link}) {
 
   return (
     <nav aria-label="breadcrumb" role="navigation">
-      <div className={breadcrumbClassName(isExpanded)}>
+      <div className={breadcrumbClassName({isExpanded, isScrollable})}>
         <button onClick={expandBreadcrumb} className="sui-BreadcrumbBasic-btn">
           ...
         </button>
@@ -30,7 +36,7 @@ export default function BreadcrumbBasic({items, icon, linkFactory: Link}) {
                 <IconAngle svgClass="sui-BreadcrumbBasic-icon" />
               )}
               {url ? (
-                <Link href={url} className="sui-BreadcrumbBasic-link">
+                <Link to={url} href={url} className="sui-BreadcrumbBasic-link">
                   {label}
                 </Link>
               ) : (
@@ -67,14 +73,18 @@ BreadcrumbBasic.propTypes = {
    */
   icon: PropTypes.func,
   /**
-   * Function for creating links so it allow to customize it
+   * Function for creating links so it allows to customize it
    */
-  linkFactory: PropTypes.func
+  linkFactory: PropTypes.func,
+  /**
+   * Boolean that allows us to show the items with a horizontal scroll
+   */
+  isScrollable: PropTypes.bool
 }
 
 BreadcrumbBasic.defaultProps = {
-  linkFactory: ({href, className, children}) => (
-    <a href={href} className={className}>
+  linkFactory: ({to, href, className, children}) => (
+    <a href={to || href} className={className}>
       {children}
     </a>
   )

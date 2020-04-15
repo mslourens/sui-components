@@ -2,6 +2,106 @@
 
 All notable changes to this project will be documented in this file.
 
+# 4.18.0 (2020-04-06)
+
+
+### Features
+
+* add max and min prop to atom inpu ([b75d1dd](https://github.com/SUI-Components/sui-components/commit/b75d1dd2bcf2bd90a89181d5b9350613577c41cd))
+* add step prop ([083d560](https://github.com/SUI-Components/sui-components/commit/083d5603edb434c38a48da391ee4ecd18f913d77))
+
+
+
+# 4.17.0 (2020-03-28)
+
+
+### Features
+
+* fixed typo ([dabe78e](https://github.com/SUI-Components/sui-components/commit/dabe78ec3e3ec724a4c0505286e8d3cb3b4b859a))
+
+
+
+# 4.16.0 (2020-03-23)
+
+
+### Bug Fixes
+
+* move disabled styles only when not readonly but disabled ([92cbdd3](https://github.com/SUI-Components/sui-components/commit/92cbdd3cee244754159b8283ea7bfbfab6a26eb7))
+
+
+
+# 4.15.0 (2020-03-19)
+
+
+### Bug Fixes
+
+* atomInput has border when it is disabled and has noBorder prop ([dcd3e56](https://github.com/SUI-Components/sui-components/commit/dcd3e56550c737b31cc26be9eac7d47d58b070ae))
+
+
+
+# 4.14.0 (2020-03-18)
+
+
+### Bug Fixes
+
+* reorder variables ([dc37d51](https://github.com/SUI-Components/sui-components/commit/dc37d51cc5d38081ac1f5fab7b39f616c7c35ca2))
+
+
+
+# 4.13.0 (2020-03-18)
+
+
+### Features
+
+* add color ($c-atom-input-disabled) and border($bd-atom-input-disabled) variables f ([9f6e909](https://github.com/SUI-Components/sui-components/commit/9f6e9093a37483f8de0999ba9d82fdb46edacf0d))
+
+
+
+# 4.12.0 (2020-03-16)
+
+
+### Features
+
+* add inputmode prop ([708ffb5](https://github.com/SUI-Components/sui-components/commit/708ffb52f292068e73aaee72bfaf837974ba445c))
+
+
+
+# 4.11.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([416119f](https://github.com/SUI-Components/sui-components/commit/416119f92ea0f2a9835783421dd241344887cbfb))
+
+
+
+# 4.10.0 (2020-02-12)
+
+
+### Features
+
+* add flex property ([ad233b5](https://github.com/SUI-Components/sui-components/commit/ad233b55aca3eee89f073a1faffeb688a01b2f23))
+
+
+
+# 4.9.0 (2020-02-05)
+
+
+### Features
+
+* add variable placeholder atom input ([986adcc](https://github.com/SUI-Components/sui-components/commit/986adccc160526c5aa65a100d23732b3c2535def))
+
+
+
+# 4.8.0 (2020-02-04)
+
+
+### Bug Fixes
+
+* add css to input with button ([ed41f34](https://github.com/SUI-Components/sui-components/commit/ed41f34f10fea4138be20509209c40527163cca3))
+
+
+
 # 4.7.0 (2020-01-29)
 
 

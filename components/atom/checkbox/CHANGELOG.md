@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.5.0 (2020-03-24)
+
+
+### Bug Fixes
+
+* atom checkbox icon default siz ([116c16d](https://github.com/SUI-Components/sui-components/commit/116c16da3f1603d7b01b634a7d131ea3d60e2af8))
+
+
+### Features
+
+* use sui-theme size vars ([6821674](https://github.com/SUI-Components/sui-components/commit/68216745f1c84635ff562bc34d637f58d2a033e2))
+
+
+
+# 2.4.0 (2020-03-23)
+
+
+### Features
+
+* fix styles when atom checkbox uses non native ([1e610cd](https://github.com/SUI-Components/sui-components/commit/1e610cd46db34ceff6cc58e43044fa631eec6a80))
+* width and height svg always ([889379a](https://github.com/SUI-Components/sui-components/commit/889379a526b519fd3be77c4e5c4846ee6af8b16a))
+
+
+
+# 2.3.0 (2020-03-11)
+
+
+### Features
+
+* add new variable: border checkbox ([7c397ab](https://github.com/SUI-Components/sui-components/commit/7c397aba92b71a7072b8a45ed3e6a7a8fc3607bd))
+* fix: use variable ([f18bee2](https://github.com/SUI-Components/sui-components/commit/f18bee2b3427511beb3e067dbf3379e031d7fb48))
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([d7828f3](https://github.com/SUI-Components/sui-components/commit/d7828f3c5ef49f6fa5177231ef4f6b2321a2777c))
+
+
+
+# 2.2.0 (2020-02-24)
+
+
+### Bug Fixes
+
+* remove isRequired from custom checked icon ([4f4e137](https://github.com/SUI-Components/sui-components/commit/4f4e137e5b22f2202de9cd38953476ea39cef06c))
+
+
+### Features
+
+* add native style option ([3f7b38e](https://github.com/SUI-Components/sui-components/commit/3f7b38e9395f639421e1f1859e700cb2a71d09e9))
+
+
+
+# 2.1.0 (2020-02-18)
+
+
+### Bug Fixes
+
+* align icon center ([64720d3](https://github.com/SUI-Components/sui-components/commit/64720d346e00dd1db948fe86a368e4d7c62680ae))
+
+
+
 # 2.0.0 (2019-12-18)
 
 

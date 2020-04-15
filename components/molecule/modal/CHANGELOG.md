@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.11.0 (2020-03-16)
+
+
+### Bug Fixes
+
+* add margin instead of padding to modal content ([499d074](https://github.com/SUI-Components/sui-components/commit/499d074f85151dd1fedefb736106856a4b4fccc0))
+
+
+
+# 1.10.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([ced5eee](https://github.com/SUI-Components/sui-components/commit/ced5eee88c974828d1c5f6eb3408a3a0f6d5e6a2))
+
+
+
 # 1.9.0 (2020-01-30)
 
 

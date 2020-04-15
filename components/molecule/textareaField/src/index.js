@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
 import MoleculeField from '@s-ui/react-molecule-field'
@@ -6,7 +6,6 @@ import AtomTextarea, {
   AtomTextareaSizes as SIZES,
   AtomTextareaStates
 } from '@s-ui/react-atom-textarea'
-import WithCharacterCount from './hoc/WithCharacterCount'
 
 const hasErrors = ({successText, errorText}) => {
   if (errorText) return true
@@ -19,44 +18,69 @@ const getState = ({successText, errorState, alertText}) => {
   if (alertText) return AtomTextareaStates.ALERT
 }
 
-const MoleculeTextareaField = WithCharacterCount(
-  ({
-    id,
-    label,
-    maxChars,
-    textCharacters,
-    successText,
-    errorText,
-    alertText,
-    helpText,
-    onChange,
-    ...props
-  }) => {
-    const errorState = hasErrors({successText, errorText})
-    const textAreaState = getState({successText, errorState, alertText})
+const MoleculeTextareaField = ({
+  id,
+  label,
+  maxChars,
+  textCharacters = 'characters',
+  successText,
+  errorText,
+  alertText,
+  autoHideHelpText = false,
+  helpText,
+  value = '',
+  onChange = () => {},
+  ...props
+}) => {
+  const errorState = hasErrors({successText, errorText})
+  const textAreaState = getState({successText, errorState, alertText})
 
-    return (
-      <MoleculeField
-        name={id}
-        label={label}
-        textCharacters={textCharacters}
-        successText={successText}
-        errorText={errorText}
-        alertText={alertText}
-        helpText={helpText}
-        maxChars={maxChars}
-        onChange={onChange}
-      >
-        <AtomTextarea
-          id={id}
-          errorState={errorState}
-          state={textAreaState}
-          {...props}
-        />
-      </MoleculeField>
-    )
+  const [internalValue, setInternalValue] = useState(value)
+
+  useEffect(() => {
+    setInternalValue(value)
+  }, [value])
+
+  const computeHelpText = () => {
+    const numCharacters = internalValue.length
+    const dynamicText = `${numCharacters}/${maxChars} ${textCharacters}`
+    return helpText ? `${helpText} - ${dynamicText}` : dynamicText
   }
-)
+
+  const onChangeHandler = ev => {
+    ev.persist()
+    const value = ev.target.value
+    if (value.length <= maxChars) {
+      setInternalValue(value)
+      onChange(ev, {value})
+    }
+  }
+
+  const helpTextComputed = computeHelpText()
+
+  return (
+    <MoleculeField
+      name={id}
+      label={label}
+      textCharacters={textCharacters}
+      successText={successText}
+      errorText={errorText}
+      alertText={alertText}
+      helpText={helpTextComputed}
+      autoHideHelpText={autoHideHelpText}
+      maxChars={maxChars}
+      onChange={onChangeHandler}
+    >
+      <AtomTextarea
+        id={id}
+        errorState={errorState}
+        state={textAreaState}
+        value={internalValue}
+        {...props}
+      />
+    </MoleculeField>
+  )
+}
 
 MoleculeTextareaField.displayName = 'MoleculeTextareaField'
 
@@ -102,7 +126,10 @@ MoleculeTextareaField.propTypes = {
   helpText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
   /** Boolean to decide if field elements should be set inline */
-  inline: PropTypes.bool
+  inline: PropTypes.bool,
+
+  /** Boolean to decide if helptext should be auto hide */
+  autoHideHelpText: PropTypes.bool
 }
 
 export default MoleculeTextareaField

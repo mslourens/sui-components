@@ -1,4 +1,4 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 @import '~@s-ui/react-atom-validation-text/lib/index';
 @import '~@s-ui/react-atom-label/lib/index';
 @import '~@s-ui/react-atom-help-text/lib/index';
@@ -6,7 +6,13 @@
 $mb-molecule-field-label: 0 !default;
 $ml-molecule-field-label: $m-m !default;
 
-.sui-MoleculeField {
+$ai-molecule-field-label-container: center !default;
+
+$base-class: '.sui-MoleculeField';
+$atomLabel-class: '.sui-AtomLabel';
+$atomHelpText-class: '.sui-AtomHelpText';
+
+#{$base-class} {
   &--inline {
     display: flex;
     width: 100%;
@@ -16,20 +22,34 @@ $ml-molecule-field-label: $m-m !default;
       flex-direction: column;
       position: relative;
 
-      .sui-AtomLabel {
+      #{$atomLabel-class} {
         align-items: center;
+      }
+
+      #{$base-class}-nodeLabelContainer {
         margin-left: $ml-molecule-field-label;
       }
     }
   }
 
   &-labelContainer {
-    align-items: center;
+    align-items: $ai-molecule-field-label-container;
     display: flex;
     margin-bottom: $mb-molecule-field-label;
   }
 
   &-inputContainer {
     width: 100%;
+  }
+
+  &--autohide {
+    #{$atomHelpText-class} {
+      display: none;
+    }
+    #{$base-class}-inputContainer {
+      & *:focus + #{$atomHelpText-class} {
+        display: block;
+      }
+    }
   }
 }

@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.44.0 (2020-04-06)
+
+
+### Features
+
+* add diferent svg shapes to the color styles rule ([d23c34f](https://github.com/SUI-Components/sui-components/commit/d23c34fdf7e23dbe030cb52c67a9c5337a564295))
+* modify svg fill rules in solid designs ([3b5411b](https://github.com/SUI-Components/sui-components/commit/3b5411b9a43726deae2165cacb1cb7591f4e2659))
+
+
+
+# 1.43.0 (2020-03-25)
+
+
+### Features
+
+* remove unnecesary paddings for empty buttons ([4f4191c](https://github.com/SUI-Components/sui-components/commit/4f4191c8c9738e5616e0f3d2d61cf1d9c4db9c4b))
+
+
+
+# 1.42.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([71b4849](https://github.com/SUI-Components/sui-components/commit/71b4849fa9241112d1a0a70889a88075fbb2eff9))
+
+
+
+# 1.41.0 (2020-02-24)
+
+
+### Performance Improvements
+
+* avoid adding repeated properties when same value ([6889581](https://github.com/SUI-Components/sui-components/commit/6889581017061f57a0953c7e2bf45274bd7c5b03))
+* avoid writing repeated styles ([2e56a63](https://github.com/SUI-Components/sui-components/commit/2e56a637a3beefb97ce76d9520d84ab17f41385f))
+* shave off 70KB of bloated CSS ([f24e206](https://github.com/SUI-Components/sui-components/commit/f24e2061c937f20f4afce983ded3db33bbd3f7ff))
+* use background instead background-color ([80c9cfb](https://github.com/SUI-Components/sui-components/commit/80c9cfbf9e38a1968c2bc39ea89eb764c2756406))
+
+
+
+# 1.40.0 (2020-02-18)
+
+
+### Bug Fixes
+
+* hover styles when device has hover ([443dc57](https://github.com/SUI-Components/sui-components/commit/443dc574ba34ea247ac8cc2d8c2b509319d8c537))
+
+
+
+# 1.39.0 (2020-02-12)
+
+
+### Features
+
+* add values to button map ([24e77d5](https://github.com/SUI-Components/sui-components/commit/24e77d557ae8d0caf9893b15300c0f6805178ebd))
+
+
+
 # 1.38.0 (2020-01-16)
 
 

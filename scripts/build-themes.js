@@ -11,15 +11,15 @@ const {getSpawnPromise} = require('@s-ui/helpers/cli')
 const IS_DEPLOYMENT = Boolean(process.env.NPM_RC)
 
 const themesPkgs = [
-  '@schibstedspain/cf-theme',
-  '@schibstedspain/fc-theme',
-  '@schibstedspain/ij-theme',
-  '@schibstedspain/mt-theme',
-  '@schibstedspain/nc-theme',
+  '@adv-ui/cf-theme',
+  '@adv-ui/fc-theme',
+  '@adv-ui/ij-theme',
+  '@adv-ui/mt-theme',
+  '@adv-ui/nc-theme',
   '@schibstedspain/vb-theme',
-  '@schibstedspain/ma-theme',
-  '@schibstedspain/ep-theme',
-  '@schibstedspain/hab-theme'
+  '@adv-ui/ma-theme',
+  '@adv-ui/ep-theme',
+  '@adv-ui/hab-theme'
 ]
 
 const writeFile = (path, body) => {
@@ -33,6 +33,8 @@ const writeFile = (path, body) => {
       throw err
     })
 }
+
+const checkFileExists = path => fse.pathExists(path)
 
 const createDir = path => {
   return fse
@@ -87,12 +89,14 @@ const writeThemesInDemoFolders = async themes => {
       try {
         const [, component] = demo.split('/demo/')
         await createDir(`${demo}/themes`)
+        const hasDemoStyles = await checkFileExists(`${demo}/demo/index.scss`)
         await Promise.all(
           themes.map(theme =>
             writeFile(
               `${demo}/themes/${theme}.scss`,
               `
 @import '../../../../themes/${theme}';
+${hasDemoStyles ? `@import '../demo/index.scss';` : ''}
 @import '../../../../components/${component}/src/index.scss';
         `.trim()
             )

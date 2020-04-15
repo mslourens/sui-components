@@ -22,8 +22,10 @@ const MoleculeInputField = ({
   errorText,
   alertText,
   helpText,
+  autoHideHelpText = false,
   inline,
   onChange,
+  useContrastLabel,
   ...props
 }) => {
   const errorState = getErrorState({successText, errorText})
@@ -37,8 +39,10 @@ const MoleculeInputField = ({
       errorText={errorText}
       alertText={alertText}
       helpText={helpText}
+      autoHideHelpText={autoHideHelpText}
       inline={inline}
       onChange={onChange}
+      useContrastLabel={useContrastLabel}
     >
       <AtomInput
         id={id}
@@ -75,7 +79,13 @@ MoleculeInputField.propTypes = {
   helpText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
   /** Boolean to decide if elements should be set inline */
-  inline: PropTypes.bool
+  inline: PropTypes.bool,
+
+  /** Boolean to decide if helptext should be auto hide */
+  autoHideHelpText: PropTypes.bool,
+
+  /** label prop to use contrast type */
+  useContrastLabel: PropTypes.bool
 }
 
 export default MoleculeInputField

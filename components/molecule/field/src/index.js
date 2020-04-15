@@ -10,9 +10,47 @@ import AtomHelpText from '@s-ui/react-atom-help-text'
 
 const BASE_CLASS = 'sui-MoleculeField'
 const CLASS_INLINE = `${BASE_CLASS}--inline`
+const CLASS_AUTOHIDE = `${BASE_CLASS}--autohide`
 const CLASS_INLINE_REVERSE = `${CLASS_INLINE}-reverse`
+const CLASS_NODE_LABEL_CONTAINER = `${BASE_CLASS}-nodeLabelContainer`
 const CLASS_INPUT_CONTAINER = `${BASE_CLASS}-inputContainer`
 const CLASS_LABEL_CONTAINER = `${BASE_CLASS}-labelContainer`
+
+const MoleculeLabel = ({
+  label,
+  nodeLabel,
+  type: typeValidationLabel,
+  name,
+  onClickLabel
+}) => {
+  const innerLabel = () => {
+    if (label) {
+      return (
+        <AtomLabel
+          type={typeValidationLabel}
+          name={name}
+          text={label}
+          onClick={onClickLabel}
+        />
+      )
+    } else if (nodeLabel) {
+      return React.cloneElement(nodeLabel, {
+        type: typeValidationLabel,
+        name,
+        onClickLabel
+      })
+    }
+  }
+  return <div className={CLASS_NODE_LABEL_CONTAINER}>{innerLabel()}</div>
+}
+
+MoleculeLabel.propTypes = {
+  label: PropTypes.string,
+  nodeLabel: PropTypes.node,
+  type: PropTypes.oneOf(Object.values(AtomLabelTypes)),
+  name: PropTypes.string,
+  onClickLabel: PropTypes.func
+}
 
 const MoleculeField = ({
   inline,
@@ -21,20 +59,23 @@ const MoleculeField = ({
   successText,
   alertText,
   label,
+  nodeLabel,
   useContrastLabel,
   helpText,
   name,
   onClickLabel,
   onChange: onChangeFromProps,
-  children
+  children,
+  autoHideHelpText
 }) => {
   const className = cx(
     BASE_CLASS,
     inline && CLASS_INLINE,
-    inline && reverse && CLASS_INLINE_REVERSE
+    inline && reverse && CLASS_INLINE_REVERSE,
+    autoHideHelpText && CLASS_AUTOHIDE
   )
-  let statusValidationText, typeValidationLabel, typeValidationText
 
+  let statusValidationText, typeValidationLabel, typeValidationText
   const extendedChildren = React.Children.toArray(children)
     .filter(Boolean)
     .map((child, index) => {
@@ -67,13 +108,14 @@ const MoleculeField = ({
 
   return (
     <div className={className}>
-      {label && (
+      {(label || nodeLabel) && (
         <div className={CLASS_LABEL_CONTAINER}>
           {inline && extendedChildren}
-          <AtomLabel
+          <MoleculeLabel
             type={typeValidationLabel}
             name={name}
-            text={label}
+            label={label}
+            nodeLabel={nodeLabel}
             onClick={onClickLabel}
           />
         </div>
@@ -100,6 +142,9 @@ MoleculeField.propTypes = {
 
   /** Text to be displayed as label of the textarea */
   label: PropTypes.string,
+
+  /** React node to be displayed as label of the textarea if there is not a given label value */
+  nodeLabel: PropTypes.node,
 
   /** If true it will set the label type to 'CONTRAST' */
   useContrastLabel: PropTypes.bool,
@@ -129,7 +174,10 @@ MoleculeField.propTypes = {
   reverse: PropTypes.bool,
 
   /** Boolean to decide if elements should be set inline */
-  onClickLabel: PropTypes.func
+  onClickLabel: PropTypes.func,
+
+  /** Boolean to decide if helptext should be auto hide */
+  autoHideHelpText: PropTypes.bool
 }
 
 export default MoleculeField

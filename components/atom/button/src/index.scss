@@ -1,18 +1,24 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 
 $base-class: '.sui-AtomButton';
 
 $c-accent-hover: color-variation($c-accent, -1) !default;
+$c-accent-flat-hover: color-variation($c-accent, 4) !default;
+$c-primary-hover: color-variation($c-primary, -1) !default;
+$c-primary-flat-hover: color-variation($c-primary, 4) !default;
 
 $c-atom-button-colors: (
   'primary': (
     $c-primary,
-    $c-white
+    $c-white,
+    $c-primary-hover,
+    $c-primary-flat-hover
   ),
   'accent': (
     $c-accent,
     $c-white,
-    $c-accent-hover
+    $c-accent-hover,
+    $c-accent-flat-hover
   ),
   'neutral': (
     $c-gray,
@@ -96,20 +102,19 @@ $tt-atom-button: none !default;
 $icon-fill-color: currentColor !default;
 $icon-stroke-color: currentColor !default;
 
-// Set all color properties for text and icons
-@mixin button-foreground-color($color) {
-  color: $color;
-}
 // Sets active states when button is not disabled
 @mixin button-focused {
-  &:not(#{$base-class}--disabled) {
-    &#{$base-class}--focused,
-    &:active,
+  &#{$base-class}--focused,
+  &:active {
+    @content;
+  }
+  @media (hover: hover) {
     &:hover {
       @content;
     }
   }
 }
+
 @mixin button-icon($size, $margin) {
   & #{$base-class}-leftIcon,
   & #{$base-class}-rightIcon {
@@ -199,7 +204,7 @@ $icon-stroke-color: currentColor !default;
       display: inline-flex;
     }
 
-    svg path {
+    svg {
       fill: $icon-fill-color;
       stroke: $icon-stroke-color;
     }
@@ -212,32 +217,33 @@ $icon-stroke-color: currentColor !default;
 
     &--#{$name}Color {
       &#{$base-class}--solid {
-        @include button-foreground-color($color-invert);
+        background: $color;
+        border-color: $color;
+        color: $color-invert;
+
         @include button-focused {
-          background-color: color-variation($color, -1);
-          background-color: if(
-            length($pair) == 3,
+          background: if(
+            length($pair) > 2,
             nth($pair, 3),
             color-variation($color, -1)
           );
 
           border-color: if(
-            length($pair) == 3,
+            length($pair) > 2,
             nth($pair, 3),
             color-variation($color, -1)
           );
         }
-        background-color: $color;
-        border-color: $color;
 
         &#{$base-class}--negative {
-          @include button-foreground-color($color);
+          background: $color-invert;
+          border-color: $color-invert;
+          color: $color;
+
           @include button-focused {
-            background-color: color-variation($color, 4);
+            background: color-variation($color, 4);
             border-color: color-variation($color, 4);
           }
-          background-color: $color-invert;
-          border-color: $color-invert;
         }
       }
 
@@ -248,25 +254,39 @@ $icon-stroke-color: currentColor !default;
         $c-atom-button-focused: $color !default;
         $c-atom-button-focused-invert: $color-invert !default;
 
-        @include button-foreground-color($color);
-        @include button-focused {
-          background-color: $bgc-atom-button-focused;
-          color: $c-atom-button-focused;
-        }
-        background: none;
         border-color: $color;
+        color: $color;
+
+        @include button-focused {
+          background: if(
+            length($pair) > 2,
+            nth($pair, 4),
+            $bgc-atom-button-focused
+          );
+
+          @if ($color != $c-atom-button-focused) {
+            color: $c-atom-button-focused;
+          }
+        }
 
         &#{$base-class}--negative {
-          @include button-foreground-color($color-invert);
-          @include button-focused {
-            background-color: $bgc-atom-button-focused-invert;
-            color: $c-atom-button-focused-invert;
-          }
-          background-color: none;
           border-color: $color-invert;
+          color: $color-invert;
+
+          @include button-focused {
+            background: $bgc-atom-button-focused-invert;
+            @if ($color-invert != $c-atom-button-focused-invert) {
+              color: $c-atom-button-focused-invert;
+            }
+          }
         }
       }
     }
+  }
+
+  &--outline,
+  &--negative {
+    background: none;
   }
 
   &--flat {
@@ -315,6 +335,7 @@ $icon-stroke-color: currentColor !default;
   }
 
   &--empty {
+    padding: 0;
     #{$base-class}-leftIcon,
     #{$base-class}-rightIcon {
       margin: 0;

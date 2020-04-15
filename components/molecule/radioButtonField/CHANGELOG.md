@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.7.0 (2020-03-31)
+
+
+### Features
+
+* allow radiobuttonfield to use nodeLabel ([2cb9763](https://github.com/SUI-Components/sui-components/commit/2cb97633a67cedcb4d6727b64fedd89ed69ba377))
+
+
+
+# 1.6.0 (2020-03-25)
+
+
+### Features
+
+* add disabled style ([13d4dee](https://github.com/SUI-Components/sui-components/commit/13d4dee777e4c9fc38ec39f3d328c2e53ae4edef))
+
+
+
+# 1.5.0 (2020-03-20)
+
+
+### Bug Fixes
+
+* backwards compatibility margin ([f1e5e23](https://github.com/SUI-Components/sui-components/commit/f1e5e23ba772310d8b5b6bed4f0ce21d514f5dae))
+
+
+
+# 1.4.0 (2020-03-19)
+
+
+### Features
+
+* add margin token ([9532068](https://github.com/SUI-Components/sui-components/commit/9532068805a34f968f52ffe52598e04f114dc88d))
+* add var for margin and align in radiobuttons ([ec0b564](https://github.com/SUI-Components/sui-components/commit/ec0b564c3a7904f0055d10e7e20bed5e621d9fca))
+* fix sass ([e1991e8](https://github.com/SUI-Components/sui-components/commit/e1991e80d5d9e9cfb24bc4f2743ff23f4c76978c))
+
+
+
+# 1.3.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([103354b](https://github.com/SUI-Components/sui-components/commit/103354bc230f0fa46d519757fe0a5897a3a02ee0))
+
+
+
 # 1.2.0 (2020-02-03)
 
 

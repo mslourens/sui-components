@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.28.0 (2020-04-08)
+
+
+### Bug Fixes
+
+* outside click logic fix ([1ada914](https://github.com/SUI-Components/sui-components/commit/1ada91452b609546ee8764709aa977bbbdd02818))
+
+
+
+# 1.27.0 (2020-04-08)
+
+
+### Bug Fixes
+
+* onKeyDown logic, don't closeList before selection ([c515c5c](https://github.com/SUI-Components/sui-components/commit/c515c5c472a969cf77059989ed85aea26d5af714))
+
+
+### Features
+
+* perform first letter keydown option search ([b72a845](https://github.com/SUI-Components/sui-components/commit/b72a845d611735335fddebbd1319475a53b73682))
+
+
+
+# 1.26.0 (2020-03-20)
+
+
+### Features
+
+* add border-radius to select ([ac9e0a8](https://github.com/SUI-Components/sui-components/commit/ac9e0a818aced2e63f050b5618af8f6bca4fa27b))
+* remove added comment ([d142d42](https://github.com/SUI-Components/sui-components/commit/d142d42fc1b0196fcdb3e923e0d4b269d811066f))
+
+
+
+# 1.25.0 (2020-03-11)
+
+
+### Features
+
+* new variable: color - select ([1870316](https://github.com/SUI-Components/sui-components/commit/1870316d49c14c2a5bf3dc0a6ae74393b651f054))
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([2630859](https://github.com/SUI-Components/sui-components/commit/263085976826c6a85213a39be9551e09ca4d3774))
+
+
+
 # 1.24.0 (2020-02-03)
 
 

@@ -39,6 +39,7 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     children,
     onToggle,
     onChange,
+    onBlur,
     onEnter,
     isOpen,
     keysCloseList,
@@ -81,7 +82,7 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     const {current: domMoleculeAutosuggest} = refMoleculeAutosuggest
     onToggle(ev, {isOpen: false})
     if (multiselection) onChange(ev, {value: ''})
-    domMoleculeAutosuggest && domMoleculeAutosuggest.focus()
+    domMoleculeAutosuggest && !focus && domMoleculeAutosuggest.focus()
     setFocus(false)
     ev.preventDefault()
     ev.stopPropagation()
@@ -117,7 +118,7 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
       else if (isSomeOptionFocused) handleFocusIn(ev)
     } else {
       if (key === 'Enter') {
-        onEnter()
+        onEnter(ev)
       }
     }
   }
@@ -129,13 +130,19 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     const {current: domInnerInput} = refMoleculeAutosuggestInput
     const {current: optionsFromRef} = refsMoleculeAutosuggestOptions
     const options = optionsFromRef.map(getTarget)
+
     setTimeout(() => {
       const currentElementFocused = getCurrentElementFocused()
       const focusOutFromOutside = ![domInnerInput, ...options].includes(
         currentElementFocused
       )
       if (focusOutFromOutside) {
-        isOpen ? closeList(ev) : setFocus(false)
+        if (isOpen) {
+          closeList(ev)
+        } else {
+          setFocus(false)
+          onBlur()
+        }
       }
     }, 1)
     setFocus(true)
@@ -145,7 +152,8 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     const {key} = ev
     if (key !== 'ArrowDown') ev.stopPropagation()
     if (key === 'Enter') {
-      onEnter()
+      onEnter(ev)
+      closeList(ev)
     }
   }
 
@@ -215,6 +223,9 @@ MoleculeAutosuggest.propTypes = {
   /* callback to be called with every update of the input value */
   onChange: PropTypes.func,
 
+  /* callback to be called when input losses focus */
+  onBlur: PropTypes.func,
+
   /** Icon for closing (removing) tags */
   iconCloseTag: PropTypes.node,
 
@@ -255,11 +266,15 @@ MoleculeAutosuggest.propTypes = {
   errorState: PropTypes.bool,
 
   /* Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
-  state: PropTypes.oneOf(Object.values(AUTOSUGGEST_STATES))
+  state: PropTypes.oneOf(Object.values(AUTOSUGGEST_STATES)),
+
+  /* Button prop to be passe down to the input field */
+  rightButton: PropTypes.node
 }
 
 MoleculeAutosuggest.defaultProps = {
   onChange: () => {},
+  onBlur: () => {},
   onToggle: () => {},
   onEnter: () => {},
   onSelect: () => {},

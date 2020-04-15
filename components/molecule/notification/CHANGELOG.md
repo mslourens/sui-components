@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.18.0 (2020-03-20)
+
+
+### Features
+
+* add display flex ([6351401](https://github.com/SUI-Components/sui-components/commit/63514019c293e2d6993c392e0fe5108c1925b172))
+* add new variables: align-items and border-radius ([73145e1](https://github.com/SUI-Components/sui-components/commit/73145e106866bfaa1a0ab1dbae30134889f7b1a2))
+
+
+
+# 1.17.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([3ecf0cc](https://github.com/SUI-Components/sui-components/commit/3ecf0cca01b0620e0133a5fddc13bc2bc6e08ab8))
+
+
+
+# 1.16.0 (2020-02-24)
+
+
+### Features
+
+* Use new [@s-ui](https://github.com/s-ui) react icons ([b7cd29c](https://github.com/SUI-Components/sui-components/commit/b7cd29c827332db9e436aa19f5a4b7197f5665f0))
+
+
+### Performance Improvements
+
+* remove not needed repeated css properties ([fbad87d](https://github.com/SUI-Components/sui-components/commit/fbad87d6f9d10783a958e0220569866db7aa4df9))
+
+
+
 # 1.15.0 (2020-01-08)
 
 

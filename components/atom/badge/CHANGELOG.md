@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.11.0 (2020-04-15)
+
+
+### Bug Fixes
+
+* changed margin left for margin right ([0315b50](https://github.com/SUI-Components/sui-components/commit/0315b50a81a5954daa63d8a8205133d0019d02a5))
+
+
+
+# 1.10.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([a88ccd9](https://github.com/SUI-Components/sui-components/commit/a88ccd931d7624c510c90dedade546040b2742a8))
+
+
+
+# 1.9.0 (2020-02-26)
+
+
+### Bug Fixes
+
+* fix the line-height for the icon ([070c2aa](https://github.com/SUI-Components/sui-components/commit/070c2aa6b7f152c7e81151020bc48df4b5c6bcea))
+
+
+### Performance Improvements
+
+* even less css ([cbbcb65](https://github.com/SUI-Components/sui-components/commit/cbbcb65b18af63014658b7c5b00dacd52b9cb178))
+* write less css for atom-badge ([ced608c](https://github.com/SUI-Components/sui-components/commit/ced608cc921cb748b4c3984d3b8011a8d475a1db))
+
+
+
 # 1.8.0 (2020-01-14)
 
 

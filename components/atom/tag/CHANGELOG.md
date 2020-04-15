@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.10.0 (2020-04-15)
+
+
+### Features
+
+* add new color variables ([4850324](https://github.com/SUI-Components/sui-components/commit/48503247e4baacf69ae9934763cdc0f24718247f))
+
+
+
+# 2.9.0 (2020-03-17)
+
+
+### Features
+
+* add new variables to atom tag ([f5970c7](https://github.com/SUI-Components/sui-components/commit/f5970c75bceb4217bf7d66a3fa22c6cdfcdc93d5))
+
+
+
+# 2.8.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([9fd8fd4](https://github.com/SUI-Components/sui-components/commit/9fd8fd42fbf84c972661790a2db5b94f29c8865e))
+
+
+
 # 2.7.0 (2020-01-08)
 
 

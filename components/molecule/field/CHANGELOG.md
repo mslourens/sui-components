@@ -2,6 +2,78 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.22.0 (2020-04-06)
+
+
+### Bug Fixes
+
+* fix margin-left for non-inline labels. ([2693df1](https://github.com/SUI-Components/sui-components/commit/2693df1b28d2ad6c23a69b02d16cd4ceb7da46f1)), closes [#462](https://github.com/SUI-Components/sui-components/issues/462)
+
+
+
+# 1.21.0 (2020-03-31)
+
+
+### Features
+
+* allow nodeLabel to contain an AtomLabel ([475132d](https://github.com/SUI-Components/sui-components/commit/475132db1d1b36b1aa526e3a5c92a1f44704dbf9))
+
+
+
+# 1.20.0 (2020-03-30)
+
+
+### Features
+
+* added margin-left to  node label container ([a4309fb](https://github.com/SUI-Components/sui-components/commit/a4309fbc39f72f3f37b59892c2085ed103071f6d))
+
+
+
+# 1.19.0 (2020-03-23)
+
+
+### Bug Fixes
+
+* fix prop name passed by to the label ([92c7aee](https://github.com/SUI-Components/sui-components/commit/92c7aee53cd3502c30410ee7e58f00f29a287729))
+
+
+
+# 1.18.0 (2020-03-20)
+
+
+### Features
+
+* add new prop nodeLabel ([7857b81](https://github.com/SUI-Components/sui-components/commit/7857b811bea3ba8ddada399594d8565a3025fa8a))
+
+
+
+# 1.17.0 (2020-03-19)
+
+
+### Features
+
+* add var for margin radiobutton ([10a10c4](https://github.com/SUI-Components/sui-components/commit/10a10c4717ddd371624c5ff4c7db70f529d8e5a4))
+
+
+
+# 1.16.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([5d11c50](https://github.com/SUI-Components/sui-components/commit/5d11c5009e0906a4760fede4dcb0a7da399cfbbd))
+
+
+
+# 1.15.0 (2020-03-02)
+
+
+### Features
+
+* add autohide prop ([76c55ce](https://github.com/SUI-Components/sui-components/commit/76c55ce739fca7f46287f9368281d90a3cbd70a6))
+
+
+
 # 1.14.0 (2020-01-30)
 
 

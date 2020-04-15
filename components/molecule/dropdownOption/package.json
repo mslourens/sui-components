@@ -1,6 +1,6 @@
 {
   "name": "@s-ui/react-molecule-dropdown-option",
-  "version": "1.22.0",
+  "version": "1.24.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@s-ui/component-dependencies": "1",
-    "@s-ui/react-atom-checkbox": "1"
+    "@s-ui/js": "2",
+    "@s-ui/react-atom-checkbox": "2"
   },
   "keywords": [],
   "author": "",

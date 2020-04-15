@@ -2,6 +2,60 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.8.0 (2020-03-24)
+
+
+### Features
+
+* add variable 4 retrocompatibility ([52b79d8](https://github.com/SUI-Components/sui-components/commit/52b79d80676d073ed61ec06366e0ecda31bdab01))
+* mod styles ([b00d64f](https://github.com/SUI-Components/sui-components/commit/b00d64faa0966cd7f882ec4960be04113faf775b))
+* mod styles ([dcdd428](https://github.com/SUI-Components/sui-components/commit/dcdd428022ad3048c9a6c5f16a85f5652a7a670a))
+
+
+
+# 2.7.0 (2020-03-20)
+
+
+### Features
+
+* add border-radius token to textarea ([8e94f2f](https://github.com/SUI-Components/sui-components/commit/8e94f2fe96f2e3d402614850128e00bb32849351))
+* add focus state ([d750fc1](https://github.com/SUI-Components/sui-components/commit/d750fc165e43dbd81868a489cc6acb635428233a))
+
+
+
+# 2.6.0 (2020-03-12)
+
+
+### Features
+
+* add width variable to atom textarea ([404c508](https://github.com/SUI-Components/sui-components/commit/404c508bca5a45ad763290223b5b92564283a6e2))
+
+
+
+# 2.5.0 (2020-03-11)
+
+
+### Features
+
+* add new variables ([f8075e1](https://github.com/SUI-Components/sui-components/commit/f8075e119df7849f2355ada47ce9f4844540f6b1))
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([402c1a2](https://github.com/SUI-Components/sui-components/commit/402c1a203a257d0e60bc37fa44e85fbe438d6d31))
+
+
+
+# 2.4.0 (2020-02-17)
+
+
+### Features
+
+* add defalt props as js native ([6618989](https://github.com/SUI-Components/sui-components/commit/66189890689f97d28bc29f5cd58f34ff67efd1d7))
+* add onBlur callback ([1b1967f](https://github.com/SUI-Components/sui-components/commit/1b1967f86994e82bd3c3332fe6e32698078119ec))
+* refactor prop types and default props ([88c4679](https://github.com/SUI-Components/sui-components/commit/88c4679062bd22d4845bc508879cf3e03a448c56))
+* reorder props ([98d0209](https://github.com/SUI-Components/sui-components/commit/98d020928b03d750e7839712822e2f8be738d266))
+* solve conflict ([22c284d](https://github.com/SUI-Components/sui-components/commit/22c284d34ad372e3109201ad0e9cd2e79c38b12b))
+* use default props object ([6924209](https://github.com/SUI-Components/sui-components/commit/692420912bce4331c00172c1cbc14684e717bb0f))
+
+
+
 # 2.3.0 (2020-01-30)
 
 

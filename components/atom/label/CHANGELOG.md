@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.13.0 (2020-04-07)
+
+
+### Features
+
+* add $fz-atom-label as a sass var ([dcd5d6d](https://github.com/SUI-Components/sui-components/commit/dcd5d6d4454fe47f981471aa9e1cc1d246dcd904))
+
+
+
+# 1.12.0 (2020-04-07)
+
+
+### Features
+
+* add !default to $c-atom-label-type sass var ([ac0188b](https://github.com/SUI-Components/sui-components/commit/ac0188b283033f39c32f9264d9e97d5270054f34))
+
+
+
+# 1.11.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([31a5085](https://github.com/SUI-Components/sui-components/commit/31a5085017f43633b6730581f704b7f32c74b3e9))
+
+
+
 # 1.10.0 (2020-01-29)
 
 

@@ -55,11 +55,23 @@ AtomInput.propTypes = {
   /** Text to be shown in order to hide the password on click */
   pwHideLabel: PropTypes.string,
 
-  /** onBlur callback */
+  /** onBlur callback **/
   onBlur: PropTypes.func,
 
-  /** onChange callback */
+  /** onKeyDown callback **/
+  onKeyDown: PropTypes.func,
+
+  /** onChange callback **/
   onChange: PropTypes.func,
+
+  /** onFocus callback **/
+  onFocus: PropTypes.func,
+
+  /** onEnter callback **/
+  onEnter: PropTypes.func,
+
+  /** key to provoke the onEnter callback. Valid any value defined here → https://www.w3.org/TR/uievents-key/#named-key-attribute-values **/
+  onEnterKey: PropTypes.string,
 
   /** sets the name property of an element in the DOM */
   name: PropTypes.string,
@@ -85,6 +97,15 @@ AtomInput.propTypes = {
   /** specifies the minimum number of characters (native "minlength" attribute) */
   minLength: PropTypes.number,
 
+  /** specifies the maximum number allowed (native "max" attribute) */
+  max: PropTypes.number,
+
+  /** specifies the minimum number allowed (native "min" attribute) */
+  min: PropTypes.number,
+
+  /** stepping interval to use when using up and down arrows to adjust the value, as well as for validation (native "step" attribute) */
+  step: PropTypes.number,
+
   /** specifies whether or not an input field should have autocomplete enabled (on|off) */
   autoComplete: PropTypes.string,
 
@@ -101,7 +122,19 @@ AtomInput.propTypes = {
   mask: PropTypes.object,
 
   /** a button to be added on the right side of the input */
-  button: PropTypes.node
+  button: PropTypes.node,
+
+  /** tabindex value */
+  tabIndex: PropTypes.number,
+
+  /** native required attribute  */
+  required: PropTypes.bool,
+
+  /** native pattern attribute */
+  pattern: PropTypes.string,
+
+  /** To select input keyboard mode on mobile. It can be 'numeric', 'decimal', 'email', etc */
+  inputMode: PropTypes.string
 }
 
 AtomInput.displayName = 'AtomInput'

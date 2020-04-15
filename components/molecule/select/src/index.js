@@ -71,18 +71,42 @@ const MoleculeSelect = props => {
     }
   )
 
+  const closeList = (ev, {isOutsideEvent = false}) => {
+    onToggle(ev, {isOpen: false})
+    if (!isOutsideEvent) {
+      ev.preventDefault()
+      ev.stopPropagation()
+    }
+  }
+
+  const handleOutsideClick = ev => {
+    if (disabled) return
+    if (
+      refMoleculeSelect.current &&
+      !refMoleculeSelect.current.contains(ev.target)
+    ) {
+      // outside click
+      closeList(ev, {isOutsideEvent: true})
+      setFocus(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('touchend', handleOutsideClick)
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('touchend', handleOutsideClick)
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     setOptionsData(getOptionData(children))
   }, [children])
 
-  const closeList = ev => {
-    onToggle(ev, {isOpen: false})
-    ev.preventDefault()
-    ev.stopPropagation()
-  }
-
   const focusFirstOption = (ev, {options}) => {
-    options[0].focus()
+    options[0] && options[0].focus()
     ev.preventDefault()
     ev.stopPropagation()
   }
@@ -105,32 +129,25 @@ const MoleculeSelect = props => {
     } else {
       const currentElementFocused = getCurrentElementFocused()
       const isSomeOptionFocused = [...options].includes(currentElementFocused)
-      if (ev.key === 'Escape') closeList(ev)
-      if (ev.key === 'ArrowDown' && !isSomeOptionFocused)
+      const {key} = ev
+      if (key === 'Escape') closeList(ev)
+      if (key === 'ArrowDown' && !isSomeOptionFocused)
         focusFirstOption(ev, {options})
+      const optionToFocusOn = Array.from(options).find(
+        option =>
+          option &&
+          option.innerText.charAt(0).toLowerCase() === key.toLowerCase()
+      )
+      optionToFocusOn && optionToFocusOn.focus()
     }
+  }
+
+  const handleFocusOut = ev => {
+    setFocus(false)
   }
 
   const handleFocusIn = () => {
     !disabled && setFocus(true)
-  }
-
-  const handleFocusOut = ev => {
-    ev.persist()
-    const options = refsMoleculeSelectOptions.current.map(getTarget)
-    const firstOption = options[0]
-    setTimeout(() => {
-      const currentElementFocused = getCurrentElementFocused()
-      const isSomeOptionFocused = [...options].includes(currentElementFocused)
-      const isOptionListFocused = firstOption
-        ? currentElementFocused.isSameNode(firstOption.parentNode)
-        : false
-
-      if (!isSomeOptionFocused && !isOptionListFocused && isOpen) {
-        closeList(ev)
-      }
-    }, 1)
-    setFocus(false)
   }
 
   const {multiselection, ...propsFromProps} = props

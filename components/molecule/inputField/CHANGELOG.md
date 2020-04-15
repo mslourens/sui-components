@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 3.4.0 (2020-03-23)
+
+
+### Features
+
+* add useContrastLabel prop ([facf8f3](https://github.com/SUI-Components/sui-components/commit/facf8f3879a87f0b893b49a910ad45d4bbdd6daf))
+
+
+
+# 3.3.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([5348b00](https://github.com/SUI-Components/sui-components/commit/5348b00a6eb5e46f53bcae27fff0944d502d54c3))
+
+
+
+# 3.2.0 (2020-03-02)
+
+
+### Features
+
+* add autohide prop ([324f3a9](https://github.com/SUI-Components/sui-components/commit/324f3a91d2b3c3adf6b01611ba018d920d2bb78e))
+
+
+
 # 3.1.0 (2020-01-30)
 
 

@@ -1,4 +1,4 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 @import './SUILoader/index';
 
 $bgc-atom-spinner: rgba($c-white, 0.6) !default;
@@ -34,6 +34,7 @@ $z-atom-spinner: 1 !default;
 
     .sui-AtomSpinner-loader {
       display: block;
+      position: fixed;
     }
   }
 

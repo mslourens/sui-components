@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.13.0 (2020-03-30)
+
+
+### Features
+
+* close list when Enter key is pressed and send onEnter event up ([16ccc0e](https://github.com/SUI-Components/sui-components/commit/16ccc0e7ab8e38847512243fb1c1c208066dbcb2))
+
+
+
+# 2.12.0 (2020-03-28)
+
+
+### Features
+
+* send event up onEnter event handler ([05136f0](https://github.com/SUI-Components/sui-components/commit/05136f017249862e559ad5c0d7ae7f769222da62))
+
+
+
+# 2.11.0 (2020-03-11)
+
+
+### Features
+
+* Use new [@s-ui-theme](https://github.com/s-ui-theme) ([931ee8a](https://github.com/SUI-Components/sui-components/commit/931ee8a3c71d7b1971d90d49f31fc88b6564d8bd))
+
+
+
+# 2.10.0 (2020-02-19)
+
+
+
+# 2.9.0 (2020-02-18)
+
+
+### Bug Fixes
+
+* call onBlur only when the user clicks outside the dropdown ([58c6f0a](https://github.com/SUI-Components/sui-components/commit/58c6f0add6c2e1b6f49adfe827466671edfa48d6))
+
+
+
+# 2.8.0 (2020-02-17)
+
+
+### Bug Fixes
+
+* fix focus error when multiple autosuggest are in the same page ([0ba268b](https://github.com/SUI-Components/sui-components/commit/0ba268b09749637efa04c1409558ade0278d1954))
+
+
+### Features
+
+* add onblur callback ([c4bdb7a](https://github.com/SUI-Components/sui-components/commit/c4bdb7af592a691f15d693e41f0213403b454f57))
+
+
+
+# 2.7.0 (2020-02-04)
+
+
+### Bug Fixes
+
+* fix typo ([971ce4e](https://github.com/SUI-Components/sui-components/commit/971ce4e32c571c7079230ca125373b5340c3968d))
+
+
+### Features
+
+* add prop to be able to use an input with a button ([5f73d12](https://github.com/SUI-Components/sui-components/commit/5f73d1280a31240f6fa26c794ea750857d62e676))
+
+
+
 # 2.6.0 (2020-02-03)
 
 
