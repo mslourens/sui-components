@@ -5,7 +5,7 @@ import Video from './mediaItems/video'
 import Video3d from './mediaItems/video3d'
 import Video360 from './mediaItems/video360'
 import Image from './mediaItems/image'
-import AtomButton from '@schibstedspain/sui-atom-button'
+import AtomButton from '@s-ui/react-atom-button'
 
 const BASE_CLASS = 'sui-OrganismMediaGallery'
 const MEDIA_TYPE = {

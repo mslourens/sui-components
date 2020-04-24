@@ -1,7 +1,11 @@
-@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/theme/lib/index';
 @import '~react-slidy/lib/index';
-@import '~@schibstedspain/sui-atom-button/lib/index';
+@import '~@s-ui/react-atom-button/lib/index';
 
-.react-OrganismMediaGallery {
+.sui-OrganismMediaGallery {
   width: 100%;
+  .react-Slidy {
+    height: 100%;
+    width: 100%;
+  }
 }
