@@ -15,7 +15,7 @@ const MEDIA_TYPE = {
   VIDEO360: 'video360'
 }
 
-function OrganismMediaGallery({children, initialIndex, initialMediaType}) {
+function OrganismMediaGallery({children, initialIndex = 0, initialMediaType}) {
   children = React.Children.toArray(children)
   const images = children.filter(child => child.type === Image)
   const videos = children.filter(child => child.type === Video)
@@ -107,10 +107,6 @@ OrganismMediaGallery.propTypes = {
       })
     )
   ]).isRequired
-}
-
-OrganismMediaGallery.defaultProps = {
-  initialIndex: 0
 }
 
 export default OrganismMediaGallery
