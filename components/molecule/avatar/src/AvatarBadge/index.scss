@@ -1,7 +1,7 @@
 $s-avatar-badge: (
-  xlarge: 20px,
-  large: 16px,
-  medium: 12px,
+  xlarge: 16px,
+  large: 14px,
+  medium: 10px,
   small: 8px
 ) !default;
 
@@ -12,6 +12,46 @@ $bw-avatar-badge: (
   small: 1px
 ) !default;
 
+$bsc-avatar-badge: white !default;
+
+@mixin pulse-bg($color) {
+  $animation-id: 'pulse-' + str-slice(inspect($color), 2);
+
+  @at-root {
+    %#{$animation-id} {
+      &:after {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-color: $color;
+        position: absolute;
+        border-radius: $bdrs-rounded;
+        animation: #{$animation-id} 2s infinite;
+      }
+    }
+    @keyframes #{$animation-id} {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba($color, 0.7);
+      }
+
+      70% {
+        transform: scale(1.025);
+        box-shadow: 0 0 0 4px rgba($color, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba($color, 0);
+      }
+    }
+  }
+
+  @extend %#{$animation-id};
+}
+
 .sui-MoleculeAvatarBadge {
   border-radius: $bdrs-rounded;
   position: absolute;
@@ -21,10 +61,12 @@ $bw-avatar-badge: (
 
   &--error {
     background-color: $c-error;
+    @include pulse-bg($c-error);
   }
 
   &--success {
     background-color: $c-success;
+    @include pulse-bg($c-success);
   }
 
   &--top {
@@ -45,7 +87,7 @@ $bw-avatar-badge: (
 
   @each $key-size, $bw in $bw-avatar-badge {
     &--#{$key-size} {
-      border: $bw solid;
+      box-shadow: 0 0 0 $bw $bsc-avatar-badge;
     }
   }
 }
