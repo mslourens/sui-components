@@ -1,7 +1,9 @@
 @import '~@s-ui/theme/lib/index';
 
 $bdrs-atom-badge: $bdrs-m !default;
+$bgc-atom-badge-custom: $c-primary-light-3 !default;
 $c-atom-badge: $c-white !default;
+$c-atom-badge-custom: $c-primary !default;
 $fz-atom-badge-l: $fz-m !default;
 $fz-atom-badge-m: $fz-s !default;
 $fz-atom-badge-s: $fz-xs !default;
@@ -36,6 +38,10 @@ $badges: (
   primary: (
     bgc: $c-primary,
     c: $c-white
+  ),
+  custom: (
+    bgc: $bgc-atom-badge-custom,
+    c: $c-atom-badge-custom
   )
 ) !default;
 
@@ -45,7 +51,8 @@ $badge-transparent: (
   alert: $c-alert,
   info: $c-gray,
   new: $c-accent,
-  primary: $c-primary
+  primary: $c-primary,
+  custom: $c-atom-badge-custom
 ) !default;
 
 .sui-AtomBadge {
