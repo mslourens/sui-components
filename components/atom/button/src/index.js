@@ -26,9 +26,9 @@ const createClasses = (array, sufix = '') => {
 
 const CLASSES = createClasses([
   ...TYPES,
-  ...DESIGNS,
-  ...SIZES,
+  ...Object.values(DESIGNS),
   ...MODIFIERS,
+  ...Object.values(SIZES),
   'empty'
 ])
 const COLOR_CLASSES = createClasses(COLORS, 'Color')
@@ -59,7 +59,9 @@ const getPropsWithDefaultValues = props => {
   let {color, design, type} = props
   // if color or design are defined, use them with the passed or default value
   if (color || design) {
-    color = color || 'primary'
+    if (design !== DESIGNS.LINK) {
+      color = color || 'primary'
+    }
     design = design || 'solid'
   } else {
     type = type || 'primary'
@@ -166,20 +168,17 @@ AtomButton.propTypes = {
     }
   },
   /**
-   * Design style of button: 'solid' (default), 'outline', 'flat'
+   * Design style of button: 'solid' (default), 'outline', 'flat', 'link'
    */
-  design: PropTypes.oneOf(DESIGNS),
+  design: PropTypes.oneOf(Object.values(DESIGNS)),
   /**
    * Group position: 'first', 'middle' (default), 'last'
    */
   groupPosition: PropTypes.oneOf(Object.values(GROUP_POSITIONS)),
   /**
-   * Size of button{
-   * FIRST: 'first',
-   * MIDDLE: 'middle',
-   * LAST: 'last'}: 'small',
+   * Size of button 'small' (default), 'large'
    */
-  size: PropTypes.oneOf(SIZES),
+  size: PropTypes.oneOf(Object.values(SIZES)),
   /**
    * Negative: style for dark backgrounds.
    */
@@ -228,5 +227,7 @@ AtomButton.propTypes = {
 
 export default AtomButton
 export {GROUP_POSITIONS as atomButtonGroupPositions}
-export {TYPES as atomButtonTypes}
 export {COLORS as atomButtonColors}
+export {DESIGNS as atomButtonDesigns}
+export {SIZES as atomButtonSizes}
+export {TYPES as atomButtonTypes}

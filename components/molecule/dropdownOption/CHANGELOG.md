@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.26.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([03e9e1d](https://github.com/SUI-Components/sui-components/commit/03e9e1d27c789ead538292f476a53f5ca929faf6))
+
+
+
+# 1.25.0 (2020-04-28)
+
+
+### Features
+
+* adding var for paddings ([43cd2b0](https://github.com/SUI-Components/sui-components/commit/43cd2b028cf02ba081f64ea75f9756e881aab0d4))
+* bump version ([5f87c1f](https://github.com/SUI-Components/sui-components/commit/5f87c1f4957dc93583ff3dc46653cf3948b85479))
+
+
+
 # 1.24.0 (2020-03-11)
 
 
@@ -9,6 +28,7 @@ All notable changes to this project will be documented in this file.
 
 * add variable: color ([19d1eae](https://github.com/SUI-Components/sui-components/commit/19d1eae2b207fd85dbf1c01780f6fc7475f8498a))
 * fix ([250f25d](https://github.com/SUI-Components/sui-components/commit/250f25d7bc1c6fc4b4fbfa713bba7388859d3110))
+* use highlighter from sui-js ([473ec8a](https://github.com/SUI-Components/sui-components/commit/473ec8ac66e1d14edf4796707a43ca4edb05a260))
 * Use new [@s-ui-theme](https://github.com/s-ui-theme) ([503e361](https://github.com/SUI-Components/sui-components/commit/503e361fed4f4af7e69a087639ee2f79f2145ecf))
 
 

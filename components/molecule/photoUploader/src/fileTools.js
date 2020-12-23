@@ -42,7 +42,9 @@ export const filterValidFiles = ({
         lastModified: newFileLastModified
       } = fileToFilter
       const isFileAlready = files.some(file => {
-        const {path, size, lastModified} = file.properties
+        const {url, properties} = file
+        if (url) return false
+        const {path, size, lastModified} = properties
         return (
           path === newFilePath &&
           size === newFileSize &&
@@ -89,12 +91,26 @@ export const filterValidFiles = ({
   return notRepeatedFiles
 }
 
+export async function callbackUploadPhotoHandler(
+  blob,
+  callbackUploadPhoto,
+  oldUrl
+) {
+  if (callbackUploadPhoto) {
+    try {
+      const response = await callbackUploadPhoto(blob, oldUrl)
+      return response.url
+    } catch (e) {}
+  }
+}
+
 export const prepareFiles = ({
-  handlePhotosRejected,
+  callbackUploadPhoto,
   currentFiles,
-  newFiles,
   defaultFormatToBase64Options,
   errorCorruptedPhotoUploadedText,
+  handlePhotosRejected,
+  newFiles,
   setCorruptedFileError,
   setFiles,
   setIsLoading,
@@ -110,7 +126,8 @@ export const prepareFiles = ({
         })
       )
       .then(
-        ({
+        async ({
+          file,
           blob,
           originalBase64,
           croppedBase64,
@@ -130,19 +147,25 @@ export const prepareFiles = ({
             ])
             setCorruptedFileError(errorText)
           } else {
+            const url = await callbackUploadPhotoHandler(
+              blob,
+              callbackUploadPhoto
+            )
             currentFiles.push({
+              blob,
+              file,
+              hasErrors,
+              isModified: false,
+              isNew: true,
+              originalBase64,
               properties: {
                 path: nextFile.path,
                 size: nextFile.size,
                 lastModified: nextFile.lastModified
               },
-              blob,
-              originalBase64,
               preview: croppedBase64,
               rotation,
-              isNew: true,
-              isModified: false,
-              hasErrors
+              url
             })
           }
         }

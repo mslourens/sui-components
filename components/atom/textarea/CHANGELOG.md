@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.10.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([8ab6e3d](https://github.com/SUI-Components/sui-components/commit/8ab6e3dfa236da39e6d13f78fa05ac899b142f95))
+
+
+
+# 2.9.0 (2020-05-25)
+
+
+### Features
+
+* add token for font-family ([2bb7823](https://github.com/SUI-Components/sui-components/commit/2bb782345a31819b03d16429280d2ea5a12a9f3f))
+
+
+
 # 2.8.0 (2020-03-24)
 
 

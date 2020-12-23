@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.13.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([0b14a78](https://github.com/SUI-Components/sui-components/commit/0b14a78a25846089ca3fc32558f19aabbe651a1b))
+
+
+
+# 1.12.0 (2020-04-28)
+
+
+### Features
+
+* add withoutIndentation and floatingIconClose props ([96ddd56](https://github.com/SUI-Components/sui-components/commit/96ddd565f4d79563311c201da3edb3669691038d))
+* improve header and close components readability ([efa1152](https://github.com/SUI-Components/sui-components/commit/efa115222e9088f5d00c4c225a0e61bce33e3275))
+
+
+
 # 1.11.0 (2020-03-16)
 
 

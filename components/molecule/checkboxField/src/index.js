@@ -10,6 +10,7 @@ const MoleculeCheckboxField = ({
   id,
   label,
   nodeLabel,
+  fullWidth,
   successText,
   errorText,
   alertText,
@@ -25,6 +26,7 @@ const MoleculeCheckboxField = ({
         name={id}
         label={label}
         nodeLabel={nodeLabel}
+        fullWidth={fullWidth}
         successText={successText}
         errorText={errorText}
         alertText={alertText}
@@ -54,10 +56,13 @@ MoleculeCheckboxField.propTypes = {
   label: PropTypes.string,
 
   /** React node to be displayed as label if there is not a label */
-  nodeLabel: PropTypes.node,
+  nodeLabel: PropTypes.element,
 
   /** used as label for attribute and input element id */
   id: PropTypes.string.isRequired,
+
+  /** Makes MoleculeField full width */
+  fullWidth: PropTypes.bool,
 
   /* onChange callback */
   onChange: PropTypes.func,

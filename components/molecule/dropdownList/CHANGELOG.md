@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.14.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([df3f7ac](https://github.com/SUI-Components/sui-components/commit/df3f7acb9891361fde68b0757697ee5a945815d5))
+
+
+
+# 1.13.0 (2020-05-28)
+
+
+### Features
+
+* add new variables ([7031d9a](https://github.com/SUI-Components/sui-components/commit/7031d9acab45fb198181293e4c644d151920d5fa))
+* fix default value ([8dab1c9](https://github.com/SUI-Components/sui-components/commit/8dab1c998197ad8745998f74b2cf16e82070f90b))
+* fix variable ([a33bfc7](https://github.com/SUI-Components/sui-components/commit/a33bfc7f9098e1359334f58da5e1df0f4c0dc540))
+
+
+
+# 1.12.0 (2020-04-30)
+
+
+### Bug Fixes
+
+* fix breaking change but keep functionality ([b0df3bd](https://github.com/SUI-Components/sui-components/commit/b0df3bd23523823e1ca99367625d63fa44732b12))
+
+
+
+# 1.11.0 (2020-04-28)
+
+
+### Features
+
+* do not render list if is not vibile ([a3600af](https://github.com/SUI-Components/sui-components/commit/a3600af937be237abe024275e35532a9c80555a5))
+* visible default prop value addition ([bf28fbb](https://github.com/SUI-Components/sui-components/commit/bf28fbb456c530ee9e88c6db580e3db8053ac69d))
+
+
+
 # 1.10.0 (2020-03-11)
 
 

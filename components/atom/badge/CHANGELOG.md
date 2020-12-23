@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.14.0 (2020-06-30)
+
+
+### Features
+
+* add type: PRIMARY that use primary color as background ([1a17498](https://github.com/SUI-Components/sui-components/commit/1a174980333ef5c55c5dfe9603d2cf77b84947ef))
+
+
+
+# 1.13.0 (2020-05-28)
+
+
+### Features
+
+* remove className prop ([7170991](https://github.com/SUI-Components/sui-components/commit/71709915c755c1f8ee7e16f75b1c3fb231d8469c))
+
+
+
+# 1.12.0 (2020-05-25)
+
+
+### Features
+
+* add var for white-space ([221e405](https://github.com/SUI-Components/sui-components/commit/221e4053171affcb9b725799a0735ef0a154c954))
+
+
+
 # 1.11.0 (2020-04-15)
 
 

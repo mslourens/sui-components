@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.9.0 (2020-07-07)
+
+
+### Features
+
+* add var to change border in is-intermediate state ([0dded0f](https://github.com/SUI-Components/sui-components/commit/0dded0f5770b15a06508a936b15ddb6c60606bab))
+
+
+
+# 2.8.0 (2020-06-19)
+
+
+### Features
+
+* add intermediate color ([06746b8](https://github.com/SUI-Components/sui-components/commit/06746b8eee554e8d453d6366bd2d53f48ca734ce))
+
+
+
+# 2.7.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([352ea5b](https://github.com/SUI-Components/sui-components/commit/352ea5b1a4148683ad644cc5c1a4ad3bf3179ba0))
+
+
+
+# 2.6.0 (2020-05-21)
+
+
+### Features
+
+* custom color in checkbox when disabled ([81afeae](https://github.com/SUI-Components/sui-components/commit/81afeaeea0da546a7682ecf47b80b2c86b38047e))
+
+
+
 # 2.5.0 (2020-03-24)
 
 

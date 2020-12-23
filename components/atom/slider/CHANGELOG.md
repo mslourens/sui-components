@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.14.0 (2020-06-30)
+
+
+### Features
+
+* add prop color to label ([968c755](https://github.com/SUI-Components/sui-components/commit/968c755231a82d806116be5602430bd67fc71c2e))
+
+
+
+# 1.13.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([f5a102e](https://github.com/SUI-Components/sui-components/commit/f5a102e275c6d0f589d238b28a1fa2e1474ff489))
+
+
+
 # 1.12.0 (2020-04-16)
 
 

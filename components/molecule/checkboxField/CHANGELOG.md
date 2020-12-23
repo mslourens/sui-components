@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.6.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([928c165](https://github.com/SUI-Components/sui-components/commit/928c165728a22548dca85bbad0778953d171deba))
+
+
+
+# 2.5.0 (2020-05-14)
+
+
+### Bug Fixes
+
+* change proptype node by element ([b0d07ca](https://github.com/SUI-Components/sui-components/commit/b0d07cac7998d448813bc6bdbc6767705e4f37db))
+
+
+
+# 2.4.0 (2020-05-05)
+
+
+### Bug Fixes
+
+* remove unnecessary CSS for fullWidth ([57cec03](https://github.com/SUI-Components/sui-components/commit/57cec03448d19f4ee07d33eeae14b9451ae25959))
+
+
+### Features
+
+* add fullWidth prop ([c40d1d8](https://github.com/SUI-Components/sui-components/commit/c40d1d84414b305d0d747f25d31cf299afcf62e2))
+
+
+
 # 2.3.0 (2020-03-20)
 
 

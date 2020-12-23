@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.14.0 (2020-06-22)
+
+
+### Features
+
+* add number 0 verify ([2e64c0d](https://github.com/SUI-Components/sui-components/commit/2e64c0d3eddd6997ba2d16752fabda7f6b982718))
+
+
+
+# 2.13.0 (2020-06-22)
+
+
+### Features
+
+* add tabs with counter ([38878a3](https://github.com/SUI-Components/sui-components/commit/38878a3c842085edf04466d0bde4eaa5db7c4722))
+
+
+
+# 2.12.0 (2020-06-22)
+
+
+### Features
+
+* add color variables ([f17afb8](https://github.com/SUI-Components/sui-components/commit/f17afb8549677239697183a0c528ec8d8ada0960))
+
+
+
+# 2.11.0 (2020-06-15)
+
+
+### Features
+
+* add new padding vertical item var ([9c524cf](https://github.com/SUI-Components/sui-components/commit/9c524cf5a9b04ba4ddb29b67e71f553996e70b13))
+
+
+
+# 2.10.0 (2020-06-12)
+
+
+### Features
+
+* tabs styles ([e19c8c4](https://github.com/SUI-Components/sui-components/commit/e19c8c49c215491482d375e02b7ebaa1aa9786fc))
+
+
+
+# 2.9.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([5cf6c70](https://github.com/SUI-Components/sui-components/commit/5cf6c704c79e2c872c0bc787495926daa058ae9a))
+
+
+
+# 2.8.0 (2020-05-12)
+
+
+### Bug Fixes
+
+* fix break ([2d20e80](https://github.com/SUI-Components/sui-components/commit/2d20e805c45868e9c6f84630e1d538fd5769a21f))
+
+
+### Features
+
+* add new border vars ([f475140](https://github.com/SUI-Components/sui-components/commit/f4751400294309ea406141981290795a5109f008))
+* highlighted border bottom ([18aae76](https://github.com/SUI-Components/sui-components/commit/18aae760e34a287f3c65693708cf8876770dc5cf))
+* use color vars ([e57f8f7](https://github.com/SUI-Components/sui-components/commit/e57f8f7580a03bb2de75444493780264c6f12eca))
+* vertical item styles ([5572c19](https://github.com/SUI-Components/sui-components/commit/5572c19afda70385f90e0b18bf13a60678338341))
+
+
+
 # 2.7.0 (2020-03-11)
 
 

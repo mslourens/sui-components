@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.5.0 (2020-06-11)
+
+
+### Features
+
+* add new variabler font-size ([1ed369b](https://github.com/SUI-Components/sui-components/commit/1ed369b117fc1df563a327644d037126cac4d0d9))
+* move code ([50dcf34](https://github.com/SUI-Components/sui-components/commit/50dcf34634714e0af2365f0855c62ba86f759917))
+
+
+
+# 1.4.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([94429e7](https://github.com/SUI-Components/sui-components/commit/94429e7cf0cc116a9748a6611b213dec8b24870f))
+
+
+
 # 1.3.0 (2020-03-11)
 
 

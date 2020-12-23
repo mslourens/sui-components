@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.12.0 (2020-05-28)
+
+
+### Bug Fixes
+
+* removes comment ([62ca388](https://github.com/SUI-Components/sui-components/commit/62ca388b2dd4597b94920b0b155331c51ec3a94c))
+
+
+### Features
+
+* remove className prop ([6a919d9](https://github.com/SUI-Components/sui-components/commit/6a919d94ad91e423fcedda58e177d3bf043cd617))
+
+
+
+# 2.11.0 (2020-04-30)
+
+
+### Features
+
+* add custom variable hover to type tag ([305c427](https://github.com/SUI-Components/sui-components/commit/305c4279d4009fb662dd46436bcdcacb2c443f44))
+
+
+
 # 2.10.0 (2020-04-15)
 
 

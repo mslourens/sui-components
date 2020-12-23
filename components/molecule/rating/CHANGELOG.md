@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.9.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([19380b3](https://github.com/SUI-Components/sui-components/commit/19380b302c2d686d84fa6146ddd96c874f85f0e9))
+
+
+
+# 1.8.0 (2020-05-05)
+
+
+### Features
+
+* add default var ([620be8b](https://github.com/SUI-Components/sui-components/commit/620be8bcee306844a94bf04f101f74979aca85ca))
+
+
+
+# 1.7.0 (2020-05-04)
+
+
+### Features
+
+* remove hover when the label is not a link ([e5b076d](https://github.com/SUI-Components/sui-components/commit/e5b076d83239e1a8ced9fff7e77c4a80b13a63a3))
+
+
+
 # 1.6.0 (2020-04-15)
 
 

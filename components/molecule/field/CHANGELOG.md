@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.25.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([6ffc6cb](https://github.com/SUI-Components/sui-components/commit/6ffc6cbb0c611799c0559e008bf7cd891975025f))
+
+
+
+# 1.24.0 (2020-05-14)
+
+
+### Bug Fixes
+
+* change proptype node by element ([bd7d53a](https://github.com/SUI-Components/sui-components/commit/bd7d53a13ae6f948da3ae14b10053a633f644c02))
+* change proptype node by element ([29d90bf](https://github.com/SUI-Components/sui-components/commit/29d90bf2e081451e8e13a74061522ed7b0cb27a9))
+
+
+
+# 1.23.0 (2020-05-05)
+
+
+### Features
+
+* add fullWidth prop ([9eab0d5](https://github.com/SUI-Components/sui-components/commit/9eab0d5ff2d8d34972ff2de86b88df3efec70d04))
+
+
+
 # 1.22.0 (2020-04-06)
 
 

@@ -29,7 +29,7 @@
     "@s-ui/helpers": "1",
     "@s-ui/mono": "1",
     "@s-ui/precommit": "2",
-    "@s-ui/studio": "7",
+    "@s-ui/studio": "8",
     "fs-extra": "8.1.0",
     "globby": "10.0.1",
     "husky": "0.13.4",
@@ -38,6 +38,23 @@
   },
   "dependencies": {
     "@s-ui/component-dependencies": "1"
+  },
+  "sui-bundler": {
+    "vendor": [
+      "react",
+      "react-dom",
+      "react-router"
+    ],
+    "scripts": {
+      "defaultAttribute": "defer",
+      "inline": "runtime",
+      "prefetch": false,
+      "preload": false
+    },
+    "sourcemaps": {
+      "dev": "cheap-module-eval-source-map",
+      "prod": "hidden-source-map"
+    }
   },
   "config": {
     "sui-studio": {

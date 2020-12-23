@@ -2,6 +2,84 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.15.0 (2020-06-17)
+
+
+### Features
+
+* fix to avoid rotation based on exif, if browser has this feature by de ([91ae59d](https://github.com/SUI-Components/sui-components/commit/91ae59d64cdf9f14c4eb2186eaca0c5645673fbe))
+
+
+
+# 1.14.0 (2020-06-08)
+
+
+### Features
+
+* add callback to uploadPhoto when image is modified ([a6246fb](https://github.com/SUI-Components/sui-components/commit/a6246fbd6f82c4053b3e99064b628c1697c8949f))
+* add upload Callback ([416cb5c](https://github.com/SUI-Components/sui-components/commit/416cb5ccb09ead225e01ebc885955c11aca8bdbb))
+* fix a typo ([529e331](https://github.com/SUI-Components/sui-components/commit/529e3312cc08f66e10a752f848f394ad0aafad16))
+
+
+
+# 1.13.0 (2020-06-02)
+
+
+### Features
+
+* fix NotRepeatedFilter ([59a6359](https://github.com/SUI-Components/sui-components/commit/59a6359753225a1bcc11c7cfad6640d85339cdbb))
+
+
+
+# 1.12.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([c26ad89](https://github.com/SUI-Components/sui-components/commit/c26ad89dd06783092efd8e901e4e4e673d759d44))
+
+
+
+# 1.11.0 (2020-05-21)
+
+
+### Features
+
+* add preview to be returned on callback, also fix callback when all ima ([8605961](https://github.com/SUI-Components/sui-components/commit/86059613333d2c9f8e0f1677bfde5ff2865b194b))
+* rename and refactor ([a149337](https://github.com/SUI-Components/sui-components/commit/a1493370142615bc79253ff4ec3b4ae24ef47d06))
+
+
+
+# 1.10.0 (2020-05-19)
+
+
+### Features
+
+* add border-radius variables ([b4b408e](https://github.com/SUI-Components/sui-components/commit/b4b408e793458d5098ffe001a52e82ae4f9591b7))
+* join  variables ([372a5fd](https://github.com/SUI-Components/sui-components/commit/372a5fd6ecb48bfa54d2263188a997700e2bf60f))
+* remove unused  var ([d676298](https://github.com/SUI-Components/sui-components/commit/d676298743093bf9e3f52c9b45ad91ab82f4e533))
+
+
+
+# 1.9.0 (2020-04-23)
+
+
+### Bug Fixes
+
+* prevent submit form when photo uploader button is clicked ([21ec7e5](https://github.com/SUI-Components/sui-components/commit/21ec7e5c4f0c3c6e477351cc347ac8cb0c17cbfc))
+
+
+
+# 1.8.0 (2020-04-21)
+
+
+### Features
+
+* add fileName on returned list of files ([74999b3](https://github.com/SUI-Components/sui-components/commit/74999b303084ea596d5280afe2aadfe9467ed570)), closes [#1097](https://github.com/SUI-Components/sui-components/issues/1097)
+* expose file instead of fileName ([64eeba5](https://github.com/SUI-Components/sui-components/commit/64eeba58852451b008b7e25ee80d8658fdd4f7e1))
+
+
+
 # 1.7.0 (2020-04-15)
 
 

@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.35.0 (2020-06-08)
+
+
+### Features
+
+* fix select disabled ([bf80050](https://github.com/SUI-Components/sui-components/commit/bf8005053597a3661235a18027933fb097c5256a))
+
+
+
+# 1.34.0 (2020-06-08)
+
+
+### Features
+
+* add arrow disabled variable ([c144874](https://github.com/SUI-Components/sui-components/commit/c144874f54eb66748419c020989d9da0bea00a02))
+* add disabled border to select ([799e8f1](https://github.com/SUI-Components/sui-components/commit/799e8f1db0c225ecfd307268a4b920c5526a4aae))
+* add new prop background disabled ([8d61372](https://github.com/SUI-Components/sui-components/commit/8d6137295cfa4efdc0ae4d500abb9e2fc6b3d812))
+* fix prop name ([ad0fef3](https://github.com/SUI-Components/sui-components/commit/ad0fef39d887266e849bb80a204c413c64cd19bd))
+
+
+
+# 1.33.0 (2020-05-29)
+
+
+### Features
+
+* add assets folder to .npmignore ([7d8dd5f](https://github.com/SUI-Components/sui-components/commit/7d8dd5f11ca963dc4d1b66dccb87adedbec2febd))
+
+
+
+# 1.32.0 (2020-05-28)
+
+
+### Features
+
+* update extend select focus ([843d7b8](https://github.com/SUI-Components/sui-components/commit/843d7b8bbfae0e4c402ac16536a21c0a4958cd47))
+
+
+
+# 1.31.0 (2020-05-22)
+
+
+### Features
+
+* refactor useEffect children, handleOutsideClick exhaustive deps ([1af8768](https://github.com/SUI-Components/sui-components/commit/1af87683acbc5b089fe133634f85019fc558ecb5))
+
+
+
+# 1.30.0 (2020-05-20)
+
+
+### Features
+
+* add leftIcon prop to be shown into the main option ([4f5ab24](https://github.com/SUI-Components/sui-components/commit/4f5ab24744d79ac8f83dee41eb103d310a2fb958))
+
+
+
+# 1.29.0 (2020-04-28)
+
+
+### Features
+
+* equalize size for centering ([51561a8](https://github.com/SUI-Components/sui-components/commit/51561a8acc7b8f7004766bb2c6adccce598b09ba))
+
+
+
 # 1.28.0 (2020-04-08)
 
 

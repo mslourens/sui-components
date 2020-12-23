@@ -44,6 +44,7 @@ const MoleculePhotoUploader = ({
   addPhotoTextSkeleton,
   callbackPhotosRejected = () => {},
   callbackPhotosUploaded = () => {},
+  callbackUploadPhoto,
   deleteIcon,
   disableScrollToBottom = false,
   dragDelay = DEFAULT_DRAG_DELAY_TIME,
@@ -108,14 +109,28 @@ const MoleculePhotoUploader = ({
   })
 
   const _callbackPhotosUploaded = list => {
-    if (list.length) {
-      const blobsArray = list.reduce((array, file) => {
-        const {blob, url, isNew, isModified, hasErrors} = file
-        array.push({blob, url, isNew, isModified, hasErrors})
-        return [...array]
-      }, [])
-      callbackPhotosUploaded(blobsArray)
-    }
+    const blobsArray = list.reduce((array, currentFile) => {
+      const {
+        blob,
+        url,
+        isNew,
+        isModified,
+        hasErrors,
+        file,
+        preview
+      } = currentFile
+      array.push({
+        blob,
+        url,
+        isNew,
+        isModified,
+        hasErrors,
+        file,
+        previewUrl: preview
+      })
+      return [...array]
+    }, [])
+    callbackPhotosUploaded(blobsArray)
   }
 
   const _onDropRejected = rejectedFiles => {
@@ -188,6 +203,7 @@ const MoleculePhotoUploader = ({
       setFiles,
       setIsLoading,
       _scrollToBottom,
+      callbackUploadPhoto,
       _callbackPhotosUploaded
     })
   }
@@ -249,6 +265,7 @@ const MoleculePhotoUploader = ({
               _scrollToBottom={_scrollToBottom}
               addMorePhotosIcon={addMorePhotosIcon}
               addPhotoTextSkeleton={addPhotoTextSkeleton}
+              callbackUploadPhoto={callbackUploadPhoto}
               defaultFormatToBase64Options={DEFAULT_FORMAT_TO_BASE_64_OPTIONS}
               deleteIcon={deleteIcon}
               dragDelay={dragDelay}
@@ -354,6 +371,12 @@ MoleculePhotoUploader.propTypes = {
    */
   callbackPhotosUploaded: PropTypes.func,
 
+  /**
+   * Callback that executes every time that new image is added or modified.
+   * Returns the new Blob and old URL if exists
+   */
+  callbackUploadPhoto: PropTypes.func,
+
   /** Icon placed in the button that deletes image */
   deleteIcon: PropTypes.node.isRequired,
 
@@ -367,7 +390,7 @@ MoleculePhotoUploader.propTypes = {
   dragDelay: PropTypes.number,
 
   /** Icon placed in the initial screen to invite the user to drag images */
-  dragPhotosIcon: PropTypes.node.isRequired,
+  dragPhotosIcon: PropTypes.func.isRequired,
 
   /** Text showed at the initial content screen, with the previous icon */
   dragPhotoTextInitialContent: PropTypes.string.isRequired,
@@ -395,7 +418,7 @@ MoleculePhotoUploader.propTypes = {
   errorInitialPhotoDownloadErrorText: PropTypes.string.isRequired,
 
   /** Info icon */
-  infoIcon: PropTypes.node.isRequired,
+  infoIcon: PropTypes.func.isRequired,
 
   /** An array containing URLs of default images to be loaded into the preview */
   initialPhotos: PropTypes.arrayOf(PropTypes.string),

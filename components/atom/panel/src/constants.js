@@ -1,4 +1,5 @@
 const COLORS = {
+  CANVAS: 'canvas',
   ACCENT: 'accent',
   BASE: 'base',
   DARK: 'dark',
@@ -16,4 +17,11 @@ const ALPHA = {
   OVERLAY_D1: '15'
 }
 
-export {COLORS, ALPHA}
+const BORDER_RADIUS = {
+  NONE: 'none',
+  M: 'm',
+  L: 'l',
+  XL: 'xl'
+}
+
+export {COLORS, ALPHA, BORDER_RADIUS}
