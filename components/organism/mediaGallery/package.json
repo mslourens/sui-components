@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@s-ui/component-dependencies": "1",
+    "@s-ui/react-atom-button": "1",
     "@s-ui/react-atom-image": "2",
+    "@s-ui/react-molecule-button-group": "2",
     "@s-ui/react-molecule-modal": "1",
     "@s-ui/react-molecule-thumbnail": "1",
-    "@s-ui/react-atom-button": "1",
     "react-slidy": "4"
   },
   "keywords": [],
