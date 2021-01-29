@@ -30,6 +30,9 @@ const Demo = () => (
         <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
         <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
       </OrganismMediaGallery>
+      <OrganismMediaGallery>
+        <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
+      </OrganismMediaGallery>
     </div>
   </div>
 )
