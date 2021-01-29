@@ -22,6 +22,12 @@ function OrganismMediaGallery({children, initialIndex = 0, initialMediaType}) {
   const videos = children.filter(child => child.type === Video)
   const videos3d = children.filter(child => child.type === Video3d)
   const videos360 = children.filter(child => child.type === Video360)
+  const showMediaTypeBtns =
+    (images.length > 0) +
+      (videos.length > 0) +
+      (videos3d.length > 0) +
+      (videos360.length > 0) >
+    1
   const getFirstAvailableMediaType = () => {
     if (initialMediaType) return initialMediaType
     if (images.length > 0) return MEDIA_TYPE.IMAGE
@@ -54,29 +60,36 @@ function OrganismMediaGallery({children, initialIndex = 0, initialMediaType}) {
 
   return (
     <div className={BASE_CLASS}>
-      <div className={`${BASE_CLASS}-mediaType`}>
-        <MoleculeButtonGroup>
-          <AtomButton
-            onClick={() => toggleMediaType(MEDIA_TYPE.IMAGE)}
-            title="image"
-            design="outline"
-          >
-            Image
-          </AtomButton>
-          <AtomButton
-            onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO)}
-            title="video"
-          >
-            Video
-          </AtomButton>
-          <AtomButton
-            onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO3D)}
-            title="video 3D"
-          >
-            Video 3D
-          </AtomButton>
-        </MoleculeButtonGroup>
-      </div>
+      {showMediaTypeBtns && (
+        <div className={`${BASE_CLASS}-mediaType`}>
+          <MoleculeButtonGroup>
+            <AtomButton
+              onClick={() => toggleMediaType(MEDIA_TYPE.IMAGE)}
+              title="image"
+              design="outline"
+              focused={activeMedia === MEDIA_TYPE.IMAGE}
+            >
+              Image
+            </AtomButton>
+            <AtomButton
+              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO)}
+              title="video"
+              design="outline"
+              focused={activeMedia === MEDIA_TYPE.VIDEO}
+            >
+              Video
+            </AtomButton>
+            <AtomButton
+              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO3D)}
+              title="video 3D"
+              design="outline"
+              focused={activeMedia === MEDIA_TYPE.VIDEO3D}
+            >
+              Video 3D
+            </AtomButton>
+          </MoleculeButtonGroup>
+        </div>
+      )}
       <div className={`${BASE_CLASS}-media`}>{getActiveMedia()}</div>
       <div className={`${BASE_CLASS}-clue`}>{index}</div>
     </div>
