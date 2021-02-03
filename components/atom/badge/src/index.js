@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -16,12 +15,19 @@ const TYPES = {
   INFO: 'info',
   ALERT: 'alert',
   NEW: 'new',
+  NEUTRAL: 'neutral',
   PRIMARY: 'primary'
+}
+
+export const DESIGNS = {
+  SOLID: 'solid',
+  SOFT: 'soft'
 }
 
 const BASE_CLASS = `sui-AtomBadge`
 const CLASS_ICON = `${BASE_CLASS}-icon`
 const CLASS_ICON_RIGHT = `${CLASS_ICON}--iconRight`
+const CLASS_TEXT = `${CLASS_ICON}-text`
 
 /**
  * Cuts off exceeded char limit
@@ -42,13 +48,14 @@ const truncateText = function(label) {
  * @param  {string} options.type
  * @return {string}
  */
-const getClassNames = function({iconRight, size, transparent, type}) {
+const getClassNames = function({design, iconRight, size, transparent, type}) {
   const transparentClass = (transparent && `--${TRANSPARENT}`) || ''
 
   return cx(
     BASE_CLASS,
     `${BASE_CLASS}-${size}`,
     `${BASE_CLASS}-${type}${transparentClass}`,
+    design && `${BASE_CLASS}-${type}--${design}`,
     {
       [CLASS_ICON_RIGHT]: iconRight
     }
@@ -76,7 +83,7 @@ const AtomBadge = function({icon, iconRight, label, ...props}) {
       {shouldRenderIcon({icon, ...props}) && !iconRight && (
         <span className={CLASS_ICON}>{icon}</span>
       )}
-      <span className="sui-AtomBadge-text" title={truncatedLabel}>
+      <span className={CLASS_TEXT} title={truncatedLabel}>
         {label}
       </span>
       {shouldRenderIcon({icon, ...props}) && iconRight && (
@@ -89,6 +96,11 @@ const AtomBadge = function({icon, iconRight, label, ...props}) {
 AtomBadge.displayName = 'AtomBadge'
 
 AtomBadge.propTypes = {
+  /**
+   * Design style of button: 'solid' (default) or 'soft'
+   */
+  design: PropTypes.oneOf(Object.values(DESIGNS)),
+
   /** Badge text to be shown */
   label: PropTypes.string.isRequired,
 
@@ -114,4 +126,8 @@ AtomBadge.defaultProps = {
 }
 
 export default AtomBadge
-export {TYPES as atomBadgeTypes, SIZES as atomBadgeSizes}
+export {
+  DESIGNS as atomBadgeDesigns,
+  TYPES as atomBadgeTypes,
+  SIZES as atomBadgeSizes
+}

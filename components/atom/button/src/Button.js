@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
 const Button = ({
@@ -14,13 +13,12 @@ const Button = ({
 }) => {
   if (isSubmit) attrs.type = 'submit'
   if (isButton) attrs.type = 'button'
+
+  const defaultRel = target === '_blank' ? 'noopener' : undefined
+  const rel = attrs.rel || defaultRel
+
   return link ? (
-    <Link
-      {...attrs}
-      href={href}
-      target={target}
-      rel={target === '_blank' ? 'noopener' : undefined}
-    >
+    <Link {...attrs} href={href} target={target} rel={rel}>
       {children}
     </Link>
   ) : (

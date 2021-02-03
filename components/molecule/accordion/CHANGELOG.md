@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.10.0 (2020-09-17)
+
+
+### Features
+
+* add defaultOpenedTab prop to sui molecule accordion component ([b055f3d](https://github.com/SUI-Components/sui-components/commit/b055f3df9c346184b1e5d821e191aebc0e8981ab))
+* add support on molecule accordion to multiple defaultOpenedTabs ([e1e4331](https://github.com/SUI-Components/sui-components/commit/e1e433190ec9614dde2051d20993b981828f2f9b))
+
+
+
+# 1.9.0 (2020-09-08)
+
+
+### Bug Fixes
+
+* fix withMultilineLabel tab min-height ([93327b5](https://github.com/SUI-Components/sui-components/commit/93327b5f75852f0827c10d97612f15e987e07599))
+
+
+
+# 1.8.0 (2020-08-17)
+
+
+### Features
+
+* accordion multiline label feature ([8bb4eb5](https://github.com/SUI-Components/sui-components/commit/8bb4eb591977ea6f12d6c70132042ea07a22cca2))
+
+
+
+# 1.7.0 (2020-08-06)
+
+
+### Features
+
+* add default sass variable on molecule accordion tab border-radius ([9e023cf](https://github.com/SUI-Components/sui-components/commit/9e023cf33118a1f8f1c676be60703f2f23f319e9))
+
+
+
 # 1.6.0 (2020-06-19)
 
 

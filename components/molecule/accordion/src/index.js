@@ -1,12 +1,17 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import PropTypes from 'prop-types'
 import Tab from './Tab'
 
 const BASE_CLASS = 'sui-MoleculeAccordion'
 
 function MoleculeAccordion(props) {
-  const [openTabs, setOpenTabs] = useState([])
-  const {children, ...tabProps} = props
+  const {children, defaultOpenedTabs = [], ...tabProps} = props
+
+  const initialOpenTabs = children.map((_, index) =>
+    defaultOpenedTabs.includes(index)
+  )
+
+  const [openTabs, setOpenTabs] = useState(initialOpenTabs)
 
   function onToggle(id) {
     const {withAutoClose} = props
@@ -45,6 +50,10 @@ MoleculeAccordion.propTypes = {
    */
   children: PropTypes.instanceOf(Object).isRequired,
   /**
+   * Array with tab indexes to be opened by default
+   */
+  defaultOpenedTabs: PropTypes.arrayOf(PropTypes.Number),
+  /**
    * Icon for the button
    */
   icon: PropTypes.node.isRequired,
@@ -71,7 +80,11 @@ MoleculeAccordion.propTypes = {
   /**
    * Activate/deactivate gap between tabs
    */
-  withGap: PropTypes.bool
+  withGap: PropTypes.bool,
+  /**
+   * Activate/deactivate multiline label
+   */
+  withMultilineLabel: PropTypes.bool
 }
 MoleculeAccordion.defaultProps = {
   withAutoClose: true

@@ -1,4 +1,4 @@
-import React from 'react'
+import {Children, cloneElement} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -27,15 +27,15 @@ const MoleculeTabs = ({variant, type, children, onChange}) => {
 
   const className = cx(BASE_CLASS, CLASS_VARIANT, CLASS_TYPE)
 
-  const extendedChildren = React.Children.map(children, (child, index) => {
+  const extendedChildren = Children.map(children, (child, index) => {
     const numTab = index + 1
-    return React.cloneElement(child, {
+    return cloneElement(child, {
       onChange,
       numTab
     })
   })
 
-  const activeTabContent = React.Children.toArray(children).reduce(
+  const activeTabContent = Children.toArray(children).reduce(
     (activeContent, child) => {
       const {children: childrenChild, active} = child.props
       return active ? childrenChild : activeContent
@@ -46,7 +46,9 @@ const MoleculeTabs = ({variant, type, children, onChange}) => {
   return (
     <div className={className}>
       <ul className={CLASS_SCROLLER}>{extendedChildren}</ul>
-      <div className={CLASS_CONTENT}>{activeTabContent}</div>
+      {activeTabContent ? (
+        <div className={CLASS_CONTENT}>{activeTabContent}</div>
+      ) : null}
     </div>
   )
 }
@@ -73,7 +75,10 @@ MoleculeTabs.defaultProps = {
   onChange: () => {}
 }
 
-export default withStateActiveTab(MoleculeTabs)
+const MoleculeTabsWithStateActive = withStateActiveTab(MoleculeTabs)
+MoleculeTabsWithStateActive.displayName = MoleculeTabs.displayName
+
+export default MoleculeTabsWithStateActive
 export {
   MoleculeTabs,
   MoleculeTab,

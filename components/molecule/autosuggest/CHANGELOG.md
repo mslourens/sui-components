@@ -2,6 +2,71 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.28.0 (2020-12-14)
+
+
+### Bug Fixes
+
+* add default value fot onSelect prop ([3de6062](https://github.com/SUI-Components/sui-components/commit/3de6062df119b9f0797fb0567d9d0feb31622026))
+* force new release ([11e3e5c](https://github.com/SUI-Components/sui-components/commit/11e3e5cb8b10faf3a35bd07efc9b48c22ef23ad2))
+* recover removed onSelect default value ([b4f8474](https://github.com/SUI-Components/sui-components/commit/b4f8474029dbc9f57e63cad484a3f26051809eb4))
+
+
+### Features
+
+* add an ariaLabel prop ([34ba739](https://github.com/SUI-Components/sui-components/commit/34ba73908aa541c62dc9b1e49bc5ee99e5ec81a1))
+* add autoclose behavior ([3ae12cc](https://github.com/SUI-Components/sui-components/commit/3ae12cc071781486ccd890f0175d46603dd4327a))
+* add prop size to pass it to MoleculeDropdownList component ([d79d6f6](https://github.com/SUI-Components/sui-components/commit/d79d6f60993fc048ca833174334d3ad53606947d))
+* Use new jsx runtime ([08f3682](https://github.com/SUI-Components/sui-components/commit/08f36827d0a3cf517df209cbbdc504f70699f09e))
+
+
+
+# 2.20.0 (2020-10-01)
+
+
+### Features
+
+* Use correct displayName for each Component ([7ff34f8](https://github.com/SUI-Components/sui-components/commit/7ff34f86e2f2246917c2d5475be008cf547306f4))
+
+
+
+# 2.19.0 (2020-09-16)
+
+
+### Features
+
+* add accesibilty props and refactor for render one content component ([033e100](https://github.com/SUI-Components/sui-components/commit/033e100e6510217abde98b04c2e3efdab749e1b8))
+* add click event for wrapper ([7629628](https://github.com/SUI-Components/sui-components/commit/7629628d4c0abc7a60d76fa9c08d940a876982a8))
+
+
+
+# 2.18.0 (2020-08-17)
+
+
+### Features
+
+* add types and inputMode props ([65077ce](https://github.com/SUI-Components/sui-components/commit/65077ced55fa9484d74abba516c86c6b300b2e37))
+
+
+
+# 2.17.0 (2020-07-15)
+
+
+### Features
+
+* add onFocus prop ([a5b233c](https://github.com/SUI-Components/sui-components/commit/a5b233c289e6935f8b412b00d625a1e5f5fadc69))
+
+
+
+# 2.16.0 (2020-07-07)
+
+
+### Features
+
+* add leftIcon prop for single-selection autosuggest ([51376d4](https://github.com/SUI-Components/sui-components/commit/51376d4c571fcbf9b67aecb36cd7280f5f5ca80d))
+
+
+
 # 2.15.0 (2020-05-29)
 
 

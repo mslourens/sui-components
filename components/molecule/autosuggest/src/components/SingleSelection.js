@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import {Children} from 'react'
 
 import MoleculeDropdownList from '@s-ui/react-molecule-dropdown-list'
 import AtomInput from '@s-ui/react-atom-input'
@@ -9,37 +9,42 @@ import withClearUI from '../hoc/withClearUI'
 const AtomInputWithClearUI = withClearUI(AtomInput)
 
 const MoleculeAutosuggestSingleSelection = ({
-  id,
-  value = '',
+  autoClose,
+  ariaLabel,
+  autoComplete = 'nope',
   children,
+  disabled,
+  iconClear,
+  id,
+  innerRefInput,
+  inputMode,
   isOpen,
-  onToggle,
+  leftIcon,
   onChange,
   onClickRightIcon,
   onInputKeyDown,
   onSelect,
-  size,
-  innerRefInput,
-  refMoleculeAutosuggest,
-  rightIcon,
-  iconClear,
+  onToggle,
   placeholder,
-  disabled,
+  refMoleculeAutosuggest,
   required,
+  rightButton,
+  rightIcon,
+  size,
   tabIndex,
-  autoComplete,
-  rightButton
+  type,
+  value = ''
 }) => {
   const handleSelection = (ev, {value}) => {
     onChange(ev, {value})
     onSelect(ev, {value})
-    onToggle(ev, {isOpen: false})
+    autoClose && onToggle(ev, {isOpen: false})
     refMoleculeAutosuggest.current.focus()
   }
 
   const handleChange = (ev, {value}) => {
     onChange(ev, {value})
-    onToggle(ev, {isOpen: true})
+    autoClose && onToggle(ev, {isOpen: true})
   }
 
   const handleClear = () => {
@@ -53,27 +58,31 @@ const MoleculeAutosuggestSingleSelection = ({
   return (
     <>
       <AtomInputWithClearUI
-        id={id}
-        value={value}
-        isVisibleClear={value}
-        onClickClear={handleClear}
-        onChange={handleChange}
-        iconClear={!disabled && iconClear}
-        rightIcon={rightIcon}
-        onClickRightIcon={handleRightClick}
-        reference={innerRefInput}
-        placeholder={placeholder}
-        onKeyDown={onInputKeyDown}
-        disabled={disabled}
-        required={required}
-        tabIndex={tabIndex}
+        ariaLabel={ariaLabel}
         autoComplete={autoComplete}
         button={rightButton}
+        disabled={disabled}
+        iconClear={!disabled && iconClear}
+        id={id}
+        inputMode={inputMode}
+        isVisibleClear={value}
+        leftIcon={leftIcon}
+        onChange={handleChange}
+        onClickClear={handleClear}
+        onClickRightIcon={handleRightClick}
+        onKeyDown={onInputKeyDown}
+        placeholder={placeholder}
+        reference={innerRefInput}
+        required={required}
+        rightIcon={rightIcon}
+        tabIndex={tabIndex}
+        type={type}
+        value={value}
       />
       {value && (
         <MoleculeDropdownList
           size={size}
-          visible={isOpen && React.Children.count(children) > 0}
+          visible={isOpen && Children.count(children) > 0}
           onSelect={handleSelection}
           value={value}
           highlightQuery={value}
@@ -87,10 +96,5 @@ const MoleculeAutosuggestSingleSelection = ({
 
 MoleculeAutosuggestSingleSelection.displayName =
   'MoleculeAutosuggestSingleSelection'
-
-MoleculeAutosuggestSingleSelection.defaultProps = {
-  value: '',
-  autoComplete: 'nope'
-}
 
 export default MoleculeAutosuggestSingleSelection

@@ -1,5 +1,14 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types'
-import React, {useRef, useState, useEffect, useCallback} from 'react'
+import {
+  Children,
+  cloneElement,
+  useRef,
+  useState,
+  useEffect,
+  useCallback
+} from 'react'
 import {createPortal} from 'react-dom'
 import cx from 'classnames'
 import {SUPPORTED_KEYS} from './config'
@@ -14,22 +23,22 @@ const toggleWindowScroll = disableScroll => {
 }
 
 const MoleculeModal = ({
-  portalContainerId,
-  header,
   children,
-  iconClose,
-  floatingIconClose,
-  isOpen,
-  fitWindow,
-  fitContent,
-  withoutIndentation,
+  closeOnEscKeyDown = false,
+  closeOnOutsideClick = false,
+  enableContentScroll = false,
+  fitContent = false,
+  fitWindow = false,
+  floatingIconClose = false,
+  header,
+  iconClose = false,
   isClosing,
+  isOpen = false,
   onAnimationEnd,
-  usePortal,
-  closeOnOutsideClick,
-  closeOnEscKeyDown,
-  onClose,
-  enableContentScroll
+  onClose = () => {},
+  portalContainerId = 'modal-react-portal',
+  usePortal = true,
+  withoutIndentation = false
 }) => {
   const contentRef = useRef()
   const wrapperRef = useRef()
@@ -46,16 +55,20 @@ const MoleculeModal = ({
     return containerDOMEl
   }
 
-  const closeModal = useCallback(() => {
-    toggleWindowScroll(false)
-    onClose()
-  }, [onClose])
+  const closeModal = useCallback(
+    ev => {
+      ev && ev.stopPropagation()
+      toggleWindowScroll(false)
+      onClose()
+    },
+    [onClose]
+  )
 
   const onKeyDown = useCallback(
     ev => {
       if (isOpen === false || closeOnEscKeyDown === false) return
       if (SUPPORTED_KEYS.includes(ev.key)) {
-        closeModal()
+        closeModal(ev)
         ev.preventDefault()
       }
     },
@@ -95,12 +108,12 @@ const MoleculeModal = ({
 
   const handleOutsideClick = ev => {
     if (closeOnOutsideClick && ev.target === wrapperRef.current) {
-      closeModal()
+      closeModal(ev)
     }
   }
 
-  const extendedChildren = React.Children.toArray(children).map(child =>
-    React.cloneElement(child, {
+  const extendedChildren = Children.toArray(children).map(child =>
+    cloneElement(child, {
       onClose: closeModal
     })
   )
@@ -248,24 +261,12 @@ MoleculeModal.propTypes = {
   openModalTrigger: PropTypes.func
 }
 
-MoleculeModal.defaultProps = {
-  closeOnOutsideClick: false,
-  closeOnEscKeyDown: false,
-  enableContentScroll: false,
-  floatingIconClose: false,
-  fitWindow: false,
-  fitContent: false,
-  withoutIndentation: false,
-  isOpen: false,
-  portalContainerId: 'modal-react-portal',
-  usePortal: true,
-  onClose: () => {}
-}
-
 MoleculeModal.displayName = 'MoleculeModal'
 
 const MoleculeModalWithAnimation = WithAnimation(MoleculeModal)
 const MoleculeModalWithUrlState = WithUrlState(MoleculeModalWithAnimation)
+
+MoleculeModalWithAnimation.displayName = 'MoleculeModal'
 
 export {MoleculeModalWithUrlState, MoleculeModalWithAnimation}
 export default MoleculeModalWithAnimation

@@ -90,10 +90,11 @@ const contentFootMook = [
   ''
 ]
 
+const handleClick = index => console.log(index)
 
 return (
-  <div style={{ maxWidth: 800, padding: 16 }}>
-    <h1>Atom Table</h1>
+  <div>
+    <h1>Table</h1>
     <p>Atom Table to show tabular information.</p>
 
     <hr/>
@@ -131,5 +132,28 @@ return (
       borderBottom
     />
     <br/>
+
+    <h2>Actionable Version with thead, tbody and tfoot, and the props cellPadding and borderBottom</h2>
+    <p>Pass an onRowClick callback that returns the index of the row clicked</p>
+    <AtomTable
+      head={contentHeadMook}
+      body={contentBodyMook}
+      foot={contentFootMook}
+      fullWidth
+      cellPadding={CELL_PADDING.l}
+      borderBottom
+      onRowClick={handleClick}
+    />
+    <br/>
+        <h2>Version with thead, tbody and tfoot and the props cellPadding and zebraStriped </h2>
+    <AtomTable 
+      head={contentHeadMook}
+      body={contentBodyMook}
+      foot={contentFootMook}
+      cellPadding={CELL_PADDING.l}
+      zebraStriped
+    />
+    <br/>
+
   </div>
 )

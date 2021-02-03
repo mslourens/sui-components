@@ -70,6 +70,21 @@ return (<div>
 </div>)
 ```
 
+### Button loading
+
+Set `isLoading` prop to display the loading state of a button. Optionally, use `loader` prop if you want to overwrite the default spinner and `loadingText` prop if you want to display some text next to the `loader`.
+
+```js
+import Button from '@s-ui/react-atom-button'
+
+return (
+  <>
+    <AtomButton isLoading />
+    <AtomButton loadingText="Submitting" isLoading />
+  </>
+)
+```
+
 ### Button inside Form
 
 By default `AtomButton` inside a `form` will submit the form
@@ -117,7 +132,7 @@ When `link` property is passed, the component will render an html link.
 import Button from '@s-ui/react-atom-button'
 
 return (
-  <Button link href='http://www.schibsted.com/' target='_blank'>Link</Button>
+  <Button link href='http://www.schibsted.com/' target='_blank' rel="nofollow noopener">Link</Button>
 )
 
 ```

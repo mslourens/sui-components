@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import {useRef} from 'react'
 import PropTypes from 'prop-types'
 
 import MoleculeField from '@s-ui/react-molecule-field'
 import MoleculeAutosuggest, {
-  MoleculeAutosuggestStates
+  MoleculeAutosuggestStates,
+  MoleculeAutosuggestDropdownListSizes
 } from '@s-ui/react-molecule-autosuggest'
 
 const getErrorState = ({successText, errorText}) => {
@@ -17,57 +18,53 @@ const getState = ({successText, errorState, alertText}) => {
   if (alertText) return MoleculeAutosuggestStates.ALERT
 }
 
-class MoleculeAutosuggestField extends Component {
-  refAutosuggest = React.createRef()
+function MoleculeAutosuggestField({
+  alertText,
+  children,
+  errorText,
+  helpText,
+  id,
+  inline,
+  label,
+  onChange,
+  successText,
+  useContrastLabel,
+  ...restProps
+}) {
+  const refAutosuggest = useRef()
 
-  handleClick = () => {
-    const {current: domAutosuggest} = this.refAutosuggest
+  const handleClick = () => {
+    const {current: domAutosuggest} = refAutosuggest
     if (domAutosuggest) domAutosuggest.focus()
   }
 
-  render() {
-    const {refAutosuggest, handleClick} = this
-    const {
-      label,
-      useContrastLabel,
-      id,
-      successText,
-      errorText,
-      alertText,
-      helpText,
-      inline,
-      children, // eslint-disable-line
-      onChange,
-      ...props
-    } = this.props
-    const errorState = getErrorState({successText, errorText})
-    const autosuggestState = getState({successText, errorState, alertText})
+  const errorState = getErrorState({successText, errorText})
+  const autosuggestState = getState({successText, errorState, alertText})
 
-    return (
-      <MoleculeField
-        name={id}
-        label={label}
-        successText={successText}
-        errorText={errorText}
-        alertText={alertText}
-        helpText={helpText}
-        inline={inline}
-        onClickLabel={handleClick}
-        onChange={onChange}
-        useContrastLabel={useContrastLabel}
+  return (
+    <MoleculeField
+      name={id}
+      label={label}
+      successText={successText}
+      errorText={errorText}
+      alertText={alertText}
+      helpText={helpText}
+      inline={inline}
+      onClickLabel={handleClick}
+      onChange={onChange}
+      useContrastLabel={useContrastLabel}
+    >
+      <MoleculeAutosuggest
+        id={id}
+        refMoleculeAutosuggest={refAutosuggest}
+        errorState={errorState}
+        state={autosuggestState}
+        {...restProps}
       >
-        <MoleculeAutosuggest
-          id={id}
-          refMoleculeAutosuggest={refAutosuggest}
-          errorState={errorState}
-          state={autosuggestState}
-          {...props}
-        >
-          {children}
-        </MoleculeAutosuggest>
-      </MoleculeField>
-    )
-  }
+        {children}
+      </MoleculeAutosuggest>
+    </MoleculeField>
+  )
 }
 
 MoleculeAutosuggestField.displayName = 'MoleculeAutosuggestField'
@@ -77,7 +74,7 @@ MoleculeAutosuggestField.propTypes = {
   label: PropTypes.string.isRequired,
 
   /** used as label for attribute and Autosuggest element id */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 
   /** Success message to display when success state  */
   successText: PropTypes.string,
@@ -98,7 +95,11 @@ MoleculeAutosuggestField.propTypes = {
   inline: PropTypes.bool,
 
   /** Boolean, if true it will use contrast label */
-  useContrastLabel: PropTypes.string
+  useContrastLabel: PropTypes.string,
+
+  /** A React element */
+  children: PropTypes.element
 }
 
 export default MoleculeAutosuggestField
+export {MoleculeAutosuggestStates, MoleculeAutosuggestDropdownListSizes}

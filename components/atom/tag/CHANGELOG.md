@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.14.0 (2020-11-12)
+
+
+### Features
+
+* add oultine variation with actinonable state ([3ae76bc](https://github.com/SUI-Components/sui-components/commit/3ae76bcb0ef265dd85f7250856bed26346e394b9))
+* code format ([9ed594d](https://github.com/SUI-Components/sui-components/commit/9ed594dc1f086d3ced3fedc8be2485414e8e1a8a))
+* move settings to another file ([686a029](https://github.com/SUI-Components/sui-components/commit/686a0296f5a754c2bc2308b3f4ebe77a66f39fb9))
+* remove linter rules to format code snippets ([a30441d](https://github.com/SUI-Components/sui-components/commit/a30441dd9ad8fad31a96063924a2f628af6019a0))
+* update docs ([0fdd381](https://github.com/SUI-Components/sui-components/commit/0fdd381c98e3720f075dc6cd1b280bb829fe1ec0))
+
+
+
+# 2.13.0 (2020-09-08)
+
+
+### Bug Fixes
+
+* get hover variables values from atom-tag-types variable instead hardcoded one ([d2b25ea](https://github.com/SUI-Components/sui-components/commit/d2b25eaaa6dd9949866b78cbe683949e72198db8))
+
+
+
 # 2.12.0 (2020-05-28)
 
 

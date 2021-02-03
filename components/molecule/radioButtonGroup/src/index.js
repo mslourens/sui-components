@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import {Children, cloneElement, useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
-const BASE_CLASS = 'sui-AtomRadioButtonGroup'
+const BASE_CLASS = 'sui-MoleculeRadioButtonGroup'
 
-const AtomRadioButtonGroup = ({
+const MoleculeRadioButtonGroup = ({
   id,
   value: initValue,
   onChange: onChangeFromProps,
@@ -19,10 +19,11 @@ const AtomRadioButtonGroup = ({
 
   const handleChangeGroup = (e, {name, value: innerValue}) => {
     setValue(innerValue)
-    onChangeFromProps(e, {name, value: innerValue})
+    typeof onChangeFromProps === 'function' &&
+      onChangeFromProps(e, {name, value: innerValue})
   }
 
-  const extendedChildren = React.Children.toArray(children)
+  const extendedChildren = Children.toArray(children)
     .filter(Boolean)
     .map((child, index) => {
       const {
@@ -30,7 +31,7 @@ const AtomRadioButtonGroup = ({
       } = child
       const checked = value === childValue
       const onChange = handleChangeGroup
-      return React.cloneElement(child, {
+      return cloneElement(child, {
         ...props,
         checked,
         onChange,
@@ -41,13 +42,13 @@ const AtomRadioButtonGroup = ({
   return <div className={BASE_CLASS}>{extendedChildren}</div>
 }
 
-AtomRadioButtonGroup.displayName = 'AtomRadioButton'
+MoleculeRadioButtonGroup.displayName = 'MoleculeRadioButtonGroup'
 
-AtomRadioButtonGroup.defaultProps = {
+MoleculeRadioButtonGroup.defaultProps = {
   checked: false
 }
 
-AtomRadioButtonGroup.propTypes = {
+MoleculeRadioButtonGroup.propTypes = {
   /* children */
   children: PropTypes.any,
 
@@ -55,7 +56,7 @@ AtomRadioButtonGroup.propTypes = {
   name: PropTypes.string,
 
   /* The DOM id global attribute. */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 
   /* This Boolean attribute prevents the user from interacting with the input */
   disabled: PropTypes.bool,
@@ -64,10 +65,10 @@ AtomRadioButtonGroup.propTypes = {
   checked: PropTypes.bool,
 
   /* onChange callback */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 
   /* Value assigned to the radio button */
   value: PropTypes.string
 }
 
-export default AtomRadioButtonGroup
+export default MoleculeRadioButtonGroup

@@ -1,8 +1,9 @@
-import React, {useRef, useState} from 'react'
+import {Children, createRef, cloneElement, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
 import {moleculeDropdownListSizes as SIZES} from '@s-ui/react-molecule-dropdown-list'
+import {inputTypes} from '@s-ui/react-atom-input'
 
 import MoleculeAutosuggestSingleSelection from './components/SingleSelection'
 import MoleculeAutosuggestMultipleSelection from './components/MultipleSelection'
@@ -33,22 +34,26 @@ const getIsTypeableKey = key => {
   return key.length === 1 || keysEdit.includes(key)
 }
 
-const MoleculeAutosuggest = ({multiselection, ...props}) => {
-  const {
-    refMoleculeAutosuggest: refMoleculeAutosuggestFromProps,
-    children,
-    onToggle,
-    onChange,
-    onBlur,
-    onEnter,
-    isOpen,
-    keysCloseList,
-    keysSelection,
-    disabled,
-    errorState,
-    state
-  } = props
-
+const MoleculeAutosuggest = ({
+  autoClose = true,
+  children,
+  disabled,
+  errorState,
+  id = '',
+  isOpen,
+  keysCloseList = ['Escape'],
+  keysSelection = [' ', 'Enter'],
+  multiselection,
+  onBlur = () => {},
+  onChange = () => {},
+  onEnter = () => {},
+  onFocus = () => {},
+  onSelect = () => {},
+  onToggle = () => {},
+  refMoleculeAutosuggest: refMoleculeAutosuggestFromProps,
+  state,
+  ...restProps
+}) => {
   const refMoleculeAutosuggest = useRef(
     refMoleculeAutosuggestFromProps?.current
   )
@@ -57,11 +62,11 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
 
   const [focus, setFocus] = useState(false)
 
-  const extendedChildren = React.Children.toArray(children)
+  const extendedChildren = Children.toArray(children)
     .filter(Boolean)
     .map((child, index) => {
-      refsMoleculeAutosuggestOptions.current[index] = React.createRef()
-      return React.cloneElement(child, {
+      refsMoleculeAutosuggestOptions.current[index] = createRef()
+      return cloneElement(child, {
         innerRef: refsMoleculeAutosuggestOptions.current[index],
         onSelectKey: keysSelection
       })
@@ -123,7 +128,10 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     }
   }
 
-  const handleFocusIn = ev => setFocus(true)
+  const handleFocusIn = ev => {
+    onFocus(ev)
+    setFocus(true)
+  }
 
   const handleFocusOut = ev => {
     ev.persist()
@@ -138,7 +146,7 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
         ![domInnerInput, ...options].includes(currentElementFocused) &&
         !domContainer.contains(currentElementFocused)
       if (focusOutFromOutside) {
-        if (isOpen) {
+        if (autoClose && isOpen) {
           closeList(ev)
         } else {
           setFocus(false)
@@ -154,9 +162,41 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
     if (key !== 'ArrowDown') ev.stopPropagation()
     if (key === 'Enter') {
       onEnter(ev)
-      closeList(ev)
+      onEnter && autoClose && closeList(ev)
     }
   }
+
+  const handleClick = () => {
+    refMoleculeAutosuggestInput?.current &&
+      refMoleculeAutosuggestInput.current.focus()
+  }
+
+  const autosuggestSelectionProps = {
+    autoClose,
+    children: extendedChildren,
+    disabled,
+    errorState,
+    id,
+    innerRefInput: refMoleculeAutosuggestInput,
+    isOpen,
+    keysCloseList,
+    keysSelection,
+    onBlur,
+    onChange,
+    onEnter,
+    onFocus,
+    onInputKeyDown: handleInputKeyDown,
+    onSelect,
+    onToggle,
+    refMoleculeAutosuggest: refMoleculeAutosuggest,
+    refMoleculeAutosuggestFromProps,
+    state,
+    ...restProps
+  }
+
+  const AutosuggestSelection = multiselection
+    ? MoleculeAutosuggestMultipleSelection
+    : MoleculeAutosuggestSingleSelection
 
   return (
     <div
@@ -166,36 +206,19 @@ const MoleculeAutosuggest = ({multiselection, ...props}) => {
       onKeyDown={handleKeyDown}
       onFocus={handleFocusIn}
       onBlur={handleFocusOut}
+      onClick={handleClick}
+      role="combobox"
+      aria-controls={id}
+      aria-expanded={isOpen}
     >
-      {multiselection ? (
-        <MoleculeAutosuggestMultipleSelection
-          {...props}
-          onInputKeyDown={handleInputKeyDown}
-          refMoleculeAutosuggest={refMoleculeAutosuggest}
-          innerRefInput={refMoleculeAutosuggestInput}
-        >
-          {extendedChildren}
-        </MoleculeAutosuggestMultipleSelection>
-      ) : (
-        <MoleculeAutosuggestSingleSelection
-          {...props}
-          onInputKeyDown={handleInputKeyDown}
-          refMoleculeAutosuggest={refMoleculeAutosuggest}
-          innerRefInput={refMoleculeAutosuggestInput}
-        >
-          {extendedChildren}
-        </MoleculeAutosuggestSingleSelection>
-      )}
+      <AutosuggestSelection {...autosuggestSelectionProps} />
     </div>
   )
 }
 
 MoleculeAutosuggest.propTypes = {
-  /** The DOM id global attribute. */
-  id: PropTypes.string,
-
-  /** if select accept single value or multiple values */
-  multiselection: PropTypes.bool,
+  /** Auto close suggestion list. */
+  autoClose: PropTypes.bool,
 
   /** children */
   children: PropTypes.any,
@@ -203,86 +226,97 @@ MoleculeAutosuggest.propTypes = {
   /** if the component is disabled or not */
   disabled: PropTypes.bool,
 
-  /** value selected */
-  value: PropTypes.any,
-
-  /* list of values displayed as tags */
-  tags: PropTypes.array,
-
-  /** list of values to be displayed on the select */
-  options: PropTypes.array,
-
-  /** if list of options is displayed or not */
-  isOpen: PropTypes.bool,
-
-  /** callback when arrow up/down is clicked → to show/hide list of options */
-  onToggle: PropTypes.func,
-
-  /* callback to be called with every update of the list of tags */
-  onChangeTags: PropTypes.func,
-
-  /* callback to be called with every update of the input value */
-  onChange: PropTypes.func,
-
-  /* callback to be called when input losses focus */
-  onBlur: PropTypes.func,
-
-  /** Icon for closing (removing) tags */
-  iconCloseTag: PropTypes.node,
+  /** true = error, false = success, null = neutral */
+  errorState: PropTypes.bool,
 
   /** Icon for clearing values */
   iconClear: PropTypes.node,
 
-  /** size (height) of the list */
-  size: PropTypes.oneOf(Object.values(SIZES)),
+  /** Icon for closing (removing) tags */
+  iconCloseTag: PropTypes.node,
 
-  /** callback triggered when the user press enter when the suggestion is closed */
-  onEnter: PropTypes.func,
+  /** The DOM id global attribute. */
+  id: PropTypes.string,
 
-  /** callback triggered when the user clicks on right icon */
-  onClickRightIcon: PropTypes.func,
+  /** To select input keyboard mode on mobile. It can be 'numeric', 'decimal', 'email', etc */
+  inputMode: PropTypes.string,
 
-  /** callback triggered when the user selects the suggested item */
-  onSelect: PropTypes.func,
-
-  /** Right UI Icon */
-  rightIcon: PropTypes.node,
-
-  /** list of key identifiers that will trigger a selection */
-  keysSelection: PropTypes.array,
+  /** if list of options is displayed or not */
+  isOpen: PropTypes.bool,
 
   /** list of key identifiers that will close the list */
   keysCloseList: PropTypes.array,
 
-  /* object generated w/ Reacte.createRef method to get a DOM reference of internal input */
+  /** list of key identifiers that will trigger a selection */
+  keysSelection: PropTypes.array,
+
+  /** Left UI Icon */
+  leftIcon: PropTypes.node,
+
+  /** if select accept single value or multiple values */
+  multiselection: PropTypes.bool,
+
+  /** callback to be called when input losses focus */
+  onBlur: PropTypes.func,
+
+  /** callback to be called with every update of the input value */
+  onChange: PropTypes.func,
+
+  /** callback to be called with every update of the list of tags */
+  onChangeTags: PropTypes.func,
+
+  /** callback triggered when the user clicks on right icon */
+  onClickRightIcon: PropTypes.func,
+
+  /** callback triggered when the user press enter when the suggestion is closed */
+  onEnter: PropTypes.func,
+
+  /** callback triggered when the user focuses on the input */
+  onFocus: PropTypes.func,
+
+  /** callback triggered when the user selects the suggested item */
+  onSelect: PropTypes.func,
+
+  /** callback when arrow up/down is clicked → to show/hide list of options */
+  onToggle: PropTypes.func,
+
+  /** list of values to be displayed on the select */
+  options: PropTypes.array,
+
+  /** object generated w/ Reacte.createRef method to get a DOM reference of internal input */
   refMoleculeAutosuggest: PropTypes.object,
 
-  /* native required html attribute */
+  /** native required html attribute */
   required: PropTypes.bool,
 
-  /* native tabIndex html attribute */
-  tabIndex: PropTypes.number,
+  /** Button prop to be passe down to the input field */
+  rightButton: PropTypes.node,
 
-  /** true = error, false = success, null = neutral */
-  errorState: PropTypes.bool,
+  /** Right UI Icon */
+  rightIcon: PropTypes.node,
 
-  /* Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
+  /** size (height) of the list */
+  size: PropTypes.oneOf(Object.values(SIZES)),
+
+  /** Will set a red/green/orange border if set to 'error' / 'success' / 'alert' */
   state: PropTypes.oneOf(Object.values(AUTOSUGGEST_STATES)),
 
-  /* Button prop to be passe down to the input field */
-  rightButton: PropTypes.node
+  /** native tabIndex html attribute */
+  tabIndex: PropTypes.number,
+
+  /** list of values displayed as tags */
+  tags: PropTypes.array,
+
+  /** native input types (text, date, ...), 'sui-password' */
+  type: PropTypes.oneOf(Object.values(inputTypes)),
+
+  /** value selected */
+  value: PropTypes.any
 }
 
-MoleculeAutosuggest.defaultProps = {
-  onChange: () => {},
-  onBlur: () => {},
-  onToggle: () => {},
-  onEnter: () => {},
-  onSelect: () => {},
-  keysSelection: [' ', 'Enter'],
-  keysCloseList: ['Escape']
-}
+const MoleculeAutoSuggestWithOpenToggle = withOpenToggle(MoleculeAutosuggest)
+MoleculeAutoSuggestWithOpenToggle.displayName = 'MoleculeAutosuggest'
 
-export default withOpenToggle(MoleculeAutosuggest)
+export default MoleculeAutoSuggestWithOpenToggle
 export {SIZES as MoleculeAutosuggestDropdownListSizes}
 export {AUTOSUGGEST_STATES as MoleculeAutosuggestStates}

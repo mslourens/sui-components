@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react'
+import {cloneElement, useState, useEffect, useRef, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -16,7 +16,7 @@ const CLASS_ERROR = `${BASE_CLASS}-error`
 const Error = ({className, icon: Icon, text}) => (
   <div className={className}>
     {Icon}
-    <p>{text}</p>
+    {Boolean(text) && <p>{text}</p>}
   </div>
 )
 
@@ -29,6 +29,8 @@ const AtomImage = ({
   errorText,
   onError,
   onLoad,
+  sources = [],
+  alt,
   ...imgProps
 }) => {
   const [loading, setLoading] = useState(true)
@@ -70,7 +72,7 @@ const AtomImage = ({
 
   const SpinnerExtended =
     Spinner &&
-    React.cloneElement(Spinner, {
+    cloneElement(Spinner, {
       className: CLASS_SPINNER
     })
 
@@ -80,13 +82,19 @@ const AtomImage = ({
         className={classNamesFigure}
         style={!error && (placeholder || skeleton) ? figureStyles : {}}
       >
-        <img
-          className={CLASS_IMAGE}
-          onLoad={handleLoad}
-          onError={handleError}
-          ref={imageRef}
-          {...imgProps}
-        />
+        <picture>
+          {sources.map((source, idx) => (
+            <source key={idx} {...source} />
+          ))}
+          <img
+            className={CLASS_IMAGE}
+            onLoad={handleLoad}
+            onError={handleError}
+            ref={imageRef}
+            alt={alt}
+            {...imgProps}
+          />
+        </picture>
       </figure>
       {!error && loading && SpinnerExtended}
       {error && (
@@ -124,6 +132,17 @@ AtomImage.propTypes = {
 
   /** Function to be called when the image completed its loading  */
   onLoad: PropTypes.func,
+
+  /**
+   * Source tags inside picture element,
+   * array of props defined in https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source expected
+   */
+  sources: PropTypes.arrayOf(
+    PropTypes.shape({
+      srcSet: PropTypes.string,
+      media: PropTypes.string
+    })
+  ),
 
   /** <img> props */
   ...htmlImgProps

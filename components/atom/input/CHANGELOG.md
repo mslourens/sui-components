@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+# 4.24.0 (2020-10-27)
+
+
+### Features
+
+* remove browser  native arrows appearance in input type number ([76dd119](https://github.com/SUI-Components/sui-components/commit/76dd1194101ce3781db12924a3ec8a226f965533)), closes [#1274](https://github.com/SUI-Components/sui-components/issues/1274)
+
+
+
+# 4.23.0 (2020-09-24)
+
+
+### Features
+
+* add defaultValue prop support ([a56e0db](https://github.com/SUI-Components/sui-components/commit/a56e0db6ee7ccac926a9d2ff3c7b8bbebeda86f2))
+
+
+
+# 4.22.0 (2020-08-17)
+
+
+### Features
+
+* export inputTypes dict ([4c836b3](https://github.com/SUI-Components/sui-components/commit/4c836b368d8e96bdb8fbbb14af425109271e4982))
+
+
+
+# 4.21.0 (2020-07-17)
+
+
+### Features
+
+* fix disabled color ([a105762](https://github.com/SUI-Components/sui-components/commit/a10576281548eb24f44e465d0dd58b49b9a1f81f))
+
+
+
 # 4.20.0 (2020-05-29)
 
 

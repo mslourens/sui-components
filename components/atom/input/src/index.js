@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
 import Input, {inputSizes, inputStates} from './Input'
@@ -143,4 +142,4 @@ AtomInput.propTypes = {
 AtomInput.displayName = 'AtomInput'
 
 export default AtomInput
-export {inputSizes, inputStates}
+export {inputSizes, inputStates, TYPES as inputTypes}

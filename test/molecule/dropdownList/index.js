@@ -3,56 +3,69 @@
  * */
 
 /* eslint react/jsx-no-undef:0 */
+/* eslint no-undef:0 */
 
-import React from 'react'
-import {render} from '@testing-library/react'
+import ReactDOM from 'react-dom'
 
 import chai, {expect} from 'chai'
 import chaiDOM from 'chai-dom'
 
-import MoleculeDropdownList from '../../../components/molecule/dropdownList/src/index'
-import MoleculeDropdownOption from '../../../components/molecule/dropdownOption/src/index'
-
 chai.use(chaiDOM)
 
-const setupBuilder = Component => props => (
-  renderFn = () => <Component {...props} />
-) => {
-  const container = document.createElement('div')
-  container.setAttribute('id', 'test-container')
-  const utils = render(renderFn(), {
-    container: document.body.appendChild(container)
-  })
-  return utils
-}
-
-const setup = setupBuilder(MoleculeDropdownList)
-
-const testDefaultProps = {
-  children: (
-    <>
-      {Array(5)
-        .fill()
-        .map((value, index) => (
-          <MoleculeDropdownOption value={index} key={index}>
-            {index}
-          </MoleculeDropdownOption>
-        ))}
-    </>
-  )
-}
-
 describe('molecule/dropdownList', () => {
+  const Component = MoleculeDropdownList
+  const setup = setupEnvironment(Component)
+  const defaultProps = {
+    children: (
+      <>
+        {Array(5)
+          .fill()
+          .map((value, index) => (
+            <MoleculeDropdownOption value={index.toString()} key={index}>
+              {index}
+            </MoleculeDropdownOption>
+          ))}
+      </>
+    )
+  }
+
+  it('should render without crashing', () => {
+    // Given
+    const props = {}
+
+    // When
+    const component = <Component {...props} />
+
+    // Then
+    const div = document.createElement('div')
+    ReactDOM.render(component, div)
+    ReactDOM.unmountComponentAtNode(div)
+  })
+
+  it('should NOT render null', () => {
+    // Given
+    const props = {}
+
+    // When
+    const {container} = setup(props)
+
+    // Then
+    expect(container.innerHTML).to.be.a('string')
+    expect(container.innerHTML).to.not.have.lengthOf(0)
+  })
+
   describe('props', () => {
     describe('visible', () => {
       it('should render the children if visible is not defined', async () => {
         // Given
         const props = {}
+
         // When
         const {container, getByText} = setup({
-          ...testDefaultProps,
+          ...defaultProps,
           ...props
-        })()
+        })
+
         // Then
         const element = getByText('1')
         expect(container).to.be.not.undefined
@@ -64,11 +77,13 @@ describe('molecule/dropdownList', () => {
         const props = {
           visible: true
         }
+
         // When
         const {container, getByText} = setup({
-          ...testDefaultProps,
+          ...defaultProps,
           ...props
-        })()
+        })
+
         // Then
         const element = getByText('1')
         expect(container).to.be.not.undefined
@@ -80,11 +95,13 @@ describe('molecule/dropdownList', () => {
         const props = {
           visible: false
         }
+
         // When
         const {container} = setup({
-          ...testDefaultProps,
+          ...defaultProps,
           ...props
-        })()
+        })
+
         // Then
         expect(container).to.be.not.undefined
         expect(container.children.length).to.be.equal(1)
@@ -96,11 +113,13 @@ describe('molecule/dropdownList', () => {
           alwaysRender: true,
           visible: false
         }
+
         // When
         const {container} = setup({
-          ...testDefaultProps,
+          ...defaultProps,
           ...props
-        })()
+        })
+
         // Then
         expect(container).to.be.not.undefined
         expect(container.children.length).to.be.equal(1)
@@ -112,11 +131,13 @@ describe('molecule/dropdownList', () => {
           alwaysRender: false,
           visible: false
         }
+
         // When
         const {container} = setup({
-          ...testDefaultProps,
+          ...defaultProps,
           ...props
-        })()
+        })
+
         // Then
         expect(container).to.be.not.undefined
         expect(container.children.length).to.be.equal(0)

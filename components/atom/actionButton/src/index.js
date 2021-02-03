@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -12,7 +11,7 @@ import ActionButton from './ActionButton'
 /**
  * Base class for the component
  */
-const BASE_CLASS = 'react-AtomActionButton'
+const BASE_CLASS = 'sui-AtomActionButton'
 
 /**
  * Available colors for the Action Button
@@ -130,7 +129,7 @@ AtomActionButton.propTypes = {
    * 'accent',
    * 'neutral'
    */
-  color: PropTypes.oneOf(COLORS),
+  color: PropTypes.oneOf(Object.values(COLORS)),
   /**
    * Disabled: faded with no interaction.
    */
@@ -157,11 +156,11 @@ AtomActionButton.propTypes = {
    * MEDIUM: 'medium',
    * LARGE: 'large'}
    */
-  size: PropTypes.oneOf(SIZES),
+  size: PropTypes.oneOf(Object.values(SIZES)),
   /**
    * Style of the button: 'filledNegative' (default), 'filledPositive', 'outline', 'flat'
    */
-  style: PropTypes.oneOf(STYLES),
+  style: PropTypes.oneOf(Object.values(STYLES)),
   /**
    * Target to be added on the HTML link
    */

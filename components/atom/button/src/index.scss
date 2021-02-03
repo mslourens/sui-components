@@ -1,4 +1,5 @@
 @import '~@s-ui/theme/lib/index';
+@import './buttonSpinnerIcon/index';
 
 $base-class: '.sui-AtomButton';
 
@@ -84,13 +85,16 @@ $icon-sz-atom-button: $sz-icon-s !default;
 $icon-m-atom-button: $m-m !default;
 $p-atom-button: $p-l !default;
 
+$bdrs-atom-button-large: $bdrs-m !default;
 $sz-atom-button-large: $p-base * 6 !default;
 $fz-atom-button-large: $fz-m !default;
 $fw-atom-button-large: $fw-semi-bold !default;
 $icon-sz-atom-button-large: $sz-icon-m !default;
 $icon-m-atom-button-large: $m-m !default;
 $p-atom-button-large: $p-l !default;
+$m-consecutive-atom-button: $m-m !default;
 
+$bd-atom-button-group-focused: 1px solid !default;
 $bdrs-atom-button-first: $bdrs-m 0 0 $bdrs-m !default;
 $bdrs-atom-button-last: 0 $bdrs-m $bdrs-m 0 !default;
 
@@ -117,7 +121,8 @@ $icon-stroke-color: currentColor !default;
 
 @mixin button-icon($size, $margin) {
   & #{$base-class}-leftIcon,
-  & #{$base-class}-rightIcon {
+  & #{$base-class}-rightIcon,
+  & #{$base-class}-centerIcon {
     &,
     & [class*='Icon'] {
       height: $size;
@@ -138,11 +143,11 @@ $icon-stroke-color: currentColor !default;
   @include reset-button;
   @include button-icon($icon-sz-atom-button, $icon-m-atom-button);
 
-  border: 1px solid;
   border-radius: $bdrs-atom-button;
+  border: 1px solid;
   box-sizing: border-box;
   display: inline-block;
-  text-align: center;
+  position: relative;
   font: {
     family: $ff-atom-button;
     size: $fz-atom-button;
@@ -153,11 +158,12 @@ $icon-stroke-color: currentColor !default;
   min-width: $sz-atom-button;
   outline: 0;
   padding: 0 $p-atom-button;
+  text-decoration: none;
   text-transform: $tt-atom-button;
   white-space: nowrap;
 
   & + & {
-    margin-left: $m-m;
+    margin-left: $m-consecutive-atom-button;
   }
 
   &-group {
@@ -186,6 +192,10 @@ $icon-stroke-color: currentColor !default;
         border-radius: $bdrs-atom-button-last;
       }
     }
+
+    &--focused {
+      border: $bd-atom-button-group-focused;
+    }
   }
 
   &-inner {
@@ -194,27 +204,21 @@ $icon-stroke-color: currentColor !default;
     height: 100%;
     pointer-events: none;
   }
-  // link
-  &#{$base-class}--link:not(a) {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    height: auto;
-    min-height: 0;
+
+  &--loading {
     #{$base-class}-inner {
-      height: auto;
+      justify-content: center;
     }
-    text-transform: none;
-    @include link();
-    &#{$base-class}--negative {
-      @include link(true);
+
+    #{$base-class}-text {
+      opacity: 0;
     }
   }
 
   // Icons
   &-leftIcon,
-  &-rightIcon {
+  &-rightIcon,
+  &-centerIcon {
     display: inline-flex;
 
     // add compatibility with SuiAtomIcon with correct alignment
@@ -228,16 +232,42 @@ $icon-stroke-color: currentColor !default;
     }
   }
 
-  // Types and colors
+  &-centerIcon {
+    position: absolute;
+  }
+
+  &#{$base-class}--link:not(#{$base-class}--solid):not(#{$base-class}--outline):not(#{$base-class}--flat) {
+    background: transparent;
+
+    border: none;
+    @include link();
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    @include button-focused {
+      background: transparent;
+    }
+
+    &#{$base-class}--negative {
+      background: transparent;
+      @include button-focused {
+        background: transparent;
+      }
+    }
+  }
+
+  // Types, colors and align text
   @each $name, $pair in $c-atom-button-colors {
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
 
-    &--#{$name}Color {
+    &--#{$name} {
       &#{$base-class}--solid {
         background: $color;
         border-color: $color;
         color: $color-invert;
+        text-decoration-line: none;
 
         @include button-focused {
           background: if(
@@ -266,8 +296,7 @@ $icon-stroke-color: currentColor !default;
       }
 
       &#{$base-class}--outline,
-      &#{$base-class}--flat,
-      &#{$base-class}--link:not(a) {
+      &#{$base-class}--flat {
         $bgc-atom-button-focused: color-variation($color, 4) !default;
         $bgc-atom-button-focused-invert: color-variation($color, -1) !default;
         $c-atom-button-focused: $color !default;
@@ -275,6 +304,7 @@ $icon-stroke-color: currentColor !default;
 
         border-color: $color;
         color: $color;
+        text-decoration-line: none;
 
         @include button-focused {
           background: if(
@@ -300,19 +330,20 @@ $icon-stroke-color: currentColor !default;
           }
         }
       }
-      &#{$base-class}--link:not(a) {
-        $c-atom-button-focused: $color !default;
-        $c-atom-button-focused-invert: $color-invert !default;
-        background: transparent;
+      &#{$base-class}--link:not(#{$base-class}--solid):not(#{$base-class}--outline):not(#{$base-class}--flat) {
+        $c-atom-button-focused: color-variation($color, -1) !default;
+        $c-atom-button-focused-invert: color-variation(
+          $color-invert,
+          -1
+        ) !default;
+
+        color: $color;
         @include button-focused {
-          background: transparent;
           color: $c-atom-button-focused;
         }
         &#{$base-class}--negative {
-          background: transparent;
           color: $color;
           @include button-focused {
-            background: transparent;
             color: $c-atom-button-focused;
           }
         }
@@ -339,6 +370,18 @@ $icon-stroke-color: currentColor !default;
     }
   }
 
+  &--center {
+    text-align: center;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
   // Modifiers
   &--disabled {
     cursor: default;
@@ -357,6 +400,7 @@ $icon-stroke-color: currentColor !default;
 
   &--large {
     @include button-icon($icon-sz-atom-button-large, $icon-m-atom-button-large);
+    border-radius: $bdrs-atom-button-large;
     font-size: $fz-atom-button-large;
     font-weight: $fw-atom-button-large;
     height: $sz-atom-button-large;
@@ -366,7 +410,6 @@ $icon-stroke-color: currentColor !default;
 
   &--fullWidth {
     justify-content: center;
-    text-align: center;
     width: 100%;
   }
 
@@ -377,13 +420,4 @@ $icon-stroke-color: currentColor !default;
       margin: 0;
     }
   }
-
-  &--link {
-    &,
-    &:hover {
-      text-decoration: none;
-    }
-  }
 }
-
-@import './deprecated';

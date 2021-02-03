@@ -1,4 +1,10 @@
-import React, {Component} from 'react'
+import {
+  createRef,
+  Children,
+  createElement,
+  cloneElement,
+  Component
+} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -36,9 +42,9 @@ class AtomTooltip extends Component {
 
   title = null
 
-  refTooltip = React.createRef()
+  refTooltip = createRef()
 
-  refTarget = React.createRef()
+  refTarget = createRef()
 
   loadAsyncReacstrap() {
     import(
@@ -56,16 +62,23 @@ class AtomTooltip extends Component {
     const className = CLASS_TARGET
     const onTouchEnd = this.handleToggle
 
-    const childrenOnly = React.Children.only(children)
+    const childrenOnly = Children.only(children)
 
-    return React.Children.map(childrenOnly, child => {
+    return Children.map(childrenOnly, child => {
       this.onClickTarget = child.props.onClick
       this.title = child.props.title
-      return React.cloneElement(child, {
-        ref,
-        className,
-        onTouchEnd
-      })
+
+      return typeof child.type !== 'string'
+        ? createElement(
+            'div',
+            {
+              ref,
+              className: `${className} ${className}--wrapper`,
+              onTouchEnd
+            },
+            cloneElement(child)
+          )
+        : cloneElement(child, {ref, className, onTouchEnd})
     })
   }
 
@@ -316,6 +329,7 @@ const ExportedAtomTooltip = withIntersectionObserver(
 
 ExportedAtomTooltip.COLORS = COLORS
 ExportedAtomTooltip.PLACEMENTS = PLACEMENTS
+ExportedAtomTooltip.displayName = AtomTooltip.displayName
 
 AtomTooltip.COLORS = COLORS
 AtomTooltip.PLACEMENTS = PLACEMENTS

@@ -1,4 +1,4 @@
-import React from 'react'
+import {cloneElement} from 'react'
 import PropTypes from 'prop-types'
 import {
   ATOM_ICON_DISPLAY_NAME,
@@ -17,11 +17,12 @@ const isAtomIcon = icon => icon?.type?.displayName === ATOM_ICON_DISPLAY_NAME
 /**
  * Prepare the AtomIcon element to use the correct size
  * @param {React.ReactElement} atomIconElement
- * @param {String} size Size of the button to grab the correct icon size
+ * @param {object} options
+ * @param {string} options.size Size of the button to grab the correct icon size
  */
 const prepareAtomIcon = (atomIconElement, {size}) => {
   const atomIconSize = ATOM_ICON_SIZES_MAPPER[size]
-  return React.cloneElement(atomIconElement, {
+  return cloneElement(atomIconElement, {
     color: undefined,
     size: atomIconSize
   })
@@ -40,5 +41,5 @@ export default function ButtonIcon({children, position, size}) {
 ButtonIcon.propTypes = {
   children: PropTypes.element,
   position: PropTypes.oneOf(Object.values(ICON_POSITIONS)),
-  size: PropTypes.oneOf(SIZES)
+  size: PropTypes.oneOf(Object.values(SIZES))
 }

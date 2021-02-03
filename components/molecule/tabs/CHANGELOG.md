@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2.17.0 (2020-10-09)
+
+
+### Bug Fixes
+
+* prevent render content element if there is empty ([5896ba0](https://github.com/SUI-Components/sui-components/commit/5896ba09b9e4354ece7ae8310db155468dab3cea))
+
+
+
+# 2.16.0 (2020-10-01)
+
+
+### Features
+
+* Use correct displayName for each Component ([f3551af](https://github.com/SUI-Components/sui-components/commit/f3551afaef5bc5b41c3318d4c5449692796f45f0))
+
+
+
+# 2.15.0 (2020-09-24)
+
+
+### Features
+
+* add icon size token ([a13afd9](https://github.com/SUI-Components/sui-components/commit/a13afd99efa65e524dc8f6c328201fc09a365437))
+
+
+
 # 2.14.0 (2020-06-22)
 
 

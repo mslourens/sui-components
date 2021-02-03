@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.38.0 (2020-10-01)
+
+
+### Features
+
+* Use correct displayName for each Component ([580f042](https://github.com/SUI-Components/sui-components/commit/580f042386be187db10fec17f96bb22c8c17d06b))
+
+
+
+# 1.37.0 (2020-07-17)
+
+
+### Features
+
+* fix disqbled color ([2d0f1a4](https://github.com/SUI-Components/sui-components/commit/2d0f1a4e864ca69cd28b6434d9488efe129c1bee))
+
+
+
+# 1.36.0 (2020-07-15)
+
+
+### Features
+
+* add new variable ([1d9d6ff](https://github.com/SUI-Components/sui-components/commit/1d9d6ff10f47aa09556d86bd8ce870f8af86ddfd))
+
+
+
 # 1.35.0 (2020-06-08)
 
 

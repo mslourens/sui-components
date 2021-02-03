@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+# 1.53.0 (2020-10-22)
+
+
+### Bug Fixes
+
+* fix typo ([05825ab](https://github.com/SUI-Components/sui-components/commit/05825ab03f39de489e9e7098d7c5e8519b2b73f6))
+
+
+### Features
+
+* add isLoading and loadingText props support ([3f61841](https://github.com/SUI-Components/sui-components/commit/3f61841b6cec20d85e878e24ef142661e3328fb0))
+* add propTypes ([c9aad89](https://github.com/SUI-Components/sui-components/commit/c9aad891cc54a9b50893646bf3b7b6394e7a12c5))
+* fix some styles and add examples ([b8bb971](https://github.com/SUI-Components/sui-components/commit/b8bb971c12df6e41ee235f2271239a3a98059566))
+
+
+
+# 1.52.0 (2020-10-01)
+
+
+### Bug Fixes
+
+* use prop rel in AtomButton when it is a link ([d84c410](https://github.com/SUI-Components/sui-components/commit/d84c410569a5824198c849f8b788f83503322a44))
+
+
+
+# 1.51.0 (2020-09-10)
+
+
+### Features
+
+* create sass variable ([366120c](https://github.com/SUI-Components/sui-components/commit/366120ccc7e498aaeac1024872dcc2474db31dfb))
+* use defualt border value ([5128eea](https://github.com/SUI-Components/sui-components/commit/5128eea7470396a426161161e30e4cbf8c009792))
+
+
+
+# 1.50.0 (2020-08-17)
+
+
+### Features
+
+* add border radius in button large ([0c91b48](https://github.com/SUI-Components/sui-components/commit/0c91b48dd986ddea7fc0759e3d2c2c1f714d0fb1))
+
+
+
 # 1.49.0 (2020-07-01)
 
 
