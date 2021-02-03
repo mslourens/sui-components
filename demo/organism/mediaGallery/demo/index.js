@@ -22,6 +22,21 @@ import OrganismMediaGallery, {
 } from '../../../../components/organism/mediaGallery/src'
 import AtomCard from '../../../../components/atom/card/src'
 
+const Container = ({children, card}) =>
+  card ? (
+    <AtomCard
+      media={() => children}
+      content={() => (
+        <div>
+          <H3>content title</H3>
+          <Text>content text</Text>
+        </div>
+      )}
+    />
+  ) : (
+    <section>{children}</section>
+  )
+
 const DefaultDemo = () => {
   const [lite, setLite] = useState(true)
   const [fullWidth, setFullWidth] = useState(true)
@@ -138,28 +153,20 @@ const DefaultDemo = () => {
         </Cell>
       </Grid>
       <br />
-      <AtomCard
-        media={() => (
-          <OrganismMediaGallery>
-            <Image
-              src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-              alt="Image"
-            />
-            <Image
-              src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-              alt="Image"
-            />
-            <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
-            <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
-          </OrganismMediaGallery>
-        )}
-        content={() => (
-          <div>
-            <H3>content title</H3>
-            <Text>content text</Text>
-          </div>
-        )}
-      />
+      <Container card={card}>
+        <OrganismMediaGallery>
+          <Image
+            src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
+            alt="Image"
+          />
+          <Image
+            src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
+            alt="Image"
+          />
+          <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
+          <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
+        </OrganismMediaGallery>
+      </Container>
     </Article>
   )
 }
