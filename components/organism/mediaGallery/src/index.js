@@ -16,7 +16,14 @@ const MEDIA_TYPE = {
   VIDEO360: 'video360'
 }
 
-function OrganismMediaGallery({children, initialIndex = 0, initialMediaType}) {
+function OrganismMediaGallery({
+  children,
+  initialIndex = 0,
+  initialMediaType,
+  lite = false,
+  thumbnails = false,
+  fullWidth = false
+}) {
   children = Children.toArray(children)
   const images = children.filter(child => child.type === Image)
   const videos = children.filter(child => child.type === Video)
@@ -100,18 +107,6 @@ OrganismMediaGallery.displayName = 'OrganismMediaGallery'
 
 OrganismMediaGallery.propTypes = {
   /**
-   * Index number for initial position
-   */
-  initialIndex: PropTypes.number,
-  /**
-   * String with initial media type name
-   */
-  initialMediaType: PropTypes.string,
-  /**
-   * True to insert MediaGallery in a Modal
-   */
-  inMoleculeModal: PropTypes.bool,
-  /**
    * Media Items as children
    */
   children: PropTypes.oneOfType([
@@ -123,7 +118,29 @@ OrganismMediaGallery.propTypes = {
         type: PropTypes.oneOf([Image, Video, Video360, Video3d])
       })
     )
-  ]).isRequired
+  ]).isRequired,
+  /**
+   * Index number for initial position
+   */
+  initialIndex: PropTypes.number,
+  /**
+   * String with initial media type name
+   */
+  initialMediaType: PropTypes.string,
+  /**
+   * String with initial media type name
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * String with initial media type name
+   */
+  lite: PropTypes.bool,
+  /**
+   * String with initial media type name
+   */
+  thumbnails: PropTypes.bool
 }
 
 export default OrganismMediaGallery
+
+export {Video, Video3d, Video360, Image}
