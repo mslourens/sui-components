@@ -110,7 +110,7 @@ const Demo = () => (
         <h2 className="sui-Studio-h2">Stars with Hover and with onClick</h2>
         <div>
           <MoleculeRating
-            isHovered
+            isInteractive
             ratingValues={[1, 2, 3, 4, 5]}
             size={MoleculeRatingSizes.LARGE}
             onClick={handleClick}
