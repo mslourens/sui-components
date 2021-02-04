@@ -28,6 +28,7 @@ $c-molecule-rating-svg-hover: $c-primary !default;
 
 $base-class: '.sui-MoleculeRating';
 $class-star: '#{$base-class}-Star';
+$class-container: '#{$base-class}-container';
 $class-label: '#{$base-class}-label';
 $class-label-link: '#{$class-label}Link';
 
@@ -35,7 +36,6 @@ $class-label-link: '#{$class-label}Link';
   align-items: center;
   color: $c-molecule-rating-svg;
   display: flex;
-  margin-left: $m-l-molecule-rating-stars;
 
   &.is-active {
     color: $c-molecule-rating-svg-hover;
@@ -48,13 +48,31 @@ $class-label-link: '#{$class-label}Link';
   }
 }
 
+#{$class-container} {
+  display: flex;
+  #{$class-star} {
+    box-sizing: content-box;
+    margin-left: $m-l-molecule-rating-stars;
+  }
+  &--interactive {
+    #{$class-star} {
+      margin-left: 0;
+      padding-left: $m-l-molecule-rating-stars;
+    }
+    @media (hover: hover) {
+      &:hover #{$class-star} {
+        color: $c-molecule-rating-svg-hover;
+      }
+      & > #{$class-star}:hover ~ #{$class-star} {
+        color: $c-molecule-rating-svg;
+      }
+    }
+  }
+}
+
 #{$base-class} {
   align-items: center;
   display: flex;
-
-  &-containerStars {
-    display: flex;
-  }
 
   #{$class-label} {
     color: $c-molecule-rating;

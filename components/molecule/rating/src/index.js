@@ -11,7 +11,7 @@ const SIZES = {
 }
 
 const BASE_CLASS = `sui-MoleculeRating`
-const CLASS_CONTAINER_STARS = `${BASE_CLASS}-containerStars`
+const CLASS_CONTAINER_STARS = `${BASE_CLASS}-container`
 const CLASS_LABEL = `${BASE_CLASS}-label`
 const CLASS_LINK = `${BASE_CLASS}--withLink`
 const CLASS_LABEL_LINK = `${CLASS_LABEL}Link`
@@ -19,10 +19,9 @@ const CLASS_LABEL_LINK = `${CLASS_LABEL}Link`
 const MoleculeRating = ({
   iconStar,
   initialRating,
-  isHovered = false,
+  isInteractive = false,
   numStars = 5,
   value,
-  ratingValues,
   size = SIZES.SMALL,
   label,
   href,
@@ -34,6 +33,9 @@ const MoleculeRating = ({
 }) => {
   const className = cx(BASE_CLASS, `${BASE_CLASS}--${size}`, {
     [CLASS_LINK]: href
+  })
+  const classNameContainer = cx(CLASS_CONTAINER_STARS, {
+    [`${CLASS_CONTAINER_STARS}--interactive`]: isInteractive
   })
 
   const labelLink = href ? (
@@ -51,8 +53,8 @@ const MoleculeRating = ({
 
   return (
     <div className={className}>
-      <div className={CLASS_CONTAINER_STARS}>
-        {!isHovered ? (
+      <div className={classNameContainer}>
+        {!isInteractive ? (
           new Array(numStars)
             .fill(0)
             .map((_, index) => (
@@ -68,8 +70,8 @@ const MoleculeRating = ({
           <StarHover
             iconStar={iconStar}
             initialRating={initialRating}
+            numStars={numStars}
             onClick={onClick}
-            ratingValues={ratingValues}
             size={size}
           />
         )}
@@ -97,8 +99,8 @@ MoleculeRating.propTypes = {
   /** init value assigned to rating */
   initialRating: PropTypes.number,
 
-  /** Prop to get the hovered behavior of the component */
-  isHovered: PropTypes.bool,
+  /** Prop to get make the component interactive with hover behavior */
+  isInteractive: PropTypes.bool,
 
   /** size */
   size: PropTypes.oneOf(Object.values(SIZES)),

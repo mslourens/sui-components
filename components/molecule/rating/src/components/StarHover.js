@@ -7,45 +7,47 @@ import cx from 'classnames'
 const BASE_CLASS = `sui-MoleculeRating-Star`
 
 const DEFAULTS = {
-  ratingValues: [1, 2, 3, 4, 5],
   IconStarEmpty: IconStarOutline
 }
 
 const MoleculeRatingStarHover = ({
   iconStar = DEFAULTS.IconStarEmpty,
   initialRating = 0,
+  numStars,
   onClick,
-  size,
-  ratingValues = DEFAULTS.ratingValues
+  size
 }) => {
-  const [selectedRating, setSelectedRating] = useState(null)
-  const [rating, setRating] = useState(initialRating)
-
   const StarHover = iconStar
-
-  const handleClick = (e, {value}) => {
-    setRating(value)
-    onClick(e, {value})
+  const [ratingValue, setRatingValue] = useState(initialRating)
+  const handleClick = (e, {value, isActive}) => {
+    if (isActive && value === ratingValue) {
+      setRatingValue(0)
+      onClick(e, {value: 0})
+    } else {
+      setRatingValue(value)
+      onClick(e, {value})
+    }
   }
 
-  const renderStars = () =>
-    ratingValues.map(value => {
-      const isActive = rating >= value || value <= selectedRating
+  const renderStars = () => {
+    const stars = []
+    for (let value = 1; value < numStars + 1; value++) {
+      const isActive = value <= ratingValue
       const className = cx(BASE_CLASS, {
         [`is-active`]: isActive
       })
-      return (
+      stars.push(
         <div
           key={value}
           className={className}
-          onClick={e => handleClick(e, {value})}
-          onMouseOver={() => setSelectedRating(value)}
-          onMouseOut={() => setSelectedRating(null)}
+          onClick={e => handleClick(e, {value, isActive})}
         >
           <StarHover size={size} />
         </div>
       )
-    })
+    }
+    return stars
+  }
 
   return <>{renderStars()}</>
 }
@@ -53,8 +55,8 @@ const MoleculeRatingStarHover = ({
 MoleculeRatingStarHover.displayName = 'MoleculeRatingStarHover'
 
 MoleculeRatingStarHover.propTypes = {
-  /** current values of the stars */
-  ratingValues: PropTypes.array,
+  /** total number of the stars */
+  numStars: PropTypes.number,
 
   /** Icon for star */
   iconStar: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
