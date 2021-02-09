@@ -154,7 +154,12 @@ const DefaultDemo = () => {
       </Grid>
       <br />
       <Container card={card}>
-        <OrganismMediaGallery>
+        <OrganismMediaGallery
+          imageTitle="Image"
+          videoTitle="Vídeo"
+          video3dTitle="Vídeo 3D"
+          video360Title="Vídeo 360"
+        >
           <Image
             src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
             alt="Image"
