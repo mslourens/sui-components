@@ -37,6 +37,7 @@
     "@s-ui/mono": "1",
     "@s-ui/precommit": "2",
     "@s-ui/studio": "9",
+    "@testing-library/user-event": "^12.6.3",
     "fs-extra": "9.0.1",
     "globby": "11.0.1",
     "husky": "4.3.0",
