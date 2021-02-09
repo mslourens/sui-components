@@ -18,11 +18,15 @@ const MEDIA_TYPE = {
 
 function OrganismMediaGallery({
   children,
+  imageTitle,
   initialIndex = 0,
   initialMediaType,
   lite = false,
   thumbnails = false,
-  fullWidth = false
+  fullWidth = false,
+  videoTitle,
+  video3dTitle,
+  video360Title
 }) {
   children = Children.toArray(children)
   const images = children.filter(child => child.type === Image)
@@ -39,8 +43,8 @@ function OrganismMediaGallery({
     if (initialMediaType) return initialMediaType
     if (images.length > 0) return MEDIA_TYPE.IMAGE
     else if (videos.length > 0) return MEDIA_TYPE.VIDEO
-    else if (videos3d.length > 0) return MEDIA_TYPE.VIDEO
-    else if (videos360.length > 0) return MEDIA_TYPE.VIDEO
+    else if (videos3d.length > 0) return MEDIA_TYPE.VIDEO3D
+    else if (videos360.length > 0) return MEDIA_TYPE.VIDEO360
   }
   const [activeMedia, setActiveMedia] = useState(getFirstAvailableMediaType())
   const [index, setActualIndex] = useState(initialIndex)
@@ -72,27 +76,35 @@ function OrganismMediaGallery({
           <MoleculeButtonGroup>
             <AtomButton
               onClick={() => toggleMediaType(MEDIA_TYPE.IMAGE)}
-              title="image"
+              title={imageTitle}
               design="outline"
               focused={activeMedia === MEDIA_TYPE.IMAGE}
             >
-              Image
+              {imageTitle}
             </AtomButton>
             <AtomButton
               onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO)}
-              title="video"
+              title={videoTitle}
               design="outline"
               focused={activeMedia === MEDIA_TYPE.VIDEO}
             >
-              Video
+              {videoTitle}
             </AtomButton>
             <AtomButton
               onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO3D)}
-              title="video 3D"
+              title={video3dTitle}
               design="outline"
               focused={activeMedia === MEDIA_TYPE.VIDEO3D}
             >
-              Video 3D
+              {video3dTitle}
+            </AtomButton>
+            <AtomButton
+              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO360)}
+              title={video360Title}
+              design="outline"
+              focused={activeMedia === MEDIA_TYPE.VIDEO360}
+            >
+              {video360Title}
             </AtomButton>
           </MoleculeButtonGroup>
         </div>
@@ -120,6 +132,10 @@ OrganismMediaGallery.propTypes = {
     )
   ]).isRequired,
   /**
+   * Image button title
+   */
+  imageTitle: PropTypes.string.isRequired,
+  /**
    * Index number for initial position
    */
   initialIndex: PropTypes.number,
@@ -138,7 +154,19 @@ OrganismMediaGallery.propTypes = {
   /**
    * String with initial media type name
    */
-  thumbnails: PropTypes.bool
+  thumbnails: PropTypes.bool,
+  /**
+   * Video button text
+   */
+  videoTitle: PropTypes.string.isRequired,
+  /**
+   * Video 3d button text
+   */
+  video3dTitle: PropTypes.string.isRequired,
+  /**
+   * Video 360 button text
+   */
+  video360Title: PropTypes.string.isRequired
 }
 
 export default OrganismMediaGallery
