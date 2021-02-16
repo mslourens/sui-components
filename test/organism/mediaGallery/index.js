@@ -21,6 +21,35 @@ import {
 
 chai.use(chaiDOM)
 
+const imageElement = () => (
+  <Image
+    src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
+    alt="Image"
+  />
+)
+
+const videoElement = () => (
+  <Video
+    src="https://www.youtube.com/embed/Q5mgQsmKtDQ"
+    inIframe
+    title="Video title"
+  />
+)
+
+const video3DElement = () => (
+  <Video3d
+    src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
+    title="Video3D"
+  />
+)
+
+const video360Element = () => (
+  <Video360
+    src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
+    title="Video360"
+  />
+)
+
 describe('Organism Media Gallery', () => {
   const Component = OrganismMediaGallery
   const defaultProps = {
@@ -29,34 +58,6 @@ describe('Organism Media Gallery', () => {
     video3dTitle: 'Vídeo 3D',
     video360Title: 'Vídeo 360'
   }
-  const imageElement = () => (
-    <Image
-      src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-      alt="Image"
-    />
-  )
-
-  const videoElement = () => (
-    <Video
-      src="https://www.youtube.com/embed/Q5mgQsmKtDQ"
-      inIframe
-      title="Video title"
-    />
-  )
-
-  const video3DElement = () => (
-    <Video3d
-      src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
-      title="Video3D"
-    />
-  )
-
-  const video360Element = () => (
-    <Video360
-      src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
-      title="Video360"
-    />
-  )
 
   it('should render without crashing', () => {
     // Given
@@ -123,6 +124,19 @@ describe('Organism Media Gallery', () => {
 
     // Then
     expect(screen.queryByText('Vídeo')).not.to.exist
+  })
+
+  it('should show fullwidth button when activated', () => {
+    // Given
+    const props = {}
+
+    // When
+    const component = <Component {...props} />
+
+    // Then
+    const div = document.createElement('div')
+    ReactDOM.render(component, div)
+    ReactDOM.unmountComponentAtNode(div)
   })
 
   it('should open fullwidth when user press button', () => {
