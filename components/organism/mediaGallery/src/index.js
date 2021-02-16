@@ -49,11 +49,20 @@ function OrganismMediaGallery({
   }
   const [activeMedia, setActiveMedia] = useState(getFirstAvailableMediaType())
   const [index, setActualIndex] = useState(initialIndex)
-
+  const handleSlide = ({currentSlide}) => setActualIndex(currentSlide)
   const getActiveMedia = () => {
     switch (activeMedia) {
       case MEDIA_TYPE.IMAGE:
-        return <ReactSlidy keyboardNavigation>{images}</ReactSlidy>
+        return (
+          <ReactSlidy
+            keyboardNavigation
+            doAfterSlide={handleSlide}
+            initialSlide={initialIndex}
+            slide={index}
+          >
+            {images}
+          </ReactSlidy>
+        )
       case MEDIA_TYPE.VIDEO:
         return <>{videos}</>
       case MEDIA_TYPE.VIDEO3D:
