@@ -41,10 +41,10 @@ function OrganismMediaGallery({
     1
   const getFirstAvailableMediaType = () => {
     if (initialMediaType) return initialMediaType
-    if (images.length > 0) return MEDIA_TYPE.IMAGE
-    else if (videos.length > 0) return MEDIA_TYPE.VIDEO
-    else if (videos3d.length > 0) return MEDIA_TYPE.VIDEO3D
-    else if (videos360.length > 0) return MEDIA_TYPE.VIDEO360
+    if (images.length) return MEDIA_TYPE.IMAGE
+    else if (videos.length) return MEDIA_TYPE.VIDEO
+    else if (videos3d.length) return MEDIA_TYPE.VIDEO3D
+    else if (videos360.length) return MEDIA_TYPE.VIDEO360
   }
   const [activeMedia, setActiveMedia] = useState(getFirstAvailableMediaType())
   const [index, setActualIndex] = useState(initialIndex)
@@ -74,38 +74,46 @@ function OrganismMediaGallery({
       {showMediaTypeBtns && (
         <div className={`${BASE_CLASS}-mediaType`}>
           <MoleculeButtonGroup>
-            <AtomButton
-              onClick={() => toggleMediaType(MEDIA_TYPE.IMAGE)}
-              title={imageTitle}
-              design="outline"
-              focused={activeMedia === MEDIA_TYPE.IMAGE}
-            >
-              {imageTitle}
-            </AtomButton>
-            <AtomButton
-              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO)}
-              title={videoTitle}
-              design="outline"
-              focused={activeMedia === MEDIA_TYPE.VIDEO}
-            >
-              {videoTitle}
-            </AtomButton>
-            <AtomButton
-              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO3D)}
-              title={video3dTitle}
-              design="outline"
-              focused={activeMedia === MEDIA_TYPE.VIDEO3D}
-            >
-              {video3dTitle}
-            </AtomButton>
-            <AtomButton
-              onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO360)}
-              title={video360Title}
-              design="outline"
-              focused={activeMedia === MEDIA_TYPE.VIDEO360}
-            >
-              {video360Title}
-            </AtomButton>
+            {images.length && (
+              <AtomButton
+                onClick={() => toggleMediaType(MEDIA_TYPE.IMAGE)}
+                title={imageTitle}
+                design="outline"
+                focused={activeMedia === MEDIA_TYPE.IMAGE}
+              >
+                {imageTitle}
+              </AtomButton>
+            )}
+            {videos.length && (
+              <AtomButton
+                onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO)}
+                title={videoTitle}
+                design="outline"
+                focused={activeMedia === MEDIA_TYPE.VIDEO}
+              >
+                {videoTitle}
+              </AtomButton>
+            )}
+            {videos3d.length && (
+              <AtomButton
+                onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO3D)}
+                title={video3dTitle}
+                design="outline"
+                focused={activeMedia === MEDIA_TYPE.VIDEO3D}
+              >
+                {video3dTitle}
+              </AtomButton>
+            )}
+            {videos360.length && (
+              <AtomButton
+                onClick={() => toggleMediaType(MEDIA_TYPE.VIDEO360)}
+                title={video360Title}
+                design="outline"
+                focused={activeMedia === MEDIA_TYPE.VIDEO360}
+              >
+                {video360Title}
+              </AtomButton>
+            )}
           </MoleculeButtonGroup>
         </div>
       )}
