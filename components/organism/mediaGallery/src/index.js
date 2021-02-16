@@ -34,11 +34,12 @@ function OrganismMediaGallery({
   const videos3d = children.filter(child => child.type === Video3d)
   const videos360 = children.filter(child => child.type === Video360)
   const showMediaTypeBtns =
+    !lite &&
     (images.length > 0) +
       (videos.length > 0) +
       (videos3d.length > 0) +
       (videos360.length > 0) >
-    1
+      1
   const getFirstAvailableMediaType = () => {
     if (initialMediaType) return initialMediaType
     if (images.length) return MEDIA_TYPE.IMAGE
