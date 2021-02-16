@@ -159,6 +159,7 @@ const DefaultDemo = () => {
           videoTitle="Vídeo"
           video3dTitle="Vídeo 3D"
           video360Title="Vídeo 360"
+          lite={lite}
         >
           <Image
             src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
