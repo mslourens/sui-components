@@ -15,6 +15,7 @@ import chaiDOM from 'chai-dom'
 import {
   Video,
   Video3d,
+  Video360,
   Image
 } from '../../../components/organism/mediaGallery/src/index'
 
@@ -23,11 +24,40 @@ chai.use(chaiDOM)
 describe('Organism Media Gallery', () => {
   const Component = OrganismMediaGallery
   const defaultProps = {
-    imageTitle: 'Image',
+    imageTitle: 'Imagen',
     videoTitle: 'Vídeo',
     video3dTitle: 'Vídeo 3D',
     video360Title: 'Vídeo 360'
   }
+  const imageElement = () => (
+    <Image
+      src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
+      alt="Image"
+    />
+  )
+
+  const videoElement = () => (
+    <Video
+      src="https://www.youtube.com/embed/Q5mgQsmKtDQ"
+      inIframe
+      title="Video title"
+    />
+  )
+
+  const video3DElement = () => (
+    <Video3d
+      src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
+      title="Video3D"
+    />
+  )
+
+  const video360Element = () => (
+    <Video360
+      src="https://my.matterport.com/show/?m=6yDd8eDbNHC"
+      title="Video360"
+    />
+  )
+
   it('should render without crashing', () => {
     // Given
     const props = {...defaultProps}
@@ -41,41 +71,58 @@ describe('Organism Media Gallery', () => {
     ReactDOM.unmountComponentAtNode(div)
   })
 
-  it('should be able to click media buttons when different media types given', () => {
+  it('should show media buttons from the media types given', () => {
     // Given
+    const props = {...defaultProps}
+
+    // When
     render(
-      <Component {...defaultProps}>
-        <Image
-          src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-          alt="Image"
-        />
-        <Image
-          src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-          alt="Image"
-        />
-        <Video src="https://www.youtube.com/embed/Q5mgQsmKtDQ" inIframe />
-        <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC" />
+      <Component {...props}>
+        {imageElement()}
+        {videoElement()}
+        {video3DElement()}
       </Component>
     )
 
     // Then
-    userEvent.click(screen.getByText('Vídeo 3D'))
+    const imageButton = screen.getByRole('button', {name: 'Imagen'})
+    const videoButton = screen.getByRole('button', {name: 'Vídeo'})
+    const video3DButton = screen.getByRole('button', {name: 'Vídeo 3D'})
+    expect(imageButton).to.exist
+    expect(videoButton).to.exist
+    expect(video3DButton).to.exist
+    expect(screen.queryByRole('button', {name: 'Vídeo 360'})).not.to.exist
+  })
+
+  it('should change media type when user clicks button', () => {
+    // Given
+    const props = {...defaultProps}
+
+    // When
+    render(
+      <Component {...props}>
+        {imageElement()}
+        {videoElement()}
+        {video3DElement()}
+        {video360Element()}
+      </Component>
+    )
+
+    // Then
+    const videoButton = screen.getByRole('button', {name: 'Vídeo'})
+    userEvent.click(videoButton)
+    expect(screen.getByTitle('Video title'))
   })
 
   it('should hide media buttons when just one media type given', () => {
     // Given
-    render(
-      <Component {...defaultProps}>
-        <Image
-          src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
-          alt="Image"
-        />
-      </Component>
-    )
+    const props = {...defaultProps}
+
+    // When
+    render(<Component {...props}>{imageElement()}</Component>)
 
     // Then
-    const videoButton = screen.queryByText('Vídeo')
-    expect(videoButton).to.equal(null)
+    expect(screen.queryByText('Vídeo')).not.to.exist
   })
 
   it('should open fullwidth when user press button', () => {
