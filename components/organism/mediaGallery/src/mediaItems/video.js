@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 
-function Video(props) {
-  const {src, inIframe, ...videoProps} = props
+function Video({src, title, inIframe, ...videoProps}) {
   return inIframe ? (
-    <iframe src={src} {...videoProps} />
+    <iframe src={src} title={title} {...videoProps} />
   ) : (
-    <video src={src} {...videoProps} />
+    <video controls src={src} title={title} {...videoProps} />
   )
 }
 
@@ -17,7 +16,11 @@ Video.propTypes = {
   /**
    * True/false to force iframe video
    */
-  inIframe: PropTypes.bool
+  inIframe: PropTypes.bool,
+  /**
+   * Video title
+   */
+  title: PropTypes.string
 }
 
 Video.defaultProps = {
