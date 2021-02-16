@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 import AtomImage from '@s-ui/react-atom-image'
 
-function Image(props) {
-  const {src, ...imageProps} = props
+function Image({src, ...imageProps}) {
   return <AtomImage src={src} {...imageProps} />
 }
 
