@@ -168,12 +168,16 @@ const DefaultDemo = () => {
             src="https://avatars2.githubusercontent.com/u/13288987?s=200&v=4"
             alt="Image"
           />
-          <Video
-            src="https://www.youtube.com/embed/Q5mgQsmKtDQ"
-            inIframe
-            title="Vídeo title"
-          />
-          <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
+          {!imagesOnly && (
+            <Video
+              src="https://www.youtube.com/embed/Q5mgQsmKtDQ"
+              inIframe
+              title="Vídeo title"
+            />
+          )}
+          {!imagesOnly && (
+            <Video3d src="https://my.matterport.com/show/?m=6yDd8eDbNHC&brand=0&brand=0&amp;mls=1&amp;title=0&amp;tourcta=0&amp;play=1&amp;lang=es" />
+          )}
         </OrganismMediaGallery>
       </Container>
     </Article>
