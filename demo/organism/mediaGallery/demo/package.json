@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@s-ui/hoc": "1",
-    "@s-ui/react-atom-card": "^1.18.0"
+    "@s-ui/react-atom-card": "1"
   }
 }
