@@ -2,7 +2,7 @@ import {H1, Paragraph} from '@s-ui/documentation-library'
 import ArticleDefault from './ArticleDefaut'
 import ArticleScrollable from './ArticleScrollable'
 
-const BASE_CLASS_DEMO = `DemoAtomValidationCode`
+const BASE_CLASS_DEMO = `DemoMoleculeBreadcrumb`
 const CLASS_SECTION = `${BASE_CLASS_DEMO}-section`
 
 const ArrowRight = () => (

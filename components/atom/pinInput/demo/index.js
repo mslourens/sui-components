@@ -10,7 +10,7 @@ import ArticlePlaceHolder from './ArticlePlaceholder'
 import ArticlePassword from './ArticlePassword'
 import ArticleLength from './ArticleLength'
 import ArticleValue from './ArticleValue'
-const BASE_CLASS_DEMO = `DemoAtomValidationCode`
+const BASE_CLASS_DEMO = `DemoAtomPinInput`
 const CLASS_SECTION = `${BASE_CLASS_DEMO}-section`
 
 export default () => {
