@@ -1,69 +1,74 @@
-import PropTypes from 'prop-types'
 import cx from 'classnames'
-import {COLORS, ALPHA, BORDER_RADIUS, ELEVATION} from './constants'
+import PropTypes from 'prop-types'
 
-const HORIZONTAL_ALIGNMENTS = {
-  LEFT: 'left',
-  CENTER: 'center',
-  RIGHT: 'right'
-}
+import PolymorphicElement from '@s-ui/react-primitive-polymorphic-element'
 
-const VERTICAL_ALIGNMENTS = {
-  TOP: 'top',
-  CENTER: 'center',
-  BOTTOM: 'bottom'
-}
+import {
+  ALPHA,
+  BORDER_RADIUS,
+  DEFAULT_ALPHA,
+  ELEVATION,
+  HORIZONTAL_ALIGNMENTS,
+  VERTICAL_ALIGNMENTS
+} from './constants.js'
 
-const DEFAULT_ALPHA = 'CONTRAST'
-const DEFAULT_COLOR = 'ACCENT'
-
-const getClassNames = function({
+const getClassNames = function ({
   verticalAlign,
   horizontalAlign,
   resized,
   overlayColor,
-  overlayAlpha = DEFAULT_ALPHA,
+  overlayAlpha = ALPHA[DEFAULT_ALPHA],
   color,
   rounded,
-  elevation
+  elevation,
+  isFullWidth,
+  isFullHeight
 }) {
   const BASE_CLASS = 'sui-atom-panel'
   const IMAGE_PANEL_CLASS = `${BASE_CLASS}-image`
-  const overlayAlphaValue = ALPHA[overlayAlpha] || DEFAULT_ALPHA
-  const overlayColorValue = COLORS[overlayColor] || DEFAULT_COLOR
 
   return cx(
     BASE_CLASS,
     rounded !== BORDER_RADIUS.NONE && `${BASE_CLASS}--rounded-${rounded}`,
     `${IMAGE_PANEL_CLASS}--vertical-${verticalAlign}`,
     `${IMAGE_PANEL_CLASS}--horizontal-${horizontalAlign}`,
-    overlayColor &&
-      `${BASE_CLASS}--${overlayColorValue}-overlay-${overlayAlphaValue}`,
+    overlayColor && `${BASE_CLASS}--${overlayColor}-overlay-${overlayAlpha}`,
     `${BASE_CLASS}-color--${color}`,
     resized && `${IMAGE_PANEL_CLASS}--resized`,
+    isFullWidth && `${BASE_CLASS}--fullWidth`,
+    isFullHeight && `${BASE_CLASS}--fullHeight`,
     elevation !== ELEVATION.NONE && `${BASE_CLASS}--elevation-${elevation}`
   )
 }
 
-const getStyles = function({src}) {
+const getStyles = function ({src}) {
   const url = `url(${src})`
   return {
     backgroundImage: url
   }
 }
 
-const ImagePanel = function({children, ...props}) {
+const ImagePanel = function ({as = 'div', id, children, ...props}) {
   return (
-    <div className={getClassNames(props)} style={getStyles(props)}>
+    <PolymorphicElement
+      as={as}
+      id={id}
+      className={getClassNames(props)}
+      style={getStyles(props)}
+    >
       {children}
-    </div>
+    </PolymorphicElement>
   )
 }
 
 ImagePanel.displayName = 'ImagePanel'
 
 ImagePanel.propTypes = {
+  as: PropTypes.elementType,
+  id: PropTypes.string,
   children: PropTypes.node,
+  isFullWidth: PropTypes.bool,
+  isFullHeight: PropTypes.bool,
   /**
    * Background color while loading the image
    */

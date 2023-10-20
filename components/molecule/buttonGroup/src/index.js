@@ -1,62 +1,148 @@
-import {Children, cloneElement} from 'react'
-import PropTypes from 'prop-types'
+import {Children} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-const BASE_CLASS = 'sui-MoleculeButtonGroup'
+import {atomButtonDesigns, atomButtonSizes} from '@s-ui/react-atom-button'
+import Injector from '@s-ui/react-primitive-injector'
+import Poly from '@s-ui/react-primitive-polymorphic-element'
 
-const getGroupPosition = (groupPositions, numChildren, index) => {
-  if (index === 0) return groupPositions.FIRST
-  if (index === numChildren - 1) return groupPositions.LAST
-  return groupPositions.MIDDLE
-}
+import {SPACED} from './config.js'
+import {BASE_CLASS} from './settings.js'
+
+const getGroupPosition =
+  ({groupPositions, numChildren, spaced}) =>
+  index => {
+    if (spaced) {
+      return groupPositions.UNSET
+    } else {
+      if (index === 0) return groupPositions.FIRST
+      if (index === numChildren - 1) return groupPositions.LAST
+      return groupPositions.MIDDLE
+    }
+  }
 
 const MoleculeButtonGroup = ({
+  as = 'div',
   children,
   fullWidth,
-  groupPositions,
+  size,
+  design,
+  negative,
+  groupPositions = {
+    FIRST: 'first',
+    MIDDLE: 'middle',
+    LAST: 'last',
+    UNSET: 'unset'
+  },
+  onClick,
+  spaced,
+  isVertical,
   ...props
 }) => {
   const numChildren = children.length
-  const getGroupPositionByIndex = getGroupPosition.bind(
-    null,
+
+  const getGroupPositionByIndex = getGroupPosition({
+    spaced,
     groupPositions,
     numChildren
-  )
+  })
+
+  const CLASS_SPACED_MEDIUM = `${BASE_CLASS}--spaced-${SPACED.MEDIUM}`
+  const CLASS_SPACED_LARGE = `${BASE_CLASS}--spaced-${SPACED.LARGE}`
+
+  const getClassSpaced = ({spaced}) => {
+    if (spaced === SPACED.MEDIUM) {
+      return CLASS_SPACED_MEDIUM
+    }
+    if (spaced === SPACED.LARGE) {
+      return CLASS_SPACED_LARGE
+    }
+    return CLASS_SPACED_MEDIUM
+  }
+
+  const CLASS_SPACED = getClassSpaced({spaced})
+
   const extendedChildren = Children.toArray(children)
     .filter(Boolean)
     .map((child, index) => {
       const groupPosition = getGroupPositionByIndex(index)
-      return cloneElement(child, {
-        ...props,
-        groupPosition,
-        fullWidth
-      })
+
+      return (
+        <Injector
+          {...props}
+          negative={negative}
+          size={size}
+          design={design}
+          groupPosition={groupPosition}
+          fullWidth={fullWidth}
+          spaced={spaced}
+          onClick={onClick}
+        >
+          {child}
+        </Injector>
+      )
     })
   return (
-    <div className={cx(BASE_CLASS, fullWidth && `${BASE_CLASS}--fullWidth`)}>
+    <Poly
+      className={cx(
+        BASE_CLASS,
+        fullWidth && `${BASE_CLASS}--fullWidth`,
+        spaced && CLASS_SPACED,
+        isVertical && `${BASE_CLASS}--vertical`
+      )}
+    >
       {extendedChildren}
-    </div>
+    </Poly>
   )
 }
 
 MoleculeButtonGroup.displayName = 'MoleculeButtonGroup'
 
 MoleculeButtonGroup.propTypes = {
+  /** the html element tag type of teh component **/
+  as: PropTypes.elementType,
+
   children: PropTypes.arrayOf(PropTypes.element),
 
   /** If buttons should stretch to fit the width of container */
   fullWidth: PropTypes.bool,
 
   /** groupPositions constants (FIRST, MIDDLE, LAST) */
-  groupPositions: PropTypes.object
-}
+  groupPositions: PropTypes.object,
 
-MoleculeButtonGroup.defaultProps = {
-  groupPositions: {
-    FIRST: 'first',
-    MIDDLE: 'middle',
-    LAST: 'last'
-  }
+  /**
+   * Negative: style for dark backgrounds.
+   */
+  negative: PropTypes.bool,
+
+  /**
+   * Design style of button: 'solid' (default), 'outline', 'flat', 'link'
+   */
+  design: PropTypes.oneOf(Object.values(atomButtonDesigns)),
+  /**
+   * Size of button 'small' (default), 'large'
+   */
+  size: PropTypes.oneOf(Object.values(atomButtonSizes)),
+
+  /**
+   * common click handler fired every inner button is triggered.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * configure the gap between the buttons of the group
+   **/
+  spaced: PropTypes.oneOf(Object.values(SPACED)),
+
+  /** buttons should have a vertical layout */
+  isVertical: PropTypes.bool
 }
 
 export default MoleculeButtonGroup
+
+export {
+  atomButtonDesigns as moleculeButtonGroupDesigns,
+  atomButtonSizes as moleculeButtonGroupSizes,
+  SPACED as moleculeButtonGroupSpaced
+}

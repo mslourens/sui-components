@@ -9,68 +9,96 @@ import ReactDOM from 'react-dom'
 
 import chai, {expect} from 'chai'
 import chaiDOM from 'chai-dom'
-import BreadcrumbBasic from 'components/molecule/breadcrumb/src'
+
+import json from '../package.json'
+import * as pkg from '../src/index.js'
 
 chai.use(chaiDOM)
 
-describe('molecule/breadcrumb', () => {
-  const Component = BreadcrumbBasic
+describe(json.name, () => {
+  const {default: Component} = pkg
   const setup = setupEnvironment(Component)
 
-  it('should render without crashing', () => {
+  it('library should include defined exported elements', () => {
     // Given
-    const props = {
-      items: [
-        {
-          label: 'item 0'
-        },
-        {
-          label: 'item 1'
-        }
-      ]
-    }
+    const library = pkg
+    const libraryExportedMembers = ['default']
 
     // When
-    const component = <Component {...props} />
+    const {default: MoleculeBreadcrumb, ...others} = library
 
     // Then
-    const div = document.createElement('div')
-    ReactDOM.render(component, div)
-    ReactDOM.unmountComponentAtNode(div)
+    expect(Object.keys(library).length).to.equal(libraryExportedMembers.length)
+    expect(Object.keys(library)).to.have.members(libraryExportedMembers)
+    expect(Object.keys(others).length).to.equal(0)
   })
 
-  it('should NOT render null', () => {
-    // Given
-    const props = {
-      items: [
-        {
-          label: 'item 0'
-        },
-        {
-          label: 'item 1'
-        }
-      ]
-    }
+  describe(Component.displayName, () => {
+    it('should render without crashing', () => {
+      // Given
+      const props = {
+        items: [
+          {
+            label: 'item 0'
+          },
+          {
+            label: 'item 1'
+          }
+        ]
+      }
 
-    // When
-    const {container} = setup(props)
+      // When
+      const component = <Component {...props} />
 
-    // Then
-    expect(container.innerHTML).to.be.a('string')
-    expect(container.innerHTML).to.not.have.lengthOf(0)
-  })
+      // Then
+      const div = document.createElement('div')
+      ReactDOM.render(component, div)
+      ReactDOM.unmountComponentAtNode(div)
+    })
 
-  it.skip('example', () => {
-    // Example TO BE DELETED!!!!
+    it('should NOT render null', () => {
+      // Given
+      const props = {
+        items: [
+          {
+            label: 'item 0'
+          },
+          {
+            label: 'item 1'
+          }
+        ]
+      }
 
-    // Given
-    // const props = {}
+      // When
+      const {container} = setup(props)
 
-    // When
-    // const {getByRole} = setup(props)
+      // Then
+      expect(container.innerHTML).to.be.a('string')
+      expect(container.innerHTML).to.not.have.lengthOf(0)
+    })
 
-    // Then
-    // expect(getByRole('button')).to.have.text('HOLA')
-    expect(true).to.be.eql(false)
+    it('should NOT extend classNames', () => {
+      // Given
+      const props = {
+        className: 'extended-classNames',
+        items: [
+          {
+            label: 'item 0'
+          },
+          {
+            label: 'item 1'
+          }
+        ]
+      }
+      const findSentence = str => string =>
+        string.match(new RegExp(`S*${str}S*`))
+
+      // When
+      const {container} = setup(props)
+      const findClassName = findSentence(props.className)
+
+      // Then
+      expect(findClassName(container.innerHTML)).to.be.null
+    })
   })
 })

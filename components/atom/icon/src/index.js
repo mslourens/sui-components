@@ -1,39 +1,24 @@
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-import Icon from './Icon'
-import LazyIcon from './LazyIcon'
+import Icon from './Icon.js'
+import LazyIcon from './LazyIcon.js'
+import {
+  ATOM_ICON_COLORS,
+  ATOM_ICON_RENDERS,
+  ATOM_ICON_SIZES,
+  BASE_CLASS
+} from './settings.js'
 
-const BASE_CLASS = 'sui-AtomIcon'
-export const ATOM_ICON_COLORS = {
-  accent: 'accent',
-  alert: 'alert',
-  currentColor: 'currentColor',
-  error: 'error',
-  primary: 'primary',
-  success: 'success',
-  gray: 'gray'
-}
-export const ATOM_ICON_SIZES = {
-  extraSmall: 'extraSmall',
-  small: 'small',
-  medium: 'medium',
-  large: 'large',
-  extraLarge: 'extraLarge',
-  extraExtraLarge: 'extraExtraLarge'
-}
-export const ATOM_ICON_RENDERS = {
-  eager: 'eager',
-  lazy: 'lazy'
-}
-
-export default function AtomIcon({
+const AtomIcon = ({
+  as = 'span',
   children,
   color = ATOM_ICON_COLORS.currentColor,
   size = ATOM_ICON_SIZES.small,
   render = ATOM_ICON_RENDERS.eager,
-  title
-}) {
+  style: _ignoredStyle, // eslint-disable-line react/prop-types
+  ...props
+}) => {
   const className = cx(
     BASE_CLASS,
     `${BASE_CLASS}--${size}`,
@@ -41,8 +26,9 @@ export default function AtomIcon({
   )
 
   const IconRender = render === ATOM_ICON_RENDERS.eager ? Icon : LazyIcon
+
   return (
-    <IconRender className={className} title={title}>
+    <IconRender as={as} {...props} className={className}>
       {children}
     </IconRender>
   )
@@ -50,6 +36,8 @@ export default function AtomIcon({
 
 AtomIcon.displayName = 'AtomIcon'
 AtomIcon.propTypes = {
+  /* Render the passed value as the correspondent HTML tag or the component if a function is passed */
+  as: PropTypes.elementType,
   /**
    * Determine color of the icon
    * Besides the primary color types, you could use currentColor to inherit the color from the parent.
@@ -69,9 +57,16 @@ AtomIcon.propTypes = {
    * 'eager': The icon will be server-side rendered (default)
    * 'lazy': The icon will be loaded on client when visible
    */
-  render: PropTypes.oneOf(Object.values(ATOM_ICON_RENDERS)),
-  /**
-   * Adds a title for accesibility purposes
-   */
-  title: PropTypes.string
+  render: PropTypes.oneOf(Object.values(ATOM_ICON_RENDERS))
+}
+
+export default AtomIcon
+
+export {
+  ATOM_ICON_COLORS,
+  ATOM_ICON_SIZES,
+  ATOM_ICON_RENDERS,
+  ATOM_ICON_COLORS as atomIconColors,
+  ATOM_ICON_SIZES as atomIconSizes,
+  ATOM_ICON_RENDERS as atomIconRenders
 }

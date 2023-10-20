@@ -2,8 +2,6 @@
 
 > MoleculeValidationCode implements the AtomMoleculeValidationCode and adds it more features such as, clear button, send button and resend button. It also provides a label to provide information to the user.
 
-<!-- ![](./assets/preview.png) -->
-
 ## Installation
 
 ```sh
@@ -19,10 +17,10 @@ import MoleculeValidationCode from '@s-ui/react-molecule-validation-code'
 
 return (
   <MoleculeValidationCode
-    sendButtonText="Send"
-    deleteButtonText="Delete"
+    sendButtonTextLabel="Send"
+    deleteButtonTextLabel="Delete"
     labelText="Your verification code"
-    resendButtonText="Resend"
+    resendButtonTextLabel="Resend"
     onChange={onChangeHandler}
   />
 )

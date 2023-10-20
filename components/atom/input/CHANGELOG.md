@@ -1,5 +1,273 @@
 # CHANGELOG
 
+# 5.34.0 (2023-09-28)
+
+
+### Features
+
+* **components/atom/input:** Update atom input mask ([51e8d66](https://github.com/SUI-Components/sui-components/commit/51e8d66ee69a9f01806d0104574f56e5b4444b9c))
+
+
+
+# 5.33.0 (2023-06-14)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Change null name variable ([062936c](https://github.com/SUI-Components/sui-components/commit/062936c583f0ddbf277c83f7c18e865e1790b839))
+* **components/atom/input:** Remove id ([dbc9c43](https://github.com/SUI-Components/sui-components/commit/dbc9c435d137c00630f6546324c111e43e1093f1))
+
+
+
+# 5.32.0 (2023-05-19)
+
+
+
+# 5.31.0 (2023-05-17)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Fix useMask not setting initial value ([43c1d4c](https://github.com/SUI-Components/sui-components/commit/43c1d4c46686065a2dc80c277e4c19acb19a6d5b))
+
+
+### Features
+
+* **components/atom/input/demo:** Update demo ([48a7ba8](https://github.com/SUI-Components/sui-components/commit/48a7ba87010cfca36361225fdfa62efce1184210))
+* **components/atom/input:** Fix import name ([ae69d40](https://github.com/SUI-Components/sui-components/commit/ae69d40cb8020d9168f50d9edbc8a3271ef178f6))
+
+
+
+# 5.30.0 (2023-05-11)
+
+
+### Features
+
+* **components/atom/input:** Add component size and fix bug in usemask ([9ea1518](https://github.com/SUI-Components/sui-components/commit/9ea151883c373e6d7dc042dada46965b32c25f6a))
+* **components/atom/input:** Mask working ([6b2bac7](https://github.com/SUI-Components/sui-components/commit/6b2bac7d401dcd0695f590b4c1bd22a78a2f79b2))
+
+
+
+# 5.29.0 (2023-05-11)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Rollback atom input ([03aaf36](https://github.com/SUI-Components/sui-components/commit/03aaf360419397e4ac546ae89b71283eac541afc))
+
+
+
+# 5.28.0 (2023-05-10)
+
+
+### Features
+
+* **components/atom/input:** Add missing export ([6af2be0](https://github.com/SUI-Components/sui-components/commit/6af2be0ab946ff793a2a7d5b37649cb1cb28710a))
+* **components/atom/input:** Add styles ([5e0b688](https://github.com/SUI-Components/sui-components/commit/5e0b68825f592212879d73a28e8a45ae9ebd984e))
+* **components/atom/input:** Fix missing type ([af5a0da](https://github.com/SUI-Components/sui-components/commit/af5a0daad917dfb864ff1699c4f76c13190f4ad1))
+
+
+
+# 5.27.0 (2023-05-10)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Fix execute function when value is empty ([6f75ed5](https://github.com/SUI-Components/sui-components/commit/6f75ed5f665b6a9f74086253a1e608f41d2e886b))
+
+
+
+# 5.26.0 (2023-05-09)
+
+
+### Features
+
+* **components/atom/input:** Add mask ([6c3952a](https://github.com/SUI-Components/sui-components/commit/6c3952aebd71893164e56ee75e9a5e5d9641f387))
+
+
+
+# 5.25.0 (2023-01-10)
+
+
+### Features
+
+* **components/atom/input:** add none input mode type ([57e3fa5](https://github.com/SUI-Components/sui-components/commit/57e3fa5e34d5d35ef1fa6351ac0d1bd0bd8e6710))
+
+
+
+# 5.24.0 (2022-12-20)
+
+
+### Features
+
+* **components/atom/input:** add key press event ([1faa2e4](https://github.com/SUI-Components/sui-components/commit/1faa2e4a95bd83488cff9b9c2573b973038d7731))
+
+
+
+# 5.23.0 (2022-12-01)
+
+
+
+# 5.22.0 (2022-10-04)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Add input validator function for input type number ([c72b340](https://github.com/SUI-Components/sui-components/commit/c72b3402d65cad1a467828c4b9de06de29603fb4))
+
+
+
+# 5.21.0 (2022-08-26)
+
+
+### Bug Fixes
+
+* **components/atom/input:** combine controlled and uncontrolled values ([8906936](https://github.com/SUI-Components/sui-components/commit/89069369cdd93071b4694488924642c68ee9d256))
+
+
+
+# 5.20.0 (2022-07-27)
+
+
+### Features
+
+* **components/atom/input:** define enterkey array valid and forwardref ([b4c870c](https://github.com/SUI-Components/sui-components/commit/b4c870c1a354bd5154b62f59de9fa02e30df65f8))
+
+
+
+# 5.19.0 (2022-07-14)
+
+
+### Features
+
+* **components/atom/input:** Add readonly styles with a specific class ([1fd8bc7](https://github.com/SUI-Components/sui-components/commit/1fd8bc727a575149c151de70a3a5926a24bddb25))
+* **Root:** Delete undefined dependencies ([c145905](https://github.com/SUI-Components/sui-components/commit/c145905350328925ba6fda2a462d7f8b508c8ea0))
+* **Root:** Merge commit ([d3735d0](https://github.com/SUI-Components/sui-components/commit/d3735d0644332e674d5a5b6291680697f0d6f7c4))
+
+
+
+# 5.18.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/input:** Avoid publishing huge CHANGELOG.md ([ad399f9](https://github.com/SUI-Components/sui-components/commit/ad399f9a7b24368c5704b9f1af8cabb0a7dbefc9))
+
+
+
+# 5.17.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/input:** disable pointer events if there is no handler ([40bbcc4](https://github.com/SUI-Components/sui-components/commit/40bbcc4d58b1e093188431f9edf936a740e7dab7))
+
+
+
+# 5.16.0 (2022-05-25)
+
+
+### Bug Fixes
+
+* **components/atom/button:** atom icon sizes explicit declaration ([d3f2c6a](https://github.com/SUI-Components/sui-components/commit/d3f2c6a95a7118448406df128d25ff6936f21e5d)), closes [#2052](https://github.com/SUI-Components/sui-components/issues/2052)
+
+
+### Features
+
+* **components/atom/input:** add missing dep ([bfcb281](https://github.com/SUI-Components/sui-components/commit/bfcb2815fdda3cdd0970fb72a96a5dfb97057868))
+* **components/atom/input:** add ref ([9abc652](https://github.com/SUI-Components/sui-components/commit/9abc6525154faf10539986102351c7c0fa874a64))
+* **components/atom/input:** change children position ([0d55f11](https://github.com/SUI-Components/sui-components/commit/0d55f1128dcda1b84bf8c5d6c816099834532e85))
+* **components/atom/input:** update children prop ([b28e876](https://github.com/SUI-Components/sui-components/commit/b28e876ad380b102c9312cf1d981defff20afb75))
+* **components/atom/input:** use polymorphic input ([4e37214](https://github.com/SUI-Components/sui-components/commit/4e37214c4a433335d71d3b117016444e0f397687))
+
+
+
+# 5.15.0 (2022-02-23)
+
+
+### Bug Fixes
+
+* **components/atom/input:** default input tabindex -1 removed ([f599999](https://github.com/SUI-Components/sui-components/commit/f599999d139a685ddd0ecc7ac89f92628eb1b01d))
+
+
+
+# 5.14.0 (2022-02-01)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Fix password toggle button styles breaking because of wrong baseclass ([3410af3](https://github.com/SUI-Components/sui-components/commit/3410af37f69be0b77e1362b53117ab1927e2ffd1))
+
+
+
+# 5.13.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/atom/input:** Fix atom input focus box shadow when have state ([ea84125](https://github.com/SUI-Components/sui-components/commit/ea84125060dfb09e2251929f1bef139a584f3902))
+* **components/atom/input:** Use variable ([b51f84e](https://github.com/SUI-Components/sui-components/commit/b51f84e0369838d3c77168ef4d06055076606a8f))
+
+
+
+# 5.12.0 (2022-01-14)
+
+
+### Features
+
+* **components/atom/input:** removes default appearance of input ([f0fc6a0](https://github.com/SUI-Components/sui-components/commit/f0fc6a04525c58972348331c223a163ea6a4ea11))
+
+
+
+# 5.11.0 (2021-11-10)
+
+
+### Bug Fixes
+
+* **components/atom/input:** combine shapes sizes and addons ([e2985d6](https://github.com/SUI-Components/sui-components/commit/e2985d631cc94554c9c0f1cd1bc494e87600d0a1))
+
+
+### Features
+
+* **components/atom/input:** Change settings scss for theme ([0bb08df](https://github.com/SUI-Components/sui-components/commit/0bb08df78365ebe4c71bb9797d477c5fe306fbec))
+* **components/atom/input:** Change settings scss for theme ([f6e0047](https://github.com/SUI-Components/sui-components/commit/f6e0047aa5382b28f7cc230541323f2a2b70dde6))
+* **components/atom/input:** fix combiniation of prop styles ([9fc26d8](https://github.com/SUI-Components/sui-components/commit/9fc26d87f00e38e3cd65e7d95c15fb45314f19d3))
+* **components/atom/input:** last changes ([6b30b97](https://github.com/SUI-Components/sui-components/commit/6b30b973b69af62cd111f25e69de52caf2ff13ca))
+
+
+
+# 5.10.0 (2021-10-28)
+
+
+### Features
+
+* **components/atom/input:** use mixin instead of extend for base class styles ([d1bc70d](https://github.com/SUI-Components/sui-components/commit/d1bc70d464a3efab510357d87a9f59ff16bff8f6))
+
+
+
+# 5.9.0 (2021-10-19)
+
+
+
+# 5.8.0 (2021-10-18)
+
+
+### Bug Fixes
+
+* **components/atom/input:** add large to input sizes ([c5f134b](https://github.com/SUI-Components/sui-components/commit/c5f134bd2ef9cfbe8699801bab279ec30efbffd5)), closes [#1737](https://github.com/SUI-Components/sui-components/issues/1737)
+* **components/atom/input:** password classname fix ([8575b3e](https://github.com/SUI-Components/sui-components/commit/8575b3efc267c5783e835dd3b4a7763fa61fd12a))
+
+
+
+# 5.7.0 (2021-10-10)
+
+
+### Features
+
+* **components/atom/input:** add the shape prop ([8dd70ba](https://github.com/SUI-Components/sui-components/commit/8dd70ba2f7c3cc60004748ba6d911ed951b56eaa))
+
+
+
 # 5.6.0 (2021-09-29)
 
 
@@ -513,7 +781,6 @@
 * **atom/input:** iconRight & clickHander & hoc features reorganization ([5c89813](https://github.com/SUI-Components/sui-components/commit/5c89813d83bf42c6b2a86e2695cc013caba78118))
 * **atom/input:** improved documentation ([fbe91ab](https://github.com/SUI-Components/sui-components/commit/fbe91ab4f3f0b557d6ba601e89f7d2a5fcecd2f5))
 * **atom/input:** left & right icon managed by HOC ([45dac5d](https://github.com/SUI-Components/sui-components/commit/45dac5d304c12a823c1ed58892f2da64d80bade1))
-* **atom/input:** merge master & solved conflicts ([a90cb72](https://github.com/SUI-Components/sui-components/commit/a90cb7282feffdc7a46a81128ffe397eec56eab5))
 
 
 
@@ -556,7 +823,6 @@
 * **atom/input:** charsSize ([8ea729c](https://github.com/SUI-Components/sui-components/commit/8ea729c01da243fd94d7b819a2afd9df21ad77ae))
 * **atom/input:** demo fix ([33496e6](https://github.com/SUI-Components/sui-components/commit/33496e6d64c022df1a740652db37550f0862427e))
 * **atom/input:** icon Left ([df6bedc](https://github.com/SUI-Components/sui-components/commit/df6bedc4f74b8d4ea837fba607840a5c93f6ae49))
-* **atom/input:** merged latest changes ([a2f4b7d](https://github.com/SUI-Components/sui-components/commit/a2f4b7d1bf4306a683369454ec9bfca52ed5af47))
 * **atom/input:** modifications after code review comments ([fff3cb0](https://github.com/SUI-Components/sui-components/commit/fff3cb09d7150c5d1c9dd8fac17a9fc076c787b5))
 * **atom/input:** removed unnecesary dependency ([2f68b77](https://github.com/SUI-Components/sui-components/commit/2f68b77f9cbd0468d2532bec33d9c933461c7863))
 * **atom/input:** sizeChars ([4144365](https://github.com/SUI-Components/sui-components/commit/41443650550046732e7cf97a2e1ea87d71b997f1))

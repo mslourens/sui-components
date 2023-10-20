@@ -1,5 +1,121 @@
 # CHANGELOG
 
+# 3.3.0 (2023-05-10)
+
+
+### Features
+
+* **components/atom/checkbox:** add iconSize prop ([46187e7](https://github.com/SUI-Components/sui-components/commit/46187e79976781930897d4152629843387af11b8))
+* **components/atom/checkbox:** undo css change ([b75631c](https://github.com/SUI-Components/sui-components/commit/b75631cacb028b829e6926f6cc6f6d6b2c2e24e0))
+
+
+
+# 3.2.0 (2022-10-15)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** return handler name properly ([bffe849](https://github.com/SUI-Components/sui-components/commit/bffe8498d600babcb1d719ab25a6bf0faead6fed))
+
+
+
+# 3.2.0 (2022-10-14)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** return handler name properly ([e699c8f](https://github.com/SUI-Components/sui-components/commit/e699c8f46f67e237d8371e7011f58125cace5ca2))
+
+
+### Features
+
+* **components/atom/checkbox:** allow onChange to be executed in no native checkboxes ([f891a32](https://github.com/SUI-Components/sui-components/commit/f891a325750d59aa4967a8a22a48a239c36e235d))
+
+
+
+# 3.1.0 (2022-07-18)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** text-alignment, gray-unchecked, controlled handler, read-only ([5c5f3c0](https://github.com/SUI-Components/sui-components/commit/5c5f3c08304a33ee799596087737031bb3bad12d))
+* **components/atom/checkbox:** text-alignment, gray-unchecked, controlled handler, read-only ([f576a06](https://github.com/SUI-Components/sui-components/commit/f576a068952bd5155651911319325c4254756914))
+
+
+### Features
+
+* **components/molecule/checkboxField:** update to checkboxv3 ([4d4c9e1](https://github.com/SUI-Components/sui-components/commit/4d4c9e150ab03cdd0290f932a85ec1cde5e71e99))
+
+
+
+# 2.20.0 (2022-06-23)
+
+
+### Features
+
+* **components/atom/checkbox:** v2 ([982a2f0](https://github.com/SUI-Components/sui-components/commit/982a2f04f41cf941b19e5c174d991d7f5e83df61))
+* **components/atom/checkbox:** v2 ([e9c09ec](https://github.com/SUI-Components/sui-components/commit/e9c09ec893466a91ffa41d4b6720c506601e0e3a))
+
+
+
+# 3.0.0 (2022-06-23)
+
+
+### Features
+
+* **components/atom/checkbox:** v3 ([9576301](https://github.com/SUI-Components/sui-components/commit/9576301bfdacdee5d150645cf7068fd676992297))
+
+
+
+# 2.18.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/checkbox:** Avoid publishing huge CHANGELOG.md ([35f5a78](https://github.com/SUI-Components/sui-components/commit/35f5a78fa84cf898776ba828210ad4fa82f8d486))
+* **components/atom/checkbox:** checked and indeterminate props work with dom and vdom as well ([c45bd2c](https://github.com/SUI-Components/sui-components/commit/c45bd2c12373cd4842789a35481026ffde56ae09))
+
+
+
+# 2.17.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** resolve linting errors ([0b4d331](https://github.com/SUI-Components/sui-components/commit/0b4d3311706e9cb5b76cdf4717ebfd8edf0775d6))
+
+
+
+# 2.16.0 (2021-10-19)
+
+
+
+# 1.1.0 (2021-10-19)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** lint sass ([274c8e1](https://github.com/SUI-Components/sui-components/commit/274c8e143af86403ff651d40c129d174bf8902c9))
+* **components/atom/checkbox:** lint sass ([56c4c35](https://github.com/SUI-Components/sui-components/commit/56c4c35040180d213115b4a8f48acfbc4493cd31))
+
+
+### Features
+
+* **components/atom/checkbox/demo:** Add size demo ([101fc03](https://github.com/SUI-Components/sui-components/commit/101fc0366d7de30db7c56e35c54a79036c1e871c))
+* **components/atom/checkbox:** Add size option small and medium ([4b6cc31](https://github.com/SUI-Components/sui-components/commit/4b6cc3136263df436ec5a339b1aa5bb17f346079))
+
+
+
+# 2.15.0 (2021-10-07)
+
+
+### Features
+
+* **components/atom/checkbox:** Add basic checkbox to demo ([31b3189](https://github.com/SUI-Components/sui-components/commit/31b3189131eba69a401deff1d2010f5a3fb97a57))
+* **components/atom/checkbox:** Update title and add description ([97ba5dc](https://github.com/SUI-Components/sui-components/commit/97ba5dcdfe6cdef6762da0f7cd0be0af3e7c396c))
+
+
+
 # 2.14.0 (2021-09-03)
 
 

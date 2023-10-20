@@ -1,80 +1,40 @@
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
 import AtomIcon, {
   ATOM_ICON_COLORS,
   ATOM_ICON_SIZES
 } from '@s-ui/react-atom-icon'
 
-import ActionButton from './ActionButton'
+import ActionButtonWrapper from './ActionButtonWrapper.js'
+import {
+  BASE_CLASS,
+  CLASSES,
+  COLOR_CLASSES,
+  COLORS,
+  MODIFIERS,
+  SIZES,
+  STYLES
+} from './config.js'
 
-/**
- * Base class for the component
- */
-const BASE_CLASS = 'sui-AtomActionButton'
-
-/**
- * Available colors for the Action Button
- */
-const COLORS = {PRIMARY: 'primary', ACCENT: 'accent', NEUTRAL: 'neutral'}
-
-/**
- * Available modifiers for the Action Button
- */
-const MODIFIERS = {
-  ACTIVE_FOCUSED: 'active',
-  DISABLED: 'disabled',
-  LINK: 'link'
-}
-
-/**
- * Available sizes for the Action Button
- */
-const SIZES = {SMALL: 'small', MEDIUM: 'medium', LARGE: 'large'}
-
-/**
- * Available styles for the Action Button
- */
-const STYLES = {
-  FILLED_NEGATIVE: 'filledNegative',
-  FILLED_POSITIVE: 'filledPositive',
-  OUTLINE: 'outline',
-  FLAT: 'flat'
-}
-
-const createClasses = (array, sufix = '') =>
-  array.reduce(
-    (res, key) => ({...res, [key]: `${BASE_CLASS}--${key}${sufix}`}),
-    {}
-  )
-
-const CLASSES = createClasses([
-  ...Object.values(SIZES),
-  ...Object.values(STYLES),
-  ...Object.values(MODIFIERS)
-])
-const COLOR_CLASSES = createClasses([...Object.values(COLORS)], 'Color')
-
-const AtomActionButton = props => {
-  const {
-    children,
-    className,
-    color = COLORS.PRIMARY,
-    disabled,
-    focused,
-    href,
-    icon,
-    isButton,
-    isSubmit,
-    link,
-    linkFactory,
-    size = SIZES.MEDIUM,
-    style = STYLES.FILLED_NEGATIVE,
-    target,
-    title,
-    ...restProps
-  } = props
-
+const AtomActionButton = ({
+  children,
+  className,
+  color = COLORS.PRIMARY,
+  disabled,
+  focused,
+  href,
+  icon,
+  isButton,
+  isSubmit,
+  link,
+  linkFactory,
+  size = SIZES.MEDIUM,
+  style = STYLES.FILLED_NEGATIVE,
+  target,
+  title,
+  ...restProps
+}) => {
   const classNames = cx(
     BASE_CLASS,
     COLOR_CLASSES[color],
@@ -98,7 +58,7 @@ const AtomActionButton = props => {
   }
 
   return (
-    <ActionButton {...buttonProps} className={classNames}>
+    <ActionButtonWrapper {...buttonProps} className={classNames}>
       <div className={`${BASE_CLASS}-icon`}>
         <AtomIcon
           size={ATOM_ICON_SIZES.medium}
@@ -108,7 +68,7 @@ const AtomActionButton = props => {
         </AtomIcon>
       </div>
       <div className={`${BASE_CLASS}-text`}>{children}</div>
-    </ActionButton>
+    </ActionButtonWrapper>
   )
 }
 
@@ -120,7 +80,7 @@ AtomActionButton.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Classes to add to button
+   * Classes to add to button (DEPRECATED)
    */
   className: PropTypes.any,
   /**
@@ -184,6 +144,7 @@ AtomActionButton.propTypes = {
 }
 
 export default AtomActionButton
+
 export {COLORS as atomActionButtonColors}
 export {SIZES as atomActionButtonSizes}
 export {STYLES as atomActionButtonStyles}

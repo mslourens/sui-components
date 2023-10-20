@@ -1,5 +1,59 @@
 # CHANGELOG
 
+# 3.10.0 (2022-10-06)
+
+
+
+# 3.9.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/upload:** Avoid publishing huge CHANGELOG.md ([e7fe23f](https://github.com/SUI-Components/sui-components/commit/e7fe23f568049bf35be5d97f8bae71c0d0bf4f53))
+
+
+
+# 3.8.0 (2022-03-24)
+
+
+### Bug Fixes
+
+* **components/atom/upload:** forward arguments on selection ([ca48d3a](https://github.com/SUI-Components/sui-components/commit/ca48d3a8fb9a34082e008a0f3f1b8653d3b14956))
+
+
+
+# 3.7.0 (2022-03-14)
+
+
+### Bug Fixes
+
+* **components/atom/upload:** fix the HoF handler usage ([208ae66](https://github.com/SUI-Components/sui-components/commit/208ae66d527919789e436ba683baec9517e72321))
+
+
+
+# 3.6.0 (2022-03-11)
+
+
+### Bug Fixes
+
+* **components/atom/upload:** add preview to the handler method ([156b2de](https://github.com/SUI-Components/sui-components/commit/156b2de9a9108d378d51aab753c30b0955584ecb)), closes [#2056](https://github.com/SUI-Components/sui-components/issues/2056)
+
+
+
+# 3.5.0 (2022-01-20)
+
+
+### Bug Fixes
+
+* **Root:** lint ([dbfeeb6](https://github.com/SUI-Components/sui-components/commit/dbfeeb6f15cd103984db448a485737d531e1ed9c))
+
+
+### Features
+
+* **components/atom/upload:** update react-dropzone dependency and fix demo ([7dccf3c](https://github.com/SUI-Components/sui-components/commit/7dccf3c7ccbcde2b6f74d6a1cf916e16631c5068))
+
+
+
 # 3.4.0 (2021-07-06)
 
 

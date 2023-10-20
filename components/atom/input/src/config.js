@@ -17,10 +17,13 @@ export const TYPES = {
   SUI_PASSWORD: 'sui-password',
   TEXT: 'text',
   TEL: 'tel',
-  EMAIL: 'email'
+  EMAIL: 'email',
+  NONE: 'none'
 }
 
 export const SIZES = {
+  XLARGE: 'xl',
+  LARGE: 'l',
   MEDIUM: 'm',
   SMALL: 's',
   XSMALL: 'xs'
@@ -32,7 +35,15 @@ export const INPUT_STATES = {
   ALERT: 'alert'
 }
 
+export const INPUT_SHAPES = {
+  ROUNDED: 'rounded',
+  SQUARE: 'square',
+  CIRCLE: 'circle'
+}
+
 export const noop = () => null
+
+export const isFunction = fn => typeof fn === 'function'
 
 export const getClassNames = ({
   size,
@@ -41,17 +52,19 @@ export const getClassNames = ({
   noBorder,
   readOnly,
   errorState,
-  state
+  state,
+  shape
 }) => {
   return cx(
     BASE_CLASS,
-    `${BASE_CLASS}-${size}`,
-    charsSize && `${BASE_CLASS}--size`,
+    size && `${BASE_CLASS}-size-${size}`,
+    charsSize && `${BASE_CLASS}--charsSize`,
     hideInput && `${BASE_CLASS}--hidden`,
     noBorder && `${BASE_CLASS}--noBorder`,
     readOnly && `${BASE_CLASS}--readOnly`,
     errorState && `${BASE_CLASS}--${INPUT_STATES.ERROR}`,
     errorState === false && `${BASE_CLASS}--${INPUT_STATES.SUCCESS}`,
-    state && `${BASE_CLASS}--${state}`
+    state && `${BASE_CLASS}--${state}`,
+    shape && `${BASE_CLASS}-shape-${shape}`
   )
 }

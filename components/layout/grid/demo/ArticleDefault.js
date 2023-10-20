@@ -1,20 +1,22 @@
 import {useState} from 'react'
+
+import LayoutGrid, {LayoutGridItem} from 'components/layout/grid/src/index.js'
 import PropTypes from 'prop-types'
+
 import {
-  Label,
+  Article,
+  Button,
+  Code,
   H2,
   H4,
+  Label,
   Paragraph,
-  Article,
-  Code,
-  RadioButtonGroup,
   RadioButton,
-  Button
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
 
-import LayoutGrid, {LayoutGridItem} from 'components/layout/grid/src'
-import DemoWrapper from './demoWrapper'
-import DemoBox from './demoBox'
+import DemoBox from './demoBox.js'
+import DemoWrapper from './demoWrapper.js'
 
 const getWeirdSumCombinationArray = (values = [], max) => {
   const arrSum = arr => arr.reduce((a, b) => a + b, 0)

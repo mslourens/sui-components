@@ -1,21 +1,16 @@
-$bgc-atom-input-disabled: $c-gray-lightest !default;
-$c-atom-input-placeholder: $c-gray-dark !default;
-$c-atom-input-disabled: $c-atom-input-placeholder !default;
-$bd-atom-input-disabled: $bd-atom-input-base !default;
-$m-atom-input-type-left: $m-m !default;
-$m-atom-input-type-right: $m-m !default;
-$bdrs-atom-input: 0 !default;
-$tov-atom-input-placeholder: unset !default;
+$base-class-input: '#{$base-class}-input';
+$class-read-only: '#{$base-class-input}--readOnly';
 
-$base-class: '.sui-AtomInput-input';
-$class-read-only: '#{$base-class}--readOnly';
+#{$base-class-input} {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 
-#{$base-class} {
-  @extend %sui-atom-input-input;
+  @include sui-atom-input-input;
   border-radius: $bdrs-atom-input;
   min-height: auto;
   text-overflow: $tov-atom-input-placeholder;
-  &--size {
+  &--charsSize {
     width: inherit;
   }
 
@@ -23,10 +18,24 @@ $class-read-only: '#{$base-class}--readOnly';
     display: none;
   }
 
-  &#{$base-class}--noBorder,
-  &#{$base-class}--noBorder:disabled {
-    border: 0;
+  &--readOnly {
+    background: $bgc-atom-input-read-only;
+    border: $bd-atom-input-read-only;
+    color: $c-atom-input-read-only;
+  }
 
+  @include atom-input-shape-wrapper(
+    $base-class,
+    $base-class-input,
+    $bdrs-atom-input-shapes,
+    $sizes-atom-input,
+    $bdrs-atom-input,
+    $h-atom-input--m
+  );
+
+  &#{$base-class-input}--noBorder,
+  &#{$base-class-input}--noBorder:disabled {
+    border: 0;
     &:focus {
       border: 0;
       box-shadow: none;
@@ -51,11 +60,11 @@ $class-read-only: '#{$base-class}--readOnly';
   }
 
   &:focus {
-    @extend %sui-atom-input-input-focus;
+    @include sui-atom-input-input-focus;
   }
 
   @each $type, $attr in $sizes-atom-input {
-    &-#{$type} {
+    &-size-#{$type} {
       height: $attr;
       min-height: $attr;
     }
@@ -64,6 +73,10 @@ $class-read-only: '#{$base-class}--readOnly';
   @each $state, $color in $states-atom-input {
     &.sui-AtomInput-input--#{$state} {
       border-color: $color;
+
+      &:focus {
+        box-shadow: $bxsh-atom-input-size $color;
+      }
     }
   }
 

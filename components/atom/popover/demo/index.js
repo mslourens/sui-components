@@ -1,28 +1,18 @@
 /* eslint-disable react/prop-types, no-unused-vars, no-console */
 
-import {forwardRef} from 'react'
+import {Anchor, H1, Paragraph} from '@s-ui/documentation-library'
+
+import ArticleArrow from './articles/ArticleArrow.js'
+import ArticleBehavior from './articles/ArticleBehavior.js'
+import ArticleCloseIcon from './articles/ArticleCloseIcon.js'
+import ArticleDefault from './articles/ArticleDefault.js'
+import ArticlePosition from './articles/ArticlePosition.js'
+import ArticleRef from './articles/ArticleRef.js'
+import ArticleType from './articles/ArticleType.js'
+import Content from './Content.js'
+import {CLASS_SECTION} from './settings.js'
+
 import './index.scss'
-import {H1, Paragraph, Anchor} from '@s-ui/documentation-library'
-import ArticleDefault from './ArticleDefault'
-import ArticlePosition from './ArticlePosition'
-import ArticleCloseIcon from './ArticleCloseIcon'
-import ArticleArrow from './ArticleArrow'
-import ArticleRef from './ArticleRef'
-import ArticleBehavior from './ArticleBehavior'
-
-const BASE_CLASS_DEMO = `DemoAtomPopover`
-const CLASS_SECTION = `${BASE_CLASS_DEMO}-section`
-
-const Content = forwardRef((props, forwardedRef) => {
-  return (
-    <div ref={forwardedRef} style={{width: '200px', padding: '8px'}}>
-      <span>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id mauris
-        ornare, imperdiet nunc a, interdum dolor.
-      </span>
-    </div>
-  )
-})
 
 const Demo = () => {
   return (
@@ -54,6 +44,10 @@ const Demo = () => {
         <br />
         <ArticleRef className={CLASS_SECTION} content={Content} />
         <br />
+        <ArticleType
+          className={CLASS_SECTION}
+          content={<Content style={{color: 'white'}} />}
+        />
       </div>
     </div>
   )

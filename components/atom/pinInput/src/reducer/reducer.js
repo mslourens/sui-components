@@ -1,6 +1,7 @@
-import {MASK, valueChecker, getValueType} from '../config'
-import PIN_INPUT_ACTION_TYPES from './actionTypes'
 import {debounce} from '@s-ui/js/lib/function'
+
+import {getValueType, MASK, valueChecker} from '../config.js'
+import PIN_INPUT_ACTION_TYPES from './actionTypes.js'
 
 export const getInitialPinInputReducerState = ({
   defaultValue = '',
@@ -49,7 +50,7 @@ const onChangeHandler = onChange => (event, state) => {
           : innerValue,
       key: innerValue[focusPosition],
       index: focusPosition,
-      innerValue: innerValue
+      innerValue
     })
 }
 

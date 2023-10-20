@@ -1,19 +1,26 @@
-import {useState, useEffect, useRef, useCallback} from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
-import {AUTO_CLOSE_TIMES, BASE_CLASS, EFFECT_DELAY, POSITIONS} from './config'
+import {useCallback, useEffect, useRef, useState} from 'react'
 
-function AtomToast({
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+
+import {
+  AUTO_CLOSE_TIMES,
+  BASE_CLASS,
+  EFFECT_DELAY,
+  POSITIONS
+} from './config.js'
+
+const AtomToast = ({
   autoClose = true,
   autoCloseTime = AUTO_CLOSE_TIMES.medium,
   children,
   effect = true,
   globalClose = false,
   iconClose = null,
-  onClose = () => {},
+  onClose,
   position = POSITIONS.topRight,
   show: showFromProps = true
-}) {
+}) => {
   const [show, setShow] = useState(showFromProps)
   const [delay, setDelay] = useState(true)
 
@@ -33,7 +40,7 @@ function AtomToast({
   const handleClose = useCallback(() => {
     if (effect) setDelay(true)
     setShow(false)
-    if (!effect) onClose()
+    if (!effect && typeof onClose === 'function') onClose()
   }, [effect, onClose])
 
   useEffect(() => {
@@ -62,7 +69,7 @@ function AtomToast({
     if (effect && !show) {
       delayTimeout.current = setTimeout(() => {
         setDelay(false)
-        onClose()
+        typeof onClose === 'function' && onClose()
       }, EFFECT_DELAY.close)
     }
 

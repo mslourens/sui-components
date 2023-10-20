@@ -1,5 +1,36 @@
 # CHANGELOG
 
+# 2.13.0 (2022-06-23)
+
+
+### Bug Fixes
+
+* **Root:** fix file extensions ([75a5b34](https://github.com/SUI-Components/sui-components/commit/75a5b341905c3ab8d18680952b25454905747285))
+
+
+### Features
+
+* **components/atom/slider:** fix rc-slider update integration ([86960b8](https://github.com/SUI-Components/sui-components/commit/86960b86294a3a7726d5ff70c25b8ead54b7c0a9))
+* **components/molecule/thumbnail:** Avoid publishing huge CHANGELOG.md ([822ac22](https://github.com/SUI-Components/sui-components/commit/822ac22a83308601f733a0e09d056f5740462dc2))
+
+
+
+# 2.12.0 (2021-10-13)
+
+
+
+# 2.11.0 (2021-10-13)
+
+
+### Bug Fixes
+
+* **components/molecule/thumbnail:** 1:1 ratio has wrong width ([1388b12](https://github.com/SUI-Components/sui-components/commit/1388b12dd79755f8ac0b7a2f4684aa5765d34824))
+* **components/molecule/thumbnail:** Button width fixed ([62c7920](https://github.com/SUI-Components/sui-components/commit/62c7920a00db9f0a9fd8787ef17961f71b447ffe))
+* **components/molecule/thumbnail:** remove caption width ([5a9f7a3](https://github.com/SUI-Components/sui-components/commit/5a9f7a3c36d26c57ed02a9ef194b8f4198ddf84a))
+* **components/molecule/thumbnail:** solve caption width ([08aa012](https://github.com/SUI-Components/sui-components/commit/08aa0122476b70cbc5b91fb0a3a8b71624aca05c))
+
+
+
 # 2.10.0 (2021-06-22)
 
 

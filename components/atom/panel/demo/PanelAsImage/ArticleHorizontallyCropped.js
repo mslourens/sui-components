@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
-import {Article, H2, Paragraph, Code} from '@s-ui/documentation-library'
-import AtomPanel from '@s-ui/react-atom-panel'
-import {flexWrapper, flexItem} from '../config'
-import atomPanelHorizontalAlign from '../../src'
+
+import {Article, Code, H2, Paragraph} from '@s-ui/documentation-library'
+
+import AtomPanel, {atomPanelHorizontalAlign} from '../../src/index.js'
+import {flexItem, flexWrapper} from '../config.js'
 
 const ArticleHorizontallyCropped = ({className}) => {
   return (
@@ -19,30 +20,30 @@ const ArticleHorizontallyCropped = ({className}) => {
           </div>
           <span>Original</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '180px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             horizontalAlign={atomPanelHorizontalAlign.LEFT}
           >
-            <div style={{height: '200px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Align to the left</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '180px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             horizontalAlign={atomPanelHorizontalAlign.CENTER}
           >
-            <div style={{height: '200px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Centered</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '180px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             horizontalAlign={atomPanelHorizontalAlign.RIGHT}
           >
-            <div style={{height: '200px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Align to the right</span>
         </div>

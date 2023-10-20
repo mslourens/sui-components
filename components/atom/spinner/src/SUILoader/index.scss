@@ -1,60 +1,41 @@
 @import '~@s-ui/theme/lib/index';
 
-$c-atom-spinner-loader-accent: color-variation($c-accent, 1) !default;
-$c-atom-spinner-loader-primary: color-variation($c-primary, -1) !default;
-$sz-atom-spinner-oval: $sz-icon-s !default;
-$sz-atom-spinner: $sz-atom-spinner-oval * 2 !default;
-$z-atom-spinner-loader: 999;
-
-@keyframes atom-spinner {
-  0% {
-    box-shadow: -$sz-atom-spinner-oval $sz-atom-spinner-oval
-        $c-atom-spinner-loader-accent,
-      0 $sz-atom-spinner $c-atom-spinner-loader-primary;
-  }
-
-  25% {
-    box-shadow: 0 $sz-atom-spinner-oval $c-atom-spinner-loader-accent,
-      -$sz-atom-spinner-oval $sz-atom-spinner $c-atom-spinner-loader-primary;
-  }
-
-  50% {
-    box-shadow: 0 $sz-atom-spinner $c-atom-spinner-loader-accent,
-      -$sz-atom-spinner-oval $sz-atom-spinner-oval $c-atom-spinner-loader-primary;
-  }
-
-  75% {
-    box-shadow: -$sz-atom-spinner-oval $sz-atom-spinner
-        $c-atom-spinner-loader-accent,
-      0 $sz-atom-spinner-oval $c-atom-spinner-loader-primary;
-  }
-
-  100% {
-    box-shadow: -$sz-atom-spinner-oval $sz-atom-spinner-oval
-        $c-atom-spinner-loader-accent,
-      0 $sz-atom-spinner $c-atom-spinner-loader-primary;
-  }
-}
-
-$anim-atom-spinner: atom-spinner 1.5s ease-in-out infinite;
-
-.sui-AtomSpinner {
+#{$base-class} {
   &-loader {
-    animation: $anim-atom-spinner;
-    background-color: transparent;
     border-radius: $bdrs-rounded;
-    box-shadow: -$sz-atom-spinner-oval $sz-atom-spinner-oval
-        $c-atom-spinner-loader-accent,
-      0 $sz-atom-spinner $c-atom-spinner-loader-primary;
-    display: none;
-    height: $sz-atom-spinner-oval;
     left: 0;
     margin: 0 auto;
     position: absolute;
     right: 0;
-    text-indent: 100%;
-    top: calc(50% - #{$sz-atom-spinner});
-    width: $sz-atom-spinner-oval;
     z-index: $z-atom-spinner-loader;
+  }
+}
+
+@each $name, $type in $atom-spinner-overlay-types {
+  $loaderColorOne: map-get($type, loaderColorOne);
+  $loaderColorTwo: map-get($type, loaderColorTwo);
+
+  @each $sizeName, $sizes in $atom-spinner-sizes {
+    $size: map-get($sizes, size);
+
+    @include animation-atom-spinner(
+      $name,
+      $loaderColorOne,
+      $loaderColorTwo,
+      $sizeName,
+      $size
+    );
+
+    .sui-AtomSpinner--#{'' + $name}-#{'' + $sizeName} {
+      $size: map-get($sizes, size);
+      $totalSize: $size * 2;
+
+      & .sui-AtomSpinner-loader {
+        animation: atom-spinner-#{$name}-#{$sizeName} 1.5s ease-in-out infinite;
+        height: $size;
+        top: calc(50% - #{$totalSize});
+        width: $size;
+      }
+    }
   }
 }

@@ -1,15 +1,15 @@
 {
   "name": "@s-ui/react-molecule-checkbox-field",
-  "version": "2.12.0",
+  "version": "5.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "rimraf ./lib && npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
-    "@s-ui/react-atom-checkbox": "2",
+    "@s-ui/react-atom-checkbox": "3",
     "@s-ui/react-molecule-field": "1"
   },
   "peerDependencies": {

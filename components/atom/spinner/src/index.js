@@ -1,84 +1,110 @@
-import {useState, useEffect, useRef} from 'react'
+import {forwardRef, useEffect, useRef, useState} from 'react'
+
 import PropTypes from 'prop-types'
-import cx from 'classnames'
-import SUILoader from './SUILoader'
 
-const TYPES = {
-  FULL: 'full',
-  SECTION: 'section'
-}
+import Injector from '@s-ui/react-primitive-injector'
 
-const DELAY = 500 // ms
-const BASE_CLASS = 'sui-AtomSpinner'
-const CLASS_FULL = `${BASE_CLASS}--fullPage`
-const CLASS_NO_BACKGROUND = `${BASE_CLASS}--noBackground`
+import SUILoader from './SUILoader/index.js'
+import DefaultSpinner from './DefaultSpinner.js'
+import {
+  addParentClass,
+  DELAY,
+  getParentClassName,
+  OVERLAY_TYPES,
+  removeParentClass,
+  SIZES,
+  TYPES
+} from './settings.js'
 
-const getParentClassName = ({type, noBackground}) =>
-  cx({
-    [BASE_CLASS]: type === TYPES.SECTION,
-    [CLASS_FULL]: type === TYPES.FULL,
-    [CLASS_NO_BACKGROUND]: noBackground
-  })
+const AtomSpinner = forwardRef(
+  (
+    {
+      children = <DefaultSpinner />,
+      isDelayed: isDelayedFromProps = false,
+      loader = <SUILoader />,
+      overlayType = OVERLAY_TYPES.LIGHT,
+      size = SIZES.MEDIUM,
+      type = TYPES.SECTION
+    },
+    forwardedRef
+  ) => {
+    const [isDelayed, setIsDelayed] = useState(isDelayedFromProps)
+    const refSpinner = useRef()
 
-const addParentClass = parentNodeClassList => parentClassName =>
-  parentNodeClassList.add(...parentClassName.split(' '))
-const removeParentClass = parentNodeClassList => parentClassName =>
-  parentNodeClassList.remove(...parentClassName.split(' '))
+    useEffect(() => {
+      const parentClassName = getParentClassName({
+        overlayType,
+        size,
+        type
+      })
+      const parentNodeClassList = refSpinner.current.parentNode.classList
 
-const AtomSpinner = ({
-  delayed: delayedFromProps,
-  loader,
-  type,
-  noBackground
-}) => {
-  const [delayed, setDelayed] = useState(delayedFromProps)
-  const refSpinner = useRef()
+      if (!isDelayed) addParentClass(parentNodeClassList)(parentClassName)
 
-  useEffect(() => {
-    const parentClassName = getParentClassName({type, noBackground})
-    const parentNodeClassList = refSpinner.current.parentNode.classList
+      const timer = setTimeout(() => {
+        setIsDelayed(false)
+        addParentClass(parentNodeClassList)(parentClassName)
+      }, DELAY)
 
-    if (!delayed) addParentClass(parentNodeClassList)(parentClassName)
+      return () => {
+        clearTimeout(timer)
+        removeParentClass(parentNodeClassList)(parentClassName)
+      }
+    }, [isDelayed, overlayType, size, type])
 
-    const timer = setTimeout(() => {
-      setDelayed(false)
-      addParentClass(parentNodeClassList)(parentClassName)
-    }, DELAY)
-
-    return () => {
-      clearTimeout(timer)
-      removeParentClass(parentNodeClassList)(parentClassName)
-    }
-  }, [delayed, noBackground, type])
-
-  return <span ref={refSpinner}>{!delayed ? loader : <noscript />}</span>
-}
+    return (
+      <div ref={refSpinner} className="sui-AtomSpinner-content">
+        <Injector
+          isDelayed={isDelayed}
+          loader={loader}
+          overlayType={overlayType}
+          ref={forwardedRef}
+          size={size}
+          type={type}
+        >
+          {children}
+        </Injector>
+      </div>
+    )
+  }
+)
 
 AtomSpinner.displayName = 'AtomSpinner'
 
 AtomSpinner.propTypes = {
+  /** Children with injected props */
+  children: PropTypes.elementType,
+
+  /** Makes the spinner appear after 500 ms */
+  isDelayed: PropTypes.bool,
+
+  /** Loader to be shown in the middle of the container */
+  loader: PropTypes.elementType,
+
+  /**
+   * Possible options:
+   * 'ACCENT'
+   * 'DARK'
+   * 'LIGHT'
+   * 'PRIMARY'
+   * 'TRANSPARENT'
+   */
+  overlayType: PropTypes.oneOf(Object.values(OVERLAY_TYPES)),
+
+  /**
+   * Possible options:
+   * 'SMALL' and 'MEDIUM'
+   */
+  size: PropTypes.oneOf(Object.values(SIZES)),
+
   /**
    * Possible options:
    * 'FULL': The spinner fits the whole page container
    * 'SECTION': The spinner fits a specific site component
    */
-  type: PropTypes.oneOf(Object.values(TYPES)),
-
-  /** Makes the spinner appear after 500 ms */
-  delayed: PropTypes.bool,
-
-  /** No background */
-  noBackground: PropTypes.bool,
-
-  /** Loader to be shown in the middle of the container */
-  loader: PropTypes.object
+  type: PropTypes.oneOf(Object.values(TYPES))
 }
 
-AtomSpinner.defaultProps = {
-  delayed: false,
-  type: TYPES.SECTION,
-  loader: <SUILoader />
-}
+export {OVERLAY_TYPES as atomSpinnerOverlayTypes, TYPES as atomSpinnerTypes}
 
 export default AtomSpinner
-export {TYPES as AtomSpinnerTypes}

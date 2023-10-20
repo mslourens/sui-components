@@ -1,5 +1,62 @@
 # CHANGELOG
 
+# 1.18.0 (2022-07-26)
+
+
+### Features
+
+* **components/atom/icon:** props spreading atom icon ([00f4415](https://github.com/SUI-Components/sui-components/commit/00f4415f28c5a73a012da8f512037a5cd31d8ba1))
+
+
+
+# 1.17.0 (2022-06-23)
+
+
+### Features
+
+* **components/atom/icon:** polymorphism style reset ([2b7ac7b](https://github.com/SUI-Components/sui-components/commit/2b7ac7bf12e34bf5fe48592f2503c487f3e7f802))
+
+
+
+# 1.16.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/icon:** add polymorphism to teh icon ([b3a5818](https://github.com/SUI-Components/sui-components/commit/b3a581878160ed1becb5f85da3497130098d2375))
+* **components/atom/icon:** Avoid publishing huge CHANGELOG.md ([2e507eb](https://github.com/SUI-Components/sui-components/commit/2e507eb33277b78b2d4efa6b26375024d26adb9d))
+* **components/atom/icon:** polymorphic icon ([53e8d84](https://github.com/SUI-Components/sui-components/commit/53e8d84d0f572d45b6df60390d0c11c34c7fd30d))
+* **components/atom/icon:** resolve conflicts ([afea3ec](https://github.com/SUI-Components/sui-components/commit/afea3ecc9dbddba2dd68fc9089c36d24ccfc88e1))
+
+
+
+# 1.14.0 (2022-03-09)
+
+
+### Features
+
+* **components/atom/icon:** allow to inherit display to the main class ([af0a442](https://github.com/SUI-Components/sui-components/commit/af0a442983f7acecc60d56189f3429fda9ceebff))
+
+
+
+# 1.13.0 (2022-02-01)
+
+
+### Bug Fixes
+
+* **components/atom/icon:** declare concrete css colors rule ([7c9410e](https://github.com/SUI-Components/sui-components/commit/7c9410e14023507ae38634c3e29bb64b9d5c7699))
+
+
+
+# 1.12.0 (2022-02-01)
+
+
+### Bug Fixes
+
+* **components/atom/icon:** infra ([7b630f8](https://github.com/SUI-Components/sui-components/commit/7b630f8eeb5933d24ea9bb4953754e205aa2e1c1))
+
+
+
 # 1.11.0 (2021-09-13)
 
 

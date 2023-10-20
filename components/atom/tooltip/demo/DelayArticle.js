@@ -1,16 +1,19 @@
 import {useState} from 'react'
-import {
-  H2,
-  Paragraph,
-  Code,
-  Article,
-  Grid,
-  Cell,
-  Label,
-  Input
-} from '@s-ui/documentation-library'
+
 import PropTypes from 'prop-types'
-import AtomTooltip, {AtomTooltipTriggers} from '../src'
+
+import {
+  Article,
+  Cell,
+  Code,
+  Grid,
+  H2,
+  Input,
+  Label,
+  Paragraph
+} from '@s-ui/documentation-library'
+
+import AtomTooltip, {AtomTooltipTriggers} from '../src/index.js'
 
 const DelayArticle = ({className, trigger}) => {
   const [all, setAll] = useState(0)

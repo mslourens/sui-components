@@ -1,5 +1,13 @@
-export default function ButtonSpinnerIcon(props) {
-  const baseClassName = 'sui-AtomButtonSpinnerIcon'
+import PropTypes from 'prop-types'
 
-  return <div {...props} className={baseClassName} />
+import {BASE_CLASSNAME} from './config.js'
+
+const ButtonSpinnerIcon = ({role = 'status', ...props}) => {
+  return <div role="status" {...props} className={BASE_CLASSNAME} />
 }
+ButtonSpinnerIcon.propTypes = {
+  role: PropTypes.string
+}
+ButtonSpinnerIcon.displayName = 'AtomButtonSpinnerIcon'
+
+export default ButtonSpinnerIcon

@@ -1,84 +1,89 @@
-import {useState, forwardRef} from 'react'
+import {forwardRef, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
-import {getTarget} from '@s-ui/js/lib/react'
 
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-import useMount from '@s-ui/react-hooks/lib/useMount'
-import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
-
-import {filterValidFiles, prepareFiles, loadInitialPhotos} from './fileTools'
-
-import DragNotification from './DragNotification'
-import DragState from './DragState'
-import InitialState from './InitialState'
-import PhotosPreview from './PhotosPreview'
-
+import {getTarget} from '@s-ui/js/lib/react'
 import {ATOM_ICON_SIZES} from '@s-ui/react-atom-icon'
+import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
+import useMount from '@s-ui/react-hooks/lib/useMount'
 
+import DragNotification from './DragNotification/index.js'
+import DragState from './DragState/index.js'
+import EmptyView from './EmptyView/index.js'
+import PhotosPreview from './PhotosPreview/index.js'
 import {
+  ACTIONS,
   BASE_CLASS_NAME,
-  DROPZONE_CLASS_NAME,
   DEFAULT_DRAG_DELAY_TIME,
-  DEFAULT_IMAGE_ROTATION_DEGREES,
+  DEFAULT_FILE_TYPES_ACCEPTED,
   DEFAULT_IMAGE_ASPECT_RATIO,
+  DEFAULT_IMAGE_ROTATION_DEGREES,
+  DEFAULT_MAX_FILE_SIZE_ACCEPTED,
   DEFAULT_MAX_IMAGE_HEIGHT,
   DEFAULT_MAX_IMAGE_WIDTH,
-  DEFAULT_FILE_TYPES_ACCEPTED,
-  DEFAULT_MAX_FILE_SIZE_ACCEPTED,
   DEFAULT_NOTIFICATION_ERROR,
   DRAG_STATE_STATUS_REJECTED,
-  ROTATION_DIRECTION,
+  DROPZONE_CLASS_NAME,
   REJECT_FILES_REASONS,
-  ACTIONS
-} from './config'
+  ROTATION_DIRECTION
+} from './config.js'
+import {filterValidFiles, loadInitialPhotos, prepareFiles} from './fileTools.js'
 
 const noop = () => {}
 
 const MoleculePhotoUploader = forwardRef(
   (
     {
-      acceptedFileTypes = DEFAULT_FILE_TYPES_ACCEPTED,
       acceptedFileMaxSize = DEFAULT_MAX_FILE_SIZE_ACCEPTED,
-      allowUploadDuplicatedPhotos = false,
+      acceptedFileTypes = DEFAULT_FILE_TYPES_ACCEPTED,
       addMorePhotosIcon,
       addPhotoButtonColor,
       addPhotoButtonDesign,
-      addPhotoTextButton,
+      addPhotoButtonShape,
       addPhotoButtonSize,
+      addPhotoTextButton,
       addPhotoTextSkeleton,
+      allowUploadDuplicatedPhotos = false,
       callbackPhotosRejected = noop,
       callbackPhotosUploaded = noop,
       callbackUploadPhoto,
+      content,
       deleteIcon,
       disableScrollToBottom = false,
       dragDelay = DEFAULT_DRAG_DELAY_TIME,
+      dragPhotoDividerTextInitialContent,
       dragPhotosIcon = noop,
       dragPhotoTextInitialContent,
-      dragPhotoDividerTextInitialContent,
       dropPhotosHereText,
       errorCorruptedPhotoUploadedText,
       errorFileExcededMaxSizeText,
       errorFormatPhotoUploadedText,
       errorInitialPhotoDownloadErrorText,
+      errorSaveImageEndpoint,
       infoIcon = noop,
       initialPhotos = [],
-      limitPhotosUploadedText,
       limitPhotosUploadedNotification,
+      limitPhotosUploadedText,
+      onLimitPhotosUploaded,
       mainPhotoLabel,
       maxImageHeight = DEFAULT_MAX_IMAGE_HEIGHT,
-      maxPhotos,
       maxImageWidth = DEFAULT_MAX_IMAGE_WIDTH,
+      maxPhotos,
       notificationErrorFormatPhotoUploaded,
-      outputImageAspectRatioDisabled = false,
+      onDropFiles = noop,
+      onFileDialogOpen = noop,
+      onEmptyViewClick = noop,
       outputImageAspectRatio = DEFAULT_IMAGE_ASPECT_RATIO,
+      outputImageAspectRatioDisabled = false,
       rejectPhotosIcon,
       retryIcon,
       rotateIcon,
       rotationDirection = ROTATION_DIRECTION.counterclockwise,
+      thumbIconSize,
       uploadingPhotosText,
-      thumbIconSize
+      isClickable = true
     },
     forwardedRef
   ) => {
@@ -119,25 +124,10 @@ const MoleculePhotoUploader = forwardRef(
 
     const _callbackPhotosUploaded = (list, ...rest) => {
       const blobsArray = list.reduce((array, currentFile) => {
-        const {
-          blob,
-          url,
-          isNew,
-          isModified,
-          hasErrors,
-          file,
-          preview,
-          id
-        } = currentFile
+        const {originalBase64, preview, ...restOfCurrentFile} = currentFile
         array.push({
-          blob,
-          url,
-          isNew,
-          isModified,
-          hasErrors,
-          file,
           previewUrl: preview,
-          id
+          ...restOfCurrentFile
         })
         return [...array]
       }, [])
@@ -157,15 +147,24 @@ const MoleculePhotoUploader = forwardRef(
       callbackPhotosRejected(rejectedFilesWithReason)
     }
 
+    const _onLimitPhotosUpload = () => {
+      if (onLimitPhotosUploaded) {
+        onLimitPhotosUploaded()
+        return
+      }
+
+      setNotificationError({
+        isError: true,
+        text: limitPhotosUploadedNotification
+      })
+    }
+
     const _onDropAccepted = acceptedFiles => {
       setNotificationError(DEFAULT_NOTIFICATION_ERROR)
       if (isLoading) return false
 
       if (isPhotoUploaderFully()) {
-        setNotificationError({
-          isError: true,
-          text: limitPhotosUploadedNotification
-        })
+        _onLimitPhotosUpload()
         _scrollToBottom()
         return false
       }
@@ -185,10 +184,7 @@ const MoleculePhotoUploader = forwardRef(
           _scrollToBottom()
         },
         setMaxPhotosError: () => {
-          setNotificationError({
-            isError: true,
-            text: limitPhotosUploadedNotification
-          })
+          _onLimitPhotosUpload()
         },
         allowUploadDuplicatedPhotos,
         maxPhotos
@@ -205,6 +201,7 @@ const MoleculePhotoUploader = forwardRef(
         newFiles: validFiles,
         defaultFormatToBase64Options: DEFAULT_FORMAT_TO_BASE_64_OPTIONS,
         errorCorruptedPhotoUploadedText,
+        errorSaveImageEndpoint,
         setCorruptedFileError: errorText => {
           setNotificationError({
             isError: true,
@@ -227,9 +224,11 @@ const MoleculePhotoUploader = forwardRef(
       isDragReject,
       inputRef: dropzoneInputRef
     } = useDropzone({
-      noClick: isPhotoUploaderFully(),
+      noClick: isPhotoUploaderFully() || !isClickable,
       noKeyboard: isPhotoUploaderFully(),
       accept: acceptedFileTypes,
+      onDrop: onDropFiles,
+      onFileDialogOpen,
       onDropAccepted: acceptedFiles => _onDropAccepted(acceptedFiles),
       onDropRejected: rejectedFiles => _onDropRejected(rejectedFiles)
     })
@@ -264,10 +263,12 @@ const MoleculePhotoUploader = forwardRef(
           <div {...getRootProps({className: dropzoneClassName})}>
             <input {...getInputProps()} ref={inputRef} />
             {isPhotoUploaderEmpty && !isDragActive && (
-              <InitialState
+              <EmptyView
+                onClick={onEmptyViewClick}
                 buttonColor={addPhotoButtonColor}
                 buttonDesign={addPhotoButtonDesign}
                 buttonText={addPhotoTextButton}
+                buttonShape={addPhotoButtonShape}
                 buttonSize={addPhotoButtonSize}
                 icon={dragPhotosIcon()}
                 text={dragPhotoTextInitialContent}
@@ -281,6 +282,7 @@ const MoleculePhotoUploader = forwardRef(
                 addMorePhotosIcon={addMorePhotosIcon}
                 addPhotoTextSkeleton={addPhotoTextSkeleton}
                 callbackUploadPhoto={callbackUploadPhoto}
+                content={content}
                 defaultFormatToBase64Options={DEFAULT_FORMAT_TO_BASE_64_OPTIONS}
                 deleteIcon={deleteIcon}
                 dragDelay={dragDelay}
@@ -359,12 +361,13 @@ MoleculePhotoUploader.propTypes = {
   addMorePhotosIcon: PropTypes.func.isRequired,
 
   /** Button color of the initial state button */
-
   addPhotoButtonColor: PropTypes.string,
 
   /** Button design of the initial state button */
-
   addPhotoButtonDesign: PropTypes.string,
+
+  /** Button shape of the initial state button */
+  addPhotoButtonShape: PropTypes.string,
 
   /** Button size of the initial state button */
   addPhotoButtonSize: PropTypes.string,
@@ -393,6 +396,9 @@ MoleculePhotoUploader.propTypes = {
    * If the callback returns the new URL it will be added to the image.
    */
   callbackUploadPhoto: PropTypes.func,
+
+  /** Component to render inside content space */
+  content: PropTypes.elementType,
 
   /** Icon placed in the button that deletes image */
   deleteIcon: PropTypes.func.isRequired,
@@ -434,6 +440,9 @@ MoleculePhotoUploader.propTypes = {
   /** Text showed at error notification when some file of the initialPhotos fails */
   errorInitialPhotoDownloadErrorText: PropTypes.string.isRequired,
 
+  /** Text showed at error notification when the saveImages endpoint returns an error  */
+  errorSaveImageEndpoint: PropTypes.string,
+
   /** Info icon */
   infoIcon: PropTypes.func.isRequired,
 
@@ -445,6 +454,9 @@ MoleculePhotoUploader.propTypes = {
 
   /** Text showed at error notification when the user drops more images than the max allowed at maxPhotos */
   limitPhotosUploadedNotification: PropTypes.string.isRequired,
+
+  /** Function called when the user drops more images than the max allowed at maxPhotos. If defined no notification will be displayed */
+  onLimitPhotosUploaded: PropTypes.func,
 
   /**
    *  Text placed at badge of the preview first item.
@@ -476,6 +488,12 @@ MoleculePhotoUploader.propTypes = {
   /** Text showed at error notification when a file with not allowed MIME filetype is dropped */
   notificationErrorFormatPhotoUploaded: PropTypes.string.isRequired,
 
+  /** Func to be executed when files, valids or not, are dropped */
+  onDropFiles: PropTypes.func,
+
+  /** Func to be executed when file dialog is opened */
+  onFileDialogOpen: PropTypes.func,
+
   /**
    *  Ratio to crop the dropped images.
    *  Default value: 4/3
@@ -505,7 +523,13 @@ MoleculePhotoUploader.propTypes = {
   uploadingPhotosText: PropTypes.string.isRequired,
 
   /** Icon size inside action buttons in thumb card */
-  thumbIconSize: PropTypes.oneOf(Object.keys(ATOM_ICON_SIZES))
+  thumbIconSize: PropTypes.oneOf(Object.keys(ATOM_ICON_SIZES)),
+
+  /** Func to be executed when dropzone area is clicked */
+  onEmptyViewClick: PropTypes.func,
+
+  /** A boolean to enable click in dropzone area */
+  isClickable: PropTypes.bool
 }
 
 export default MoleculePhotoUploader

@@ -1,12 +1,14 @@
-import {Children, cloneElement} from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-const BASE_CLASS = `sui-MoleculeSelect-inputSelect`
-const CLASS_CONTAINER = `${BASE_CLASS}-container`
-const CLASS_ARROW = `${BASE_CLASS}-arrow`
-const CLASS_ARROW_DOWN = `${CLASS_ARROW}--down`
-const CLASS_ARROW_UP = `${CLASS_ARROW}--up`
+import Injector from '@s-ui/react-primitive-injector'
+
+import {
+  CLASS_ARROW,
+  CLASS_ARROW_DOWN,
+  CLASS_ARROW_UP,
+  CLASS_CONTAINER
+} from './config.js'
 
 const MoleculeInputSelect = props => {
   const {onClick, iconArrowDown: iconArrow, isOpen, disabled, children} = props
@@ -16,14 +18,9 @@ const MoleculeInputSelect = props => {
     [CLASS_ARROW_UP]: isOpen
   })
 
-  const extendedChildren = () =>
-    Children.toArray(children)
-      .filter(Boolean)
-      .map((child, index) => cloneElement(child, props))
-
   return (
     <div className={CLASS_CONTAINER} onClick={!disabled ? onClick : null}>
-      {extendedChildren()}
+      <Injector {...props}>{children}</Injector>
       <span className={classNames}>{iconArrow}</span>
     </div>
   )

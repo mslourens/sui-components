@@ -1,8 +1,9 @@
 {
-  "name": "atom-switch-demo",
-  "version": "1.2.0",
+  "name": "@s-ui/react-atom-switch-demo",
+  "version": "1.3.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

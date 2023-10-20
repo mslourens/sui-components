@@ -1,8 +1,9 @@
 {
-  "name": "organism-nested-checkboxes-demo",
+  "name": "@s-ui/react-organism-nested-checkboxes-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@s-ui/hoc": "1",
-    "@s-ui/react-atom-icon": "1"
+    "@s-ui/react-atom-icon": "1",
+    "react-json-view": "1.21.3"
   }
 }

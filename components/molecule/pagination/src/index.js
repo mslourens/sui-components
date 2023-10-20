@@ -1,49 +1,20 @@
 import PropTypes from 'prop-types'
-import AtomButton, {atomButtonSizes} from '@s-ui/react-atom-button'
-import * as pagination from './helpers/pagination'
+
+import AtomButton, {
+  atomButtonColors,
+  atomButtonDesigns,
+  atomButtonShapes,
+  atomButtonSizes
+} from '@s-ui/react-atom-button'
+
 import {
   isValidPage,
-  isValidTotalPages,
-  isValidShowPages
-} from './customPropTypes'
-
-const BASE_CLASS = 'sui-MoleculePagination'
-const PAGE_NUMBER_HOLDER = '%{pageNumber}'
-const DIVIDER = '···'
-
-const PageButton = ({onSelectPage, page, design, color, ...props}) => {
-  const _onSelectPage = e => {
-    onSelectPage(e, {page})
-  }
-  return (
-    <li className={`${BASE_CLASS}-item`}>
-      <AtomButton
-        onClick={_onSelectPage}
-        design={design}
-        color={color}
-        {...props}
-      />
-    </li>
-  )
-}
-
-PageButton.propTypes = {
-  /** Callback that will be called with (event, page) on each page button click */
-  onSelectPage: PropTypes.func,
-  /** Current page selected */
-  page: isValidPage,
-  /** Design to be used for the page button. Design types 'solid', 'outline' or 'flat' */
-  design: PropTypes.string,
-  /** Button color */
-  color: PropTypes.string,
-  /** Factory used to create navigation links */
-  linkFactory: PropTypes.func
-}
-
-const defaultCreateUrl = ({pageNumber, urlPattern}) =>
-  urlPattern.replace(PAGE_NUMBER_HOLDER, pageNumber)
-
-const noop = () => {}
+  isValidShowPages,
+  isValidTotalPages
+} from './customPropTypes/index.js'
+import * as pagination from './helpers/pagination/index.js'
+import PageButton from './PageButton.js'
+import {BASE_CLASS, defaultCreateUrl, DIVIDER, noop} from './settings.js'
 
 const MoleculePagination = ({
   onSelectNext = noop,
@@ -58,12 +29,13 @@ const MoleculePagination = ({
   nextButtonIcon: NextButtonIcon,
   compressed = false,
   hideDisabled,
-  selectedPageButtonDesign = 'solid',
+  selectedPageButtonDesign = atomButtonDesigns.SOLID,
   showEdges,
-  nonSelectedPageButtonDesign = 'flat',
-  prevButtonDesign = 'flat',
-  nextButtonDesign = 'flat',
+  nonSelectedPageButtonDesign = atomButtonDesigns.FLAT,
+  prevButtonDesign = atomButtonDesigns.FLAT,
+  nextButtonDesign = atomButtonDesigns.FLAT,
   selectedPageButtonColor = 'primary',
+  shape,
   size,
   nonSelectedPageButtonColor = 'primary',
   prevButtonColor = 'primary',
@@ -114,6 +86,7 @@ const MoleculePagination = ({
             design={prevButtonDesign}
             color={prevButtonColor}
             disabled={!prevPage}
+            shape={shape}
             size={size}
             leftIcon={PrevButtonIcon && <PrevButtonIcon />}
             {...linkProps(prevPage)}
@@ -128,6 +101,7 @@ const MoleculePagination = ({
           design={selectedPageButtonDesign}
           color={selectedPageButtonColor}
           onSelectPage={onSelectPage}
+          shape={shape}
           size={size}
           {...linkProps(page)}
         >
@@ -150,6 +124,7 @@ const MoleculePagination = ({
                     : nonSelectedPageButtonColor
                 }
                 onSelectPage={onSelectPage}
+                shape={shape}
                 size={size}
                 {...linkProps(FIRST_PAGE)}
               >
@@ -175,6 +150,7 @@ const MoleculePagination = ({
                   : nonSelectedPageButtonColor
               }
               onSelectPage={onSelectPage}
+              shape={shape}
               size={size}
               {...linkProps(pageRange)}
             >
@@ -201,6 +177,7 @@ const MoleculePagination = ({
                       : nonSelectedPageButtonColor
                   }
                   onSelectPage={onSelectPage}
+                  shape={shape}
                   size={size}
                   {...linkProps(totalPages)}
                 >
@@ -217,6 +194,7 @@ const MoleculePagination = ({
             design={nextButtonDesign}
             color={nextButtonColor}
             disabled={!nextPage}
+            shape={shape}
             size={size}
             rightIcon={NextButtonIcon && <NextButtonIcon />}
             {...linkProps(nextPage)}
@@ -233,13 +211,16 @@ MoleculePagination.displayName = 'MoleculePagination'
 
 MoleculePagination.propTypes = {
   /** Total number of pages */
-  totalPages: isValidTotalPages,
+  totalPages: isValidTotalPages.isRequired,
 
   /** Current page selected */
   page: isValidPage,
 
   /** Number of pages to be displayed in the range (10 by default) */
   showPages: isValidShowPages,
+
+  /** Shape of buttons */
+  shape: PropTypes.oneOf(Object.values(atomButtonShapes)),
 
   /** Size of buttons */
   size: PropTypes.oneOf(Object.values(atomButtonSizes)),
@@ -284,19 +265,19 @@ MoleculePagination.propTypes = {
   nextButtonDesign: PropTypes.string,
 
   /** Color to be used for the selected page. */
-  selectedPageButtonColor: PropTypes.string,
+  selectedPageButtonColor: PropTypes.oneOf(atomButtonColors),
 
   /** Makes first and last always visible. */
   showEdges: PropTypes.bool,
 
   /** Color to be used for the selected page. */
-  nonSelectedPageButtonColor: PropTypes.string,
+  nonSelectedPageButtonColor: PropTypes.oneOf(atomButtonColors),
 
   /** Color to be used for the previous button if its visible. */
-  prevButtonColor: PropTypes.string,
+  prevButtonColor: PropTypes.oneOf(atomButtonColors),
 
   /** Color to be used for the next button if its visible. */
-  nextButtonColor: PropTypes.string,
+  nextButtonColor: PropTypes.oneOf(atomButtonColors),
 
   /** Factory used to create navigation links */
   linkFactory: PropTypes.func,
@@ -309,6 +290,12 @@ MoleculePagination.propTypes = {
 
   /** tells wether to render links as anchor tags or as buttons */
   renderLinks: PropTypes.bool
+}
+
+export {
+  atomButtonDesigns as moleculePaginationDesigns,
+  atomButtonShapes as moleculePaginationShapes,
+  atomButtonSizes as moleculePaginationSizes
 }
 
 export default MoleculePagination

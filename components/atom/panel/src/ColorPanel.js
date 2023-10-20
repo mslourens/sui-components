@@ -1,27 +1,42 @@
 import PropTypes from 'prop-types'
-import cx from 'classnames'
-import {ALPHA, COLORS, BORDER_RADIUS, ELEVATION} from './constants'
 
-const getClassNames = function({color, alpha, rounded, elevation}) {
-  const BASE_CLASS = 'sui-atom-panel'
-  const COLOR_PANEL_CLASS = 'sui-atom-panel-color'
-  return cx(
-    BASE_CLASS,
-    rounded !== BORDER_RADIUS.NONE && `${BASE_CLASS}--rounded-${rounded}`,
-    COLOR_PANEL_CLASS,
-    color && `${COLOR_PANEL_CLASS}--${color}-${alpha}`,
-    elevation !== ELEVATION.NONE && `${BASE_CLASS}--elevation-${elevation}`
+import PolymorphicElement from '@s-ui/react-primitive-polymorphic-element'
+
+import {
+  ALPHA,
+  BORDER_RADIUS,
+  COLORS,
+  ELEVATION,
+  getClassNames
+} from './constants.js'
+
+const ColorPanel = function ({
+  as = 'div',
+  alpha = ALPHA.CONTRAST,
+  color = COLORS.DEFAULT,
+  children,
+  id,
+  ...otherProps
+}) {
+  return (
+    <PolymorphicElement
+      as={as}
+      id={id}
+      className={getClassNames({alpha, color, ...otherProps})}
+    >
+      {children}
+    </PolymorphicElement>
   )
-}
-
-const ColorPanel = function({children, ...props}) {
-  return <div className={getClassNames(props)}>{children}</div>
 }
 
 ColorPanel.displayName = 'ColorPanel'
 
 ColorPanel.propTypes = {
+  as: PropTypes.elementType,
+  id: PropTypes.string,
   children: PropTypes.node,
+  isFullWidth: PropTypes.bool,
+  isFullHeight: PropTypes.bool,
   color: PropTypes.oneOf(Object.values(COLORS)),
   alpha: PropTypes.oneOf(Object.values(ALPHA)),
   rounded: PropTypes.oneOf(Object.values(BORDER_RADIUS)),

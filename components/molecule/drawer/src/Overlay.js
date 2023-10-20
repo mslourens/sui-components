@@ -1,5 +1,10 @@
+import {forwardRef, useEffect} from 'react'
+
 import PropTypes from 'prop-types'
-import {useEffect, forwardRef} from 'react'
+
+import {BASE_CLASS} from './settings.js'
+
+const DRAWER_OVERLAY_CLASS = `${BASE_CLASS}-overlay`
 
 const DrawerOverlay = forwardRef(
   ({isVisible, target, children, ...props}, forwardedRef) => {
@@ -9,12 +14,9 @@ const DrawerOverlay = forwardRef(
         target.current.style.overflow = 'hidden'
       }
     }, [target])
+
     return isVisible ? (
-      <div
-        ref={forwardedRef}
-        className="react-MoleculeDrawer-overlay"
-        {...props}
-      >
+      <div ref={forwardedRef} className={DRAWER_OVERLAY_CLASS} {...props}>
         {children}
       </div>
     ) : null

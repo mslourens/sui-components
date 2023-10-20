@@ -1,14 +1,16 @@
-import {
-  H2,
-  Paragraph,
-  Article,
-  Grid,
-  Cell,
-  Label,
-  Code
-} from '@s-ui/documentation-library'
 import PropTypes from 'prop-types'
-import AtomTooltip, {AtomTooltipTriggers} from '../src'
+
+import {
+  Article,
+  Cell,
+  Code,
+  Grid,
+  H2,
+  Label,
+  Paragraph
+} from '@s-ui/documentation-library'
+
+import AtomTooltip, {AtomTooltipTriggers} from '../src/index.js'
 
 const IsArrowedArticle = ({className, trigger}) => {
   return (

@@ -1,4 +1,5 @@
 import {useRef} from 'react'
+
 import PropTypes from 'prop-types'
 
 import MoleculeField from '@s-ui/react-molecule-field'
@@ -22,6 +23,7 @@ const MoleculeSelectField = ({
   id,
   inline,
   label,
+  nodeLabel,
   successText,
   alertText,
   onChange: handleChange,
@@ -43,6 +45,7 @@ const MoleculeSelectField = ({
       helpText={helpText}
       inline={inline}
       label={label}
+      nodeLabel={nodeLabel}
       name={id}
       onChange={handleChange}
       onClickLabel={handleClick}
@@ -82,6 +85,9 @@ MoleculeSelectField.propTypes = {
 
   /** Text to be displayed as label */
   label: PropTypes.string.isRequired,
+
+  /** React node to be displayed as label if there is not a label */
+  nodeLabel: PropTypes.element,
 
   /* onChange callback */
   onChange: PropTypes.func,

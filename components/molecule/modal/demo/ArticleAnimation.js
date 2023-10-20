@@ -1,26 +1,31 @@
-import PropTypes from 'prop-types'
-import {
-  Article,
-  H2,
-  Paragraph,
-  Code,
-  Anchor,
-  RadioButton,
-  RadioButtonGroup,
-  Button,
-  Label,
-  Grid,
-  Cell
-} from '@s-ui/documentation-library'
 import {useState} from 'react'
-import MoleculeModalWithAnimation, {MoleculeModalWithoutAnimation} from '../lib'
+
+import PropTypes from 'prop-types'
+
+import {
+  Anchor,
+  Article,
+  Button,
+  Cell,
+  Code,
+  Grid,
+  H2,
+  Label,
+  Paragraph,
+  RadioButton,
+  RadioButtonGroup
+} from '@s-ui/documentation-library'
+
+import MoleculeModalWithAnimation, {
+  MoleculeModalWithoutAnimation
+} from '../lib/index.js'
 
 const ArticleAnimation = ({className}) => {
   const [open, setOpen] = useState(false)
   const [animation, setAnimation] = useState(false)
 
-  const onChangeHandler = (_, value) => {
-    setOpen(value === undefined ? open : value)
+  const onChangeHandler = () => {
+    setOpen(!open)
   }
 
   const onCloseButtonHandler = () => {
@@ -56,13 +61,7 @@ const ArticleAnimation = ({className}) => {
       </Paragraph>
       <Grid cols={1} gutter={[8, 8]}>
         <Cell>
-          <Label>isOpen</Label>
-        </Cell>
-        <Cell>
-          <RadioButtonGroup value={open} onChange={onChangeHandler}>
-            <RadioButton value label="true" checked={open === true} />
-            <RadioButton value={false} label="false" checked={open === false} />
-          </RadioButtonGroup>
+          <Button onClick={onChangeHandler}>Open modal</Button>
         </Cell>
         <Cell>
           <Label>Animate</Label>

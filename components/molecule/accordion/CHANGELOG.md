@@ -1,5 +1,175 @@
 # CHANGELOG
 
+# 2.9.0 (2023-09-20)
+
+
+### Features
+
+* **components/molecule/accordion:** new tokens for molecule accordion header styles ([3fc4c0c](https://github.com/SUI-Components/sui-components/commit/3fc4c0c5089fca22ffbb8235e15ace3424f734b1))
+* **components/molecule/accordion:** preserve backwards compatibility ([2eca93e](https://github.com/SUI-Components/sui-components/commit/2eca93eb297eb6c95dac4b4fad0296740b2a7e65))
+
+
+
+# 2.8.0 (2022-12-15)
+
+
+### Bug Fixes
+
+* **component/molecule/accordion:** icon transition ([5e124b8](https://github.com/SUI-Components/sui-components/commit/5e124b89792dd864d7ea1a5c66650c3fa08bb857))
+* **component/molecule/accordion:** The arrows are upside down ([557f807](https://github.com/SUI-Components/sui-components/commit/557f807de7a807db4bd459e01ebee45fb1cda6ac))
+
+
+### Features
+
+* **components/molecule/accordion:** bump ([3f98b6c](https://github.com/SUI-Components/sui-components/commit/3f98b6cf7e594b42ddfc3604fc6a427a366d57b1))
+
+
+
+# 2.7.0 (2022-10-06)
+
+
+
+# 2.6.0 (2022-06-20)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** fix accordion styles ([e1c0647](https://github.com/SUI-Components/sui-components/commit/e1c0647c8456a01ce6a796a632aacd7e64b8aead))
+
+
+### Features
+
+* **components/molecule/accordion:** Avoid publishing huge CHANGELOG.md ([aca2075](https://github.com/SUI-Components/sui-components/commit/aca20755b7ce774fe071ede849faef1564f37d86))
+
+
+
+# 2.5.0 (2022-06-03)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** animationDuration on custom header icons and background color to ([972f807](https://github.com/SUI-Components/sui-components/commit/972f8076f810df30d54fea753376a1bafb977f89))
+
+
+
+# 2.4.0 (2022-06-01)
+
+
+### Features
+
+* **components/molecule/accordion:** add @s-ui/react-atom-polymorphic-element dependency ([72566a3](https://github.com/SUI-Components/sui-components/commit/72566a3856657c49ef85d49c2aa4a104cacd0e8f))
+* **components/molecule/accordion:** remove @s-ui/react-atom-polymorphic-element since we're using t ([2e24c54](https://github.com/SUI-Components/sui-components/commit/2e24c54a853f4cadce63aac26194c17b2b4dde03))
+
+
+
+# 2.3.0 (2022-05-26)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** fix icon alignment ([9a57074](https://github.com/SUI-Components/sui-components/commit/9a5707420c65b99633060d2731e0a172c6c580e8))
+
+
+
+# 2.2.0 (2022-05-25)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** performance ([ba48970](https://github.com/SUI-Components/sui-components/commit/ba4897058b217dedebd034b76b5f775f69907f2f))
+
+
+
+# 2.1.0 (2022-05-25)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** demo ([b47f3a8](https://github.com/SUI-Components/sui-components/commit/b47f3a8e81d440b58dc53b8c9afa80912cbf92ab))
+
+
+### Features
+
+* **components/molecule/accordion:** bump ([48e0f76](https://github.com/SUI-Components/sui-components/commit/48e0f765813d6eaa45dd07cf1195c721e0dd0524))
+* **components/molecule/accordion:** major canges for molecule/accordion ([b448e00](https://github.com/SUI-Components/sui-components/commit/b448e00c2eeb3522037997432480abcab142f943))
+
+
+
+# 1.21.0 (2022-05-24)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** revert 1.20 ([bddf11e](https://github.com/SUI-Components/sui-components/commit/bddf11e8769d683c3db992fe4acc2da241620c98))
+
+
+
+# 1.20.0 (2022-05-24)
+
+
+### Features
+
+* **components/molecule/accordion:** fully naked accordion view ([c4cda80](https://github.com/SUI-Components/sui-components/commit/c4cda8036cae1604eb11359d4a50abd46bd06f94))
+
+
+
+# 1.19.0 (2022-05-23)
+
+
+### Bug Fixes
+
+* **components/atom/panel:** background colors hotfix ([e3364a5](https://github.com/SUI-Components/sui-components/commit/e3364a53cfe0b5825ea6a5d4a30ae5de2688b667))
+
+
+### Features
+
+* **components/molecule/accordion:** accordion ([5c00365](https://github.com/SUI-Components/sui-components/commit/5c00365bc41dcec9f96fdc3b55d03ee1b0f697eb))
+* **components/molecule/accordion:** add props wip ([f89f3f6](https://github.com/SUI-Components/sui-components/commit/f89f3f62ab4decef3b636df116a6e10c628bd824))
+* **components/molecule/accordion:** major version final ([dee0e3b](https://github.com/SUI-Components/sui-components/commit/dee0e3be0216f3088136c8f6d4fecdfd5848ef33))
+* **components/molecule/accordion:** proptypes ([08315ec](https://github.com/SUI-Components/sui-components/commit/08315ec8070e3afba2e944cae3f2152452249212))
+* **components/molecule/accordion:** refactor major version ([21eae2a](https://github.com/SUI-Components/sui-components/commit/21eae2a19c31452a395fdd68832d503d52864050))
+* **components/molecule/accordion:** render children with React Children.map fn to handle single chi ([2b3cd84](https://github.com/SUI-Components/sui-components/commit/2b3cd84ce5554838c041516e4ae9f50c9d2df228))
+* **components/molecule/accordion:** tests ([f10cebe](https://github.com/SUI-Components/sui-components/commit/f10cebe4b4167ba9de691a54cd2ba9c59173eb88))
+* **components/molecule/accordion:** wip ([13f8849](https://github.com/SUI-Components/sui-components/commit/13f88491e0ba2bee24c3ab8162ffe74dbc3e6a40))
+* **components/molecule/accordion:** wip ([f7273af](https://github.com/SUI-Components/sui-components/commit/f7273afe62e29c76c605875a906fe60bcd335010))
+* **components/molecule/accordion:** wip ([7240662](https://github.com/SUI-Components/sui-components/commit/724066230d165cf64878b6b03fb689e76ff4f213))
+* **components/molecule/accordion:** wip ([3a426de](https://github.com/SUI-Components/sui-components/commit/3a426deffb87bd9bdaaf4ee252e8943a6e7e2635))
+* **components/molecule/accordion:** wip ([3e52d55](https://github.com/SUI-Components/sui-components/commit/3e52d55b1d747efb56f161c2b834c46f904a2a1d))
+* **components/molecule/accordion:** wip ([0673f0d](https://github.com/SUI-Components/sui-components/commit/0673f0dc4dc4867bc353d9f4f87d8aea94965770))
+* **components/molecule/accordion:** wip ([831f9a3](https://github.com/SUI-Components/sui-components/commit/831f9a31f1ffd354dec757ea915a93fb2d2f4d53))
+
+
+
+# 1.18.0 (2022-03-26)
+
+
+### Features
+
+* **components/molecule/accordion:** add new prop openedTabs to component, refactor component state ([7dc3d55](https://github.com/SUI-Components/sui-components/commit/7dc3d5532c149cd3fea8b4dd319681158cd35756))
+* **components/molecule/accordion:** improve component a11y by adding aria attributes ([e552334](https://github.com/SUI-Components/sui-components/commit/e55233480ab024252fc74cf1d34cdae47071b967))
+
+
+
+# 1.17.0 (2021-10-26)
+
+
+### Bug Fixes
+
+* **components/molecule/accordion:** fix autoHeight borders behaviour ([57d848c](https://github.com/SUI-Components/sui-components/commit/57d848cb6dcb5f997579a9ae1e40efae3b14304e)), closes [#1711](https://github.com/SUI-Components/sui-components/issues/1711)
+* **components/molecule/accordion:** fixed disappearing border on safari ([65a41de](https://github.com/SUI-Components/sui-components/commit/65a41dedf3d9a23d84e9b17b2f125caf5d09b04c))
+
+
+
+# 1.16.0 (2021-10-08)
+
+
+### Features
+
+* **components/molecule/accordion:** add custom title prop to add custom components as tab titles ([48f2e0d](https://github.com/SUI-Components/sui-components/commit/48f2e0dfb228ee3cb203a3179989ebfe64a17279))
+* **components/molecule/accordion:** refactor to use the same label prop in both cases: string or co ([3809c93](https://github.com/SUI-Components/sui-components/commit/3809c93b197aad4e4bf23f94a5ff78da94a34143))
+
+
+
 # 1.15.0 (2021-09-09)
 
 

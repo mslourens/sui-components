@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types'
-import ColorPanel from './ColorPanel'
+
+import ColorPanel from './ColorPanel.js'
+import {
+  ALPHA,
+  BORDER_RADIUS,
+  COLORS,
+  ELEVATION,
+  isImagePanel
+} from './constants.js'
 import ImagePanel, {
   HORIZONTAL_ALIGNMENTS,
   VERTICAL_ALIGNMENTS
-} from './ImagePanel'
-import {COLORS, ALPHA, BORDER_RADIUS, ELEVATION} from './constants'
+} from './ImagePanel.js'
 
-const isImagePanel = function({src}) {
-  return !!src
-}
-
-const AtomPanel = function({
-  alpha = ALPHA.CONTRAST,
-  color = COLORS.DEFAULT,
+const AtomPanel = function ({
+  alpha,
+  color,
   elevation = ELEVATION.NONE,
   horizontalAlign = HORIZONTAL_ALIGNMENTS.CENTER,
   rounded = BORDER_RADIUS.NONE,
@@ -72,7 +75,23 @@ AtomPanel.propTypes = {
   /**
    * Specify the opacity
    */
-  alpha: PropTypes.oneOf(Object.values(ALPHA))
+  alpha: PropTypes.oneOf(Object.values(ALPHA)),
+  /**
+   * Specify the HTML tag element or component to render in the DOM.
+   */
+  as: PropTypes.elementType,
+  /**
+   * Specify the element id
+   */
+  id: PropTypes.string,
+  /**
+   * Sets the element's width to 100%
+   */
+  isFullWidth: PropTypes.bool,
+  /**
+   * Sets the element's height to 100%
+   */
+  isFullHeight: PropTypes.bool
 }
 
 export default AtomPanel

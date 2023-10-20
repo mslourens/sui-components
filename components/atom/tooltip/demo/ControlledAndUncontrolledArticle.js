@@ -1,18 +1,21 @@
 import {useState} from 'react'
-import {
-  H2,
-  Paragraph,
-  Code,
-  Article,
-  Grid,
-  Cell,
-  RadioButtonGroup,
-  RadioButton,
-  Box,
-  Label
-} from '@s-ui/documentation-library'
+
 import PropTypes from 'prop-types'
-import AtomTooltip, {AtomTooltipTriggers} from '../src'
+
+import {
+  Article,
+  Box,
+  Cell,
+  Code,
+  Grid,
+  H2,
+  Label,
+  Paragraph,
+  RadioButton,
+  RadioButtonGroup
+} from '@s-ui/documentation-library'
+
+import AtomTooltip, {AtomTooltipTriggers} from '../src/index.js'
 
 const ControlledAndUncontrolledArticle = ({className, trigger}) => {
   const [isVisibleControlled, setIsVisibleControlled] = useState(true)

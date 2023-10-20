@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types'
-import {Article, H2, Paragraph, Code} from '@s-ui/documentation-library'
+
+import {Article, Code, H2, Paragraph} from '@s-ui/documentation-library'
 import AtomPanel from '@s-ui/react-atom-panel'
-import {atomPanelColors, atomPanelAlpha} from '../../src'
-import {flexWrapper, flexItem} from '../config'
+
+import {atomPanelAlpha, atomPanelColors} from '../../src/index.js'
+import {flexItem, flexWrapper} from '../config.js'
 
 const ArticleOverlay = ({className}) => {
   return (
@@ -18,14 +20,14 @@ const ArticleOverlay = ({className}) => {
             {Object.keys(atomPanelAlpha).map((alpha, index) => (
               <div
                 key={index}
-                style={Object.assign({}, flexItem, {width: '250px'})}
+                style={Object.assign({}, flexItem, {width: '100px'})}
               >
                 <AtomPanel
-                  src="https://picsum.photos/250/200"
-                  overlayColor={color}
-                  overlayAlpha={alpha}
+                  src="https://picsum.photos/100/100"
+                  overlayColor={atomPanelColors[color]}
+                  overlayAlpha={atomPanelAlpha[alpha]}
                 >
-                  <div style={{height: '150px'}} />
+                  <div style={{height: '100px'}} />
                 </AtomPanel>
                 <span>
                   {color} {alpha}

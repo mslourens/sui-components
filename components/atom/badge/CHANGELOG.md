@@ -1,5 +1,63 @@
 # CHANGELOG
 
+# 1.28.0 (2022-10-06)
+
+
+
+# 1.27.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/badge:** Avoid publishing huge CHANGELOG.md ([3822e19](https://github.com/SUI-Components/sui-components/commit/3822e19aff062ac523243a62916b591e9022b0db))
+
+
+
+# 1.26.0 (2022-03-01)
+
+
+### Features
+
+* **components/atom/badge:** Allow control badge M individually ([91c0282](https://github.com/SUI-Components/sui-components/commit/91c0282e7f0828b715a884c179d9e9d211067a5d))
+
+
+
+# 1.25.0 (2022-01-20)
+
+
+### Bug Fixes
+
+* **components/atom/badge:** proptype error ([2190f35](https://github.com/SUI-Components/sui-components/commit/2190f35da8139f8ac2f33ff81c174df0d1db4c5b))
+
+
+
+# 1.24.0 (2021-11-01)
+
+
+### Bug Fixes
+
+* **components/atom/badge:** fix typo in isFitted prop type ([bbf5f68](https://github.com/SUI-Components/sui-components/commit/bbf5f6869dbaebf18b89f3fb476a56244f8c1612)), closes [#1708](https://github.com/SUI-Components/sui-components/issues/1708)
+
+
+
+# 1.23.0 (2021-10-07)
+
+
+### Bug Fixes
+
+* **components/atom/badge:** change cursor to default ([1a3f551](https://github.com/SUI-Components/sui-components/commit/1a3f551a4f4a68475e0d55c7b0363d2e7048fd16)), closes [#1722](https://github.com/SUI-Components/sui-components/issues/1722)
+
+
+
+# 1.1.0 (2021-09-23)
+
+
+### Bug Fixes
+
+* **components/atom/badge/demo:** fix demo styles ([3c9326b](https://github.com/SUI-Components/sui-components/commit/3c9326b1e07137c8df13bda8fc6d78e3d8957d7d))
+
+
+
 # 1.22.0 (2021-09-22)
 
 

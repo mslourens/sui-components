@@ -1,12 +1,12 @@
 {
   "name": "@s-ui/react-molecule-breadcrumb",
-  "version": "1.21.0",
+  "version": "1.27.0",
   "description": "SUI Breadcrumb Basic",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run babel && npm run sass",
-    "babel": "babel --presets sui ./src --out-dir ./lib",
-    "sass": "cpx './src/**/*.scss' ./lib"
+    "prepublishOnly": "rimraf ./lib && npm run build:js && npm run build:styles",
+    "build:js": "babel --presets sui ./src --out-dir ./lib",
+    "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "keywords": [],
   "contributors": [
@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@s-ui/component-dependencies": "1",
+    "@s-ui/react-hooks": "1",
     "@s-ui/react-icons": "1"
   }
 }

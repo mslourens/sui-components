@@ -1,5 +1,70 @@
 # CHANGELOG
 
+# 2.15.0 (2022-12-15)
+
+
+### Features
+
+* **components/layout/grid:** griditem prop spreading ([3c3736e](https://github.com/SUI-Components/sui-components/commit/3c3736e4f63ed623374a1ec569f7e33e4fad0a37))
+
+
+
+# 2.14.0 (2022-12-15)
+
+
+### Features
+
+* **components/layout/grid:** add props spreading ([1c9d263](https://github.com/SUI-Components/sui-components/commit/1c9d263590ba64b2bab2461e462d3f7dab55c7cf))
+
+
+
+# 2.13.0 (2022-10-06)
+
+
+
+# 2.12.0 (2022-06-20)
+
+
+### Features
+
+* **components/layout/grid:** Avoid publishing huge CHANGELOG.md ([c8da369](https://github.com/SUI-Components/sui-components/commit/c8da3690407ea3bf292cd0f02e17f685d4842fbf))
+
+
+
+# 2.11.0 (2022-05-05)
+
+
+### Bug Fixes
+
+* **components/layout/grid:** fix typo readme ([aeba17d](https://github.com/SUI-Components/sui-components/commit/aeba17d825812d702a069f1cc4273ed17aa65f3a))
+
+
+
+# 2.10.0 (2022-05-04)
+
+
+### Features
+
+* **components/layout/grid:** inject default gridItem props by the Grid props ([831a461](https://github.com/SUI-Components/sui-components/commit/831a461e3b9415b1fb2035196a0c172b26701edb))
+
+
+
+# 2.9.0 (2022-05-04)
+
+
+### Bug Fixes
+
+* **Root:** lint ([dbfeeb6](https://github.com/SUI-Components/sui-components/commit/dbfeeb6f15cd103984db448a485737d531e1ed9c))
+
+
+### Features
+
+* **components/layout/grid:** add polymorphism support ([1564ca1](https://github.com/SUI-Components/sui-components/commit/1564ca1e2d93aac4dcd78120ccae78a91fe65707))
+* **components/layout/grid:** allow pass custom classNames to avoid extra DOM elements ([8abef4e](https://github.com/SUI-Components/sui-components/commit/8abef4e52f1b8e1e3fc7db0eb3de2e84497d5c64))
+* **components/layout/grid:** keep component-dependenciees pkg as a dependency ([16acdd9](https://github.com/SUI-Components/sui-components/commit/16acdd99ddc891c6661660d0e1cc1da6391f8815))
+
+
+
 # 2.8.0 (2021-06-23)
 
 

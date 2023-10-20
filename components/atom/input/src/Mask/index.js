@@ -1,45 +1,64 @@
-import {useState, useEffect, useRef} from 'react'
+import {forwardRef} from 'react'
+
 import PropTypes from 'prop-types'
-import Input from '../Input'
 
-const MaskInput = ({name, onChange, mask: maskOptions, ...props}) => {
-  const [mask, setMask] = useState(null)
-  const refInput = useRef(null)
+import {isFunction, SIZES} from '../config.js'
+import IMask from './iMask.js'
 
-  useEffect(() => () => mask && mask.destroy(), [mask])
-
-  const handleChange = (ev, {value}) => {
-    typeof onChange === 'function' && onChange(ev, {value})
+const MaskInput = forwardRef(
+  (
+    {
+      name,
+      onChange,
+      onComplete,
+      mask,
+      value,
+      defaultValue,
+      placeholder,
+      size = SIZES.MEDIUM,
+      ...props
+    },
+    forwardedRef
+  ) => {
+    return (
+      <IMask
+        name={name}
+        mask={mask?.mask}
+        value={value}
+        size={size}
+        ref={forwardedRef}
+        placeholder={placeholder}
+        onAccept={(value, maskRef, event, ...args) =>
+          isFunction(onChange) && onChange(event, {value, maskRef, ...args})
+        }
+        onComplete={(value, maskRef, event, ...args) =>
+          isFunction(onComplete) && onComplete(event, {value, maskRef, ...args})
+        }
+        {...props}
+      />
+    )
   }
-
-  const handleFocus = () => {
-    if (!mask) {
-      import('imask').then(({default: IMask}) => {
-        setMask(new IMask(refInput.current, maskOptions))
-      })
-    }
-  }
-
-  return (
-    <Input
-      id={name}
-      reference={refInput}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      {...props}
-    />
-  )
-}
+)
 
 MaskInput.displayName = 'MaskInput'
 
 MaskInput.propTypes = {
+  /* The value of the control */
+  value: PropTypes.string,
+  /* default value of the control */
+  defaultValue: PropTypes.string,
   /* mask object, see https://unmanner.github.io/imaskjs/ */
   mask: PropTypes.object.isRequired,
   /* The name of the control */
   name: PropTypes.string,
   /* Event launched on every input change */
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  /* Event fired every onChange which completes teh mask */
+  onComplete: PropTypes.func,
+  /* Placeholder of the input */
+  placeholder: PropTypes.string,
+  /* Size of the input */
+  size: PropTypes.oneOf(Object.values(SIZES))
 }
 
 export default MaskInput

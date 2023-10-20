@@ -1,11 +1,10 @@
-import {formatToBase64} from './photoTools'
-
 import {
   ACTIONS,
   DEFAULT_HAS_ERRORS_STATUS,
   DEFAULT_IMAGE_ROTATION_DEGREES,
   REJECT_FILES_REASONS
-} from './config'
+} from './config.js'
+import {formatToBase64} from './photoTools.js'
 
 export const filterValidFiles = ({
   files,
@@ -21,7 +20,7 @@ export const filterValidFiles = ({
   const excedingMaxSizeFiles = []
 
   const notExcedingMaxSizeFilesFilter = filesToFilter =>
-    filesToFilter.map(fileToFilter => {
+    filesToFilter.forEach(fileToFilter => {
       if (fileToFilter.size >= acceptedFileMaxSize) {
         excedingMaxSizeFiles.push({
           rejectedFile: fileToFilter,
@@ -36,12 +35,13 @@ export const filterValidFiles = ({
   const repeatedFiles = []
 
   const notRepeatedFilesFilter = filesToFilter =>
-    filesToFilter.map(fileToFilter => {
+    filesToFilter.forEach(fileToFilter => {
       const {
         path: newFilePath,
         size: newFileSize,
         lastModified: newFileLastModified
       } = fileToFilter
+
       const isFileAlready = files.some(file => {
         const {url, properties} = file
         if (url) return false
@@ -52,6 +52,7 @@ export const filterValidFiles = ({
           lastModified === newFileLastModified
         )
       })
+
       if (isFileAlready) {
         repeatedFiles.push({
           rejectedFile: fileToFilter,
@@ -100,9 +101,10 @@ export async function callbackUploadPhotoHandler(
   if (callbackUploadPhoto) {
     try {
       const response = await callbackUploadPhoto(blob, oldUrl)
-      return response.url
+      return response
     } catch (e) {}
   }
+  return {}
 }
 
 export const prepareFiles = ({
@@ -110,6 +112,7 @@ export const prepareFiles = ({
   currentFiles,
   defaultFormatToBase64Options,
   errorCorruptedPhotoUploadedText,
+  errorSaveImageEndpoint,
   handlePhotosRejected,
   newFiles,
   setCorruptedFileError,
@@ -148,26 +151,31 @@ export const prepareFiles = ({
             ])
             setCorruptedFileError(errorText)
           } else {
-            const url = await callbackUploadPhotoHandler(
+            const {url, ...restProps} = await callbackUploadPhotoHandler(
               blob,
               callbackUploadPhoto
             )
-            currentFiles.push({
-              blob,
-              file,
-              hasErrors,
-              isModified: false,
-              isNew: true,
-              originalBase64,
-              properties: {
-                path: nextFile.path,
-                size: nextFile.size,
-                lastModified: nextFile.lastModified
-              },
-              preview: croppedBase64,
-              rotation,
-              url
-            })
+            if (errorSaveImageEndpoint && !url) {
+              setCorruptedFileError(errorSaveImageEndpoint)
+            } else {
+              currentFiles.push({
+                blob,
+                file,
+                hasErrors,
+                isModified: false,
+                isNew: true,
+                originalBase64,
+                properties: {
+                  path: nextFile.path,
+                  size: nextFile.size,
+                  lastModified: nextFile.lastModified
+                },
+                preview: croppedBase64,
+                rotation,
+                url,
+                ...restProps
+              })
+            }
           }
         }
       )
@@ -182,7 +190,7 @@ export const prepareFiles = ({
   }, Promise.resolve())
 }
 
-export const loadInitialPhotos = ({
+export const loadInitialPhotos = async ({
   initialPhotos,
   defaultFormatToBase64Options,
   setInitialDownloadError,
@@ -194,31 +202,33 @@ export const loadInitialPhotos = ({
     formatToBase64({item, options: defaultFormatToBase64Options})
   )
 
-  Promise.all(filesWithBase64).then(newFiles => {
-    const readyPhotos = newFiles.map(
-      ({
-        blob,
-        croppedBase64,
-        url,
-        hasErrors = DEFAULT_HAS_ERRORS_STATUS,
-        id
-      }) => ({
-        blob,
-        url,
-        hasErrors,
-        originalBase64: croppedBase64,
-        preview: croppedBase64,
-        rotation: DEFAULT_IMAGE_ROTATION_DEGREES,
-        isNew: false,
-        isModified: false,
-        id
-      })
-    )
-    if (readyPhotos.some(photos => photos.hasErrors)) {
-      setInitialDownloadError()
-    }
-    setFiles([...readyPhotos])
-    _callbackPhotosUploaded(readyPhotos, {action: ACTIONS.INITIAL_LOAD})
-    setIsLoading(false)
-  })
+  const newFiles = await Promise.all(filesWithBase64)
+
+  const readyPhotos = newFiles.map(
+    ({
+      blob,
+      croppedBase64,
+      url,
+      hasErrors = DEFAULT_HAS_ERRORS_STATUS,
+      id,
+      ...rest
+    }) => ({
+      blob,
+      url,
+      hasErrors,
+      originalBase64: croppedBase64,
+      preview: croppedBase64,
+      rotation: DEFAULT_IMAGE_ROTATION_DEGREES,
+      isNew: false,
+      isModified: false,
+      id,
+      ...rest
+    })
+  )
+  if (readyPhotos.some(photos => photos.hasErrors)) {
+    setInitialDownloadError()
+  }
+  setFiles([...readyPhotos])
+  _callbackPhotosUploaded(readyPhotos, {action: ACTIONS.INITIAL_LOAD})
+  setIsLoading(false)
 }

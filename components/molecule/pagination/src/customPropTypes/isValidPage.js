@@ -1,8 +1,8 @@
 import {
+  getMessageErrorInRange,
   getMessageErrorNumber,
-  getMessageErrorPositive,
-  getMessageErrorInRange
-} from './helpers'
+  getMessageErrorPositive
+} from './helpers.js'
 
 const isValidPage = (props, propName, componentName) => {
   const page = props[propName]

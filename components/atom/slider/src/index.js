@@ -1,17 +1,19 @@
-import {useState, useEffect, useRef, useCallback} from 'react'
-import PropTypes from 'prop-types'
+import {useEffect, useRef, useState} from 'react'
+
 import cx from 'classnames'
-import loadable from '@loadable/component'
-import markerFactory from './markerFactory'
-import createHandler from './createHandler'
+import PropTypes from 'prop-types'
 
-const BASE_CLASS = `sui-AtomSlider`
-const CLASS_DISABLED = `${BASE_CLASS}--disabled`
-const CLASS_INVERSE = `${BASE_CLASS}--inverse`
-
-const Range = loadable(() => import('rc-slider/lib/Range'), {ssr: true})
-const Slider = loadable(() => import('rc-slider/lib/Slider'), {ssr: true})
-const Label = loadable(() => import('./Label'), {ssr: true})
+import Handler from './Handler.js'
+import markerFactory from './markerFactory.js'
+import {
+  BASE_CLASS,
+  CLASS_DISABLED,
+  CLASS_FULLWIDTH,
+  CLASS_INVERSE,
+  Label,
+  Range,
+  Slider
+} from './settings.js'
 
 const AtomSlider = ({
   onChange,
@@ -28,7 +30,8 @@ const AtomSlider = ({
   hideMarks = false,
   hideTooltip = false,
   defaultValue,
-  invertColors
+  invertColors,
+  isFullWidth
 }) => {
   let initialStateValue
   const refAtomSlider = useRef()
@@ -47,8 +50,6 @@ const AtomSlider = ({
   }
 
   const [internalValue, setInternalValue] = useState(initialStateValue)
-
-  const createHandle = useCallback(createHandler, [refAtomSlider, hideTooltip])
 
   useEffect(() => {
     if (value !== undefined) {
@@ -73,28 +74,34 @@ const AtomSlider = ({
   }
 
   const customProps = {
-    handle: createHandle(refAtomSlider, hideTooltip),
+    handle: props => (
+      <Handler
+        refAtomSlider={refAtomSlider}
+        hideTooltip={hideTooltip}
+        {...props}
+      />
+    ),
     onChange: handleChange,
     onAfterChange: handleAfterChange,
     disabled,
-    marks: hideMarks ? {} : markerFactory({step, min, max, marks}),
+    marks: hideMarks ? {} : markerFactory({step, min, max, marks, isFullWidth}),
     max,
     min,
     step,
     value: internalValue
   }
 
+  const computedClassName = cx(
+    BASE_CLASS,
+    {[CLASS_DISABLED]: disabled},
+    {[CLASS_INVERSE]: invertColors},
+    {[CLASS_FULLWIDTH]: isFullWidth}
+  )
+
   // Determine the type of the slider according to the range prop
   const Type = range ? Range : Slider
   return (
-    <div
-      ref={refAtomSlider}
-      className={cx(
-        BASE_CLASS,
-        {[CLASS_DISABLED]: disabled},
-        {[CLASS_INVERSE]: invertColors}
-      )}
-    >
+    <div ref={refAtomSlider} className={computedClassName}>
       {valueLabel && customProps.handle ? (
         <>
           <Label
@@ -150,7 +157,7 @@ AtomSlider.propTypes = {
   /* only if range=false, shows a position fixed label with the current value instead of a tooltip */
   valueLabel: PropTypes.bool,
 
-  /* Set your own mark labels */
+  /* Set your own mark labels, usually first and last positions */
   marks: PropTypes.array,
 
   /* callback to format the value shown as label */
@@ -163,7 +170,10 @@ AtomSlider.propTypes = {
   hideTooltip: PropTypes.bool,
 
   /* If true it will invert the colors for selected track and rail */
-  invertColors: PropTypes.bool
+  invertColors: PropTypes.bool,
+
+  /* If true it will render in a full width design */
+  isFullWidth: PropTypes.bool
 }
 
 export default AtomSlider

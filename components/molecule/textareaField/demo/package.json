@@ -1,8 +1,9 @@
 {
-  "name": "molecule-textarea-field-demo",
-  "version": "1.0.0",
+  "name": "@s-ui/react-molecule-textarea-field-demo",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

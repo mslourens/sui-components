@@ -1,19 +1,23 @@
-import {useCallback, useEffect, forwardRef} from 'react'
+import {forwardRef, useCallback, useEffect} from 'react'
 import {createPortal} from 'react-dom'
-import PropTypes from 'prop-types'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+
 import {getTarget} from '@s-ui/js/lib/react'
 import useControlledState from '@s-ui/react-hooks/lib/useControlledState'
 
-import calcBackToTopEngine, {isDocumentElement} from './calcBackToTopEngine'
-import {SCROLL_BEHAVIOR, STYLES} from './settings'
-
-const BASE_CLASS = 'sui-AtomBackToTop'
-const CLASS_ICON = `${BASE_CLASS}-icon`
-const CLASS_TEXT = `${BASE_CLASS}-text`
-const CLASS_SHOW = `${BASE_CLASS}--show`
-const CLASS_HIDE = `${BASE_CLASS}--hide`
-const CLASS_READY = `${BASE_CLASS}--ready`
+import calcBackToTopEngine, {isDocumentElement} from './calcBackToTopEngine.js'
+import {
+  BASE_CLASS,
+  CLASS_HIDE,
+  CLASS_ICON,
+  CLASS_READY,
+  CLASS_SHOW,
+  CLASS_TEXT,
+  SCROLL_BEHAVIOR,
+  STYLES
+} from './config.js'
 
 const AtomBackToTop = forwardRef(
   (
@@ -120,4 +124,5 @@ AtomBackToTop.propTypes = {
 }
 
 export {STYLES as backToTopStyles}
+export {SCROLL_BEHAVIOR as backToTopScrollBehavior}
 export default AtomBackToTop

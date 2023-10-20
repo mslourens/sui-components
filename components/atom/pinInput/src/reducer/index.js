@@ -1,7 +1,7 @@
-import usePinInputReducer from './usePinInputReducer'
-import {pinInputReducer} from './reducer'
-import actions from './actions'
-import actionTypes from './actionTypes'
+import actions from './actions.js'
+import actionTypes from './actionTypes.js'
+import {pinInputReducer} from './reducer.js'
+import usePinInputReducer from './usePinInputReducer.js'
 
 export {actionTypes}
 export {pinInputReducer as reducer}

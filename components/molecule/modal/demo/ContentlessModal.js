@@ -1,9 +1,11 @@
 /* eslint react/prop-types: 0 */
 /* eslint no-console: 0 */
 import {useState} from 'react'
-import MoleculeModal from 'components/molecule/modal/src'
-import LoremIpsum from './LoremIpsum'
-import {IconClose} from './helperComponents'
+
+import MoleculeModal from 'components/molecule/modal/src/index.js'
+
+import {IconClose} from './helperComponents.js'
+import LoremIpsum from './LoremIpsum.js'
 
 const ContentlessModal = () => {
   const [isOpen, setIsOpen] = useState(false)

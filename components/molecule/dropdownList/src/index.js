@@ -1,19 +1,20 @@
-import {Children, forwardRef, useState, useEffect, useRef} from 'react'
+import {Children, forwardRef, useEffect, useRef, useState} from 'react'
+
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+
 import useDebounce from '@s-ui/react-hooks/lib/useDebounce'
 import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
-import ExtendedChildren from './ExtendedChildren'
 
-const BASE_CLASS = `sui-MoleculeDropdownList`
-const CLASS_HIDDEN = `is-hidden`
-const DEBOUNCE_TIME = 500
-
-const SIZES = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large'
-}
+import {
+  BASE_CLASS,
+  CLASS_HIDDEN,
+  DEBOUNCE_TIME,
+  DESIGNS,
+  moleculeDropdownListSelectHandler,
+  SIZES
+} from './config.js'
+import ExtendedChildren from './ExtendedChildren.js'
 
 const MoleculeDropdownList = forwardRef(
   (
@@ -21,10 +22,12 @@ const MoleculeDropdownList = forwardRef(
       children,
       onSelect,
       alwaysRender = true,
+      design = DESIGNS.SOLID,
       size = SIZES.SMALL,
       value,
       visible,
       onKeyDown,
+      'aria-label': ariaLabel,
       ...props
     },
     forwardedRef
@@ -35,9 +38,14 @@ const MoleculeDropdownList = forwardRef(
     const [typedWord, setTypedWord] = useState('')
     const debouncedTypedWord = useDebounce(typedWord, DEBOUNCE_TIME)
 
-    const classNames = cx(BASE_CLASS, `${BASE_CLASS}--${size}`, {
-      [CLASS_HIDDEN]: !visible
-    })
+    const classNames = cx(
+      BASE_CLASS,
+      `${BASE_CLASS}--design-${design}`,
+      `${BASE_CLASS}--${size}`,
+      {
+        [CLASS_HIDDEN]: !visible
+      }
+    )
 
     const getFocusedOptionIndex = options => {
       const currentElementFocused = document.activeElement
@@ -91,16 +99,16 @@ const MoleculeDropdownList = forwardRef(
         tabIndex={0}
         onKeyDown={handleKeyDown}
         className={classNames}
+        role="listbox"
+        aria-label={ariaLabel}
       >
         {Children.toArray(children)
           .filter(Boolean)
           .map((child, index) => (
             <ExtendedChildren
               key={index}
-              index={index}
               value={value}
               onSelect={onSelect}
-              onKeyDown={onKeyDown}
               {...props}
             >
               {child}
@@ -117,11 +125,20 @@ MoleculeDropdownList.propTypes = {
   /** No matter if is visible or invisible, render always the content */
   alwaysRender: PropTypes.bool,
 
+  /** aria-label for accessibility */
+  'aria-label': PropTypes.string,
+
   /** Content to be included in the list (MoleculeDropdownOption) */
   children: PropTypes.node,
 
   /** callback on select option */
   onSelect: PropTypes.func,
+
+  /** checkbox contained in all DropdownOption **/
+  checkbox: PropTypes.bool,
+
+  /** design (flat|solid) of the list */
+  design: PropTypes.oneOf(Object.values(DESIGNS)),
 
   /** size (height) of the list */
   size: PropTypes.oneOf(Object.values(SIZES)),
@@ -137,4 +154,6 @@ MoleculeDropdownList.propTypes = {
 }
 
 export default MoleculeDropdownList
+export {DESIGNS as moleculeDropdownListDesigns}
 export {SIZES as moleculeDropdownListSizes}
+export {moleculeDropdownListSelectHandler}

@@ -1,88 +1,38 @@
 /* eslint-disable no-console */
-import MoleculeCheckboxField from 'components/molecule/checkboxField/src'
+import {H1, Paragraph} from '@s-ui/documentation-library'
+
+import ArticleDisabled from './ArticleDisabled.js'
+import ArticleSize from './ArticleSize.js'
+import ArticleStatus from './ArticleStatus.js'
+import ArticleWithCustomCheckedIcon from './ArticleWithCustomCheckedIcon.js'
+import ArticleWithHelpText from './ArticleWithHelpText.js'
+import ArticleWithLabelFullWidth from './ArticleWithLabelFullWidth.js'
 
 import './index.scss'
 
-const styleList = {
-  listStyle: 'none'
-}
-
-const styleListItem = {
-  marginTop: '50px'
-}
+const CLASS_NAME = 'DemoAtomCheckboxField'
 
 const Demo = () => {
   return (
     <div className="sui-StudioPreview">
       <div className="sui-StudioPreview-content sui-StudioDemo-preview">
-        <h1>Checkbox Field</h1>
-        <ul style={styleList}>
-          <li style={styleListItem}>
-            <h2>With Information HelpText</h2>
-            <MoleculeCheckboxField
-              id="info-help-text"
-              label="Description"
-              helpText="Tu descripción en Latin"
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-          <li style={styleListItem}>
-            <h2>With Html Label</h2>
-            <MoleculeCheckboxField
-              id="info-help-text"
-              nodeLabel={
-                <>
-                  this is the <a href="#">nodeLabel</a>
-                </>
-              }
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-          <li style={styleListItem}>
-            <h2>With Html Label + fullWidth</h2>
-            <MoleculeCheckboxField
-              id="info-help-text"
-              fullWidth
-              nodeLabel={
-                <div style={{display: 'flex', border: '1px dashed #000'}}>
-                  <div style={{flexGrow: 1}}>I'm full width</div>
-                  <button>Action</button>
-                </div>
-              }
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-          <li style={styleListItem}>
-            <h2>With Success Validation HelpText</h2>
-            <MoleculeCheckboxField
-              id="success-help-text"
-              label="Description"
-              value="In some place of La Mancha which name..."
-              successText="Everything ok!"
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-          <li style={styleListItem}>
-            <h2>With Error validation HelpText</h2>
-            <MoleculeCheckboxField
-              id="error-help-text"
-              label="Notes"
-              errorText="All wrong!"
-              value="In some place of La Mancha which name..."
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-          <li style={styleListItem}>
-            <h2>With Alert validation HelpText</h2>
-            <MoleculeCheckboxField
-              id="alert-help-text"
-              label="Notes"
-              alertText="Something meh..."
-              value="In some place of La Mancha which name..."
-              onChange={(e, {name, value}) => console.log({[name]: value})}
-            />
-          </li>
-        </ul>
+        <H1>Checkbox Field</H1>
+        <Paragraph>
+          "MoleculeCheckboxField" is the combination of and "AtomCheckbox" and a
+          "MoleculeField"
+        </Paragraph>
+        <ArticleWithHelpText className={CLASS_NAME} />
+        <br />
+        <ArticleWithLabelFullWidth className={CLASS_NAME} />
+        <br />
+        <ArticleSize className={CLASS_NAME} />
+        <br />
+        <ArticleStatus className={CLASS_NAME} />
+        <br />
+        <ArticleDisabled className={CLASS_NAME} />
+        <br />
+        <ArticleWithCustomCheckedIcon className={CLASS_NAME} />
+        <br />
       </div>
     </div>
   )

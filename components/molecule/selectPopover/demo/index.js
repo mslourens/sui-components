@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
-import {useState} from 'react'
+import {useRef, useState} from 'react'
+
+import MoleculeSelectPopover, {
+  selectPopoverOverlayTypes,
+  selectPopoverPlacements,
+  selectPopoverSizes
+} from 'components/molecule/selectPopover/src/index.js'
+
 import IconClose from '@s-ui/react-icons/lib/Close'
+import MoleculeCheckboxField from '@s-ui/react-molecule-checkbox-field'
+import MoleculeSelectOption from '@s-ui/react-molecule-dropdown-option'
 import MoleculeModal from '@s-ui/react-molecule-modal'
 import MoleculeSelect from '@s-ui/react-molecule-select'
-import MoleculeSelectOption from '@s-ui/react-molecule-dropdown-option'
-import MoleculeCheckboxField from 'components/molecule/checkboxField/src/'
-import MoleculeSelectPopover, {
-  selectPopoverSizes,
-  selectPopoverPlacements
-} from 'components/molecule/selectPopover/src/'
-import {IconCheck, IconHalfCheck, IconArrowDown} from './Icons'
+
+import {IconArrowDown, IconCheck, IconHalfCheck} from './Icons/index.js'
 
 import './index.scss'
 
@@ -19,6 +23,21 @@ const demoExample = [
   {id: 'nested-03', label: 'Alquiler con opción a compra', checked: false}
 ]
 
+const CustomRenderActions = ({
+  cancelButtonText,
+  onCancel,
+  onAccept,
+  acceptButtonText
+}) => {
+  return (
+    <>
+      <button onClick={onAccept}>{acceptButtonText}</button>
+      <button onClick={onCancel}>{cancelButtonText}</button>
+      this is awesome!
+    </>
+  )
+}
+
 const Demo = () => {
   const [items, setItems] = useState(demoExample)
   const [unconfirmedItems, setUnconfirmedItems] = useState(demoExample)
@@ -26,9 +45,17 @@ const Demo = () => {
   const [placement, setPlacement] = useState(selectPopoverPlacements.RIGHT)
   const [hasEvents, setHasEvents] = useState(false)
   const [isFullWidth, setIsFullWidth] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
   const [actionsAreHidden, setActionsAreHidden] = useState(false)
   const [addCustomButton, setAddCustomButton] = useState(false)
   const [customContentWrapper, setCustomContentWrapper] = useState(false)
+  const [renderSelect, setRenderSelect] = useState(false)
+  const [overlayType, setOverlayType] = useState(selectPopoverOverlayTypes.NONE)
+  const [hasCustomRenderActions, setCustomRenderActions] = useState(false)
+  const [hasForceClosePopover, setHasForceClosePopover] = useState(false)
+  const [forceClosePopover, setForceClosePopover] = useState(false)
+
+  const overlayContentRef = useRef()
 
   const handleChangeItem = event => {
     const {target} = event
@@ -38,6 +65,11 @@ const Demo = () => {
       checked: item.id === target.id ? !item.checked : item.checked
     }))
     setUnconfirmedItems(newItems)
+
+    if (hasForceClosePopover) {
+      setItems(newItems)
+      setForceClosePopover(true)
+    }
   }
 
   const handleClose = () => {
@@ -46,6 +78,8 @@ const Demo = () => {
 
   const handleOpen = () => {
     hasEvents && window.alert('Popover opened!')
+
+    hasForceClosePopover && setForceClosePopover(false)
   }
 
   const renderContentWrapper = ({actions, content, isOpen, setIsOpen}) => {
@@ -62,13 +96,7 @@ const Demo = () => {
         <MoleculeModal.Content withoutIndentation>
           {content}
         </MoleculeModal.Content>
-        {!actionsAreHidden && (
-          <MoleculeModal.Footer>
-            <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-              {actions}
-            </div>
-          </MoleculeModal.Footer>
-        )}
+        {!actionsAreHidden && actions}
       </MoleculeModal>
     )
   }
@@ -100,7 +128,9 @@ const Demo = () => {
         <label>Placements</label>
         <MoleculeSelect
           value={placement}
-          onChange={(ev, {value}) => setPlacement(value)}
+          onChange={(ev, {value}) => {
+            setPlacement(value)
+          }}
           placeholder="Select a size..."
           iconArrowDown={<IconArrowDown />}
         >
@@ -108,6 +138,25 @@ const Demo = () => {
             <MoleculeSelectOption
               key={key}
               value={selectPopoverPlacements[key]}
+            >
+              {key}
+            </MoleculeSelectOption>
+          ))}
+        </MoleculeSelect>
+        <br />
+        <label>Overlay types</label>
+        <MoleculeSelect
+          value={overlayType}
+          onChange={(_, {value}) => {
+            setOverlayType(value)
+          }}
+          placeholder="Select a overlay type..."
+          iconArrowDown={<IconArrowDown />}
+        >
+          {Object.keys(selectPopoverOverlayTypes).map(key => (
+            <MoleculeSelectOption
+              key={key}
+              value={selectPopoverOverlayTypes[key]}
             >
               {key}
             </MoleculeSelectOption>
@@ -164,6 +213,46 @@ const Demo = () => {
             Custom content wrapper as a modal
           </label>
         </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={renderSelect}
+              onChange={ev => setRenderSelect(ev.target.checked)}
+            />
+            Render select like a button
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={isDisabled}
+              onChange={ev => setIsDisabled(ev.target.checked)}
+            />
+            Disabled
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={hasCustomRenderActions}
+              onChange={ev => setCustomRenderActions(ev.target.checked)}
+            />
+            customRenderActions
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={hasForceClosePopover}
+              onChange={ev => setHasForceClosePopover(ev.target.checked)}
+            />
+            Force close popover
+          </label>
+        </div>
 
         <h3>Component</h3>
         <MoleculeSelectPopover
@@ -176,18 +265,26 @@ const Demo = () => {
             color: 'accent'
           }}
           renderContentWrapper={customContentWrapper && renderContentWrapper}
+          renderSelect={renderSelect && <button>Now I'm a button!</button>}
+          forceClosePopover={forceClosePopover}
           fullWidth={isFullWidth}
           hideActions={actionsAreHidden}
           iconArrowDown={IconArrowDown}
+          isDisabled={isDisabled}
           isSelected={isSelected}
           onAccept={() => setItems(unconfirmedItems)}
           onCancel={() => setUnconfirmedItems(items)}
           onCustomAction={() => setUnconfirmedItems(items)}
           onClose={handleClose}
           onOpen={handleOpen}
+          overlayContentRef={overlayContentRef}
+          overlayType={overlayType}
           placement={placement}
           selectText={selectText}
           size={size}
+          renderActions={
+            hasCustomRenderActions ? <CustomRenderActions /> : undefined
+          }
         >
           <div className="demo-content">
             <h3>Tipo de operación</h3>
@@ -210,6 +307,32 @@ const Demo = () => {
             </div>
           </div>
         </MoleculeSelectPopover>
+        <div className="demo-overlay-content" ref={overlayContentRef}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
+            recusandae labore numquam aliquam? Neque unde excepturi nam labore
+            velit a accusantium alias sunt quos voluptatem vel similique,
+            pariatur fugiat voluptate.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
+            incidunt animi a dignissimos aliquid voluptas quo quisquam adipisci
+            distinctio accusamus, officiis amet mollitia error, dolore vero
+            similique nihil? Corrupti, quaerat.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam
+            possimus cumque ut sunt? Quo aperiam id magni placeat iusto, quidem
+            corporis enim, iste ad sapiente distinctio dicta, voluptatem minima
+            fuga!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
+            sint ratione architecto iste sapiente repudiandae inventore fugit
+            expedita deleniti! Debitis maiores corrupti ducimus id cum veniam
+            distinctio eos fuga repellat.
+          </p>
+        </div>
       </div>
     </div>
   )

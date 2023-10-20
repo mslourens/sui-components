@@ -1,5 +1,60 @@
 # CHANGELOG
 
+# 2.7.0 (2023-08-16)
+
+
+### Bug Fixes
+
+* **components/atom/tooltip:** fix security issue ([7c4e028](https://github.com/SUI-Components/sui-components/commit/7c4e02855234b695e6489ae33b3a72c4a7fbf743))
+
+
+
+# 2.6.0 (2022-10-18)
+
+
+
+# 2.5.0 (2022-10-06)
+
+
+
+# 2.4.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/tooltip:** Avoid publishing huge CHANGELOG.md ([724d8e8](https://github.com/SUI-Components/sui-components/commit/724d8e828de1cbade40697e11156f6a9b9ffc903))
+
+
+
+# 2.3.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** handle error fix ([93c62d2](https://github.com/SUI-Components/sui-components/commit/93c62d2c7bebd882fa10bde8912c79dcbcd92e7a)), closes [#1974](https://github.com/SUI-Components/sui-components/issues/1974)
+* **components/atom/tooltip:** resolve linting errors ([245a06d](https://github.com/SUI-Components/sui-components/commit/245a06df72c2d108999bc633c71b5dd39353d6f2))
+
+
+
+# 2.2.0 (2022-02-03)
+
+
+### Bug Fixes
+
+* **components/atom/tooltip:** Fix zindex in atom tooltip ([fda35ab](https://github.com/SUI-Components/sui-components/commit/fda35abe6429543560fd6eecb7f43ebb56c39e01))
+
+
+
+# 2.1.0 (2022-01-12)
+
+
+### Features
+
+* **components/atom/tooltip:** Put again a line to import @s-ui/theme on index.scss ([8f84f42](https://github.com/SUI-Components/sui-components/commit/8f84f42aba6c8827b0d283a522ead529062d9ec3))
+* **components/atom/tooltip:** Separate settings file and improve css output ([c1777d0](https://github.com/SUI-Components/sui-components/commit/c1777d0c19a1f4bc6fcf7f4b5a7b6540122e16c4))
+
+
+
 # 2.0.0 (2021-08-02)
 
 

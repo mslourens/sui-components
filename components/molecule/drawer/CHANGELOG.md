@@ -1,5 +1,112 @@
 # CHANGELOG
 
+# 4.9.0 (2023-09-12)
+
+
+### Features
+
+* **components/molecule/drawer:** update rounded borders in all positions ([e524425](https://github.com/SUI-Components/sui-components/commit/e52442503f29f4290870ec303eccd2394bf13fcf))
+
+
+
+# 4.8.0 (2023-04-12)
+
+
+### Features
+
+* **components/molecule/drawer:** add tokens to overflow ([22a878d](https://github.com/SUI-Components/sui-components/commit/22a878d4cc6b0394118967b57be6403c1d7928e8))
+
+
+
+# 4.7.0 (2022-10-28)
+
+
+### Features
+
+* **components/molecule/drawer:** Change position movement to translateX or Y to delete CLS ([dee72d6](https://github.com/SUI-Components/sui-components/commit/dee72d6805cdb2871b7b35bd23107552d47fbd5a))
+
+
+
+# 4.6.0 (2022-09-22)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** avoid add a listener for keydown that prevents the default behaviou ([2f3158a](https://github.com/SUI-Components/sui-components/commit/2f3158affa430b3c1f0d73288ebc82c6091ccb88))
+
+
+
+# 4.5.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/drawer:** Avoid publishing huge CHANGELOG.md ([63e9d41](https://github.com/SUI-Components/sui-components/commit/63e9d41bf35559da743b7ab7115cda3372e433b0))
+
+
+
+# 4.4.0 (2022-05-31)
+
+
+### Features
+
+* **components/molecule/accordion:** fully naked accordion view ([c4cda80](https://github.com/SUI-Components/sui-components/commit/c4cda8036cae1604eb11359d4a50abd46bd06f94))
+* **components/molecule/drawer:** add customizable border radius ([f604e47](https://github.com/SUI-Components/sui-components/commit/f604e477b5c61d84b68d2f0e4e6721b34322117c))
+
+
+
+# 4.3.0 (2022-05-23)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** fixed overlay ([b1984b1](https://github.com/SUI-Components/sui-components/commit/b1984b170e7a65acd2057aee450baa74f96c89cf))
+
+
+
+# 4.2.0 (2022-05-20)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** fix broken class for drawer overlay ([d1c035d](https://github.com/SUI-Components/sui-components/commit/d1c035d6f7e7cf268b93c8d5a33423d9030421a8))
+
+
+
+# 4.1.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** split scss and fix component classname ([8f2ba1e](https://github.com/SUI-Components/sui-components/commit/8f2ba1ed57a1bd3a9faaeae0774e369936b68b61))
+
+
+
+# 4.0.0 (2021-11-05)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** Allow close the drawer by clicking outsite the drawer's area ([e06143f](https://github.com/SUI-Components/sui-components/commit/e06143f42c2d831cc73c0ddb7493202ede5965cb)), closes [#1740](https://github.com/SUI-Components/sui-components/issues/1740)
+
+
+### Features
+
+* **components/molecule/drawer:** Not use useControlledState ([b184c5c](https://github.com/SUI-Components/sui-components/commit/b184c5cfed8c7be0abca6d410c69ebc99ff19623))
+* **components/molecule/drawer:** remove transitions ([ba4034d](https://github.com/SUI-Components/sui-components/commit/ba4034ddfd1a9cb65a19e12fe9a010df5ebee5eb))
+
+
+
+# 3.4.0 (2021-10-26)
+
+
+### Bug Fixes
+
+* **components/molecule/drawer:** inner state gets unsyncronized when using ESCAPE key ([55804f6](https://github.com/SUI-Components/sui-components/commit/55804f662e942289c4ed4a7cd54441e9bf019d0a))
+* **components/molecule/drawer:** remove unused state ([27647a2](https://github.com/SUI-Components/sui-components/commit/27647a2eaba433b4664c2f1f82c884ddc85214e9))
+
+
+
 # 3.3.0 (2021-09-29)
 
 

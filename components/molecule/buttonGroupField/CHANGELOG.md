@@ -1,5 +1,44 @@
 # CHANGELOG
 
+# 1.9.0 (2022-10-06)
+
+
+
+# 1.8.0 (2022-06-22)
+
+
+### Features
+
+* **components/molecule/buttonGroupField:** Avoid publishing huge CHANGELOG.md ([fbee282](https://github.com/SUI-Components/sui-components/commit/fbee28250ab683c2fbc7a1e634bde0450d8b2236))
+
+
+
+# 1.7.0 (2021-12-16)
+
+
+### Features
+
+* **components/molecule/buttonGroupField:** forward nodeLabel property ([2da3233](https://github.com/SUI-Components/sui-components/commit/2da3233dc91d3502febee621a85065ffb505a334))
+
+
+
+# 1.6.0 (2021-10-27)
+
+
+
+# 1.1.0 (2021-10-27)
+
+
+### Features
+
+* **components/molecule/buttonGroupField/demo:** fix button group field demo package.json ([cef790c](https://github.com/SUI-Components/sui-components/commit/cef790cec8ab9b99cef2d6c571fe88bf95ad32df))
+* **components/molecule/buttonGroupField/demo:** Fix helpTextd decription ([e0010b4](https://github.com/SUI-Components/sui-components/commit/e0010b48e950a48b646dc1b10060af16b99fd790))
+* **components/molecule/buttonGroupField/demo:** fix text ([68dd3b8](https://github.com/SUI-Components/sui-components/commit/68dd3b83c111c6eab8de4635a9e2dbb6176bbcfe))
+* **components/molecule/buttonGroupField/demo:** Refactor Button Group Field demo ([b97c5de](https://github.com/SUI-Components/sui-components/commit/b97c5de11dac218c0fb0277b71c1c85fcbd96ccd))
+* **components/molecule/buttonGroupField:** import AtomButton on the test ([9970c5e](https://github.com/SUI-Components/sui-components/commit/9970c5e194fa7f6b996350f167002739c51f28e7))
+
+
+
 # 1.5.0 (2021-06-03)
 
 

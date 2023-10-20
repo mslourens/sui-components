@@ -1,17 +1,20 @@
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
+import useBackgroundColor from '../useBackgroundColor.js'
+import {BASE_CLASS_NAME} from './settings.js'
+
 const MoleculeAvatarFallbackName = ({
   name: nameProp,
   size,
   className: classNameProp,
+  backgroundColor: backgroundColorProp,
   ...others
 }) => {
-  const baseClassName = 'sui-MoleculeAvatarFallbackName'
   const className = cx(
-    baseClassName,
+    BASE_CLASS_NAME,
     classNameProp,
-    `${baseClassName}--${size}`
+    `${BASE_CLASS_NAME}--${size}`
   )
   const [firstName, lastName] = nameProp.split(' ')
   const name =
@@ -19,9 +22,19 @@ const MoleculeAvatarFallbackName = ({
       ? `${firstName.charAt(0)}${lastName.charAt(0)}`
       : firstName.charAt(0)
 
+  const backgroundColor = useBackgroundColor({
+    name: nameProp,
+    backgroundColor: backgroundColorProp
+  })
+
   return (
-    <div className={className} aria-label={nameProp} {...others}>
-      {name.toUpperCase()}
+    <div
+      className={className}
+      aria-label={nameProp}
+      style={{backgroundColor}}
+      {...others}
+    >
+      {name}
     </div>
   )
 }
@@ -29,6 +42,7 @@ const MoleculeAvatarFallbackName = ({
 MoleculeAvatarFallbackName.displayName = 'MoleculeAvatarFallbackName'
 MoleculeAvatarFallbackName.propTypes = {
   className: PropTypes.string,
+  backgroundColor: PropTypes.string,
   name: PropTypes.string,
   src: PropTypes.string,
   size: PropTypes.string

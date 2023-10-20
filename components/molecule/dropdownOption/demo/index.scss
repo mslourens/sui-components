@@ -1,4 +1,5 @@
 @import '../src/index';
+@import '~@s-ui/react-atom-image/lib/index';
 
 .DemoMoleculeDropdownOption {
   padding: 20px;
@@ -6,15 +7,16 @@
   &-option {
     border: 1px dotted gray;
     background: white;
-    width: 300px;
-  }
-
-  &-section {
-    margin: 10px;
   }
 
   pre {
     padding: 16px;
     width: 300px;
+  }
+
+  &-image {
+    display: flex;
+    height: $sz-icon-m;
+    width: $sz-icon-m;
   }
 }

@@ -1,14 +1,15 @@
 import {
-  FORM_IMAGE_UPLOADER_DEFAULT_FORMAT_TO_BASE_64_OPTIONS,
   DEFAULT_FILE_TYPE_EXPORTED,
   DEFAULT_IMAGE_QUALITY_EXPORTED,
-  DEFAULT_IMAGE_ROTATION_DEGREES
-} from './config'
+  DEFAULT_IMAGE_ROTATION_DEGREES,
+  FORM_IMAGE_UPLOADER_DEFAULT_FORMAT_TO_BASE_64_OPTIONS
+} from './config.js'
 
 export function formatToBase64({
   file,
   item,
-  options = FORM_IMAGE_UPLOADER_DEFAULT_FORMAT_TO_BASE_64_OPTIONS
+  options = FORM_IMAGE_UPLOADER_DEFAULT_FORMAT_TO_BASE_64_OPTIONS,
+  ...rest
 }) {
   if (file) {
     const reader = new window.FileReader()
@@ -60,16 +61,17 @@ export function formatToBase64({
               blob,
               originalBase64,
               croppedBase64: base64,
-              rotation: options.rotation
+              rotation: options.rotation,
+              ...rest
             })
           })
           .catch(e => {
-            resolve({hasErrors: true})
+            resolve({hasErrors: true, ...rest})
           })
       }
     })
   } else {
-    const {url, id} = item
+    const {url, id, ...rest} = item
     return new Promise((resolve, reject) => {
       cropAndRotateImage({
         imageURL: url,
@@ -81,11 +83,12 @@ export function formatToBase64({
             url,
             blob,
             croppedBase64: base64,
-            id
+            id,
+            ...rest
           })
         })
         .catch(e => {
-          resolve({url, id, hasErrors: true})
+          resolve({url, id, hasErrors: true, ...rest})
         })
     })
   }
@@ -282,7 +285,7 @@ function getExifOrientation(file) {
   const reader = new window.FileReader()
 
   return new Promise((resolve, reject) => {
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       const view = new DataView(e.target.result)
 
       if (view.getUint16(0, false) !== 0xffd8) {

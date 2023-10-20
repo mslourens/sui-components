@@ -47,8 +47,8 @@ export const TRANSITION_DELAY = 1000 // ms
 export const BUTTONS_MAX = 3 // buttons
 
 export const VARIATIONS = {
-  negative: 'negative',
   positive: 'positive',
+  negative: 'negative',
   outline: 'outline'
 }
 
@@ -58,4 +58,12 @@ export const BRDS_SIZE = {
   medium: 'm',
   small: 's',
   extraSmall: 'xs'
+}
+
+export const ALIGN_ITEMS = {
+  BASELINE: 'baseline',
+  CENTER: 'center',
+  FLEX_START: 'flex-start',
+  FLEX_END: 'flex-end',
+  STRETCH: 'stretch'
 }

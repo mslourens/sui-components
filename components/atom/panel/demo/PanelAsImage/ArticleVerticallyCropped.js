@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
-import {Article, H2, Paragraph, Code} from '@s-ui/documentation-library'
-import AtomPanel from '@s-ui/react-atom-panel'
-import {flexItem} from '../config'
-import atomPanelVerticalAlign from '../../src'
+
+import {Article, Code, H2, Paragraph} from '@s-ui/documentation-library'
+
+import AtomPanel, {atomPanelVerticalAlign} from '../../src/index.js'
+import {flexItem} from '../config.js'
 
 const ArticleVerticallyCropped = ({className}) => {
   return (
@@ -27,30 +28,30 @@ const ArticleVerticallyCropped = ({className}) => {
           </div>
           <span>Original</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '250px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             verticalAlign={atomPanelVerticalAlign.TOP}
           >
-            <div style={{height: '150px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Top</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '250px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             verticalAlign={atomPanelVerticalAlign.CENTER}
           >
-            <div style={{height: '150px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Center</span>
         </div>
-        <div style={Object.assign({}, flexItem, {width: '250px'})}>
+        <div style={Object.assign({}, flexItem, {width: '100px'})}>
           <AtomPanel
             src="https://picsum.photos/250/200"
             verticalAlign={atomPanelVerticalAlign.BOTTOM}
           >
-            <div style={{height: '150px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
           <span>Bottom</span>
         </div>

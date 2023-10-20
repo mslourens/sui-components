@@ -1,42 +1,41 @@
-import PropTypes from 'prop-types'
+import {forwardRef} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-const BASE_CLASS = 'sui-AtomRadioButton'
-const CLASS_HIDDEN = `is-hidden`
+import {BASE_CLASS, CLASS_HIDDEN} from './settings.js'
 
-const AtomRadioButton = ({
-  id,
-  disabled,
-  checked = false,
-  onChange,
-  isHidden,
-  value,
-  ...props
-}) => {
-  const handleChange = ev => {
-    if (!disabled) {
-      const {name, value} = ev.target
-      typeof onChange === 'function' && onChange(ev, {name, value})
+const AtomRadioButton = forwardRef(
+  (
+    {id, disabled, checked = false, onChange, isHidden, value, ...props},
+    ref
+  ) => {
+    const handleChange = ev => {
+      if (!disabled) {
+        const {name, value, checked} = ev.target
+        typeof onChange === 'function' && onChange(ev, {name, value, checked})
+      }
     }
+
+    const className = cx(BASE_CLASS, {
+      [CLASS_HIDDEN]: isHidden
+    })
+
+    return (
+      <input
+        className={className}
+        value={value}
+        type="radio"
+        id={id}
+        disabled={disabled}
+        checked={checked}
+        onChange={handleChange}
+        ref={ref}
+        {...props}
+      />
+    )
   }
-
-  const className = cx(BASE_CLASS, {
-    [CLASS_HIDDEN]: isHidden
-  })
-
-  return (
-    <input
-      className={className}
-      value={value}
-      type="radio"
-      id={id}
-      disabled={disabled}
-      checked={checked}
-      onChange={handleChange}
-      {...props}
-    />
-  )
-}
+)
 
 AtomRadioButton.displayName = 'AtomRadioButton'
 

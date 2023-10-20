@@ -1,67 +1,27 @@
-/* eslint-disable react/prop-types, no-unused-vars, no-console */
+import {Anchor, Code, H1, Paragraph} from '@s-ui/documentation-library'
 
-import MoleculeButtonGroupField from 'components/molecule/buttonGroupField/src'
-import AtomButtom from '@s-ui/react-atom-button'
+import ArticleInformation from './ArticleInformation.js'
+import ArticleSemantic from './ArticleSemantic.js'
 
 const BASE_CLASS_DEMO = 'DemoMoleculeButtonGroupField'
 
 const DemoMoleculeButtonGroupField = () => {
   return (
     <div className="sui-StudioPreview">
-      <div className="sui-StudioPreview-content sui-StudioDemo-preview">
-        <h1>Button Group Field</h1>
-        <div className={`${BASE_CLASS_DEMO}-section`}>
-          <h2>With Information HelpText</h2>
-          <MoleculeButtonGroupField
-            id="info-help-text"
-            label="Your text here"
-            helpText="Your description here"
-          >
-            <AtomButtom onClick={e => window.alert('clicked A')}>A</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked B')}>B</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked C')}>C</AtomButtom>
-          </MoleculeButtonGroupField>
-        </div>
-
-        <div className={`${BASE_CLASS_DEMO}-section`}>
-          <h2>With Success Validation HelpText</h2>
-          <MoleculeButtonGroupField
-            id="success-help-text"
-            label="Your text here"
-            successText="Everything ok!"
-          >
-            <AtomButtom onClick={e => window.alert('clicked A')}>A</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked B')}>B</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked C')}>C</AtomButtom>
-          </MoleculeButtonGroupField>
-        </div>
-
-        <div className={`${BASE_CLASS_DEMO}-section`}>
-          <h2>With Error validation HelpText</h2>
-          <MoleculeButtonGroupField
-            id="error-help-text"
-            label="Your text here"
-            errorText="All wrong!"
-          >
-            <AtomButtom onClick={e => window.alert('clicked A')}>A</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked B')}>B</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked C')}>C</AtomButtom>
-          </MoleculeButtonGroupField>
-        </div>
-
-        <div className={`${BASE_CLASS_DEMO}-section`}>
-          <h2>With Alert validation HelpText</h2>
-          <MoleculeButtonGroupField
-            id="alert-help-text"
-            label="Your text here"
-            alertText="Something meh..."
-          >
-            <AtomButtom onClick={e => window.alert('clicked A')}>A</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked B')}>B</AtomButtom>
-            <AtomButtom onClick={e => window.alert('clicked C')}>C</AtomButtom>
-          </MoleculeButtonGroupField>
-        </div>
-      </div>
+      <H1>Button Group Field</H1>
+      <Paragraph>
+        <Code>MoleculeButtonGroupField</Code> is the combination of and{' '}
+        <Anchor href="/workbench/molecule/buttonGroup">
+          <Code>MoleculeButtonGroup</Code>
+        </Anchor>{' '}
+        and a{' '}
+        <Anchor href="/workbench/molecule/field">
+          <Code>MoleculeField</Code>
+        </Anchor>
+      </Paragraph>
+      <ArticleInformation className={BASE_CLASS_DEMO} />
+      <br />
+      <ArticleSemantic className={BASE_CLASS_DEMO} />
     </div>
   )
 }

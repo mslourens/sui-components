@@ -1,5 +1,80 @@
 # CHANGELOG
 
+# 1.47.0 (2022-11-23)
+
+
+### Features
+
+* **components/molecule/modal:** Fix styles ([1357457](https://github.com/SUI-Components/sui-components/commit/1357457b58b740517b4b2a4923a84990a4d124ef))
+
+
+
+# 1.46.0 (2022-10-27)
+
+
+### Bug Fixes
+
+* **components/molecule/modal:** fix close modal when drag end outside ([a877c2f](https://github.com/SUI-Components/sui-components/commit/a877c2fac768c16b140777b2e31701fad48fd3d6))
+
+
+
+# 1.45.0 (2022-06-27)
+
+
+### Bug Fixes
+
+* **components/molecule/modal:** footer base class ([fc07c53](https://github.com/SUI-Components/sui-components/commit/fc07c536003dc96eeabff5ef36343b460a6f4033))
+
+
+
+# 1.44.0 (2022-06-23)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** fix classes, mod demo and unnecesary propsTypes declaration and defau ([5648880](https://github.com/SUI-Components/sui-components/commit/56488809574915b9673c60a581a4789b74da789e))
+
+
+### Features
+
+* **components/molecule/modal:** Avoid publishing huge CHANGELOG.md ([b772ee9](https://github.com/SUI-Components/sui-components/commit/b772ee9f0732e255da7792cf4bdb24c7ba36c558))
+
+
+
+# 1.43.0 (2022-01-24)
+
+
+### Features
+
+* **components/molecule/modal:** adds the check if  window exists to avoid errors on the server ([ae039f9](https://github.com/SUI-Components/sui-components/commit/ae039f9a4fc65bc59110d48de5ee8d3bd48da252))
+
+
+
+# 1.42.0 (2021-10-22)
+
+
+### Bug Fixes
+
+* **components/molecule/modal:** fix variable naming ([52102cb](https://github.com/SUI-Components/sui-components/commit/52102cb839d2b879c0062a0908e805976a36e186))
+* **components/molecule/modal:** fix variable naming ([568f1bf](https://github.com/SUI-Components/sui-components/commit/568f1bf61f5833b89c52e24d7db11cad69616171))
+
+
+### Features
+
+* **components/molecule/modal:** Add a new prop to determine if the modal content overflow is visibl ([e010318](https://github.com/SUI-Components/sui-components/commit/e010318973785f84c1c0480d22e366bf775a3b66))
+* **components/molecule/modal:** Add a new prop to determine if the modal overflow is visible or not ([17fc814](https://github.com/SUI-Components/sui-components/commit/17fc81402c955887d37daf30c73c36b3511767a2))
+
+
+
+# 1.41.0 (2021-10-07)
+
+
+### Bug Fixes
+
+* **components/molecule/modal:** replace radiobuttongroup with button ([fc3cd09](https://github.com/SUI-Components/sui-components/commit/fc3cd096a4fd0a93f0867ce16f1c6c7f99f82a92))
+
+
+
 # 1.40.0 (2021-10-04)
 
 

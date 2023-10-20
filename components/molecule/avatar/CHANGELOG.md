@@ -1,5 +1,68 @@
 # CHANGELOG
 
+# 1.17.0 (2022-10-17)
+
+
+### Features
+
+* **components/molecule/avatar:** improve props and modify hook for getting background color ([14d9f18](https://github.com/SUI-Components/sui-components/commit/14d9f18383e53135d755d613215785551da8a435))
+* **components/molecule/avatar:** make optional hex background of fallback name ([980aee2](https://github.com/SUI-Components/sui-components/commit/980aee27885945e254d989bd6cf7195879a981d1))
+* **components/molecule/avatar:** refactor prop ([6829b84](https://github.com/SUI-Components/sui-components/commit/6829b84b4d6aa766d049eb86b0fab67d2213aa2a))
+* **components/molecule/avatar:** refactor props ([20583ba](https://github.com/SUI-Components/sui-components/commit/20583bac1413ed979813537bf48b22a59a919002))
+* **components/molecule/avatar:** refactor to avoid conditional ([3346f16](https://github.com/SUI-Components/sui-components/commit/3346f16e314eb2e915545e30a804ea0435f569f7))
+
+
+
+# 1.16.0 (2022-10-06)
+
+
+
+# 1.15.0 (2022-10-03)
+
+
+### Features
+
+* **components/molecule/avatar:** Add primitive injector dependency ([014c3c1](https://github.com/SUI-Components/sui-components/commit/014c3c19eb8e5f4039c02e7180ed4b6459f9d2d9))
+
+
+
+# 1.14.0 (2022-09-29)
+
+
+### Features
+
+* **components/molecule/avatar:** handle background color for avatar name fallback ([d25b405](https://github.com/SUI-Components/sui-components/commit/d25b4059dadc602e6bcc97649c551bb91d8e847a))
+
+
+
+# 1.13.0 (2022-08-12)
+
+
+### Features
+
+* **components/molecule/avatar:** add dependecy to useCallback ([1896f4c](https://github.com/SUI-Components/sui-components/commit/1896f4c20fb3e9f7efbff1bc9dcab0c1833b7032))
+* **components/molecule/avatar:** add imageProps to pass directly to AtomImage ([3d206da](https://github.com/SUI-Components/sui-components/commit/3d206da0827ab18ca388d2d9bb08daae0815f891))
+
+
+
+# 1.12.0 (2022-06-22)
+
+
+### Features
+
+* **components/molecule/avatar:** Avoid publishing huge CHANGELOG.md ([a02d08b](https://github.com/SUI-Components/sui-components/commit/a02d08bdd3378742ffa317d3a4aefb96d99c66cb))
+
+
+
+# 1.11.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/molecule/avatar:** resolve linting errors ([f53b904](https://github.com/SUI-Components/sui-components/commit/f53b90485e7717866ec3a09a192cd5a826ae40e9))
+
+
+
 # 1.10.0 (2021-09-27)
 
 

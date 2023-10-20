@@ -1,23 +1,25 @@
+import {useRef, useState} from 'react'
+
 import {
-  H1,
-  Paragraph,
-  UnorderedList,
-  ListItem,
-  Code,
   Anchor,
+  Button,
+  Code,
+  H1,
   Label,
-  Button
+  ListItem,
+  Paragraph,
+  UnorderedList
 } from '@s-ui/documentation-library'
-import {useState} from 'react'
+
 import {
   MoleculeDrawer,
   moleculeDrawerPlacements,
   moleculeDrawerSizes
-} from '../src'
-import DemoDefault from './DemoDefault'
-import DemoPlacement from './DemoPlacement'
-import DemoSize from './DemoSize'
-import DemoAnimationDuration from './DemoAnimationDuration'
+} from '../src/index.js'
+import DemoAnimationDuration from './DemoAnimationDuration.js'
+import DemoDefault from './DemoDefault.js'
+import DemoPlacement from './DemoPlacement.js'
+import DemoSize from './DemoSize.js'
 
 import '../src/index.scss'
 
@@ -26,18 +28,16 @@ const CLASS_SECTION = `${BASE_CLASS_DEMO}-section`
 
 const Demo = () => {
   const [isOpen, setIsOpen] = useState()
+  const drawerRef = useRef()
   return (
     <>
       <MoleculeDrawer
         placement={moleculeDrawerPlacements.BOTTOM}
         size={moleculeDrawerSizes.M}
         isOpen={isOpen}
-        onOpen={(event, {isOpen}) => {
-          setIsOpen(isOpen)
-        }}
-        onClose={(event, {isOpen}) => {
-          setIsOpen(isOpen)
-        }}
+        onClose={() => setIsOpen(false)}
+        closeOnOutsideClick
+        ref={drawerRef}
       >
         <Paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,

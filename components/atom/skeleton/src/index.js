@@ -1,16 +1,11 @@
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-export const ATOM_SKELETON_ANIMATIONS = {
-  wave: 'wave',
-  pulse: 'pulse'
-}
-
-export const ATOM_SKELETON_VARIANTS = {
-  round: 'round',
-  circle: 'circle',
-  square: 'square'
-}
+import {
+  ATOM_SKELETON_ANIMATIONS,
+  ATOM_SKELETON_VARIANTS,
+  BASE_CLASS
+} from './settings.js'
 
 export default function AtomSkeleton({
   count = 1,
@@ -21,21 +16,20 @@ export default function AtomSkeleton({
   height,
   ...others
 }) {
-  const baseClass = 'react-AtomSkeleton'
-  const className = cx(`${baseClass}`, {
-    [`${baseClass}--pulse`]: animation === ATOM_SKELETON_ANIMATIONS.pulse,
-    [`${baseClass}--wave`]: animation === ATOM_SKELETON_ANIMATIONS.wave,
-    [`${baseClass}--round`]: variant === ATOM_SKELETON_VARIANTS.round,
-    [`${baseClass}--circle`]: variant === ATOM_SKELETON_VARIANTS.circle
+  const className = cx(`${BASE_CLASS}`, {
+    [`${BASE_CLASS}--pulse`]: animation === ATOM_SKELETON_ANIMATIONS.pulse,
+    [`${BASE_CLASS}--wave`]: animation === ATOM_SKELETON_ANIMATIONS.wave,
+    [`${BASE_CLASS}--round`]: variant === ATOM_SKELETON_VARIANTS.round,
+    [`${BASE_CLASS}--circle`]: variant === ATOM_SKELETON_VARIANTS.circle
   })
   return (
     <>
       {Array.from(Array(count).keys()).map(index => (
         <span
+          {...others}
           key={index}
           className={className}
           style={{...style, width, height}}
-          {...others}
         >
           &zwnj;
         </span>
@@ -71,4 +65,11 @@ AtomSkeleton.propTypes = {
    * Shape the skeleton and make it look like the final user interface
    */
   variant: PropTypes.oneOf(Object.values(ATOM_SKELETON_VARIANTS))
+}
+
+export {
+  ATOM_SKELETON_VARIANTS,
+  ATOM_SKELETON_VARIANTS as atomSkeletonVariants,
+  ATOM_SKELETON_ANIMATIONS,
+  ATOM_SKELETON_ANIMATIONS as atomSkeletonAnimations
 }

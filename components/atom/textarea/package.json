@@ -1,15 +1,16 @@
 {
   "name": "@s-ui/react-atom-textarea",
-  "version": "2.15.0",
+  "version": "2.21.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "rimraf ./lib && npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
-    "@s-ui/react-atom-help-text": "1"
+    "@s-ui/react-atom-help-text": "1",
+    "@s-ui/react-atom-input": "5"
   },
   "peerDependencies": {
     "@s-ui/component-dependencies": "1"

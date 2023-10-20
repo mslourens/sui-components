@@ -1,17 +1,20 @@
-import {useState, useEffect, forwardRef} from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
+import {forwardRef, useEffect, useState} from 'react'
 
-import AtomButton, {atomButtonSizes} from '@s-ui/react-atom-button'
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+
+import AtomButton, {atomButtonDesigns} from '@s-ui/react-atom-button'
 import AtomInput, {inputSizes} from '@s-ui/react-atom-input'
 import MoleculeField from '@s-ui/react-molecule-field'
 
-import {ACTIONS} from './config'
-
-const BUTTON_TYPE = 'secondary'
-
-const BASE_CLASS = `sui-MoleculeDataCounter`
-const CLASS_INPUT_CONTAINER = `${BASE_CLASS}-container`
+import {
+  ACTIONS,
+  BASE_CLASS,
+  CLASS_INPUT_CONTAINER,
+  moleculeDataCounterSizes,
+  sizeConversor
+} from './config.js'
+import useMouseHold from './useMouseHold.js'
 
 const MoleculeDataCounter = forwardRef(
   (
@@ -48,7 +51,7 @@ const MoleculeDataCounter = forwardRef(
     } else if (initialValue !== undefined) {
       initialStateValue = Number(initialValue)
     } else {
-      initialStateValue = Math.trunc((numMax - numMin) / 2)
+      initialStateValue = numMin + Math.trunc((numMax - numMin) / 2)
     }
 
     const [lastAction, setLastActions] = useState()
@@ -68,39 +71,37 @@ const MoleculeDataCounter = forwardRef(
     const decrementDisabled = disabled || internalValue <= numMin
     const incrementDisabled = disabled || internalValue >= numMax
 
-    const assignValue = (event, {newValue, lastAction}) => {
-      if (value === undefined) {
-        // uncontrolled component
-        setInternalValue(newValue)
-      }
-      if (lastAction) {
-        setLastActions(lastAction)
-      }
-      if (typeof onChange === 'function') {
-        onChange(event, {value: String(newValue), action: lastAction})
-      }
+    const assignDiff = (event, {diff, lastAction}) => {
+      setInternalValue(currentValue => {
+        typeof onChange === 'function' &&
+          onChange(event, {
+            value: String(currentValue + diff),
+            action: lastAction
+          })
+        return value === undefined ? currentValue + diff : currentValue
+      })
+      lastAction && setLastActions(lastAction)
     }
 
     const incrementValue = event => {
-      let newValue = internalValue + 1
-      if (isHigherThanMaxValue(newValue)) {
-        newValue = internalValue
-      }
-      assignValue(event, {newValue, lastAction: ACTIONS.MORE})
+      const diff = isHigherThanMaxValue(internalValue + 1) ? 0 : 1
+      const lastAction = ACTIONS.MORE
+      assignDiff(event, {diff, lastAction})
     }
 
     const decrementValue = event => {
-      let newValue = internalValue - 1
-      if (isLowerThanMinValue(newValue)) {
-        newValue = internalValue
-      }
-      assignValue(event, {newValue, lastAction: ACTIONS.LESS})
+      const diff = isLowerThanMinValue(internalValue - 1) ? 0 : -1
+      const lastAction = ACTIONS.LESS
+      assignDiff(event, {diff, lastAction})
     }
 
     const handleChange = (event, {value}) => {
-      const newValue = parseInt(value, 10)
-      assignValue(event, {
-        newValue: isNaN(newValue) ? '' : newValue,
+      const parsedIntNewValue = parseInt(value, 10)
+
+      const diffValue = isNaN(parsedIntNewValue) && 0
+
+      assignDiff(event, {
+        diff: diffValue,
         lastAction: ACTIONS.CHANGE
       })
     }
@@ -138,11 +139,17 @@ const MoleculeDataCounter = forwardRef(
             )}
           >
             <AtomButton
+              design={atomButtonDesigns.OUTLINE}
               disabled={decrementDisabled}
+              type="button"
+              aria-label="substract"
               isLoading={isLoading && lastAction === ACTIONS.LESS}
-              onClick={decrementValue}
-              size={size === inputSizes.SMALL ? atomButtonSizes.SMALL : null}
-              type={BUTTON_TYPE}
+              size={sizeConversor[size]}
+              {...useMouseHold(decrementValue, {
+                interval: 100,
+                delay: 500,
+                disabled: decrementDisabled
+              })}
             >
               {substractIcon}
             </AtomButton>
@@ -162,11 +169,17 @@ const MoleculeDataCounter = forwardRef(
               value={internalValue}
             />
             <AtomButton
+              design={atomButtonDesigns.OUTLINE}
               disabled={incrementDisabled}
+              type="button"
+              aria-label="add"
               isLoading={isLoading && lastAction === ACTIONS.MORE}
-              onClick={incrementValue}
-              size={size === inputSizes.SMALL ? atomButtonSizes.SMALL : null}
-              type={BUTTON_TYPE}
+              size={sizeConversor[size]}
+              {...useMouseHold(incrementValue, {
+                interval: 100,
+                delay: 500,
+                disabled: incrementDisabled
+              })}
             >
               {addIcon}
             </AtomButton>
@@ -181,7 +194,7 @@ MoleculeDataCounter.displayName = 'MoleculeDataCounter'
 
 MoleculeDataCounter.propTypes = {
   /** Text to be displayed as label */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 
   /** used as label for attribute and input element id */
   id: PropTypes.string,
@@ -222,7 +235,7 @@ MoleculeDataCounter.propTypes = {
   /* component disabled or not */
   disabled: PropTypes.bool,
 
-  /** 's' or 'm', default: 'm' */
+  /** 's', 'm' or 'l', default: 'm' */
   size: PropTypes.oneOf(Object.values(inputSizes)),
 
   /** use to show loading icon on apply an action */
@@ -239,4 +252,4 @@ MoleculeDataCounter.propTypes = {
 }
 
 export default MoleculeDataCounter
-export {inputSizes as moleculeDataCounterSizes}
+export {moleculeDataCounterSizes}

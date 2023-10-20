@@ -1,0 +1,8 @@
+$base-class: '.sui-AtomHelpText';
+
+#{$base-class} {
+  color: $c-help-text;
+  display: block;
+  font-size: $fz-atom-help-text;
+  margin: $m-atom-help-text;
+}

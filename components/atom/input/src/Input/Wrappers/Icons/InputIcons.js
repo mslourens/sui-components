@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
 import {
   BASE_CLASS_ICON,
-  BASE_CLASS_ICON_LEFT,
-  BASE_CLASS_ICON_RIGHT,
   BASE_CLASS_ICON_COMPONENT,
   BASE_CLASS_ICON_COMPONENT_HANDLER,
   BASE_CLASS_ICON_COMPONENT_LEFT,
-  BASE_CLASS_ICON_COMPONENT_RIGHT
-} from './config'
+  BASE_CLASS_ICON_COMPONENT_RIGHT,
+  BASE_CLASS_ICON_LEFT,
+  BASE_CLASS_ICON_RIGHT
+} from './config.js'
 
 const InputIcons = ({
   leftIcon,

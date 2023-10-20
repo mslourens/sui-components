@@ -1,33 +1,38 @@
-import {useRef, forwardRef} from 'react'
+import {forwardRef, useRef} from 'react'
+
 import PropTypes from 'prop-types'
-import loadable from '@loadable/component'
-import useControlledState from '@s-ui/react-hooks/lib/useControlledState'
-import {PLACEMENTS, TRIGGERS} from './config'
-import PopoverExtendChildren from './PopoverExtendChildren'
 
-const BASE_CLASS = 'sui-AtomPopover'
-const CLASS_INNER = `${BASE_CLASS}-inner`
-const PREFIX_PLACEMENT = `${BASE_CLASS}-`
-const DEFAULT_OFFSET = 'auto,4px'
-const DEFAULT_TRIGGER = TRIGGERS.LEGACY
-const DEFAULT_DELAY = 0
+import useControlledState from '@s-ui/react-hooks/lib/useControlledState/index.js'
 
-// https://github.com/reactstrap/reactstrap/blob/8.9.0/src/Popover.js
-const Popover = loadable(() => import('reactstrap/lib/Popover'), {ssr: true})
+import {
+  BASE_CLASS,
+  CLASS_INNER,
+  DEFAULT_DELAY,
+  DEFAULT_OFFSET,
+  DEFAULT_TRIGGER,
+  getClassName,
+  PLACEMENTS,
+  Popover,
+  PREFIX_PLACEMENT,
+  TRIGGERS,
+  TYPES
+} from './config.js'
+import PopoverExtendChildren from './PopoverExtendChildren.js'
 
 const AtomPopover = forwardRef(
   (
     {
       children,
       closeIcon,
-      content,
+      content: Content,
       onClose,
       onOpen,
       placement = PLACEMENTS.BOTTOM,
       isVisible,
       defaultIsVisible,
       hideArrow = true,
-      trigger = DEFAULT_TRIGGER
+      trigger = DEFAULT_TRIGGER,
+      type
     },
     outRef
   ) => {
@@ -42,6 +47,7 @@ const AtomPopover = forwardRef(
         ? typeof onClose === 'function' && onClose(ev)
         : typeof onOpen === 'function' && onOpen(ev)
     }
+
     return (
       <>
         <PopoverExtendChildren ref={targetRef} onToggle={handleToggle}>
@@ -54,8 +60,11 @@ const AtomPopover = forwardRef(
           target={targetRef}
           className={BASE_CLASS}
           popperClassName="popperClassName"
-          innerClassName={CLASS_INNER}
-          arrowClassName={`${BASE_CLASS}-arrow`}
+          innerClassName={getClassName({defaultClass: CLASS_INNER, type})}
+          arrowClassName={getClassName({
+            defaultClass: `${BASE_CLASS}-arrow`,
+            type
+          })}
           innerRef={outRef}
           hideArrow={hideArrow}
           placementPrefix={PREFIX_PLACEMENT}
@@ -63,12 +72,25 @@ const AtomPopover = forwardRef(
           placement={placement}
           offset={DEFAULT_OFFSET}
         >
-          {closeIcon && (
-            <div className={`${BASE_CLASS}-closeIcon`} onClick={handleToggle}>
-              {closeIcon}
-            </div>
-          )}
-          {content}
+          {({scheduleUpdate: update}) => {
+            return (
+              <>
+                {closeIcon && (
+                  <div
+                    className={`${BASE_CLASS}-closeIcon`}
+                    onClick={handleToggle}
+                  >
+                    {closeIcon}
+                  </div>
+                )}
+                {typeof Content === 'function' ? (
+                  <Content update={update} />
+                ) : (
+                  Content
+                )}
+              </>
+            )
+          }}
         </Popover>
       </>
     )
@@ -100,6 +122,11 @@ AtomPopover.propTypes = {
   trigger: PropTypes.oneOfType([
     PropTypes.oneOf(Object.values(TRIGGERS)),
     PropTypes.arrayOf(PropTypes.oneOf(Object.values(TRIGGERS)))
+  ]),
+  /** Determine the type of the popover */
+  type: PropTypes.oneOfType([
+    PropTypes.oneOf(Object.values(TYPES)),
+    PropTypes.string // Can even custom your own type
   ])
 }
 

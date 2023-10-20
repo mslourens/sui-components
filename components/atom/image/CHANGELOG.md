@@ -1,5 +1,83 @@
 # CHANGELOG
 
+# 2.16.0 (2022-10-03)
+
+
+### Bug Fixes
+
+* **components/atom/image:** update proptype ([4b77543](https://github.com/SUI-Components/sui-components/commit/4b77543d4c8537d76c136b1b4a234dc31c2183eb))
+
+
+
+# 2.15.0 (2022-10-01)
+
+
+### Features
+
+* **components/atom/image:** replace cloneElement spinner ([5871943](https://github.com/SUI-Components/sui-components/commit/58719439ec5e98e8a81d2b77b53e9a7cdd9bbee1)), closes [#2320](https://github.com/SUI-Components/sui-components/issues/2320)
+
+
+
+# 2.14.0 (2022-09-29)
+
+
+### Features
+
+* **components/atom/image:** rename node prop ([4e13e98](https://github.com/SUI-Components/sui-components/commit/4e13e98affe157059edaeaf1843880e017fbc1f1)), closes [#2319](https://github.com/SUI-Components/sui-components/issues/2319)
+
+
+
+# 2.13.0 (2022-07-18)
+
+
+### Bug Fixes
+
+* **components/atom/image:** fix loading classname ([e93b4f9](https://github.com/SUI-Components/sui-components/commit/e93b4f907722f230b908120cba46266432f2e3ad))
+
+
+
+# 2.12.0 (2022-07-18)
+
+
+### Bug Fixes
+
+* **components/atom/image:** fix capitalize object key ([489ac99](https://github.com/SUI-Components/sui-components/commit/489ac991933f635df63157dec6067bb8120b635b))
+
+
+### Features
+
+* **components/atom/image/demo:** add demo and test ([4f57bce](https://github.com/SUI-Components/sui-components/commit/4f57bceabde1eae40f32dc992492bf31199a2e50))
+* **components/atom/image:** add attributtes to improve the image loading ([a48547b](https://github.com/SUI-Components/sui-components/commit/a48547bee27a8b4582e55e0c4998ccb2926b371a))
+
+
+
+# 2.11.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/image:** Avoid publishing huge CHANGELOG.md ([426e446](https://github.com/SUI-Components/sui-components/commit/426e4463583354fcace286a51ca1a4e6c783638f))
+
+
+
+# 1.1.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/image/demo:** resolve linting errors ([f00fe69](https://github.com/SUI-Components/sui-components/commit/f00fe692ee64281268b94aba4e46ce4230be22db))
+
+
+
+# 2.10.0 (2022-01-11)
+
+
+### Features
+
+* **components/atom/image:** Add file extension and force new release ([de7e252](https://github.com/SUI-Components/sui-components/commit/de7e2527444575bce85e82fe7ae3b31ca51a66ef))
+
+
+
 # 2.9.0 (2021-07-12)
 
 

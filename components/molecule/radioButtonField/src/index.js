@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 
-import MoleculeField from '@s-ui/react-molecule-field'
 import AtomRadioButton from '@s-ui/react-atom-radio-button'
+import {AtomValidationTextTypes} from '@s-ui/react-atom-validation-text'
+import MoleculeField from '@s-ui/react-molecule-field'
 
-const BASE_CLASS = 'sui-MoleculeRadioButtonField'
+import {BASE_CLASS} from './settings.js'
 
 const MoleculeRadioButtonField = ({
   id,
@@ -13,6 +14,8 @@ const MoleculeRadioButtonField = ({
   errorText,
   alertText,
   helpText,
+  status,
+  statusText,
   onChange,
   onClickLabel,
   fullWidth,
@@ -29,6 +32,8 @@ const MoleculeRadioButtonField = ({
         alertText={alertText}
         helpText={helpText}
         onChange={onChange}
+        status={status}
+        statusText={statusText}
         onClickLabel={onClickLabel}
         fullWidth={fullWidth}
         inline
@@ -75,7 +80,15 @@ MoleculeRadioButtonField.propTypes = {
   inline: PropTypes.bool,
 
   /** Makes nodeLabelContainer full width */
-  fullWidth: PropTypes.bool
+  fullWidth: PropTypes.bool,
+
+  /** set the field status (ERROR, SUCCESS, ALERT) */
+  status: PropTypes.oneOf(Object.values(AtomValidationTextTypes)),
+
+  /** status field text **/
+  statusText: PropTypes.string
 }
 
 export default MoleculeRadioButtonField
+
+export {AtomValidationTextTypes as MoleculeRadioButtonFieldStatus}

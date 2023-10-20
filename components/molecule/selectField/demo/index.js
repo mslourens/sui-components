@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import {withStateValue} from '@s-ui/hoc'
-
-import MoleculeSelectField from 'components/molecule/selectField/src'
 import MoleculeSelectOption from '@s-ui/react-molecule-dropdown-option'
 
-import {IconCloseTag, IconArrowDown} from './Icons'
+import MoleculeSelectField from '../src/index.js'
+import {countries} from './data/index.js'
+import {IconArrowDown, IconCloseTag} from './Icons/index.js'
 
-import {countries} from './data'
 import './index.scss'
 
 const MoleculeSelectFieldWithState = withStateValue(MoleculeSelectField)

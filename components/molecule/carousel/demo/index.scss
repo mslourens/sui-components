@@ -1,0 +1,9 @@
+@import '../src/index';
+
+$base-class: '.DemoMoleculeCarousel';
+
+#{$base-class} {
+  &-customArrow {
+    font-size: 3em;
+  }
+}

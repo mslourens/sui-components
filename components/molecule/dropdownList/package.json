@@ -1,16 +1,18 @@
 {
   "name": "@s-ui/react-molecule-dropdown-list",
-  "version": "1.21.0",
+  "version": "2.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "rimraf ./lib && npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
-    "@s-ui/react-atom-input": "4",
+    "@s-ui/react-atom-input": "5",
     "@s-ui/react-hooks": "1",
+    "@s-ui/react-molecule-dropdown-option": "2",
+    "@s-ui/react-primitive-injector": "1",
     "lodash.isequal": "4.5"
   },
   "peerDependencies": {

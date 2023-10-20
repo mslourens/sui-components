@@ -1,8 +1,9 @@
 {
-  "name": "atom-tag-demo",
+  "name": "@s-ui/react-atom-tag-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

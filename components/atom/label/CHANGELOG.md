@@ -1,5 +1,82 @@
 # CHANGELOG
 
+# 1.23.0 (2022-10-17)
+
+
+### Features
+
+* **components/atom/label:** add htmlFor attribute ([1fab184](https://github.com/SUI-Components/sui-components/commit/1fab1841c11727eae8e5b150f34c85e791695d11))
+
+
+
+# 1.22.0 (2022-09-29)
+
+
+### Features
+
+* **components/atom/label:** add opacity token ([#2338](https://github.com/SUI-Components/sui-components/issues/2338)) ([56540fa](https://github.com/SUI-Components/sui-components/commit/56540fa9d5ea7625eb91d273ab87c5f7285f6bd4))
+* **Root:** Delete undefined dependencies ([c145905](https://github.com/SUI-Components/sui-components/commit/c145905350328925ba6fda2a462d7f8b508c8ea0))
+* **Root:** Merge commit ([d3735d0](https://github.com/SUI-Components/sui-components/commit/d3735d0644332e674d5a5b6291680697f0d6f7c4))
+
+
+
+# 1.21.0 (2022-06-30)
+
+
+### Bug Fixes
+
+* **components/atom/label:** change default line height value to inherit ([fadab00](https://github.com/SUI-Components/sui-components/commit/fadab00f3cb16817a0216f433c75cdc0b993dd2f))
+
+
+
+# 1.20.0 (2022-06-28)
+
+
+### Features
+
+* **components/atom/label:** allow customization for AtomLabel line-height ([6027f7f](https://github.com/SUI-Components/sui-components/commit/6027f7f23be185fc7996954c5e271df34fb5accd))
+
+
+
+# 1.19.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/label:** Avoid publishing huge CHANGELOG.md ([7ada6da](https://github.com/SUI-Components/sui-components/commit/7ada6da8e8ba4ed2700ab1bae5e468c0581d7900))
+
+
+
+# 1.18.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/atom/checkbox:** lint sass ([56c4c35](https://github.com/SUI-Components/sui-components/commit/56c4c35040180d213115b4a8f48acfbc4493cd31))
+* **components/atom/label:** add disabled style ([c7ec1f1](https://github.com/SUI-Components/sui-components/commit/c7ec1f18e667a185a78d87856c257881dd69559d))
+
+
+
+# 1.17.0 (2021-10-16)
+
+
+
+# 1.1.0 (2021-10-16)
+
+
+### Bug Fixes
+
+* **components/atom/label/demo:** hotfix unclosed JSX tag ([ad58f8c](https://github.com/SUI-Components/sui-components/commit/ad58f8c785bb05fbf3478c8a1f6e3abb977c1e77))
+* **components/atom/label:** Changed demo label and src ([78e0961](https://github.com/SUI-Components/sui-components/commit/78e0961b19120d0ae8daf4e042a43b790e50da84))
+
+
+### Features
+
+* **components/atom/label:** change optional message and text input ([a96032a](https://github.com/SUI-Components/sui-components/commit/a96032a0130e576fddab7a3254dd44d339ff709c))
+* **components/atom/label:** deleted duplicate import ([e34eab1](https://github.com/SUI-Components/sui-components/commit/e34eab1e98917b7104ef9e68f916f63bd059c6ca))
+
+
+
 # 1.16.0 (2021-09-09)
 
 

@@ -1,0 +1,41 @@
+$base-class: '.sui-AtomIcon';
+
+#{$base-class} {
+  display: inherit;
+  border: none;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  &:focus-visible {
+    outline-width: 0;
+  }
+
+  // Colors
+  @each $key, $value in $atom-icon-colors {
+    &#{$base-class}--#{$key} svg {
+      fill: $value;
+    }
+  }
+
+  // Sizes
+  @each $key, $value in $atom-icon-sizes {
+    &#{$base-class}--#{$key} svg {
+      height: $value;
+      width: $value;
+    }
+  }
+
+  > span {
+    display: inherit;
+  }
+
+  svg {
+    vertical-align: middle;
+
+    path {
+      stroke: none !important; // !important usage for AtomButton compatibility
+    }
+  }
+}

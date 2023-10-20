@@ -1,13 +1,28 @@
+import {forwardRef} from 'react'
+
 import PropTypes from 'prop-types'
 
-const AtomHelpText = ({text}) => (
-  <span className="sui-AtomHelpText">{text}</span>
-)
+import Injector from '@s-ui/react-primitive-injector'
+
+import {BASE_CLASS} from './settings.js'
+
+const AtomHelpText = forwardRef(({text}, forwardedRef) => {
+  const isTextString = typeof text === 'string'
+  const Component = isTextString ? 'span' : Injector
+  return (
+    <Component
+      className={BASE_CLASS}
+      {...(isTextString && {ref: forwardedRef})}
+    >
+      {text}
+    </Component>
+  )
+})
 
 AtomHelpText.displayName = 'AtomHelpText'
 
 AtomHelpText.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired
 }
 
 export default AtomHelpText

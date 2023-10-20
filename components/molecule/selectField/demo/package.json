@@ -1,8 +1,9 @@
 {
-  "name": "molecule-select-field-demo",
+  "name": "@s-ui/react-molecule-select-field-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@s-ui/hoc": "1",
-    "@s-ui/react-molecule-dropdown-option": "1",
+    "@s-ui/react-molecule-dropdown-option": "2",
     "@s-ui/react-molecule-field": "1",
     "@s-ui/react-molecule-select": "1"
   }

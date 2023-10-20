@@ -1,5 +1,121 @@
 # CHANGELOG
 
+# 1.30.0 (2023-05-15)
+
+
+### Features
+
+* **components/atom/switch:** add scss tokens to fit motor theme ([4cb4367](https://github.com/SUI-Components/sui-components/commit/4cb4367024c64a77469eca099e4820852d674f52))
+* **components/atom/switch:** add tokens for large version of atom switch ([d003883](https://github.com/SUI-Components/sui-components/commit/d003883f00c72519f63dd30c5f9f0ed73b4d8496))
+
+
+
+# 1.29.0 (2022-11-17)
+
+
+### Bug Fixes
+
+* **components/atom/switch:** FullWidth switch should have the text with align left ([3529906](https://github.com/SUI-Components/sui-components/commit/35299062c27880e2b1f8cc8b21b15aef01368d29))
+
+
+
+# 1.28.0 (2022-10-06)
+
+
+
+# 1.27.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/switch:** Avoid publishing huge CHANGELOG.md ([9826bb6](https://github.com/SUI-Components/sui-components/commit/9826bb6d80dcf655f76d7f6857b7cbff013a1402))
+
+
+
+# 1.26.0 (2022-04-25)
+
+
+### Bug Fixes
+
+* **components/atom/switch:** fix min-width input container atom switch ([bbb11d6](https://github.com/SUI-Components/sui-components/commit/bbb11d662824bb5689e35cd23f6938927e439be3))
+* **components/atom/switch:** text-aligns ([54bb757](https://github.com/SUI-Components/sui-components/commit/54bb7573662683fdbc0b621bbadfb61ba122797b))
+
+
+### Features
+
+* **components/atom/switch:** add large and small size ([1357534](https://github.com/SUI-Components/sui-components/commit/1357534bdb58cf0bc0e4ba74a54c7e6d9280b890))
+
+
+
+# 1.3.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/switch/demo:** resolve linting errors ([ecb03b7](https://github.com/SUI-Components/sui-components/commit/ecb03b7a48329ad5b0175a33e3fc71ebfe74827d))
+
+
+
+# 1.25.0 (2022-04-01)
+
+
+### Bug Fixes
+
+* **components/atom/switch:** allow single switch be accessible by label ([aada0dc](https://github.com/SUI-Components/sui-components/commit/aada0dc456b37c1ca4d18f0d10ab707bab4a5364))
+* **components/atom/switch:** code quality ([2828eaa](https://github.com/SUI-Components/sui-components/commit/2828eaa2c8925553681169f6ca463750c83d9eec))
+* **components/atom/switch:** improve code ([76484b1](https://github.com/SUI-Components/sui-components/commit/76484b1c28efc0f3b256a73cf0c8e1288131a55c))
+
+
+
+# 1.24.0 (2022-03-31)
+
+
+### Bug Fixes
+
+* **components/atom/switch:** prevent form submit when switch is clicked ([ddb135f](https://github.com/SUI-Components/sui-components/commit/ddb135f36f594827202c91f290c3569cbdccba81))
+
+
+
+# 1.23.0 (2022-03-30)
+
+
+### Bug Fixes
+
+* **components/atom/switch:** circle size ([34eb795](https://github.com/SUI-Components/sui-components/commit/34eb7953b72e1e68db807a8407fc4eb1f7e40024))
+* **components/atom/switch:** icons position ([7d2cee0](https://github.com/SUI-Components/sui-components/commit/7d2cee09380119b54b0fd88045f3150236b2c76f))
+
+
+### Features
+
+* **components/atom/switch:** a11y ([0061d60](https://github.com/SUI-Components/sui-components/commit/0061d60d35a522d7f70cea3f213f6c75a8667024))
+* **components/atom/switch:** a11y and icons ([990074d](https://github.com/SUI-Components/sui-components/commit/990074dc0ec09cd7a90dbd48b3b64fe042aad220))
+* **components/atom/switch:** a11y n performance ([03d3af4](https://github.com/SUI-Components/sui-components/commit/03d3af4e56fbf91b888f31a325abbbb10f9a5ed2))
+
+
+### Performance Improvements
+
+* **components/atom/switch:** remove unnecesary inner handlers ([b95671c](https://github.com/SUI-Components/sui-components/commit/b95671c362e6731a15e7a2eba17d81061267e1be))
+
+
+
+# 1.22.0 (2022-01-14)
+
+
+### Features
+
+* **components/atom/switch:** Add new variable: border ([95fadec](https://github.com/SUI-Components/sui-components/commit/95fadec962b5b8c1f888ef1ca33997c30552b613))
+
+
+
+# 1.21.0 (2021-11-30)
+
+
+### Features
+
+* **components/atom/switch:** bump ([02fc989](https://github.com/SUI-Components/sui-components/commit/02fc9890aead2de8defe5921f6b831994976f486))
+
+
+
 # 1.20.0 (2021-09-07)
 
 

@@ -1,83 +1,128 @@
-import {Children, cloneElement, useRef} from 'react'
+import {Children, useEffect, useState} from 'react'
+
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-import MoleculeProgressStep, {STATUSES} from './components/MoleculeProgressStep'
+import MoleculeStepper, {
+  moleculeStepperAlignment,
+  moleculeStepperDesign,
+  Step
+} from '@s-ui/react-molecule-stepper'
 
-const BASE_CLASS = `sui-MoleculeProgressSteps`
+import MoleculeProgressStep, {
+  STATUSES
+} from './components/MoleculeProgressStep/index.js'
+import {
+  BASE_CLASS,
+  CLASS_COMPRESSED,
+  CLASS_CONTENT,
+  CLASS_VERTICAL,
+  CONTENT_STYLE,
+  PROGRESS_BAR_JUSTIFY_CONTENT
+} from './config.js'
 
-const CLASS_STEPS = `${BASE_CLASS}-path`
-const CLASS_CONTENT = `${BASE_CLASS}-content`
-const CLASS_COMPRESSED_INFO = `${BASE_CLASS}-compressedInfo`
-
-const CLASS_VERTICAL = `${BASE_CLASS}--vertical`
-const CLASS_COMPRESSED = `${BASE_CLASS}--compressed`
 const MoleculeProgressSteps = ({
   vertical,
   children,
   iconStepDone,
-  compressed
+  compressed,
+  progressBarJustifyContent = PROGRESS_BAR_JUSTIFY_CONTENT.LEGACY,
+  contentStyle = CONTENT_STYLE.FIXED,
+  onChange,
+  showLabel = true
 }) => {
-  const activeStepContent = useRef()
+  const [step, setStep] = useState()
 
   const className = cx(BASE_CLASS, {
     [CLASS_VERTICAL]: vertical,
     [CLASS_COMPRESSED]: compressed
   })
 
-  const getCompressedInfoSteps = () => {
-    const childrenNodes = Children.toArray(children)
-    const totalSteps = childrenNodes.length
-    const [activeLabel, numActiveStep] = childrenNodes.reduce(
-      (acc, child, index) => {
-        const {status} = child.props
-        if (status === STATUSES.ACTIVE) acc = [child.props.label, index + 1]
-        return acc
-      },
-      []
-    )
-    const stepPositionInfo = `${numActiveStep}/${totalSteps}`
-    return `${stepPositionInfo}: ${activeLabel}`
-  }
+  useEffect(() => {
+    if (children) {
+      const currentStep = Children.toArray(children)
+        .filter(Boolean)
+        .map((child, index, elements) => child.props.status)
+        .lastIndexOf(STATUSES.ACTIVE)
+      const lastVisitedStep = Children.toArray(children)
+        .filter(Boolean)
+        .map((child, index, elements) => child.props.status)
+        .lastIndexOf(STATUSES.VISITED)
+      const steps = Children.toArray(children).filter(Boolean).length
 
-  const extendedChildren = Children.toArray(children)
-    .filter(Boolean)
-    .map((child, index, children) => {
-      const {
-        icon: iconChild,
-        iconActive,
-        status,
-        children: childrenChild
-      } = child.props
-
-      const totalChildren = children.length
-      const numStep = index + 1
-      const lastStep = index >= totalChildren - 1
-
-      const isVisited = status === STATUSES.VISITED
-      const isActive = status === STATUSES.ACTIVE
-      let icon = iconChild
-      if (isVisited) icon = iconStepDone
-      if (isActive) {
-        icon = iconActive || iconChild
-        activeStepContent.current = childrenChild
+      if (currentStep >= 0 && step !== currentStep) {
+        setStep(currentStep)
+      } else if (steps - 1 === lastVisitedStep && step !== steps) {
+        setStep(steps)
+      } else if (lastVisitedStep === -1 && currentStep === -1) {
+        setStep(-1)
       }
+    }
+  }, [children, step])
 
-      return cloneElement(child, {
-        numStep,
-        lastStep,
-        icon,
-        compressed
-      })
-    })
+  const onChangeHandler = (event, {step, ...args}) => {
+    typeof onChange === 'function' && onChange(event, {step, ...args})
+  }
 
   return (
     <div className={className}>
-      {compressed && (
-        <p className={CLASS_COMPRESSED_INFO}>{getCompressedInfoSteps()}</p>
+      {children && (
+        <MoleculeStepper
+          steps={Children.toArray(children).length}
+          step={step}
+          visitedIcon={iconStepDone}
+          labels={Children.toArray(children)
+            .filter(Boolean)
+            .map(({props: {label} = {}, index}) => {
+              return label
+            })}
+          justifyContent={progressBarJustifyContent}
+          design={
+            compressed
+              ? moleculeStepperDesign.COMPRESSED
+              : moleculeStepperDesign.DEFAULT
+          }
+          alignment={
+            vertical
+              ? moleculeStepperAlignment.VERTICAL
+              : moleculeStepperAlignment.HORIZONTAL
+          }
+          onChange={onChangeHandler}
+          showLabel={showLabel}
+        >
+          {Children.toArray(children)
+            .filter(Boolean)
+            .map((child, index, elements) => (
+              <Step
+                key={index}
+                steps={elements.length}
+                step={index + 1}
+                visited={index < step}
+                current={step === index}
+                label={child?.props?.label}
+                icon={child?.props?.icon}
+                currentIcon={child?.props?.iconActive}
+              />
+            ))}
+        </MoleculeStepper>
       )}
-      <div className={CLASS_STEPS}>{extendedChildren}</div>
-      <div className={CLASS_CONTENT}>{activeStepContent.current}</div>
+      <div className={cx(CLASS_CONTENT, contentStyle)}>
+        {Children.toArray(children)
+          .filter(Boolean)
+          .map((child, index) => {
+            const {children: childrenChild, status} = child.props
+            return (
+              <div
+                key={index}
+                className={cx(`${CLASS_CONTENT}-item`, {
+                  [`${CLASS_CONTENT}-item--active`]: status === STATUSES.ACTIVE
+                })}
+              >
+                {childrenChild}
+              </div>
+            )
+          })}
+      </div>
     </div>
   )
 }
@@ -95,8 +140,27 @@ MoleculeProgressSteps.propTypes = {
   compressed: PropTypes.bool,
 
   /** Vertical mode */
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
+
+  /** Fit the content size */
+  contentStyle: PropTypes.oneOf(Object.values(CONTENT_STYLE)),
+
+  /** justify the progressbar elements in its area following the element declared **/
+  progressBarJustifyContent: PropTypes.oneOf(
+    Object.values(PROGRESS_BAR_JUSTIFY_CONTENT)
+  ),
+  /** callback fired every time page changes **/
+  onChange: PropTypes.func,
+
+  /** show label or not */
+  showLabel: PropTypes.bool
 }
 
 export default MoleculeProgressSteps
-export {MoleculeProgressStep, STATUSES}
+export {
+  MoleculeProgressStep,
+  STATUSES,
+  STATUSES as moleculeProgressStepsStatuses,
+  PROGRESS_BAR_JUSTIFY_CONTENT as moleculeProgressStepsJustifyContentBar,
+  CONTENT_STYLE as moleculeProgressContentStyle
+}

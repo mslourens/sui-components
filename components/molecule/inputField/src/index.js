@@ -1,22 +1,14 @@
 import PropTypes from 'prop-types'
 
+import AtomInput from '@s-ui/react-atom-input'
 import MoleculeField from '@s-ui/react-molecule-field'
-import AtomInput, {inputStates} from '@s-ui/react-atom-input'
 
-const getErrorState = ({successText, errorText}) => {
-  if (successText) return false
-  if (errorText) return true
-}
-
-const getState = ({successText, errorState, alertText}) => {
-  if (successText) return inputStates.SUCCESS
-  if (errorState) return inputStates.ERROR
-  if (alertText) return inputStates.ALERT
-}
+import {getErrorState, getState} from './config.js'
 
 const MoleculeInputField = ({
   id,
   label,
+  nodeLabel,
   successText,
   errorText,
   alertText,
@@ -36,6 +28,7 @@ const MoleculeInputField = ({
     <MoleculeField
       name={id}
       label={label}
+      nodeLabel={nodeLabel}
       successText={successText}
       errorText={errorText}
       alertText={alertText}
@@ -62,6 +55,9 @@ MoleculeInputField.displayName = 'MoleculeInputField'
 MoleculeInputField.propTypes = {
   /** Text to be displayed as label */
   label: PropTypes.string.isRequired,
+
+  /** React node to be displayed as label if there is not a label */
+  nodeLabel: PropTypes.element,
 
   /** used as label for attribute and input element id */
   id: PropTypes.string,

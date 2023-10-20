@@ -1,27 +1,4 @@
-$s-pin-input-field: (
-  // 64px
-    xxlarge: $p-base * 8,
-  // 56px
-    xlarge: $p-base * 7,
-  // 48px
-    large: $p-base * 6,
-  // 40px
-    medium: $p-base * 5,
-  // 32px
-    small: $p-base * 4,
-  // 24px
-    xsmall: $p-base * 3,
-  // 16px
-    xxsmall: $p-base * 2
-) !default;
-
-$pin-input-field-status: (
-  error: $c-error,
-  success: $c-success,
-  alert: $c-alert
-) !default;
-
-.sui-PinInputField {
+#{$base-class}Field {
   border-radius: $bdrs-pin-input-field;
   border: $bdw-pin-input-field solid $bdc-pin-input-field;
   box-sizing: border-box;
@@ -32,6 +9,10 @@ $pin-input-field-status: (
   outline: none;
   padding: 0;
   text-align: center;
+
+  &::placeholder {
+    color: $c-pin-input-placeholder;
+  }
 
   &:focus {
     border: $bdw-s solid $c-primary-dark;
@@ -57,7 +38,8 @@ $pin-input-field-status: (
     width: 100%;
   }
   &:disabled {
-    cursor: not-allowed;
+    color: $c-gray-light-3;
+    cursor: default;
     pointer-events: all;
   }
 }

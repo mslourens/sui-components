@@ -1,5 +1,149 @@
 # CHANGELOG
 
+# 2.37.0 (2022-10-13)
+
+
+### Features
+
+* **components/molecule/tabs:** add id prop to make tabs uniques ([b90231d](https://github.com/SUI-Components/sui-components/commit/b90231dc07db9ef4dcc7943fafe2c634b38a1070))
+* **components/molecule/tabs:** add pull request feedback ([208e0be](https://github.com/SUI-Components/sui-components/commit/208e0bed5aa055ae796fc934d79c334b17acc1b4))
+* **components/molecule/tabs:** pull request feedback ([f32e971](https://github.com/SUI-Components/sui-components/commit/f32e9718a114586ba6e9139406c0db8f330100fd))
+
+
+
+# 2.36.0 (2022-09-22)
+
+
+### Features
+
+* **components/molecule/tabs:** add orientation aria attribute ([71296a3](https://github.com/SUI-Components/sui-components/commit/71296a319365c6109c7e9aaa2077933ceb80d09e))
+* **components/molecule/tabs:** Change tabs to be able to modify current active tabs by updating pro ([3f6a23e](https://github.com/SUI-Components/sui-components/commit/3f6a23e3538970054c289b4607c806baa72c6922))
+* **components/molecule/tabs:** control/uncontroll active tabs ([7945c33](https://github.com/SUI-Components/sui-components/commit/7945c339e5a145a2d593b2f68d4344aea2100f7b))
+* **components/molecule/tabs:** make tabs accesibles ([b4ebaf3](https://github.com/SUI-Components/sui-components/commit/b4ebaf3f60efa0bb51422059bf631f9e1e076666))
+* **components/molecule/tabs:** remove unnecesary prop injected ([4b67d13](https://github.com/SUI-Components/sui-components/commit/4b67d1304388ec589112eb3bd4d24767c8733367))
+
+
+
+# 2.35.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/tabs:** Allow to disable scroll into view funcionality ([2dcb5e2](https://github.com/SUI-Components/sui-components/commit/2dcb5e2756d17cf5b601cb92e61901a565495a7f))
+* **components/molecule/tabs:** Avoid publishing huge CHANGELOG.md ([e612454](https://github.com/SUI-Components/sui-components/commit/e6124549e874ab8adc30e832206fac3f9be9f2fa))
+
+
+
+# 2.34.0 (2022-03-21)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** fix classes, mod demo and unnecesary propsTypes declaration and defau ([5648880](https://github.com/SUI-Components/sui-components/commit/56488809574915b9673c60a581a4789b74da789e))
+* **components/molecule/tabs:** remove style comment ([66e8cb7](https://github.com/SUI-Components/sui-components/commit/66e8cb7507f3c3f41164a92201428690b5a96c33))
+
+
+
+# 2.33.0 (2022-03-08)
+
+
+### Features
+
+* **components/molecule/tabs:** new tokens for molecule/tabs bg colors ([bfc74d4](https://github.com/SUI-Components/sui-components/commit/bfc74d40c5cc993d2a034ed9c3e104e378946ea7))
+* **components/molecule/tabs:** use new bg and bgc tokens on component styles ([b5c1df9](https://github.com/SUI-Components/sui-components/commit/b5c1df9620170bafe19916dec239e20c742ce776))
+
+
+
+# 2.32.0 (2022-03-07)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** fix file import ([ef9149f](https://github.com/SUI-Components/sui-components/commit/ef9149f33ffc63463471c4e08e8a73e095be65a2))
+* **components/molecule/tabs:** remove test color ([46f5e47](https://github.com/SUI-Components/sui-components/commit/46f5e475683505a6573a9f1a217ba22e50b827f9))
+* **components/molecule/tabs:** rename file ([1d9414a](https://github.com/SUI-Components/sui-components/commit/1d9414a24573558b9411737108ffe9fc2e4d9977))
+* **components/molecule/tabs:** undo file changes ([d44f561](https://github.com/SUI-Components/sui-components/commit/d44f5611350239789f835ed4bbf165764dbd3fc7))
+
+
+### Features
+
+* **components/molecule/tabs:** add new token for tab border radius ([5c5b794](https://github.com/SUI-Components/sui-components/commit/5c5b794c4cc06d1ea30fb6cde6fe3c635886bbac))
+* **components/molecule/tabs:** use new token for tab items border radius and re use sass variable ([a1989e6](https://github.com/SUI-Components/sui-components/commit/a1989e69dd58b9c832834a4becbe8b169596eac1))
+
+
+
+# 2.31.0 (2022-01-25)
+
+
+### Features
+
+* **components/atom/slider:** fix rc-slider update integration ([86960b8](https://github.com/SUI-Components/sui-components/commit/86960b86294a3a7726d5ff70c25b8ead54b7c0a9))
+* **components/molecule/tabs:** include esxension for es-modules compatibility ([8b7d47e](https://github.com/SUI-Components/sui-components/commit/8b7d47e8ba8e104d8184441eacbb15751ad9cebe))
+
+
+
+# 2.30.0 (2022-01-12)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** Change token order to avoid errors when compiling ([fc2dde8](https://github.com/SUI-Components/sui-components/commit/fc2dde828aa01f2caaa4c91e0ba7f2fbaebaa901))
+
+
+### Features
+
+* **components/molecule/tabs:** Add a SCSS variable to be able to define the Molecule/Tabs font weig ([4cdfccc](https://github.com/SUI-Components/sui-components/commit/4cdfccc2ad624ab76f29b9cada76b91efc5f66f8))
+
+
+
+# 2.29.0 (2021-11-24)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** Fix scrolling into active tab when is out of the viewport ([4c3c370](https://github.com/SUI-Components/sui-components/commit/4c3c370965db220b4966631a7bc1c6bc3d9f5149))
+
+
+### Features
+
+* **components/molecule/tabs:** Add missing dep ([346ee07](https://github.com/SUI-Components/sui-components/commit/346ee07cc1aa8ed12d65c67ffb04a66d56458945))
+* **components/molecule/tabs:** Restore demo settings ([3d76bc0](https://github.com/SUI-Components/sui-components/commit/3d76bc0f52d15f34fb072361506e3e63cb417d0f))
+* **components/molecule/tabs:** wip ([8f6d1f6](https://github.com/SUI-Components/sui-components/commit/8f6d1f63e4219f222ff623cd540317ab0b584627))
+
+
+
+# 2.28.0 (2021-11-22)
+
+
+### Bug Fixes
+
+* **components/molecule/tabs:** Fix scroll into active tab breaking when is out of the viewport ([970bb62](https://github.com/SUI-Components/sui-components/commit/970bb62a81849e3dcffba277fc76062ef9435af8))
+
+
+### Features
+
+* **components/molecule/tabs:** Refactor to use mergeRefs hook ([775871a](https://github.com/SUI-Components/sui-components/commit/775871ad0ef230c9a4aeda50a716dbecc81c0490))
+
+
+
+# 2.27.0 (2021-11-03)
+
+
+### Features
+
+* **components/molecule/tabs:** accept node element as label ([442e569](https://github.com/SUI-Components/sui-components/commit/442e569f61c3ed38a7b1ce74a29fee1a5520c076))
+
+
+
+# 1.1.0 (2021-09-28)
+
+
+### Features
+
+* **components/molecule/tabs/demo:** import component styles in demo ([36f53fd](https://github.com/SUI-Components/sui-components/commit/36f53fd8f6722ea562a1554cff60f9e0dd93ee74))
+
+
+
 # 2.26.0 (2021-09-27)
 
 

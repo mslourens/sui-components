@@ -2,20 +2,23 @@ import {
   Children,
   cloneElement,
   forwardRef,
-  useRef,
-  useState,
+  useCallback,
   useEffect,
-  useCallback
+  useRef,
+  useState
 } from 'react'
 import {createPortal} from 'react-dom'
-import PropTypes from 'prop-types'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+
 import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
-import {MODAL_SIZES, SUPPORTED_KEYS, toggleWindowScroll} from './config'
-import {suitClass} from './helpers'
-import {HeaderRender} from './HeaderRender'
-import {Close} from './Close'
-import MoleculeModalContent from './Content'
+
+import {Close} from './Close/index.js'
+import MoleculeModalContent from './Content/index.js'
+import {HeaderRender} from './HeaderRender/index.js'
+import {MODAL_SIZES, SUPPORTED_KEYS, toggleWindowScroll} from './config.js'
+import {suitClass} from './helpers.js'
 
 const MoleculeModal = forwardRef(
   (
@@ -38,7 +41,8 @@ const MoleculeModal = forwardRef(
       usePortal = true,
       withoutIndentation = false,
       isContentless,
-      withAnimation = true
+      withAnimation = true,
+      isOverflowVisible = false
     },
     forwardedRef
   ) => {
@@ -49,6 +53,7 @@ const MoleculeModal = forwardRef(
     const enableScrollPage = () => (document.body.style.overflow = 'auto')
 
     const [isClientReady, setIsClientReady] = useState(false)
+    const shoudlCloseOnOutsideClick = useRef()
 
     const getContainer = () => {
       let containerDOMEl = document.getElementById(portalContainerId)
@@ -84,6 +89,8 @@ const MoleculeModal = forwardRef(
     )
 
     useEffect(() => {
+      shoudlCloseOnOutsideClick.current = false
+
       if (isOpen && !isPageScrollable) blockScrollPage()
       else if (!isOpen && !isPageScrollable) enableScrollPage()
 
@@ -104,8 +111,20 @@ const MoleculeModal = forwardRef(
       }
     }, [onKeyDown])
 
-    const handleOutsideClick = ev => {
+    const handleOutsideMouseDown = ev => {
       if (closeOnOutsideClick && ev.target === wrapperRef.current) {
+        shoudlCloseOnOutsideClick.current = true
+      } else {
+        shoudlCloseOnOutsideClick.current = false
+      }
+    }
+
+    const handleOutsideMouseUp = ev => {
+      if (
+        closeOnOutsideClick &&
+        shoudlCloseOnOutsideClick.current &&
+        ev.target === wrapperRef.current
+      ) {
         closeModal(ev)
       }
     }
@@ -127,7 +146,8 @@ const MoleculeModal = forwardRef(
       const dialogClassName = cx(suitClass({element: 'dialog'}), {
         [suitClass({element: 'dialog--out'})]: isClosing,
         [suitClass({element: 'dialog--fit'})]: fitContent,
-        [suitClass({element: `dialog--size-${size}`})]: !!size
+        [suitClass({element: `dialog--size-${size}`})]: !!size,
+        [suitClass({element: 'dialog--visible-overflow'})]: isOverflowVisible
       })
 
       return (
@@ -135,7 +155,9 @@ const MoleculeModal = forwardRef(
           className={wrapperClassName}
           ref={ref}
           onAnimationEnd={onAnimationEnd}
-          onClick={handleOutsideClick}
+          onMouseDown={handleOutsideMouseDown}
+          onMouseUp={handleOutsideMouseUp}
+          draggable="false"
         >
           <div className={dialogClassName}>
             {(iconClose || header) && (
@@ -159,6 +181,7 @@ const MoleculeModal = forwardRef(
               <MoleculeModalContent
                 enableContentScroll={enableContentScroll}
                 withoutIndentation={withoutIndentation}
+                isOverflowVisible={isOverflowVisible}
               >
                 {renderChildren()}
               </MoleculeModalContent>
@@ -269,7 +292,11 @@ MoleculeModal.propTypes = {
   /**
    * Determines if modal has open/close animation
    */
-  withAnimation: PropTypes.bool
+  withAnimation: PropTypes.bool,
+  /**
+   * Determines if the modal overflow is visible or not
+   */
+  isOverflowVisible: PropTypes.bool
 }
 
 MoleculeModal.displayName = 'MoleculeModal'

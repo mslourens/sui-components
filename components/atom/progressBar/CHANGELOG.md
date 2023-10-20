@@ -1,5 +1,92 @@
 # CHANGELOG
 
+# 2.12.0 (2023-09-15)
+
+
+### Features
+
+* **components/atom/progressBar:** Allow customizing the progress bar depending on its status ([9e8ef44](https://github.com/SUI-Components/sui-components/commit/9e8ef44f754e90afcd0c02e12c2b0d46fa38fccc))
+
+
+
+# 2.11.0 (2023-09-14)
+
+
+### Features
+
+* **components/atom/progressBar:** Add a success type for progress bar ([cc5fc9f](https://github.com/SUI-Components/sui-components/commit/cc5fc9f54a5b2664c475ef359dfa9eac002c61e6))
+* **components/atom/progressBar:** Include success status in progress bar circle ([bbe1e32](https://github.com/SUI-Components/sui-components/commit/bbe1e32c584bb303d23358fa8813a32afaec03f2))
+
+
+
+# 2.10.0 (2023-06-22)
+
+
+### Features
+
+* **components/atom/progressBar/demo:** Update Demo ([21a648a](https://github.com/SUI-Components/sui-components/commit/21a648aa5f6fbf030da2da8864235472a9b842dc))
+* **components/atom/progressBar/demo:** Update Demo ([43b1419](https://github.com/SUI-Components/sui-components/commit/43b14191ea0cfcf3177cda82592846ee6a9beaa6))
+* **components/atom/progressBar:** Add new XL size for progress bar ([7cd5b47](https://github.com/SUI-Components/sui-components/commit/7cd5b47c7c169ab9060e569c6e83b4749af380a1))
+* **components/atom/progressBar:** Add OuterStrokeWidth prop ([c133e03](https://github.com/SUI-Components/sui-components/commit/c133e03f8f0c74d8a2f17033a1ee57fb0c6cea3e))
+* **components/atom/progressBar:** Add Round LineCap option ([030a828](https://github.com/SUI-Components/sui-components/commit/030a828ea13a320a2da30aec647b06c589474c4b))
+* **components/atom/progressBar:** Add stroke sizes to settings ([b5cb4b1](https://github.com/SUI-Components/sui-components/commit/b5cb4b1a75fd7b572949bea2f9a0ce40ffee273f))
+* **components/atom/progressBar:** Replace OuterStroke with Stroke sizes ([e940f83](https://github.com/SUI-Components/sui-components/commit/e940f8321b6222c3063f771580f50cb4dec9f877))
+* **components/atom/progressBar:** Update test ([3003f0e](https://github.com/SUI-Components/sui-components/commit/3003f0e7a61041fb11dba64fa4a30e6ed2216f04))
+* **components/atom/progressBar:** Update Tests ([1c51dde](https://github.com/SUI-Components/sui-components/commit/1c51ddecd4140cd087a13eb3e29b2483e06bbaf3))
+
+
+
+# 2.9.0 (2022-10-06)
+
+
+
+# 2.8.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/progressBar:** Avoid publishing huge CHANGELOG.md ([c88e622](https://github.com/SUI-Components/sui-components/commit/c88e622c016295903dd3e3c9bfbc21bae2b15aa2))
+
+
+
+# 2.7.0 (2022-03-21)
+
+
+### Bug Fixes
+
+* **components/atom/progressBar:** minor fixes ([a79a0bc](https://github.com/SUI-Components/sui-components/commit/a79a0bc3301e8700679badb7b82b6ceb8f654e45))
+* **components/atom/progressBar:** minor fixes ([116209a](https://github.com/SUI-Components/sui-components/commit/116209ae6cfcbec36013480251124304219b7206))
+
+
+
+# 2.6.0 (2022-01-28)
+
+
+### Features
+
+* **components/atom/progressBar:** full refactor ([275e8be](https://github.com/SUI-Components/sui-components/commit/275e8beefbb91d1ec10bc975605654ad258b0bb8))
+
+
+
+# 2.5.0 (2021-10-19)
+
+
+### Bug Fixes
+
+* **components/atom/progressBar:** fix double progress bar alignment ([1e656d3](https://github.com/SUI-Components/sui-components/commit/1e656d36eeb68cdf4e0603e9043bc36da5588576))
+
+
+
+# 2.4.0 (2021-10-10)
+
+
+### Bug Fixes
+
+* **components/atom/progressBar:** fix bdrs ([8261b6c](https://github.com/SUI-Components/sui-components/commit/8261b6c60c467e6e1cc88dc465fc01b906502583)), closes [#1770](https://github.com/SUI-Components/sui-components/issues/1770)
+* **components/atom/progressBar:** fix bdrs remove whitespace ([2f02fd1](https://github.com/SUI-Components/sui-components/commit/2f02fd126e8341f3c4b96a381d6be5a4fb7bde5e)), closes [#1770](https://github.com/SUI-Components/sui-components/issues/1770)
+
+
+
 # 2.3.0 (2021-08-09)
 
 

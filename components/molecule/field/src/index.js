@@ -1,57 +1,25 @@
-import {cloneElement, Children} from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
+import {Children, cloneElement} from 'react'
 
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+
+import AtomHelpText from '@s-ui/react-atom-help-text'
 import AtomValidationText, {
   AtomValidationTextTypes
 } from '@s-ui/react-atom-validation-text'
-import AtomLabel, {AtomLabelTypes} from '@s-ui/react-atom-label'
-import AtomHelpText from '@s-ui/react-atom-help-text'
 
-const BASE_CLASS = 'sui-MoleculeField'
-const CLASS_INLINE = `${BASE_CLASS}--inline`
-const CLASS_AUTOHIDE = `${BASE_CLASS}--autohide`
-const CLASS_FULLWIDTH = `${BASE_CLASS}--fullWidth`
-const CLASS_INLINE_REVERSE = `${CLASS_INLINE}-reverse`
-const CLASS_NODE_LABEL_CONTAINER = `${BASE_CLASS}-nodeLabelContainer`
-const CLASS_INPUT_CONTAINER = `${BASE_CLASS}-inputContainer`
-const CLASS_LABEL_CONTAINER = `${BASE_CLASS}-labelContainer`
-
-const MoleculeLabel = ({
-  label,
-  nodeLabel,
-  type: typeValidationLabel,
-  name,
-  onClick
-}) => {
-  const innerLabel = () => {
-    if (label) {
-      return (
-        <AtomLabel
-          type={typeValidationLabel}
-          name={name}
-          text={label}
-          onClick={onClick}
-        />
-      )
-    } else if (nodeLabel) {
-      return cloneElement(nodeLabel, {
-        type: typeValidationLabel,
-        name,
-        onClick
-      })
-    }
-  }
-  return <div className={CLASS_NODE_LABEL_CONTAINER}>{innerLabel()}</div>
-}
-
-MoleculeLabel.propTypes = {
-  label: PropTypes.string,
-  nodeLabel: PropTypes.element,
-  type: PropTypes.oneOf(Object.values(AtomLabelTypes)),
-  name: PropTypes.string,
-  onClick: PropTypes.func
-}
+import {
+  BASE_CLASS,
+  CLASS_AUTO_HIDE,
+  CLASS_FULLWIDTH,
+  CLASS_INLINE,
+  CLASS_INLINE_REVERSE,
+  CLASS_INPUT_CONTAINER,
+  CLASS_LABEL_CONTAINER
+} from './config.js'
+import MoleculeLabel from './Label.js'
+import useStatusValidationText from './useStatusValidationText.js'
+import useTypeValidationLabel from './useTypeValidationLabel.js'
 
 const MoleculeField = ({
   disabled,
@@ -66,6 +34,8 @@ const MoleculeField = ({
   useContrastLabel,
   helpText,
   name,
+  status,
+  statusText,
   onClickLabel,
   onChange: onChangeFromProps,
   children,
@@ -76,11 +46,10 @@ const MoleculeField = ({
     BASE_CLASS,
     inline && CLASS_INLINE,
     inline && reverse && CLASS_INLINE_REVERSE,
-    autoHideHelpText && CLASS_AUTOHIDE,
+    autoHideHelpText && CLASS_AUTO_HIDE,
     fullWidth && CLASS_FULLWIDTH
   )
 
-  let statusValidationText, typeValidationLabel, typeValidationText
   const extendedChildren = Children.toArray(children)
     .filter(Boolean)
     .map((child, index) => {
@@ -89,44 +58,42 @@ const MoleculeField = ({
       })
     })
 
-  if (useContrastLabel) {
-    typeValidationLabel = AtomLabelTypes.CONTRAST
-  }
+  const typeValidationLabel = useTypeValidationLabel({
+    useContrastLabel,
+    errorText,
+    successText,
+    alertText,
+    disabled,
+    status
+  })
 
-  if (errorText) {
-    statusValidationText = errorText
-    typeValidationLabel = AtomLabelTypes.ERROR
-    typeValidationText = AtomValidationTextTypes.ERROR
-  }
-
-  if (successText) {
-    statusValidationText = successText
-    typeValidationLabel = AtomLabelTypes.SUCCESS
-    typeValidationText = AtomValidationTextTypes.SUCCESS
-  }
-
-  if (alertText) {
-    statusValidationText = alertText
-    typeValidationLabel = AtomLabelTypes.ALERT
-    typeValidationText = AtomValidationTextTypes.ALERT
-  }
-
-  if (disabled) {
-    typeValidationLabel = AtomLabelTypes.DISABLED
-  }
+  const {text: validationTextValue, status: validationTextStatus} =
+    useStatusValidationText({
+      successText,
+      errorText,
+      alertText,
+      status,
+      statusText
+    })
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      {...(validationTextStatus &&
+        Object.values(AtomValidationTextTypes).includes(
+          validationTextStatus
+        ) && {'data-status': validationTextStatus})}
+    >
       {(label || nodeLabel) && (
         <div className={CLASS_LABEL_CONTAINER}>
           {inline && extendedChildren}
           <MoleculeLabel
             type={typeValidationLabel}
             name={name}
-            label={label}
-            nodeLabel={nodeLabel}
             onClick={onClickLabel}
-          />
+          >
+            {label || nodeLabel}
+          </MoleculeLabel>
         </div>
       )}
       <div
@@ -136,10 +103,10 @@ const MoleculeField = ({
         )}
       >
         {!inline && extendedChildren}
-        {!disabled && typeValidationText && (
+        {!disabled && validationTextValue && (
           <AtomValidationText
-            type={typeValidationText}
-            text={statusValidationText}
+            type={validationTextStatus}
+            text={validationTextValue}
           />
         )}
         {helpText && <AtomHelpText text={helpText} />}
@@ -155,10 +122,10 @@ MoleculeField.propTypes = {
   children: PropTypes.any,
 
   /** Text to be displayed as label of the textarea */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
   /** React node to be displayed as label of the textarea if there is not a given label value */
-  nodeLabel: PropTypes.element,
+  nodeLabel: PropTypes.element, // deprecated (use label)
 
   /** Makes nodeLabelContainer full width */
   fullWidth: PropTypes.bool,
@@ -173,16 +140,32 @@ MoleculeField.propTypes = {
   name: PropTypes.string.isRequired,
 
   /** Success message to display when success state  */
-  successText: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+  successText: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.bool,
+    PropTypes.node
+  ]),
 
   /** Error message to display when error state  */
-  errorText: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+  errorText: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.bool,
+    PropTypes.node
+  ]),
 
   /** Error message to display when alert state  */
-  alertText: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+  alertText: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.bool,
+    PropTypes.node
+  ]),
 
   /** Help Text to display */
-  helpText: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+  helpText: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.bool,
+    PropTypes.node
+  ]),
 
   /** Boolean to decide if elements should be set inline */
   inline: PropTypes.bool,
@@ -200,7 +183,15 @@ MoleculeField.propTypes = {
   autoHideHelpText: PropTypes.bool,
 
   /** Boolean to indicate if there is a checkbox or radiobutton & it has to be aligned  */
-  isAligned: PropTypes.bool
+  isAligned: PropTypes.bool,
+
+  /** set the field status (ERROR, SUCCESS, ALERT) */
+  status: PropTypes.oneOf(Object.values(AtomValidationTextTypes)),
+
+  /** status field text **/
+  statusText: PropTypes.string
 }
 
 export default MoleculeField
+
+export {AtomValidationTextTypes as moleculeFieldStatus}

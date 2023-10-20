@@ -1,22 +1,26 @@
 import {useRef, useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
+  AntDesignIcon,
   Article,
-  Code,
   Box,
+  Code,
   H2,
   H4,
   Paragraph,
   RadioButton,
-  RadioButtonGroup,
-  AntDesignIcon
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
-import {MoleculeDrawer, MoleculeDrawerOverlay} from '../src'
+
+import {MoleculeDrawer, MoleculeDrawerOverlay} from '../src/index.js'
 
 const DemoDefault = ({className}) => {
   const ref = useRef()
   const [isOpen, setIsOpen] = useState()
   const [showOverlay, setShowOverlay] = useState(false)
+  const drawerRef = useRef()
   return (
     <Article className={className}>
       <H2>Default</H2>
@@ -51,6 +55,8 @@ const DemoDefault = ({className}) => {
           onClose={(event, {isOpen}) => {
             setIsOpen(isOpen)
           }}
+          closeOnOutsideClick
+          ref={drawerRef}
         >
           <H4>Drawer Content</H4>
           <RadioButton

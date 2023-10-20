@@ -1,5 +1,203 @@
 # CHANGELOG
 
+# 1.90.0 (2023-05-17)
+
+
+### Features
+
+* **components/atom/button:** button inner inherits text decoration ([1d752e4](https://github.com/SUI-Components/sui-components/commit/1d752e4d9fec57b27add358d1168d5599951a783))
+
+
+
+# 1.89.0 (2022-08-18)
+
+
+### Features
+
+* **components/atom/button:** fix typo ([e07bf75](https://github.com/SUI-Components/sui-components/commit/e07bf75d4d89d20214617975330c07dfaffad203))
+* **components/atom/button:** minor changes ([29ad728](https://github.com/SUI-Components/sui-components/commit/29ad7287cca6eb4522b370168f3199c344a9f6fb))
+
+
+
+# 1.88.0 (2022-08-17)
+
+
+### Bug Fixes
+
+* **components/atom/button:** link text selectable ([8992f0b](https://github.com/SUI-Components/sui-components/commit/8992f0be1a9c75fcf355b60823b2ca935e1773d8))
+
+
+### Features
+
+* **components/atom/button:** Add elevation prop and focus var ([92f5418](https://github.com/SUI-Components/sui-components/commit/92f54184e3c7ded22ce232b013cb9dad8c4f3624))
+* **components/molecule/checkboxField:** update to checkboxv3 ([4d4c9e1](https://github.com/SUI-Components/sui-components/commit/4d4c9e150ab03cdd0290f932a85ec1cde5e71e99))
+
+
+
+# 1.87.0 (2022-06-27)
+
+
+### Features
+
+* **components/atom/button:** Add expected values for atomButtonColors ([708d8df](https://github.com/SUI-Components/sui-components/commit/708d8df22e826b4eec65d5397b076382765d7efa))
+* **components/atom/button:** add test for atomButtonColors ([1b383b1](https://github.com/SUI-Components/sui-components/commit/1b383b179c5bf0c1a3c8da0dddb01feb5ca665b3))
+* **components/atom/button:** Add test for atomButtonColors ([be13b74](https://github.com/SUI-Components/sui-components/commit/be13b74a87a1820476bac22a62d470b213566a11))
+* **components/atom/button:** Add test for atomButtonColors ([d618633](https://github.com/SUI-Components/sui-components/commit/d6186337436ebd41e0cd3569b20dace55f7c9005))
+
+
+
+# 1.86.0 (2022-06-20)
+
+
+### Bug Fixes
+
+* **components/atom/button:** Use a dictionary instead an array to be able to use in components ([251d5fa](https://github.com/SUI-Components/sui-components/commit/251d5fac3f49dff9446eaa72352a612bf0a63b99))
+
+
+### Features
+
+* **components/atom/button:** Avoid publishing huge CHANGELOG.md ([7de1487](https://github.com/SUI-Components/sui-components/commit/7de1487581bdfe9e70bf6e81f55f225b4487e6bf))
+* **components/atom/button:** Use colors as dictionary instead array ([61d7b90](https://github.com/SUI-Components/sui-components/commit/61d7b90b7760b2e56cc15389f702cd6cf1052cba))
+
+
+
+# 1.85.0 (2022-05-27)
+
+
+### Features
+
+* **components/atom/button:** button can get a value ([c504a5d](https://github.com/SUI-Components/sui-components/commit/c504a5ddc562f87892af6f45ceceba9070cd1899))
+
+
+
+# 1.1.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/button/demo:** resolve linting errors ([e0ebb21](https://github.com/SUI-Components/sui-components/commit/e0ebb2121be6059a0d2517883e621f004ad058ee))
+
+
+
+# 1.84.0 (2022-03-16)
+
+
+### Bug Fixes
+
+* **components/atom/button:** isloading spinner isloading size ([b08b9f5](https://github.com/SUI-Components/sui-components/commit/b08b9f53f4e9e21f338ca9524c3aee0e0213a368)), closes [#2052](https://github.com/SUI-Components/sui-components/issues/2052)
+
+
+
+# 1.83.0 (2022-03-16)
+
+
+### Bug Fixes
+
+* **components/atom/button:** fix button icon position ([47aa5a4](https://github.com/SUI-Components/sui-components/commit/47aa5a4c82d97dcd535beefb54780c1bd86f2a46)), closes [#2052](https://github.com/SUI-Components/sui-components/issues/2052)
+
+
+
+# 1.82.0 (2022-03-11)
+
+
+### Bug Fixes
+
+* **components/atom/button:** atom icon sizes explicit declaration ([d3f2c6a](https://github.com/SUI-Components/sui-components/commit/d3f2c6a95a7118448406df128d25ff6936f21e5d)), closes [#2052](https://github.com/SUI-Components/sui-components/issues/2052)
+
+
+
+# 1.81.0 (2022-01-26)
+
+
+### Features
+
+* **components/atom/button:** Separate settings file ([74dee0f](https://github.com/SUI-Components/sui-components/commit/74dee0f690336da43f8664d1717d0052473e0b24))
+
+
+
+# 1.80.0 (2022-01-20)
+
+
+### Features
+
+* **components/atom/button:** add new scss variable to custom focus text color on link type buttons ([528fe43](https://github.com/SUI-Components/sui-components/commit/528fe430dda5ab2ecdfb9916e142260204e0bc7b))
+
+
+
+# 1.79.0 (2022-01-14)
+
+
+### Features
+
+* **components/atom/button:** add new variable: text-decoration to button link ([64ddebb](https://github.com/SUI-Components/sui-components/commit/64ddebb0ec5db2f0a1ba6893267acc20d53a0b74))
+
+
+
+# 1.78.0 (2021-12-13)
+
+
+### Bug Fixes
+
+* **components/atom/button:** add isFitted as Atom Button own props ([84f3382](https://github.com/SUI-Components/sui-components/commit/84f3382ba5d8dafd7d5a454ee7863417a55c204c))
+
+
+
+# 1.77.0 (2021-12-02)
+
+
+### Bug Fixes
+
+* **components/atom/button:** bump ([459a92e](https://github.com/SUI-Components/sui-components/commit/459a92e55b1c5b91f24d702fed70cc01dd36587d))
+* **components/atom/button:** bump ([9f47029](https://github.com/SUI-Components/sui-components/commit/9f47029da9e54a3b7b5095179a9845262b92f86c))
+
+
+### Features
+
+* **components/atom/button:** adds token to button group padding ([7862c92](https://github.com/SUI-Components/sui-components/commit/7862c922045fdc6f6e34f9c7ab840adcc276d3d8))
+* **components/atom/button:** bump ([1a52acb](https://github.com/SUI-Components/sui-components/commit/1a52acb3923618ee32cd18765bf4ac7dafc1d057))
+* **components/atom/button:** bump ([e8408b6](https://github.com/SUI-Components/sui-components/commit/e8408b64050b10febca3faaae4fa80edd26d6367))
+* **components/atom/button:** bump ([3ba1734](https://github.com/SUI-Components/sui-components/commit/3ba17341986ad724fff6517c777aa2a168c7033e))
+* **components/atom/button:** improvements ([3a5736d](https://github.com/SUI-Components/sui-components/commit/3a5736d497b8fdf2fd1abdafab310761d7eacab6))
+
+
+
+# 1.72.0 (2021-11-30)
+
+
+### Features
+
+* **components/atom/buttom:** atom button selected ([274b9d6](https://github.com/SUI-Components/sui-components/commit/274b9d6cab34b890f26e3ff9beb38572006e330a))
+* **components/atom/button:** bump ([0f0992b](https://github.com/SUI-Components/sui-components/commit/0f0992b89200dc986ca5bc11935b988de80fa651))
+
+
+
+# 1.71.0 (2021-11-25)
+
+
+### Bug Fixes
+
+* **components/atom/button:** fix isFitted and groupPosition props margins behavior ([e66f8a8](https://github.com/SUI-Components/sui-components/commit/e66f8a8e4af9641aba74d65b31d3a82b040cdb82))
+
+
+
+# 1.70.0 (2021-11-24)
+
+
+### Features
+
+* **components/atom/button:** isFitted removes borders paddings and margins ([201a639](https://github.com/SUI-Components/sui-components/commit/201a639d9b9dbddc461ca0154d4170a388528040))
+
+
+
+# 1.69.0 (2021-10-13)
+
+
+### Bug Fixes
+
+* **components/atom/button:** center isLoading spinner on atom button ([5a61724](https://github.com/SUI-Components/sui-components/commit/5a61724bf41f5f33442c0248195c01bd65b81477))
+
+
+
 # 1.68.0 (2021-08-31)
 
 

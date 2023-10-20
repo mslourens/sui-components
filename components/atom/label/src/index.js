@@ -1,30 +1,6 @@
 import PropTypes from 'prop-types'
-import cx from 'classnames'
 
-const CLASSNAME = 'sui-AtomLabel'
-
-const TYPES = {
-  SUCCESS: 'success',
-  ERROR: 'error',
-  ALERT: 'alert',
-  CONTRAST: 'contrast',
-  DISABLED: 'disabled'
-}
-
-const FONT_SIZES = {
-  LARGE: 'large',
-  MEDIUM: 'medium',
-  SMALL: 'small',
-  XSMALL: 'xsmall'
-}
-
-const getClass = ({type, inline, fontSize}) =>
-  cx(CLASSNAME, {
-    [`${CLASSNAME}--${fontSize}`]: fontSize,
-    [`${CLASSNAME}--${type}`]: type,
-    [`${CLASSNAME}--inlineLeft`]: inline === 'left',
-    [`${CLASSNAME}--inlineRight`]: inline === 'right'
-  })
+import {FONT_SIZES, getClass, TYPES} from './settings.js'
 
 const AtomLabel = ({
   name,
@@ -32,11 +8,12 @@ const AtomLabel = ({
   text,
   optionalText,
   type,
+  htmlFor,
   fontSize,
   onClick
 }) => (
   <label
-    htmlFor={name}
+    htmlFor={htmlFor || name}
     className={getClass({type, inline, fontSize})}
     onClick={onClick}
   >
@@ -50,6 +27,10 @@ const AtomLabel = ({
 AtomLabel.displayName = 'AtomLabel'
 
 AtomLabel.propTypes = {
+  /**
+   * used as for attribute. Must be the same as the form element id
+   */
+  htmlFor: PropTypes.string,
   /**
    * used as for attribute. Must be the same as the form element id
    */

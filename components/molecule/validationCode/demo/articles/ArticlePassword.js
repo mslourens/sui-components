@@ -1,15 +1,18 @@
+import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
   Article,
-  H2,
-  Paragraph,
+  Cell,
   Code,
   Grid,
-  Cell,
+  H2,
+  Paragraph,
   RadioButton
 } from '@s-ui/documentation-library'
-import {useState} from 'react'
-import MoleculeValidationCode from '../../src/validationCode'
+
+import MoleculeValidationCode from '../../src/index.js'
 
 const ArticlePassword = ({className}) => {
   const [code, setCode] = useState('123456')

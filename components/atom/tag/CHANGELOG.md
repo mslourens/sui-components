@@ -1,5 +1,222 @@
 # CHANGELOG
 
+# 2.53.0 (2023-07-25)
+
+
+### Features
+
+* **components/atom/tag:** Change the default tap highlight color for Chrome mobile ([d15306a](https://github.com/SUI-Components/sui-components/commit/d15306a255c05f03e2bce6a86e81860f4e9a1678))
+* **Root:** move webkit-tap-highlight-color property to sui-AtomTag-actionable class ([0f071c4](https://github.com/SUI-Components/sui-components/commit/0f071c48b42d02e40bc5483b66f22b5538e000b8))
+* **Root:** move webkit-tap-highlight-color to the base-class ([187d0c0](https://github.com/SUI-Components/sui-components/commit/187d0c01f65ead3a99d046a9b6889be37e14003e))
+
+
+
+# 2.52.0 (2023-07-20)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** force release ([e2f3d36](https://github.com/SUI-Components/sui-components/commit/e2f3d36db9758a2eb04d4be2563f474bed6abe75))
+
+
+
+# 2.51.0 (2023-07-19)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** hover mobile devices ([6cfeaf2](https://github.com/SUI-Components/sui-components/commit/6cfeaf2cb06fca8509fb718f680ebfb7f361d417))
+* **components/atom/tag:** hover mobile devices for tag type ([0654428](https://github.com/SUI-Components/sui-components/commit/06544289c04c84404bf0ceab02f98160fb36641e))
+
+
+
+# 2.50.0 (2023-05-18)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** substitute outline for border property in outline tag styles ([7780fd2](https://github.com/SUI-Components/sui-components/commit/7780fd298c4590d627fa5d41b81bf06a34e4f6aa))
+
+
+
+# 2.49.0 (2022-11-24)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** tag repitted appearance ([6cb5233](https://github.com/SUI-Components/sui-components/commit/6cb523381223b1d4fdbca6e23fad2b5e0295d8b0))
+
+
+
+# 2.48.0 (2022-11-23)
+
+
+
+# 2.47.0 (2022-11-22)
+
+
+
+# 2.46.0 (2022-11-17)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** Avoid rendering an empty label if there is no label prop ([4d7a717](https://github.com/SUI-Components/sui-components/commit/4d7a717ca34c441f98c1a4f3b55842ae2f51055d))
+
+
+
+# 2.45.0 (2022-11-10)
+
+
+### Features
+
+* **components/atom/tag:** Allows to customize color and background color for the AtomTag ([e89bc2a](https://github.com/SUI-Components/sui-components/commit/e89bc2a3bf4f04344772f99a8734fa45d983d23c))
+* **components/atom/tag:** revert change in actionable border ([d346772](https://github.com/SUI-Components/sui-components/commit/d346772534d098d339d168ce100b85518e82f248))
+
+
+
+# 2.44.0 (2022-10-01)
+
+
+### Features
+
+* **components/atom/tag:** Remove -system ([50ba722](https://github.com/SUI-Components/sui-components/commit/50ba7220a71b7b123bb8e93dd3db5dde3911e5cc))
+
+
+
+# 2.43.0 (2022-07-27)
+
+
+### Features
+
+* **components/atom/tag:** refactoring and readOnly ([42450ac](https://github.com/SUI-Components/sui-components/commit/42450ac5bbe88d20ac664e36a1bbb71754a4afa8))
+
+
+
+# 2.42.0 (2022-07-13)
+
+
+### Features
+
+* **components/atom/tag:** add title as a new prop and also allow the label as node proptype ([0c47869](https://github.com/SUI-Components/sui-components/commit/0c478693775d384c00b414a19ba6f362d2b15c1e))
+* **components/atom/tag:** improvement ([9408cf8](https://github.com/SUI-Components/sui-components/commit/9408cf8830fc977ee76ca48b2279ca7beccbb5d2))
+
+
+
+# 2.41.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/tag:** Avoid publishing huge CHANGELOG.md ([5b8bc6a](https://github.com/SUI-Components/sui-components/commit/5b8bc6a07e4f104211ade6a861c9f2a26f3ba4fe))
+
+
+
+# 2.40.0 (2022-06-16)
+
+
+### Features
+
+* **components/atom/tag:** Allow setting bdc from tag types ([5eb0075](https://github.com/SUI-Components/sui-components/commit/5eb0075aea59c4c6028bbc283d046db53d7b53e5))
+
+
+
+# 2.39.0 (2022-06-07)
+
+
+
+# 2.38.0 (2022-06-07)
+
+
+### Features
+
+* **components/atom/tag:** add customizable padding ([b5be0cc](https://github.com/SUI-Components/sui-components/commit/b5be0cc46cb2b7e1235f8cc49fdf85fdd1275ff6))
+* **components/atom/tag:** improve padding for tag ([1dc0729](https://github.com/SUI-Components/sui-components/commit/1dc07298ed79c7af85a1daa26b9ce861a4c48d89))
+* **components/atom/tag:** remove unnecessary [@media](https://github.com/media) ([5dca12f](https://github.com/SUI-Components/sui-components/commit/5dca12fb530e5dd60f1bf8ff18c471b4700ab0cb))
+
+
+
+# 2.37.0 (2022-05-23)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** bump ([544da45](https://github.com/SUI-Components/sui-components/commit/544da45c1b8717814696b173a7feb76f472727a0))
+
+
+
+# 2.36.0 (2022-05-23)
+
+
+### Features
+
+* **components/atom/tag:** add border style and width in types token ([54bd66d](https://github.com/SUI-Components/sui-components/commit/54bd66d04313544572e2bc16804b66432f1e2213))
+
+
+
+# 2.35.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** resolve linting errors ([2a87305](https://github.com/SUI-Components/sui-components/commit/2a873053c44483d3e7557f04a8d4c7cf9650335e))
+
+
+
+# 2.34.0 (2021-12-30)
+
+
+### Features
+
+* **components/atom/tag:** add border color and hover border color in custom type tags ([2e851f3](https://github.com/SUI-Components/sui-components/commit/2e851f3530547dd74314be43d59b452e11860e61))
+
+
+
+# 2.33.0 (2021-11-01)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** fix typo in isFitted prop type ([80a1611](https://github.com/SUI-Components/sui-components/commit/80a1611f059364261fa1b2e73f7b01e02015cebe)), closes [#1708](https://github.com/SUI-Components/sui-components/issues/1708)
+
+
+
+# 2.32.0 (2021-10-27)
+
+
+### Features
+
+* **components/atom/tag:** add isFitted prop to disable the padding in the container ([457ddf7](https://github.com/SUI-Components/sui-components/commit/457ddf7c36e966422fc836452f0ea528d67971c0)), closes [#1708](https://github.com/SUI-Components/sui-components/issues/1708)
+
+
+
+# 2.31.0 (2021-10-21)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** fix icon alignment ([b0a4720](https://github.com/SUI-Components/sui-components/commit/b0a4720d816183629276fd14873ceabab8184800)), closes [#1844](https://github.com/SUI-Components/sui-components/issues/1844)
+
+
+
+# 2.30.0 (2021-10-11)
+
+
+### Bug Fixes
+
+* **components/atom/tag:** update the disabled state of the tag ([81f3eb0](https://github.com/SUI-Components/sui-components/commit/81f3eb0d656877549cfa3d99dd961712899a42d4)), closes [#1792](https://github.com/SUI-Components/sui-components/issues/1792)
+
+
+
+# 2.29.0 (2021-10-08)
+
+
+### Features
+
+* **components/atom/tag:** Set cursor to default on hover ([40821d5](https://github.com/SUI-Components/sui-components/commit/40821d5c4531b2c4a10e80a20ce2883e646c0d2a))
+
+
+
 # 2.28.0 (2021-08-19)
 
 
@@ -224,7 +441,6 @@
 * **atom/tag:** add rel prop and linkTypes options to atom/tag component ([a7fae8e](https://github.com/SUI-Components/sui-components/commit/a7fae8e84ccffb2de81e57c4aba155fa81ed80ad))
 * **atom/tag:** handle optional props, rel, in atom/tag component ([2f147f7](https://github.com/SUI-Components/sui-components/commit/2f147f705dc16f0264cd78a61c3a6e147b8b3c55))
 * **atom/tag:** refactor proptypes validation on atom/tag component ([4ceee47](https://github.com/SUI-Components/sui-components/commit/4ceee47e4aff63ab2c50b8fb6f3e842d81496737))
-* **atom/tag:** resolve package-lock conflicts ([9c0d613](https://github.com/SUI-Components/sui-components/commit/9c0d613fb95760daa5ba510b6ffa534dc6844b17))
 
 
 

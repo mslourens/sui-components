@@ -1,46 +1,35 @@
-import AtomInput, {
-  inputSizes,
-  inputTypes,
-  inputStates
-} from 'components/atom/input/src'
 import {useState} from 'react'
+
+import AtomInput, {
+  inputShapes,
+  inputSizes,
+  inputStates,
+  inputTypes
+} from 'components/atom/input/src/index.js'
+
 import {
+  Anchor,
+  AntDesignIcon,
+  Article,
+  Box,
+  Button,
+  Cell,
+  Code,
+  Grid,
   H1,
   H2,
   H3,
   H4,
-  Box,
-  UnorderedList,
-  ListItem,
-  Anchor,
-  Paragraph,
-  Article,
-  Grid,
-  Cell,
-  Label,
-  Code,
   Input,
-  Button,
+  Label,
+  ListItem,
+  Paragraph,
   RadioButton,
   RadioButtonGroup,
-  AntDesignIcon
+  UnorderedList
 } from '@s-ui/documentation-library'
 
-const flexCenteredStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'row',
-  wrap: 'nowrap',
-  alignItems: 'center',
-  alignContent: 'center'
-}
-
-const stackMap = (arr = [], ...mappingCallbacks) =>
-  mappingCallbacks.flatMap(function(e, index) {
-    return this.map((value, innerIndex) =>
-      e(value, innerIndex + this.length * index)
-    )
-  }, arr)
+import {flexCenteredStyle, stackMap} from './settings.js'
 
 const DefaultDemo = () => (
   <Article>
@@ -61,7 +50,7 @@ const SizeDemo = () => (
       The element gets {Object.values(inputSizes).length} different size
       configurations using its <Code>size</Code> prop.
     </Paragraph>
-    <Grid gutter={[8, 8]} cols={4}>
+    <Grid gutter={[8, 8]} cols={Object.values(inputSizes).length + 1}>
       {[['default', undefined], ...Object.entries(inputSizes)].map(
         ([key], index) => (
           <Cell
@@ -177,9 +166,10 @@ const TypeDemo = () => {
             'MASK',
             {
               type: inputTypes.MASK,
-              mask: 'ES00 0000 0000 00 0000000000',
+              mask: {mask: 'ES00 0000 0000 00 0000000000'},
               placeholder: 'ES00 0000 0000 00 0000000000',
-              charsSize: 31
+              charsSize: 31,
+              value: 'ES1234567890123456789012'
             },
             {
               description: (
@@ -540,6 +530,62 @@ const InlineFormDemo = () => (
   </Article>
 )
 
+const ShapeDemo = () => (
+  <Article>
+    <H2>Shape</H2>
+    <Paragraph>
+      The border radius of the input can be set using the <Code>shape</Code>{' '}
+      property.
+    </Paragraph>
+    <Grid cols={Object.values(inputShapes).length + 1} gutter={[8, 8]}>
+      {Object.entries({default: undefined, ...inputShapes}).map(([key]) => (
+        <Cell key={key}>
+          <Label>{`${key}`}</Label>
+        </Cell>
+      ))}
+      {Object.entries({default: undefined, ...inputShapes}).map(
+        ([key, value]) => (
+          <Cell key={key}>
+            <AtomInput shape={value} />
+          </Cell>
+        )
+      )}
+    </Grid>
+    <Paragraph>
+      In even preserves its own shaping combined with addons and sizes also.
+    </Paragraph>
+    <Grid cols={Object.values(inputShapes).length + 1 + 1} gutter={[8, 8]}>
+      <Cell />
+      {Object.entries({default: undefined, ...inputShapes}).map(([key]) => (
+        <Cell key={key}>
+          <Label>{`${key}`}</Label>
+        </Cell>
+      ))}
+      {Object.entries({default: undefined, ...inputSizes}).map(
+        ([sizeKey, sizeValue]) => (
+          <>
+            <Cell key={sizeKey}>
+              <Label>{`${sizeKey}`}</Label>
+            </Cell>
+            {Object.entries({default: undefined, ...inputShapes}).map(
+              ([shapeKey, shapeValue]) => (
+                <Cell key={`${shapeKey}-${sizeKey}`}>
+                  <AtomInput
+                    shape={shapeValue}
+                    size={sizeValue}
+                    leftAddon={<span>left</span>}
+                    rightAddon={<span>right</span>}
+                  />
+                </Cell>
+              )
+            )}
+          </>
+        )
+      )}
+    </Grid>
+  </Article>
+)
+
 const Demo = () => (
   <div className="sui-StudioPreview">
     <div className="sui-StudioPreview-content sui-StudioDemo-preview">
@@ -568,6 +614,8 @@ const Demo = () => (
       <ErrorStatusDemo />
       <br />
       <InlineFormDemo />
+      <br />
+      <ShapeDemo />
       <br />
     </div>
   </div>

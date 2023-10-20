@@ -11,6 +11,12 @@ $p-atom-tag-l: 0 $p-l !default;
 $p-atom-tag-m: 0 $p-l !default;
 $p-atom-tag-s: 0 $p-m !default;
 
+$p-atom-tag-hasIcon-hasClose: (
+  small: $p-atom-tag-s,
+  medium: $p-atom-tag-m,
+  large: $p-atom-tag-l
+) !default;
+
 // outline
 $bc-atom-tag-outline: color-variation($c-gray, 3) !default;
 $bdw-atom-tag-outline: $bdw-s !default;
@@ -21,6 +27,7 @@ $bgc-atom-tag-actionable: $c-primary !default;
 $bgc-atom-tag-actionable--hover: $c-primary-dark !default;
 $c-atom-tag-actionable: $c-white !default;
 $bd-atom-tag-actionable: none !default;
+$thc-atom-tag-actionable: inherit !default;
 $bgc-atom-tag-actionable-invert: $c-white !default;
 $bgc-atom-tag-actionable-invert--hover: $c-primary !default;
 $c-atom-tag-actionable-invert: $c-primary !default;
@@ -31,9 +38,29 @@ $w-atom-tag-clickable: 32px !default;
 
 // closable
 $bgc-atom-tag-closable-icon: transparent !default;
-$c-atom-tag-closable-icon: $c-system !default;
+$c-atom-tag-closable-icon: $c-black !default;
 $bgc-atom-tag-closable-icon--hover: $c-gray !default;
 $c-atom-tag-closable-icon--hover: $c-gray-light-3 !default;
 
 // types
 $atom-tag-types: () !default;
+
+@mixin icon-atom-tag($type) {
+  align-items: center;
+  @include sui-icon--small;
+  display: flex;
+  justify-content: center;
+  line-height: initial;
+  vertical-align: middle;
+}
+
+@mixin icon-secondary-clickable-area($size) {
+  &::before {
+    content: '';
+    height: $size;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $w-atom-tag-clickable;
+  }
+}

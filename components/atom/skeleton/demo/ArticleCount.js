@@ -1,17 +1,20 @@
 import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
-  H2,
   Article,
-  Paragraph,
-  Input,
-  Label,
+  Cell,
   Code,
   Grid,
-  Cell,
+  H2,
+  Input,
+  Label,
+  Paragraph,
   Small
 } from '@s-ui/documentation-library'
-import AtomSkeleton from '../lib'
+
+import AtomSkeleton from '../src/index.js'
 
 const ArticleCount = ({className}) => {
   const [count, setCount] = useState('1')

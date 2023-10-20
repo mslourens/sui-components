@@ -2,12 +2,14 @@
 import {Component} from 'react'
 
 import AtomUpload, {uploadStatuses} from 'components/atom/upload/src'
-import LayoutMediaQuery from '@s-ui/react-layout-media-query'
+
+import {Button} from '@s-ui/documentation-library'
 import AtomSpinner from '@s-ui/react-atom-spinner'
-import AtomButton from '@s-ui/react-atom-button'
+import LayoutMediaQuery from '@s-ui/react-layout-media-query'
+
 import IconActive from './icons/iconActive.js'
-import IconSuccess from './icons/iconSuccess.js'
 import IconError from './icons/iconError.js'
+import IconSuccess from './icons/iconSuccess.js'
 
 import './index.scss'
 
@@ -33,7 +35,7 @@ class DynamicStatusContainer extends Component {
     const fileNames = files.map(({name}) => name)
     const status = files.length ? uploadStatuses.SUCCESS : uploadStatuses.ERROR
     this.setState({
-      status: status,
+      status,
       files: fileNames
     })
   }
@@ -97,7 +99,7 @@ const Demo = () => {
             textSuccess={textSuccess}
             iconError={IconError}
             textError={textError}
-            actionButton={<AtomButton>Click to upload your files</AtomButton>}
+            actionButton={<Button>Click to upload your files</Button>}
           />
         </div>
         <h2>Accept only one file</h2>
@@ -117,7 +119,7 @@ const Demo = () => {
             iconError={IconError}
             textError={textError}
             multiple={false}
-            actionButton={<AtomButton>Click to upload your files</AtomButton>}
+            actionButton={<Button>Click to upload your files</Button>}
           />
         </div>
         <h2>accept prop = ".pdf" -> Only PDF files</h2>

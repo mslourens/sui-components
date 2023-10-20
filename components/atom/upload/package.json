@@ -1,17 +1,17 @@
 {
   "name": "@s-ui/react-atom-upload",
-  "version": "3.4.0",
+  "version": "3.10.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
     "@loadable/component": "5.15.x",
     "@s-ui/react-atom-button": "1",
-    "react-dropzone": "5.1.1"
+    "react-dropzone": "11.5.1"
   },
   "peerDependencies": {
     "@s-ui/component-dependencies": "1"

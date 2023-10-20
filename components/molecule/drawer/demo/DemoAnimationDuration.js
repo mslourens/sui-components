@@ -1,19 +1,22 @@
 import {useRef, useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
   Article,
   Box,
   H2,
-  Paragraph,
-  RadioButton,
+  H4,
   Label,
-  H4
+  Paragraph,
+  RadioButton
 } from '@s-ui/documentation-library'
+
 import {
+  MoleculeDrawer,
   moleculeDrawerAnimationDuration,
-  moleculeDrawerSizes,
-  MoleculeDrawer
-} from '../src'
+  moleculeDrawerSizes
+} from '../src/index.js'
 
 const DemoAnimationDuration = ({className}) => {
   const noneRef = useRef()

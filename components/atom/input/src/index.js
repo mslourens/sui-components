@@ -1,20 +1,23 @@
+import {forwardRef} from 'react'
+
 import PropTypes from 'prop-types'
 
-import Input, {inputSizes, inputStates} from './Input'
-import Password from './Password'
-import Mask from './Mask'
-import {TYPES} from './config'
+import Input, {inputSizes, inputStates} from './Input/index.js'
+import Mask from './Mask/index.js'
+import Password from './Password/index.js'
+import {INPUT_SHAPES, TYPES} from './config.js'
 
-const AtomInput = ({type, ...props}) => {
+const AtomInput = forwardRef(({type, ...props}, ref) => {
   switch (type) {
     case 'sui-password':
-      return <Password {...props} />
+      return <Password ref={ref} {...props} />
     case 'mask':
-      return <Mask {...props} />
+      return <Mask ref={ref} {...props} />
+
     default:
-      return <Input {...props} type={type} />
+      return <Input ref={ref} {...props} type={type} />
   }
-}
+})
 
 AtomInput.propTypes = {
   /** native types (text, date, ...), 'sui-password' */
@@ -126,10 +129,19 @@ AtomInput.propTypes = {
   pattern: PropTypes.string,
 
   /** To select input keyboard mode on mobile. It can be 'numeric', 'decimal', 'email', etc */
-  inputMode: PropTypes.string
+  inputMode: PropTypes.string,
+
+  /** Sets the shape of the input field. It can be 'rounded', 'square' or 'circle' */
+  shape: PropTypes.string
 }
 
 AtomInput.displayName = 'AtomInput'
 
 export default AtomInput
-export {inputSizes, inputStates, TYPES as inputTypes}
+
+export {
+  inputSizes,
+  inputStates,
+  TYPES as inputTypes,
+  INPUT_SHAPES as inputShapes
+}

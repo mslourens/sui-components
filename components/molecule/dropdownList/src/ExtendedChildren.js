@@ -1,29 +1,36 @@
-import {cloneElement} from 'react'
-import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
+import PropTypes from 'prop-types'
 
-const ExtendedChildren = ({value, children, index, ...props}) => {
+import Injector from '@s-ui/react-primitive-injector'
+
+const ExtendedChildren = ({value, children, onSelect, checkbox, ...props}) => {
   const {value: valueChild} = children.props
-  let selected = false
-  if (Array.isArray(value)) {
-    selected = value.some(innerValue => isEqual(valueChild, innerValue))
-  } else {
-    selected = isEqual(value, valueChild)
-  }
-  return cloneElement(children, {
-    ...props,
-    index,
-    selected
-  })
+  const selected = Array.isArray(value)
+    ? value.some(innerValue => isEqual(valueChild, innerValue))
+    : isEqual(value, valueChild)
+  return (
+    <Injector
+      {...{
+        ...props,
+        selected,
+        onSelect,
+        checkbox
+      }}
+    >
+      {children}
+    </Injector>
+  )
 }
 
 ExtendedChildren.propTypes = {
   /** selected value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  /** each sinle node to be included in the list (MoleculeDropdownOption) */
+  /** checkbox contained in all DropdownOption **/
+  checkbox: PropTypes.bool,
+  /** each single node to be included in the list (MoleculeDropdownOption) */
   children: PropTypes.node,
-  /** numeric identifier **/
-  index: PropTypes.number
+  /** callback on select option **/
+  onSelect: PropTypes.func
 }
 
 export default ExtendedChildren

@@ -1,5 +1,69 @@
 # CHANGELOG
 
+# 1.38.0 (2022-10-17)
+
+
+### Features
+
+* **components/molecule/field:** Wrap node label in a real label to make the checkbox react to the c ([c0abc42](https://github.com/SUI-Components/sui-components/commit/c0abc420c5cde1b08e77b63179ca288a2cf4be6d))
+
+
+
+# 1.37.0 (2022-10-06)
+
+
+### Features
+
+* **components/molecule/field:** admit react nodes in error alert success and help text ([a946f54](https://github.com/SUI-Components/sui-components/commit/a946f54bae2d472c25efab4a5d9709c021c92834))
+
+
+
+# 1.36.0 (2022-10-04)
+
+
+### Bug Fixes
+
+* **components/molecule/field:** fix lint error ([9f56f8b](https://github.com/SUI-Components/sui-components/commit/9f56f8bfee58813850bc68492b8696d97098f4c4))
+
+
+
+# 1.35.0 (2022-10-04)
+
+
+### Features
+
+* **components/molecule/field:** refactor Label's conditional in field ([605fc5a](https://github.com/SUI-Components/sui-components/commit/605fc5a33e79f3280980ff8f913a73299f086598)), closes [#2334](https://github.com/SUI-Components/sui-components/issues/2334)
+
+
+
+# 1.34.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/field:** Avoid publishing huge CHANGELOG.md ([5f99050](https://github.com/SUI-Components/sui-components/commit/5f990509c5aa044d88a5178df6bef32275955d63))
+
+
+
+# 1.33.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/molecule/field:** resolve linting errors ([3da73fb](https://github.com/SUI-Components/sui-components/commit/3da73fb1ef41ebfec97eaa53a130870e3439d981))
+
+
+
+# 1.32.0 (2022-02-25)
+
+
+### Bug Fixes
+
+* **components/molecule/field:** patch ([b0d8b08](https://github.com/SUI-Components/sui-components/commit/b0d8b0804202999bd7543390f60c454978cc5361))
+* **components/molecule/field:** small error ([db7e753](https://github.com/SUI-Components/sui-components/commit/db7e753affc757089f777751e7430691682abe34))
+
+
+
 # 1.31.0 (2021-09-09)
 
 
@@ -209,7 +273,6 @@
 
 ### Features
 
-* **META:** merge master ([1877e1e](https://github.com/SUI-Components/sui-components/commit/1877e1ece55b4443a98c7d64e4e1588e8f0dc011))
 * **molecule/field:** allow to use property to set the type of the label ([82c3aae](https://github.com/SUI-Components/sui-components/commit/82c3aaef504014a0be0a8b12c1ea899d32685ab7))
 * **molecule/field:** revert order change for props ([6d0ccf3](https://github.com/SUI-Components/sui-components/commit/6d0ccf350de097e55ccc2f80a7441dc7c635fcdd))
 * **molecule/field:** update prop name and ussage ([557c99c](https://github.com/SUI-Components/sui-components/commit/557c99cbb2a09a7ae06ba6e538c0db64457be7f8))

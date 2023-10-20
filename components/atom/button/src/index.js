@@ -1,123 +1,30 @@
 import {forwardRef} from 'react'
-import PropTypes from 'prop-types'
+
 import cx from 'classnames'
-import Button from './Button'
-import ButtonIcon from './ButtonIcon'
-import ButtonSpinnerIcon from './buttonSpinnerIcon'
+import PropTypes from 'prop-types'
+
+import ButtonSpinnerIcon from './buttonSpinnerIcon/index.js'
+import Button from './Button.js'
+import ButtonIcon from './ButtonIcon.js'
 import {
-  CLASS,
-  COLORS,
-  DESIGNS,
   ALIGNMENT,
-  ICON_POSITIONS,
+  CLASS,
+  CLASSES,
+  cleanProps,
+  COLORS,
+  deprecated,
+  DESIGNS,
+  ELEVATIONS,
+  getModifiers,
+  getPropsWithDefaultValues,
   GROUP_POSITIONS,
-  MODIFIERS,
-  OWN_PROPS,
-  SIZES,
-  TYPES,
+  ICON_POSITIONS,
   SHAPES,
+  SIZES,
+  typeConversion,
+  TYPES,
   TYPES_CONVERSION
-} from './config'
-
-const createClasses = (array, sufix = '') =>
-  array.reduce((res, key) => ({...res, [key]: `${CLASS}--${key}${sufix}`}), {})
-
-const CLASSES = createClasses([
-  ...COLORS,
-  ...Object.values(DESIGNS),
-  ...Object.values(ALIGNMENT),
-  ...MODIFIERS,
-  ...Object.values(SIZES),
-  'empty'
-])
-
-/**
- * Get props cleaning out AtomButton own props
- * @param  {Object} props
- * @return {Object}
- */
-const cleanProps = props => {
-  const newProps = {...props}
-  OWN_PROPS.forEach(key => delete newProps[key])
-  return newProps
-}
-
-/**
- * Get modifiers to apply according to props
- * @param  {Object} props
- * @return {Array<String>}
- */
-const getModifiers = props => {
-  return Object.keys(props).filter(
-    name => props[name] && MODIFIERS.includes(name)
-  )
-}
-
-function deprecated(
-  validator,
-  callback = (props, propName, componentName) => {
-    const deprecatedMessage = `The prop ${'\x1b[32m'}${propName}${'\u001b[39m'} is DEPRECATED on ${'\x1b[32m'}${componentName}${'\u001b[39m'}.`
-    console.warn(deprecatedMessage) // eslint-disable-line
-  }
-) {
-  return function deprecated(props, propName, componentName, ...rest) {
-    if (props[propName] != null && process.env.NODE_ENV === 'development') {
-      callback(props, propName, componentName, ...rest)
-    }
-    return validator(props, propName, componentName, ...rest)
-  }
-}
-
-const typeConversion = ({type, design, color, link, href, ...other}) => {
-  const result = {
-    design,
-    color,
-    link,
-    href,
-    ...other
-  }
-  switch (type) {
-    case 'primary':
-      result.color = color || 'primary'
-      result.design = design || (link || href ? DESIGNS.LINK : DESIGNS.SOLID)
-      break
-    case 'accent':
-      result.color = color || 'accent'
-      result.design = design || (link || href ? DESIGNS.LINK : DESIGNS.SOLID)
-      break
-    case 'secondary':
-      result.color = color || 'primary'
-      result.design = design || (link || href ? DESIGNS.LINK : DESIGNS.OUTLINE)
-      break
-    case 'tertiary':
-      result.color = color || 'primary'
-      result.design = design || (link || href ? DESIGNS.LINK : DESIGNS.FLAT)
-      break
-    default:
-      result.type = type
-      result.color = color || 'primary'
-      result.design = design || (link || href ? DESIGNS.LINK : DESIGNS.SOLID)
-      break
-  }
-  return result
-}
-
-const getPropsWithDefaultValues = ({
-  type,
-  design,
-  color,
-  alignment,
-  link,
-  href,
-  ...other
-}) => ({
-  ...other,
-  link,
-  type,
-  design: design || (link || href ? DESIGNS.LINK : DESIGNS.SOLID),
-  color: color || 'colors',
-  alignment: alignment || ALIGNMENT.CENTER
-})
+} from './config.js'
 
 const AtomButton = forwardRef((props, ref) => {
   const {
@@ -138,7 +45,11 @@ const AtomButton = forwardRef((props, ref) => {
     size,
     title,
     type,
-    shape
+    shape,
+    elevation,
+    isFitted,
+    selected,
+    value
   } = getPropsWithDefaultValues(typeConversion(props))
 
   const classNames = cx(
@@ -148,6 +59,7 @@ const AtomButton = forwardRef((props, ref) => {
     alignment && CLASSES[alignment],
     groupPosition && `${CLASS}-group ${CLASS}-group--${groupPosition}`,
     groupPosition && focused && `${CLASS}-group--focused`,
+    groupPosition && selected && `${CLASS}-group--selected`,
     size && CLASSES[size],
     getModifiers({...props, disabled: disabled || isLoading}).map(
       key => CLASSES[key]
@@ -155,7 +67,9 @@ const AtomButton = forwardRef((props, ref) => {
     !children && CLASSES.empty,
     {[`${CLASS}--${shape}`]: Object.values(SHAPES).includes(shape)},
     {
-      [`${CLASS}--loading`]: isLoading
+      [`${CLASS}--loading`]: isLoading,
+      [`${CLASS}--fitted`]: isFitted,
+      [`${CLASS}--elevation-${elevation}`]: !!elevation
     },
     className
   )
@@ -171,6 +85,7 @@ const AtomButton = forwardRef((props, ref) => {
       title={title}
       disabled={disabled || isLoading}
       forwardingRef={ref}
+      value={value}
     >
       <span className={`${CLASS}-inner`}>
         {isLoading ? (
@@ -227,7 +142,7 @@ AtomButton.propTypes = {
    * 'social-whatsapp',
    * 'social-instagram'
    */
-  color: PropTypes.oneOf(COLORS),
+  color: PropTypes.oneOf(Object.values(COLORS)),
   /**
    * Shape of button
    */
@@ -306,6 +221,10 @@ AtomButton.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * Size of button shadow
+   */
+  elevation: PropTypes.oneOf(Object.values(ELEVATIONS)),
+  /**
    * Icon to be added on the left of the content
    */
   leftIcon: PropTypes.node,
@@ -332,7 +251,20 @@ AtomButton.propTypes = {
   /**
    * if true, type="button" (needed when several buttons coexist under the same form)
    */
-  isButton: PropTypes.bool
+  isButton: PropTypes.bool,
+  /**
+   * if true, the element becomes (border+padding+margin)-less
+   */
+  isFitted: PropTypes.bool,
+  /**
+   *  Selected: style for selected button in a button group.
+   */
+  selected: PropTypes.bool,
+  /**
+   * Defines the value associated with the button's name when it's submitted with the form data.
+   * This value is passed to the server in params when the form is submitted using this button.
+   */
+  value: PropTypes.oneOf([PropTypes.number, PropTypes.string, PropTypes.bool])
 }
 
 export default AtomButton
@@ -343,3 +275,4 @@ export {SIZES as atomButtonSizes}
 export {TYPES as atomButtonTypes}
 export {ALIGNMENT as atomButtonAlignment}
 export {SHAPES as atomButtonShapes}
+export {ELEVATIONS as atomButtonElevations}

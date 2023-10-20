@@ -1,5 +1,127 @@
 # CHANGELOG
 
+# 2.2.0 (2023-01-04)
+
+
+### Features
+
+* **components/molecule/dropdownList:** Add margin token to design flat ([84a7fa5](https://github.com/SUI-Components/sui-components/commit/84a7fa5bc16ff12931ef5e8ad7c916c1d01e954d))
+
+
+
+# 2.1.0 (2022-10-04)
+
+
+### Features
+
+* **components/molecule/dropdownList:** upgrade dropdownOption version ([6d1788c](https://github.com/SUI-Components/sui-components/commit/6d1788c8b2df523ab806dd88069a380292b48162))
+
+
+
+# 1.33.0 (2022-10-03)
+
+
+### Features
+
+* **components/molecule/dropdownList:** remove unnecesary code ([01d811e](https://github.com/SUI-Components/sui-components/commit/01d811ea44dbda9bd37c2a7edfc4a8016cc546a3))
+* **components/molecule/dropdownList:** replace cloneElement by Injector ([1b461d7](https://github.com/SUI-Components/sui-components/commit/1b461d7b8499e14c27327b9466918e3a055f972b)), closes [#2331](https://github.com/SUI-Components/sui-components/issues/2331)
+
+
+
+# 1.32.0 (2022-07-26)
+
+
+### Features
+
+* **components/molecule/dropdownList:** simplify the props provided ([3f89188](https://github.com/SUI-Components/sui-components/commit/3f891885fcea81a8aab00abd9f762b40681660e5))
+
+
+
+# 1.31.0 (2022-07-21)
+
+
+### Features
+
+* **components/molecule/dropdownList:** add aria label property ([0a04268](https://github.com/SUI-Components/sui-components/commit/0a042688f58536a9f3dc756a2d7fa5f09cea7166))
+
+
+
+# 1.30.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/dropdownList:** Avoid publishing huge CHANGELOG.md ([1794e23](https://github.com/SUI-Components/sui-components/commit/1794e23bc207f085a2ba0a85ef1bbdd0532f64ea))
+
+
+
+# 1.29.0 (2022-05-24)
+
+
+### Bug Fixes
+
+* **components/molecule/dropdownList/demo:** do not publish ([d8686c9](https://github.com/SUI-Components/sui-components/commit/d8686c9140adf31017d931f7970f460eb0c7e176))
+* **components/molecule/dropdownList:** bump ([7b9bac7](https://github.com/SUI-Components/sui-components/commit/7b9bac7c741c49011c3afc520b7b824781b5594c))
+* **components/molecule/dropdownList:** bump ([c0b247f](https://github.com/SUI-Components/sui-components/commit/c0b247fcce9c9ddb4c09adaa2ab2f6417e69c1cf))
+* **components/molecule/dropdownList:** make overflow automatic ([dd14e90](https://github.com/SUI-Components/sui-components/commit/dd14e90a3f9d349f2d19a77378a841e88c096b58))
+
+
+
+# 1.26.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/molecule/dropdownList:** resolve linting errors ([08d3efd](https://github.com/SUI-Components/sui-components/commit/08d3efd2aa51efaa75c98e99123af8a2c5cf2348))
+
+
+
+# 1.25.0 (2022-03-11)
+
+
+### Features
+
+* **components/molecule/dropdownList:** preserves the option children's configuration over the list ([529ab37](https://github.com/SUI-Components/sui-components/commit/529ab372337d268b8b99758fd53a55848d9bfb25)), closes [#2053](https://github.com/SUI-Components/sui-components/issues/2053)
+
+
+
+# 1.24.0 (2021-12-07)
+
+
+### Bug Fixes
+
+* **components/molecule/dropdownList:** add a11y role listbox ([9bc4315](https://github.com/SUI-Components/sui-components/commit/9bc4315d6995875c4e851ccfaaf77dcfe5067c2b))
+
+
+
+# 1.23.0 (2021-11-16)
+
+
+### Features
+
+* **components/molecule/dropdownList:** add flat design ([8e3f7a5](https://github.com/SUI-Components/sui-components/commit/8e3f7a57a9072d3602ccb94053de4c8f5ca9b287))
+* **components/molecule/dropdownList:** rename design token ([d6f78cd](https://github.com/SUI-Components/sui-components/commit/d6f78cdefd1d3a7de2a4afec84a52fa63f9170b2))
+
+
+
+# 1.22.0 (2021-11-10)
+
+
+### Bug Fixes
+
+* **components/molecule/dropdownList:** upgrade @s-ui/react-atom-input@v5 ([9a374b8](https://github.com/SUI-Components/sui-components/commit/9a374b86c084a4346438497345ed3fa7e326b690))
+
+
+
+# 1.1.0 (2021-09-28)
+
+
+### Features
+
+* **components/molecule/dropdownList/demo:** import component styles in demo ([218b87b](https://github.com/SUI-Components/sui-components/commit/218b87b43db44943951e0d04afb15c58b9337123))
+
+
+
 # 1.21.0 (2021-06-11)
 
 

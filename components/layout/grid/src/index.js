@@ -1,45 +1,46 @@
-import PropTypes from 'prop-types'
-import LayoutGridItem from './gridItem'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
+import Injector from '@s-ui/react-primitive-injector'
+import PolymorphicElement from '@s-ui/react-primitive-polymorphic-element'
+
+import LayoutGridItem from './gridItem/index.js'
+import {getGutterClassNames, transition} from './helpers.js'
 import {
-  ALIGN_ITEMS,
   ALIGN_CONTENT,
+  ALIGN_ITEMS,
   BASE_CLASS,
-  JUSTIFY_CONTENT,
-  GUTTER_VALUES,
+  BREAKPOINTS,
   CELL_NUMBERS,
-  BREAKPOINTS
-} from './settings'
+  GUTTER_VALUES,
+  JUSTIFY_CONTENT
+} from './settings.js'
 
-const transition = ({isGapless, ...oldProps}) => {
-  const gutter = oldProps.gutter || isGapless ? 0 : undefined
-  return {gutter, ...oldProps}
-}
-
-const getGutterClassNames = (gutterConfig = {}) => {
-  if (GUTTER_VALUES.includes(gutterConfig)) {
-    return `${BASE_CLASS}--gutter-${BREAKPOINTS.XXS}-${gutterConfig}`
-  } else if (typeof gutterConfig === 'object') {
-    return Object.entries(gutterConfig)
-      .map(([key, value]) =>
-        Object.values(BREAKPOINTS).includes(key)
-          ? `${BASE_CLASS}--gutter-${key}-${value}`
-          : null
-      )
-      .filter(value => value !== null)
-      .join(' ')
-  }
-  return null
-}
-
-function LayoutGrid({
+const LayoutGrid = ({
   alignContent,
   alignItems,
+  as = 'div',
   children,
   justifyContent,
-  gutter
-}) {
+  gutter,
+  className,
+  colSpan,
+  l,
+  lOffset,
+  m,
+  mOffset,
+  s,
+  sOffset,
+  xl,
+  xlOffset,
+  xs,
+  xsOffset,
+  xxl,
+  xxlOffset,
+  xxs,
+  xxsOffset,
+  ...props
+}) => {
   const classNames = cx(
     `${BASE_CLASS}`,
     Object.values(ALIGN_CONTENT).includes(alignContent) &&
@@ -48,15 +49,39 @@ function LayoutGrid({
       `${BASE_CLASS}--ai-${alignItems}`,
     Object.values(JUSTIFY_CONTENT).includes(justifyContent) &&
       `${BASE_CLASS}--jc-${justifyContent}`,
-    getGutterClassNames(gutter)
+    getGutterClassNames(gutter),
+    className
   )
 
-  return <div className={classNames}>{children}</div>
+  return (
+    <PolymorphicElement as={as} className={classNames} {...props}>
+      <Injector
+        colSpan={colSpan}
+        l={l}
+        lOffset={lOffset}
+        m={m}
+        mOffset={mOffset}
+        s={s}
+        sOffset={sOffset}
+        xl={xl}
+        xlOffset={xlOffset}
+        xs={xs}
+        xsOffset={xsOffset}
+        xxl={xxl}
+        xxlOffset={xxlOffset}
+        xxs={xxs}
+        xxsOffset={xxsOffset}
+      >
+        {children}
+      </Injector>
+    </PolymorphicElement>
+  )
 }
 
 LayoutGrid.displayName = 'LayoutGrid'
 
 LayoutGrid.propTypes = {
+  as: PropTypes.elementType,
   /**
    * The content of the component.
    */
@@ -70,6 +95,10 @@ LayoutGrid.propTypes = {
    */
   alignItems: PropTypes.oneOf(Object.values(ALIGN_ITEMS)),
   /**
+   * Allows you to add extra styles and avoid extra DOM elements to style purposes.
+   */
+  className: PropTypes.string,
+  /**
    * Distribute space between and around content items. It's applied for all screen sizes.
    */
   justifyContent: PropTypes.oneOf(Object.values(JUSTIFY_CONTENT)),
@@ -79,7 +108,70 @@ LayoutGrid.propTypes = {
   gutter: PropTypes.oneOfType([
     PropTypes.oneOf(Object.values(GUTTER_VALUES)),
     PropTypes.objectOf(PropTypes.oneOf(Object.values(GUTTER_VALUES)))
-  ])
+  ]),
+  /***
+   * Defines the number of columns an item should span
+   */
+  colSpan: PropTypes.oneOfType([
+    PropTypes.oneOf(CELL_NUMBERS),
+    PropTypes.objectOf(PropTypes.oneOf(CELL_NUMBERS))
+  ]),
+  /**
+   * Number of cells the component has to fill. It's applied for the `l` breakpoint and wider screens.
+   */
+  l: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `l` breakpoint and wider screens.
+   */
+  lOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `m` breakpoint and wider screens.
+   */
+  m: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `m` breakpoint and wider screens.
+   */
+  mOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `s` breakpoint and wider screens.
+   */
+  s: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `s` breakpoint and wider screens.
+   */
+  sOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `xl` breakpoint and wider screens.
+   */
+  xl: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `xl` breakpoint and wider screens.
+   */
+  xlOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `xs` breakpoint and wider screens.
+   */
+  xs: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `xs` breakpoint and wider screens.
+   */
+  xsOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `xxl` breakpoint and wider screens.
+   */
+  xxl: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `xxl` breakpoint and wider screens.
+   */
+  xxlOffset: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells the component has to fill. It's applied for the `xxs` breakpoint and wider screens.
+   */
+  xxs: PropTypes.oneOf(CELL_NUMBERS),
+  /**
+   * Number of cells offset to move component. It's applied for the `xxs` breakpoint and wider screens.
+   */
+  xxsOffset: PropTypes.oneOf(CELL_NUMBERS)
 }
 
 const DeprecatedLayoutGrid = props => <LayoutGrid {...transition(props)} />

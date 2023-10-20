@@ -1,0 +1,73 @@
+import {BLOB_TYPE} from './index.js'
+
+export const YOUTUBE_EMBEDDABLE_URL = 'https://www.youtube.com/embed/'
+export const YOUTUBE_EMBEDDABLE_URL_PATTERN = 'youtube.com/embed/'
+export const YOUTUBE_STANDARD_URL_PATTERN = 'youtube.com/watch?v='
+export const YOUTUBE_SHORT_URL_PATTERN = 'youtu.be/'
+export const YOUTUBE_READABLE_URL_PATTERN = 'youtube.com/v/'
+
+export const HLS = {
+  FILE_FORMATS: ['m3u8'],
+  SRC_PATTERNS: ['yams-hls'],
+  VIDEO_TYPE: 'hls',
+  PLAYER_COMPONENT: 'HLSPlayer'
+}
+
+export const NATIVE = {
+  INSTANCE_TYPE: BLOB_TYPE,
+  FILE_FORMATS: ['mp4', 'ogg', 'webm'],
+  VIDEO_TYPE: 'native',
+  PLAYER_COMPONENT: 'NativePlayer'
+}
+
+export const VIMEO = {
+  EMBEDDABLE_URL: 'https://player.vimeo.com/video/',
+  SRC_PATTERNS: ['https://vimeo.com/'],
+  VIDEO_TYPE: 'vimeo',
+  PLAYER_COMPONENT: 'VimeoPlayer'
+}
+
+export const YOUTUBE = {
+  EMBEDDABLE_URL: YOUTUBE_EMBEDDABLE_URL,
+  SRC_PATTERNS: [
+    YOUTUBE_EMBEDDABLE_URL_PATTERN,
+    YOUTUBE_STANDARD_URL_PATTERN,
+    YOUTUBE_SHORT_URL_PATTERN,
+    YOUTUBE_READABLE_URL_PATTERN
+  ],
+  VIDEO_TYPE: 'youtube',
+  PLAYER_COMPONENT: 'YouTubePlayer'
+}
+
+export const DETECTION_TYPES = {
+  FILE_EXTENSION: 'FILE_EXTENSION',
+  SRC_PATTERN: 'SRC_PATTERN',
+  SRC_INSTANCE_TYPE: 'SRC_INSTANCE_TYPE'
+}
+
+export const DETECTABLE_VIDEO_TYPES = [
+  {
+    DETECTION_TYPE: DETECTION_TYPES.FILE_EXTENSION,
+    TYPE_DESCRIPTION: HLS
+  },
+  {
+    DETECTION_TYPE: DETECTION_TYPES.SRC_PATTERN,
+    TYPE_DESCRIPTION: HLS
+  },
+  {
+    DETECTION_TYPE: DETECTION_TYPES.FILE_EXTENSION,
+    TYPE_DESCRIPTION: NATIVE
+  },
+  {
+    DETECTION_TYPE: DETECTION_TYPES.SRC_INSTANCE_TYPE,
+    TYPE_DESCRIPTION: NATIVE
+  },
+  {
+    DETECTION_TYPE: DETECTION_TYPES.SRC_PATTERN,
+    TYPE_DESCRIPTION: YOUTUBE
+  },
+  {
+    DETECTION_TYPE: DETECTION_TYPES.SRC_PATTERN,
+    TYPE_DESCRIPTION: VIMEO
+  }
+]

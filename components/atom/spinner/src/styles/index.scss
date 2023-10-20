@@ -1,0 +1,57 @@
+$base-class: '.sui-AtomSpinner';
+
+#{$base-class} {
+  position: relative;
+
+  &::before {
+    @extend %spinner-layer;
+    position: absolute;
+  }
+
+  &-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &--fullPage {
+    &::before {
+      @extend %spinner-layer;
+      position: fixed;
+    }
+
+    #{$base-class}-loader {
+      display: block;
+      position: fixed;
+    }
+  }
+
+  #{&}-loader {
+    display: block;
+  }
+
+  @each $name, $type in $atom-spinner-overlay-types {
+    $bgc: map-get($type, bgc);
+
+    &--#{'' + $name}::before {
+      background-color: $bgc;
+    }
+  }
+
+  @each $name, $sizes in $atom-spinner-sizes {
+    $size: map-get($sizes, size);
+
+    &--#{'' + $name} {
+      .sui-AtomSpinner-loader {
+        height: $size;
+        width: $size;
+      }
+    }
+  }
+}

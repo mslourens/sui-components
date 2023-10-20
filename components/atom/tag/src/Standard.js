@@ -1,22 +1,46 @@
-import PropTypes from 'prop-types'
+import {forwardRef} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-const StandardTag = ({className, closeIcon, icon, label, onClose, value}) => {
-  const classNames = cx(className, closeIcon && 'sui-AtomTag-hasClose')
+import {onHandler} from './constants.js'
 
-  const handleClick = ev => {
-    onClose(ev, {value, label})
-    ev.stopPropagation()
-  }
-
-  return (
-    <span className={classNames}>
+const StandardTag = forwardRef(
+  (
+    {
+      className,
+      closeIcon,
+      icon,
+      label,
+      onClose = () => {},
+      value,
+      readOnly,
+      disabled,
+      title
+    },
+    forwardedRef
+  ) => (
+    <span
+      ref={forwardedRef}
+      className={cx(className, closeIcon && 'sui-AtomTag-hasClose')}
+      {...(disabled && {'aria-disabled': disabled})}
+      {...(readOnly && !disabled && {'aria-readonly': readOnly})}
+    >
       {icon && <span className="sui-AtomTag-icon">{icon}</span>}
-      <span className="sui-AtomTag-label" title={label}>
-        {label}
-      </span>
-      {closeIcon && (
-        <span className="sui-AtomTag-closeable" onClick={handleClick}>
+      {label ? (
+        <span className="sui-AtomTag-label" title={title || label}>
+          {label}
+        </span>
+      ) : null}
+      {closeIcon && !(disabled || readOnly) && (
+        <span
+          role="button"
+          className="sui-AtomTag-closeable"
+          onClick={onHandler({disabled, readOnly}, onClose, {
+            value,
+            label
+          })}
+        >
           <span className="sui-AtomTag-closeableIcon sui-AtomTag-secondary-icon">
             {closeIcon}
           </span>
@@ -24,19 +48,18 @@ const StandardTag = ({className, closeIcon, icon, label, onClose, value}) => {
       )}
     </span>
   )
-}
+)
 
 StandardTag.propTypes = {
+  readOnly: PropTypes.bool,
+  disabled: PropTypes.bool,
   onClose: PropTypes.func,
   closeIcon: PropTypes.node,
   icon: PropTypes.node,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   className: PropTypes.string,
+  title: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
-
-StandardTag.propTypes = {
-  onClose: () => {}
 }
 
 export default StandardTag

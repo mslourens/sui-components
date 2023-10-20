@@ -1,5 +1,201 @@
 # CHANGELOG
 
+# 1.68.0 (2023-07-20)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** Use onChange callback instead of onKeyDown for input changes ([dc4cc82](https://github.com/SUI-Components/sui-components/commit/dc4cc828c8c7ca310f86f9470c1cc271ff571a9e))
+
+
+
+# 1.67.0 (2023-07-11)
+
+
+### Features
+
+* **components/molecule/select:** Add tagSize and inputSize props to MoleculeSelectFieldMultiSelecti ([ce96d9b](https://github.com/SUI-Components/sui-components/commit/ce96d9ba50148900cfa4dcd58b7faba69d973ba6))
+* **components/molecule/select:** delete unnecessary inputSize prop ([8d6563d](https://github.com/SUI-Components/sui-components/commit/8d6563d0619996aeef1b42c3beb30d11e6f3dff3))
+
+
+
+# 1.66.0 (2023-06-26)
+
+
+### Features
+
+* **components/molecule/select:** pass down disabled prop to multiselect component ([f61a177](https://github.com/SUI-Components/sui-components/commit/f61a177a289edaed1d41022dc99239dbc2e88446))
+
+
+
+# 1.65.0 (2023-05-11)
+
+
+
+# 1.64.0 (2023-05-08)
+
+
+### Features
+
+* **components/molecule/select/demo:** Add responsive prop to MoleculeSelectFieldMultiSelection demo ([df1c094](https://github.com/SUI-Components/sui-components/commit/df1c094d91e072cb343edc20676648eb3e6e843d))
+* **components/molecule/select:** Add responsive prop to MoleculeSelectFieldMultiSelection ([6212691](https://github.com/SUI-Components/sui-components/commit/62126917c38b409cb8e974513a17b0d18223923e))
+* **components/molecule/select:** Disable options when tag limit is exeeded ([a17ed60](https://github.com/SUI-Components/sui-components/commit/a17ed607e3552534c9529b2e12ed598203eaabac))
+
+
+
+# 1.63.0 (2023-05-03)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** pass the moleculeSelect ref down to the childrens ([b4fe4b0](https://github.com/SUI-Components/sui-components/commit/b4fe4b07528289c479e8b4dcdfbda664d8df6600))
+
+
+
+# 1.62.0 (2023-05-03)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** onToggle callback prop was overding the defined inside the componen ([397c17c](https://github.com/SUI-Components/sui-components/commit/397c17cdc3c81d28c872485a5bce2db284a7338e))
+
+
+
+# 1.61.0 (2023-05-02)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** Keep options even if children changes ([a53f809](https://github.com/SUI-Components/sui-components/commit/a53f80980dc545b4c5e12e472489697d6f3479b6))
+
+
+
+# 1.60.0 (2023-04-28)
+
+
+### Features
+
+* **components/molecule/select:** Add a Search input to search over the options on the select ([f1d7dc6](https://github.com/SUI-Components/sui-components/commit/f1d7dc608d378641277b7ff51b16eb93df1cef42))
+* **components/molecule/select:** Add some theme variables and improve readme ([a4b78c3](https://github.com/SUI-Components/sui-components/commit/a4b78c3b4f9a0607cae2c96fd30a6f31db40ce0a))
+* **components/molecule/select:** Added test and add onSearch as a callback prop ([046efe5](https://github.com/SUI-Components/sui-components/commit/046efe5a49edc3c099a237ffa025442d83bbcd5d))
+* **components/molecule/select:** Added the noResults prop ([1f3eee0](https://github.com/SUI-Components/sui-components/commit/1f3eee0f649525f3e16c9b7b13d702541205f04b))
+* **components/molecule/select:** Allow to set a left icon on the search input ([1ddda23](https://github.com/SUI-Components/sui-components/commit/1ddda23ff1e273a6e26ad6e5f5f6106fa9a8d227))
+
+
+
+# 1.59.0 (2023-03-08)
+
+
+### Features
+
+* **components/molecule/select:** Avoid problems when auto-focusing first select option ([b4741bd](https://github.com/SUI-Components/sui-components/commit/b4741bda63930c7c6450fd1e84512574e2f2b695))
+
+
+
+# 1.58.0 (2023-01-10)
+
+
+### Features
+
+* **components/molecule/select:** add disableDeviceKeyboard prop ([5966565](https://github.com/SUI-Components/sui-components/commit/59665653d2d8a2233ba9b3108d137fbfcc3031d4))
+* **components/molecule/select:** add the input mode none on the multiselect ([bbf602a](https://github.com/SUI-Components/sui-components/commit/bbf602a097edc3ae2d4df7afd471db6ca2049b21))
+* **components/molecule/select:** remove the disableDeviceKeyboard prop to use none by default ([6d0ccb8](https://github.com/SUI-Components/sui-components/commit/6d0ccb8baa51a0ca4c20ef62408305a83b2bbf58))
+
+
+
+# 1.57.0 (2022-10-11)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** accept onblur prop ([ad3f8fb](https://github.com/SUI-Components/sui-components/commit/ad3f8fb08be2260ffba01fce160c4d3df3814754)), closes [#2282](https://github.com/SUI-Components/sui-components/issues/2282)
+
+
+
+# 1.56.0 (2022-10-04)
+
+
+### Features
+
+* **components/molecule/select:** set new prop name following conventions ([484a999](https://github.com/SUI-Components/sui-components/commit/484a9999fa2eace0fcaf27f73d37872b3d1ca208))
+* **components/molecule/select:** upgrade dropdownOption version ([e05859e](https://github.com/SUI-Components/sui-components/commit/e05859e6135cf0400b616705dce25c0f00a89c2f))
+
+
+
+# 1.55.0 (2022-07-29)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** read-only clickable inputTag behavior ([550d650](https://github.com/SUI-Components/sui-components/commit/550d6508a9346778b64abafe11235dd7ff109a47))
+
+
+
+# 1.54.0 (2022-07-18)
+
+
+### Features
+
+* **components/molecule/select:** Add readOnly styles to select component ([3b84f9d](https://github.com/SUI-Components/sui-components/commit/3b84f9d9ad053c51ea06e3ee31b07ef78aebd7b2))
+
+
+
+# 1.53.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/select:** Avoid publishing huge CHANGELOG.md ([d01dd7a](https://github.com/SUI-Components/sui-components/commit/d01dd7a4da3c26d17d132dbca124a300e5831ba9))
+
+
+
+# 1.52.0 (2022-02-01)
+
+
+### Features
+
+* **components/molecule/select:** add border color token ([384c676](https://github.com/SUI-Components/sui-components/commit/384c67609ec00376dd341cae6def7c635b8c89c5))
+* **components/molecule/select:** fix token name ([9d3ccd9](https://github.com/SUI-Components/sui-components/commit/9d3ccd978f44633c30575874d94824c02b91854d))
+* **components/molecule/select:** use new token only if select its not focused ([be89965](https://github.com/SUI-Components/sui-components/commit/be89965804faafdf0e6f216db4d2fb3be76de873))
+
+
+
+# 1.51.0 (2021-11-30)
+
+
+### Features
+
+* **components/molecule/select:** add new variable: border molecule select focus ([bd70462](https://github.com/SUI-Components/sui-components/commit/bd7046294389d2159ba842a0d79e06cdf6741d26))
+
+
+
+# 1.50.0 (2021-11-10)
+
+
+### Bug Fixes
+
+* **components/molecule/select:** upgrade @s-ui/react-atom-input@v5 ([173853f](https://github.com/SUI-Components/sui-components/commit/173853f22282c06ca6e036c2a51ae78274450010))
+
+
+
+# 1.49.0 (2021-11-03)
+
+
+### Features
+
+* **components/molecule/select:** forward aria-label property ([fa8f072](https://github.com/SUI-Components/sui-components/commit/fa8f0721fd7a9d43ef0a55a460f9a0a6bac3daf4))
+
+
+
+# 1.48.0 (2021-10-28)
+
+
+### Features
+
+* **components/molecule/select:** use mixin instead of extend for base class styles ([496a382](https://github.com/SUI-Components/sui-components/commit/496a382e488e70462e5941c3e5d3c9c59c655be8))
+
+
+
 # 1.47.0 (2021-09-29)
 
 

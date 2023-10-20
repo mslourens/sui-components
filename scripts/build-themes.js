@@ -11,7 +11,6 @@ const globby = require('globby')
 
 const INSTALL_FLAGS = [
   '--silent',
-  '--no-optional',
   '--no-save',
   '--no-audit',
   '--no-fund',
@@ -24,10 +23,14 @@ const THEMES_PACKAGES = [
   '@adv-ui/ep-theme',
   '@adv-ui/fc-theme',
   '@adv-ui/hab-theme',
+  '@adv-ui/hb-theme-v2',
   '@adv-ui/ij-theme',
   '@adv-ui/ma-theme',
   '@adv-ui/mt-theme'
 ]
+
+const cwd = process.cwd()
+const {CI, NODE_AUTH_TOKEN} = process.env
 
 const writeFile = (path, body) =>
   fse
@@ -43,28 +46,29 @@ const writeFile = (path, body) =>
 const checkFileExists = path => fse.pathExists(path)
 
 const getThemesList = async () => {
+  console.log('[sui-studio] Getting themes list...')
   const files = await fs.readdir(path.join(__dirname, '..', 'themes'))
   return files
     .filter(file => !file.startsWith('_'))
     .map(file => file.split('.')[0])
 }
 
-const installThemesPkgs = () =>
-  exec(`npm i ${THEMES_PACKAGES.join(' ')} ${INSTALL_FLAGS.join(' ')}`, {
-    cwd: process.cwd()
+const installThemesPkgs = () => {
+  console.log('[sui-studio] Installing themes packages...')
+  return exec(`npm i ${THEMES_PACKAGES.join(' ')} ${INSTALL_FLAGS.join(' ')}`, {
+    cwd
   })
+}
 
 const writeThemesInDemoFolders = async themes => {
+  console.log('[sui-studio] Writing themes files on demos...')
   await exec('rm -Rf components/**/**/demo/themes', {
-    cwd: process.cwd()
+    cwd
   })
 
   const paths = await globby(
-    [
-      path.join(process.cwd(), 'components', '**', '**', 'demo'),
-      '!**/node_modules/**'
-    ],
-    {onlyDirectories: true, cwd: process.cwd()}
+    [path.join(cwd, 'components', '**', '**', 'demo'), '!**/node_modules/**'],
+    {onlyDirectories: true, cwd}
   )
 
   paths
@@ -85,12 +89,19 @@ ${hasDemoStyles ? `@import '../index.scss';` : ''}
           )
         )
       } catch (e) {
-        console.log('Err:', e)
+        console.log('Error:', e)
       }
     })
 }
 
 ;(async () => {
+  if (CI && !NODE_AUTH_TOKEN) {
+    console.log(
+      '[sui-studio] Skipping themes installation as NODE_AUTH_TOKEN is not available'
+    )
+    return
+  }
+
   const themes = await getThemesList()
   await installThemesPkgs()
   await writeThemesInDemoFolders(themes)

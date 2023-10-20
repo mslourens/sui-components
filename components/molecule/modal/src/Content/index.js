@@ -1,4 +1,5 @@
 import {useRef} from 'react'
+
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
@@ -6,12 +7,14 @@ const MoleculeModalContent = ({
   className: classNameProp,
   enableContentScroll,
   withoutIndentation,
+  isOverflowVisible,
   ...others
 }) => {
   const baseClassName = 'sui-MoleculeModalContent'
   const contentRef = useRef()
   const className = cx(baseClassName, {
-    [`${baseClassName}--without-indentation`]: withoutIndentation
+    [`${baseClassName}--without-indentation`]: withoutIndentation,
+    [`${baseClassName}--visible-overflow`]: isOverflowVisible
   })
 
   const preventScrollIfNeeded = ev => {
@@ -45,7 +48,8 @@ const MoleculeModalContent = ({
 MoleculeModalContent.propTypes = {
   className: PropTypes.string,
   enableContentScroll: PropTypes.bool,
-  withoutIndentation: PropTypes.bool
+  withoutIndentation: PropTypes.bool,
+  isOverflowVisible: PropTypes.bool
 }
 
 export default MoleculeModalContent

@@ -1,18 +1,20 @@
-import ArticleAlpha from './PanelAsColor/ArticleAlpha'
-import ArticleColor from './PanelAsColor/ArticleColor'
-import ArticleRounded from './PanelAsColor/ArticleRounded'
-import ArticleElevated from './PanelAsColor/ArticleElevated'
-import ArticleContainer from './PanelAsColor/ArticleContainer'
-import ArticleResized from './PanelAsImage/ArticleResized'
-import ArticleRoundedAsImage from './PanelAsImage/ArticleRounded'
-import ArticleElevatedAsImage from './PanelAsImage/ArticleElevated'
-import ArticleHorizontallyCropped from './PanelAsImage/ArticleHorizontallyCropped'
-import ArticleVerticallyCropped from './PanelAsImage/ArticleVerticallyCropped'
-import ArticlePlaceholder from './PanelAsImage/ArticlePlaceholder'
-import ArticleOverlay from './PanelAsImage/ArticleOverlay'
 import {H1, H2, Paragraph} from '@s-ui/documentation-library'
-const BASE_CLASS_DEMO = `DemoAtomPanel`
-const CLASS_SECTION = `${BASE_CLASS_DEMO}-section`
+
+import ArticleAlpha from './PanelAsColor/ArticleAlpha.js'
+import ArticleColor from './PanelAsColor/ArticleColor.js'
+import ArticleContainer from './PanelAsColor/ArticleContainer.js'
+import ArticleElevated from './PanelAsColor/ArticleElevated.js'
+import ArticleIsFullHeight from './PanelAsColor/ArticleIsFullHeight.js'
+import ArticleRounded from './PanelAsColor/ArticleRounded.js'
+import ArticleElevatedAsImage from './PanelAsImage/ArticleElevated.js'
+import ArticleHorizontallyCropped from './PanelAsImage/ArticleHorizontallyCropped.js'
+import ArticleIsFullHeightAsImage from './PanelAsImage/ArticleIsFullHeight.js'
+import ArticleOverlay from './PanelAsImage/ArticleOverlay.js'
+import ArticlePlaceholder from './PanelAsImage/ArticlePlaceholder.js'
+import ArticleResized from './PanelAsImage/ArticleResized.js'
+import ArticleRoundedAsImage from './PanelAsImage/ArticleRounded.js'
+import ArticleVerticallyCropped from './PanelAsImage/ArticleVerticallyCropped.js'
+import {CLASS_SECTION} from './config.js'
 
 export default () => {
   return (
@@ -34,6 +36,8 @@ export default () => {
         <br />
         <ArticleContainer className={CLASS_SECTION} />
         <br />
+        <ArticleIsFullHeight className={CLASS_SECTION} />
+        <br />
         <H2>As Image Panel</H2>
         <Paragraph>
           Just a background for your component, can be a color or an image with
@@ -52,6 +56,9 @@ export default () => {
         <ArticleOverlay className={CLASS_SECTION} />
         <br />
         <ArticlePlaceholder className={CLASS_SECTION} />
+        <br />
+        <ArticleIsFullHeightAsImage className={CLASS_SECTION} />
+        <br />
       </div>
     </div>
   )

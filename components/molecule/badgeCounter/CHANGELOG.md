@@ -1,5 +1,66 @@
 # CHANGELOG
 
+# 1.17.0 (2022-06-27)
+
+
+### Bug Fixes
+
+* **components/molecule/badgeCounter:** fix height of children on molecule/badgeCounter ([7df2251](https://github.com/SUI-Components/sui-components/commit/7df2251d803e9c753812a43818fb7d36d79d883f))
+
+
+### Features
+
+* **components/molecule/badgeCounter/demo:** add new demo with button and icon ([a74f19b](https://github.com/SUI-Components/sui-components/commit/a74f19b4c626607c59345e710a4ec17b4834d33e))
+* **components/molecule/badgeCounter/demo:** add new deps to demo, icon and button ([c162d7f](https://github.com/SUI-Components/sui-components/commit/c162d7fb1095f65afcbf8f33f31d82294e2b10f6))
+* **components/molecule/badgeCounter:** add new class sui-MoleculeBadgeCounter-bullet--withChildren ([3da230f](https://github.com/SUI-Components/sui-components/commit/3da230fcc209103bd18d9c06199369ae9affc3c0))
+
+
+
+# 1.16.0 (2022-06-22)
+
+
+### Features
+
+* **components/molecule/badgeCounter:** Avoid publishing huge CHANGELOG.md ([7be1753](https://github.com/SUI-Components/sui-components/commit/7be1753a46b8ac904c48235ba1da77a7784ed5a0))
+
+
+
+# 1.15.0 (2022-05-05)
+
+
+### Features
+
+* **components/molecule/badgeCounter:** Change style to three characteres badge counter ([6454c75](https://github.com/SUI-Components/sui-components/commit/6454c757b1e8bbf8f4ccf4ca5d82047ded6585cd))
+
+
+
+# 1.14.0 (2022-05-05)
+
+
+### Features
+
+* **components/molecule/badgeCounter:** Dummy commit to force release ([82d49bb](https://github.com/SUI-Components/sui-components/commit/82d49bb51ee76884c4dee9a2935e672912188538))
+
+
+
+# 1.13.0 (2022-04-25)
+
+
+### Bug Fixes
+
+* **components/molecule/badgeCounter:** Fix aligment badge counter to the respect children ([70a8b87](https://github.com/SUI-Components/sui-components/commit/70a8b87ad1a6aeaccd377cb8371b72f057f468e4))
+
+
+
+# 1.12.0 (2021-10-07)
+
+
+### Bug Fixes
+
+* **components/molecule/badgeCounter:** change hardcoded red to variable ([2809a2e](https://github.com/SUI-Components/sui-components/commit/2809a2ec24d5584d29e37d2da3785a2b36c8496d)), closes [#1723](https://github.com/SUI-Components/sui-components/issues/1723)
+
+
+
 # 1.11.0 (2021-09-07)
 
 

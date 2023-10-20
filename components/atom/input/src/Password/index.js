@@ -1,41 +1,58 @@
-import {useState} from 'react'
+import {forwardRef, useState} from 'react'
+
 import PropTypes from 'prop-types'
-import Input from '../Input'
+
+import useControlledState from '@s-ui/react-hooks/lib/useControlledState'
+
+import Input from '../Input/index.js'
 import {
   BASE_CLASS_PASSWORD,
   BASE_CLASS_PASSWORD_TOGGLE_BUTTON,
-  TEXT,
-  PASSWORD
-} from './config'
+  PASSWORD,
+  TEXT
+} from './config.js'
 
-const Password = ({
-  onChange,
-  pwShowLabel = 'show',
-  pwHideLabel = 'hide',
-  ...props
-}) => {
-  const [type, setType] = useState(PASSWORD)
-  const [value, setValue] = useState('')
+const Password = forwardRef(
+  (
+    {
+      onChange,
+      pwShowLabel = 'show',
+      pwHideLabel = 'hide',
+      value,
+      defaultValue = '',
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const [type, setType] = useState(PASSWORD)
+    const [innerValue, setInnerValue] = useControlledState(value, defaultValue)
 
-  const toggle = () => {
-    const inputType = type === PASSWORD ? TEXT : PASSWORD
-    setType(inputType)
-  }
+    const toggle = () => {
+      const inputType = type === PASSWORD ? TEXT : PASSWORD
+      setType(inputType)
+    }
 
-  const handleChange = (ev, {value}) => {
-    setValue(value)
-    typeof onChange === 'function' && onChange(ev, {value})
-  }
+    const handleChange = (ev, {value}) => {
+      setInnerValue(value)
+      typeof onChange === 'function' && onChange(ev, {value})
+    }
 
-  return (
-    <div className={BASE_CLASS_PASSWORD}>
-      <Input {...props} onChange={handleChange} value={value} type={type} />
-      <div onClick={toggle} className={BASE_CLASS_PASSWORD_TOGGLE_BUTTON}>
-        {type === PASSWORD ? pwShowLabel : pwHideLabel}
+    return (
+      <div className={BASE_CLASS_PASSWORD}>
+        <Input
+          ref={forwardedRef}
+          {...props}
+          onChange={handleChange}
+          value={innerValue}
+          type={type}
+        />
+        <div onClick={toggle} className={BASE_CLASS_PASSWORD_TOGGLE_BUTTON}>
+          {type === PASSWORD ? pwShowLabel : pwHideLabel}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
 
 Password.propTypes = {
   /* Text to be shown in order to show the password on click */
@@ -47,7 +64,11 @@ Password.propTypes = {
   /* The name of the control */
   name: PropTypes.string,
   /* The id of the control */
-  id: PropTypes.string
+  id: PropTypes.string,
+  /* The value of the control */
+  value: PropTypes.string,
+  /* The default value of the control */
+  defaultValue: PropTypes.string
 }
 
 export default Password

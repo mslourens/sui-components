@@ -1,9 +1,13 @@
 import {forwardRef} from 'react'
+
 import cx from 'classnames'
-import AtomLabel from '@s-ui/react-atom-label'
-import {suitClass, switchClassNames} from './helpers'
 import PropTypes from 'prop-types'
-import {LABELS} from '../config'
+
+import AtomLabel from '@s-ui/react-atom-label'
+
+import {LABELS, TYPES} from '../config.js'
+import {suitClass, switchClassNames} from './helpers.js'
+
 const {RIGHT, LEFT} = LABELS
 
 export const SingleSwitchTypeRender = forwardRef(
@@ -11,27 +15,24 @@ export const SingleSwitchTypeRender = forwardRef(
     {
       disabled,
       isFitted,
-      isClick,
-      isFocus,
-      isToggle,
       label,
       labelLeft,
+      iconLeft,
+      iconRight,
       labelOptionalText,
       labelRight,
       name,
       onBlur,
-      onClick,
       onFocus,
-      onKeyDown,
       onToggle,
       size,
       type,
-      value
+      value,
+      fullWidth,
+      isChecked
     },
     ref
   ) => {
-    const isActive = value !== undefined ? value : isToggle
-
     const defaultLabelLeft = labelLeft === LEFT
     const defaultLabelRight = labelRight === RIGHT
 
@@ -40,27 +41,22 @@ export const SingleSwitchTypeRender = forwardRef(
 
     return (
       <div
-        className={switchClassNames(
+        className={switchClassNames({
           size,
-          type,
-          'singleType',
-          isActive,
-          isFocus,
-          isClick,
-          disabled
-        )}
-        onClick={() => onToggle()}
+          classType: 'singleType',
+          fullWidth
+        })}
       >
         <div
           className={cx(suitClass({element: 'container'}), {
             [suitClass({
               element: 'container--isFitted'
-            })]: isFitted
+            })]: isFitted,
+            [suitClass({
+              element: 'container--fullWidth'
+            })]: fullWidth
           })}
-          tabIndex="0"
-          onKeyDown={onKeyDown}
           onFocus={onFocus}
-          onClick={onClick}
           onBlur={onBlur}
           ref={ref}
         >
@@ -71,13 +67,30 @@ export const SingleSwitchTypeRender = forwardRef(
               optionalText={labelOptionalText}
             />
           )}
-          <div className={suitClass({element: 'inputContainer'})}>
-            <div
-              className={cx(suitClass({element: 'circle'}), {
-                [suitClass({modifier: 'toggle'})]: isActive
-              })}
-            />
-          </div>
+          <button
+            type="button"
+            className={cx(suitClass({element: 'inputContainer'}), {
+              [suitClass({
+                element: 'inputContainer',
+                modifier: 'right'
+              })]: isChecked
+            })}
+            role="switch"
+            onClick={onToggle()}
+            aria-checked={isChecked || type === TYPES.SELECT}
+            aria-disabled={disabled}
+            disabled={disabled}
+            id={name}
+            {...(!disabled && {tabIndex: 0})}
+          >
+            <div className={cx(suitClass({element: 'icon-left'}))}>
+              {iconLeft}
+            </div>
+            <div className={cx(suitClass({element: 'circle'}))} />
+            <div className={cx(suitClass({element: 'icon-right'}))}>
+              {iconRight}
+            </div>
+          </button>
           {showLabelRight && (
             <AtomLabel
               name={name}
@@ -135,21 +148,9 @@ SingleSwitchTypeRender.propTypes = {
    */
   isToggle: PropTypes.bool,
   /**
-   * Is component focus
-   */
-  isFocus: PropTypes.bool,
-  /**
-   * Is component click
-   */
-  isClick: PropTypes.bool,
-  /**
    * Callback on focus element
    */
   onFocus: PropTypes.func,
-  /**
-   * Callback on click element
-   */
-  onClick: PropTypes.func,
   /**
    * Callback on toggle element
    */
@@ -159,11 +160,17 @@ SingleSwitchTypeRender.propTypes = {
    */
   onToggle: PropTypes.func,
   /**
-   * Callback on keydown on the switch
-   */
-  onKeyDown: PropTypes.func,
-  /**
    * Value for controlled component
    */
-  value: PropTypes.bool
+  value: PropTypes.bool,
+  /**
+   * Modifier: full width (100%)
+   */
+  fullWidth: PropTypes.bool,
+  /** element node which appears inside the switch circle when it's in left position **/
+  iconLeft: PropTypes.node,
+  /** element node which appears inside the switch circle when it's in right position **/
+  iconRight: PropTypes.node,
+  /** element in right or left position (checked means right)**/
+  isChecked: PropTypes.bool
 }

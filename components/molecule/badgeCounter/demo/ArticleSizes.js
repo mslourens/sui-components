@@ -1,19 +1,22 @@
 import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
   Article,
+  Button,
+  Cell,
+  Code,
+  Grid,
   H2,
   Input,
-  Grid,
-  Cell,
   Label,
   Paragraph,
-  Code,
   RadioButton,
-  RadioButtonGroup,
-  Button
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
-import MoleculeBadgeCounter, {moleculeBadgeCounterSizes} from '../src'
+
+import MoleculeBadgeCounter, {moleculeBadgeCounterSizes} from '../src/index.js'
 
 const ArticleSizes = ({className}) => {
   const [label, setLabel] = useState('')

@@ -1,20 +1,23 @@
 import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
+  Article,
+  Bold,
+  Cell,
+  Grid,
   H1,
   H2,
   H3,
   H4,
-  Bold,
-  Small,
-  Article,
+  Label,
   Paragraph,
   RadioButton,
-  Grid,
-  Cell,
-  Label
+  Small
 } from '@s-ui/documentation-library'
-import AtomSkeleton from '../lib'
+
+import AtomSkeleton from '../src/index.js'
 
 const loremIpsum =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet ...'

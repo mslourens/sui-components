@@ -1,7 +1,9 @@
 import React from 'react'
-import MoleculeInputField from '../src'
+
+import {Article, Box, H1, H2, Paragraph} from '@s-ui/documentation-library'
 import {withStateValue} from '@s-ui/hoc'
-import {H1, H2, Box, Paragraph, Article} from '@s-ui/documentation-library'
+
+import MoleculeInputField from '../src/index.js'
 
 const darkBackground = {
   backgroundColor: '#2b91c1'

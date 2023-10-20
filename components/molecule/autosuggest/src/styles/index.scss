@@ -1,0 +1,60 @@
+$base-class: '.sui-MoleculeAutosuggest';
+$class-atom-input: '.sui-AtomInput';
+$class-input: '#{$base-class}-input';
+$class-input-container: '#{$class-input}-container';
+$class-atom-input-input: '#{$class-atom-input}-input';
+
+#{$base-class} {
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+
+  .sui-MoleculeDropdownList {
+    position: absolute;
+    z-index: $z-autosuggest-list;
+  }
+
+  input::-ms-clear {
+    display: none;
+  }
+
+  &--disabled {
+    #{$class-input-container} {
+      #{$class-atom-input}--withTags {
+        background: $c-gray-lightest;
+      }
+    }
+  }
+
+  #{$class-input-container} {
+    #{$class-atom-input}--withIcon {
+      display: flex;
+      flex-grow: 1;
+      width: unset;
+    }
+    #{$class-input} {
+      &-container {
+        align-items: center;
+        border: $bdw-autosuggest-container solid transparent;
+        cursor: default;
+        display: flex;
+        min-height: $h-atom-input--m;
+      }
+
+      &-icon,
+      &-clear-icon {
+        display: flex;
+        flex-direction: column;
+        height: $h-atom-input--m;
+        justify-content: center;
+        fill: $c-gray;
+      }
+    }
+  }
+
+  @each $state, $color in $states-atom-input {
+    &#{$base-class}--#{$state} #{$class-atom-input-input} {
+      border-color: $color;
+    }
+  }
+}

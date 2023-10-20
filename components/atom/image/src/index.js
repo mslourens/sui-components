@@ -1,55 +1,58 @@
-import {cloneElement, useState, useEffect, useRef, useCallback} from 'react'
-import PropTypes from 'prop-types'
+import {useCallback, useEffect, useRef, useState} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-import {htmlImgProps} from './types'
+import Injector from '@s-ui/react-primitive-injector'
 
-const BASE_CLASS = 'sui-AtomImage'
-const BASE_CLASS_FIGURE = `${BASE_CLASS}-figure`
-const CLASS_PLACEHOLDER = `${BASE_CLASS_FIGURE}--placeholder`
-const CLASS_SKELETON = `${BASE_CLASS_FIGURE}--skeleton`
-const CLASS_IMAGE = `${BASE_CLASS}-image`
-const CLASS_SPINNER = `${BASE_CLASS}-spinner`
-const CLASS_ERROR = `${BASE_CLASS}-error`
-
-/* eslint-disable-next-line react/prop-types */
-const ErrorImage = ({className, icon: Icon, text}) => (
-  <div className={className}>
-    {Icon}
-    {Boolean(text) && <p>{text}</p>}
-  </div>
-)
+import ErrorImage from './ErrorImage.js'
+import {
+  BASE_CLASS,
+  BASE_CLASS_FIGURE,
+  CLASS_ERROR,
+  CLASS_IMAGE,
+  CLASS_PLACEHOLDER,
+  CLASS_SKELETON,
+  CLASS_SPINNER,
+  DECODING,
+  FETCHPRIORITY,
+  LOADING
+} from './settings.js'
+import {htmlImgProps} from './types.js'
 
 const AtomImage = ({
-  placeholder,
-  skeleton,
+  alt,
   bgStyles,
-  spinner: Spinner,
+  decoding = DECODING.AUTO,
   errorIcon,
   errorText,
-  onError,
-  onLoad,
+  fetchpriority = FETCHPRIORITY.AUTO,
+  loading = LOADING.EAGER,
+  onError = () => {},
+  onLoad = () => {},
+  placeholder,
+  skeleton,
   sources = [],
-  alt,
+  spinner,
   ...imgProps
 }) => {
   const imageRef = useRef()
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const {src} = imgProps
 
   useEffect(() => {
-    setLoading(true)
+    setIsLoading(true)
     setError(false)
-  }, [src, setLoading, setError])
+  }, [src, setIsLoading, setError])
 
   const handleLoad = useCallback(() => {
     const loadCompleted = imageRef?.current?.complete
     if (loadCompleted === true) {
-      setLoading(!loadCompleted)
+      setIsLoading(!loadCompleted)
       onLoad && onLoad()
     }
-  }, [onLoad, setLoading])
+  }, [onLoad, setIsLoading])
 
   useEffect(() => {
     handleLoad()
@@ -57,7 +60,7 @@ const AtomImage = ({
 
   const classNames = cx(
     BASE_CLASS,
-    `is-${loading ? 'loading' : 'loaded'}`,
+    `is-${isLoading ? 'loading' : 'loaded'}`,
     error && `is-error`
   )
 
@@ -68,7 +71,7 @@ const AtomImage = ({
   )
 
   const handleError = () => {
-    setLoading(false)
+    setIsLoading(false)
     setError(true)
     onError && onError()
   }
@@ -76,12 +79,6 @@ const AtomImage = ({
   const figureStyles = {
     backgroundImage: `url(${placeholder || skeleton})`
   }
-
-  const SpinnerExtended =
-    Spinner &&
-    cloneElement(Spinner, {
-      className: CLASS_SPINNER
-    })
 
   return (
     <div className={classNames}>
@@ -94,16 +91,21 @@ const AtomImage = ({
             <source key={idx} {...source} />
           ))}
           <img
-            className={CLASS_IMAGE}
-            onLoad={handleLoad}
-            onError={handleError}
-            ref={imageRef}
             alt={alt}
+            className={CLASS_IMAGE}
+            decoding={decoding}
+            fetchpriority={fetchpriority}
+            loading={loading}
+            onError={handleError}
+            onLoad={handleLoad}
+            ref={imageRef}
             {...imgProps}
           />
         </picture>
       </figure>
-      {!error && loading && SpinnerExtended}
+      {!error && isLoading && spinner && (
+        <Injector classNames={CLASS_SPINNER}>{spinner}</Injector>
+      )}
       {error && (
         <ErrorImage className={CLASS_ERROR} icon={errorIcon} text={errorText} />
       )}
@@ -119,6 +121,24 @@ AtomImage.propTypes = {
   /** Description of the image */
   alt: PropTypes.string.isRequired,
 
+  /**
+   * Provides an image decoding hint to the browser
+   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-decoding
+   */
+  decoding: PropTypes.oneOf(Object.values(DECODING)),
+
+  /**
+   * Provides a hint of the relative priority to use when fetching the image
+   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-fetchpriority
+   */
+  fetchpriority: PropTypes.oneOf(Object.values(FETCHPRIORITY)),
+
+  /**
+   * Indicates how the browser should load the image
+   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading
+   */
+  loading: PropTypes.oneOf(Object.values(LOADING)),
+
   /** Image displayed (blurred) while the final image is being loaded */
   placeholder: PropTypes.string,
 
@@ -126,7 +146,7 @@ AtomImage.propTypes = {
   skeleton: PropTypes.string,
 
   /** Spinner (component) displayed while the final image is being loaded */
-  spinner: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  spinner: PropTypes.node,
 
   /** Icon (component) to be displayed in an Error Box when the image cannot be loaded */
   errorIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -156,3 +176,5 @@ AtomImage.propTypes = {
 }
 
 export default AtomImage
+
+export {DECODING, FETCHPRIORITY, LOADING}

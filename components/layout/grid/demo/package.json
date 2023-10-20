@@ -1,8 +1,9 @@
 {
-  "name": "layout-grid-demo",
+  "name": "@s-ui/react-layout-grid-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,0 +1,27 @@
+$z-atom-spinner-loader: 999 !default;
+
+@mixin animation-atom-spinner($name, $color1, $color2, $sizeName, $size) {
+  $totalSize: $size * 2;
+
+  @keyframes atom-spinner-#{'' + $name}-#{'' + $sizeName} {
+    0% {
+      box-shadow: -$size * 0.5 $size $color1, $size * 0.5 $totalSize $color2;
+    }
+
+    25% {
+      box-shadow: $size * 0.5 $size $color1, -$size * 0.5 $totalSize $color2;
+    }
+
+    50% {
+      box-shadow: $size * 0.5 $totalSize $color1, -$size * 0.5 $size $color2;
+    }
+
+    75% {
+      box-shadow: -$size * 0.5 $totalSize $color1, $size * 0.5 $size $color2;
+    }
+
+    100% {
+      box-shadow: -$size * 0.5 $size $color1, $size * 0.5 $totalSize $color2;
+    }
+  }
+}

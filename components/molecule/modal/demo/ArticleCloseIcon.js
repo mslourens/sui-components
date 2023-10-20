@@ -1,20 +1,23 @@
+import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
+  AntDesignIcon,
   Article,
-  H2,
-  Paragraph,
-  Code,
-  RadioButton,
-  RadioButtonGroup,
   Button,
-  Label,
-  Grid,
   Cell,
-  AntDesignIcon
+  Code,
+  Grid,
+  H2,
+  Label,
+  Paragraph,
+  RadioButton,
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
 import AtomIcon from '@s-ui/react-atom-icon'
-import {useState} from 'react'
-import MoleculeModal from '../src'
+
+import MoleculeModal from '../src/index.js'
 
 const icons = {
   AiOutlineClose: 'AiOutlineClose',
@@ -29,8 +32,8 @@ const ArticleCloseIcon = ({className}) => {
   const [icon, setIcon] = useState(icons.AiOutlineClose)
   const [floatingIconClose, setFloatingIconClose] = useState(false)
 
-  const onChangeHandler = (_, value) => {
-    setOpen(value === undefined ? open : value)
+  const onChangeHandler = () => {
+    setOpen(!open)
   }
 
   const onChangeFloatingIconClose = (_, value) => {
@@ -54,17 +57,7 @@ const ArticleCloseIcon = ({className}) => {
   return (
     <Article className={className}>
       <H2>Icon</H2>
-      <Grid cols={1} gutter={[8, 8]}>
-        <Cell>
-          <Label>isOpen</Label>
-        </Cell>
-        <Cell>
-          <RadioButtonGroup value={open} onChange={onChangeHandler}>
-            <RadioButton value label="true" checked={open === true} />
-            <RadioButton value={false} label="false" checked={open === false} />
-          </RadioButtonGroup>
-        </Cell>
-      </Grid>
+      <Button onClick={onChangeHandler}>Open modal</Button>
       <Paragraph>
         The closing icon can be customized using the <Code>iconClose</Code>{' '}
         (node) prop.

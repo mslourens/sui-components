@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types'
+
 import {
   Article,
-  H2,
-  Paragraph,
-  Grid,
   Cell,
-  Label
+  Grid,
+  H2,
+  Label,
+  Paragraph
 } from '@s-ui/documentation-library'
 
-import AtomBadge from '../src'
-import {extendedColors} from './config'
+import AtomBadge from '../src/index.js'
+import {extendedColors} from './settings.js'
 
 const ArticleCustomType = ({className}) => {
   return (

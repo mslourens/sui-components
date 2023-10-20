@@ -1,0 +1,44 @@
+@import '../_settings.scss';
+
+$bd-select-popover: 1px solid $c-gray-light-2 !default;
+$c-select-popover: $c-black !default;
+$bgc-select-popover: transparent !default;
+$bgc-select-popover-hover: $c-primary-light-4 !default;
+$bdc-select-popover-hover: $c-primary-light-4 !default;
+$c-select-popover--is-open: $c-primary !default;
+
+$bgc-select-popover-content: $c-white !default;
+$bd-select-popover-content: solid 1px $c-gray-light-3 !default;
+$bdt-select-popover-action-bar: solid 1px $c-gray-light-3 !default;
+
+$bgc-select-popover-selected: $bgc-select-popover-hover !default;
+$bdc-select-popover-selected: $c-primary !default;
+$c-select-popover-selected: $c-primary !default;
+
+$bxz-select-popover-select: border-box !default;
+$cur-select-popover-select: pointer !default;
+
+$op-select-popover: 0.4 !default;
+
+$z-select-popover-select-popover: $z-tooltips !default;
+
+$op-select-popover-overlay: 0.6 !default;
+$bgc-select-popover-dark-overlay: $c-black !default;
+$bgc-select-popover-light-overlay: $c-white !default;
+
+$molecule-select-popover-overlay-types: (
+  dark: (
+    bgc: $bgc-select-popover-dark-overlay
+  ),
+  light: (
+    bgc: $bgc-select-popover-light-overlay
+  )
+) !default;
+
+$trf-select-popover-select-icon-has-custom-wrapper: rotate(-90deg) !default;
+$trf-select-popover-select-icon-has-custom-wrapper--is-open: rotate(
+  -90deg
+) !default;
+$l-select-popover--right: 0 !default;
+$r-select-popover--left: 0 !default;
+$p-select-popover: absolute !default;

@@ -1,5 +1,90 @@
 # CHANGELOG
 
+# 2.28.0 (2023-07-11)
+
+
+### Features
+
+* **components/molecule/inputTags:** add tagSize prop to MoleculeInputTags ([1668de0](https://github.com/SUI-Components/sui-components/commit/1668de0723eeabf4401fd2368bccc60ee1f020be))
+
+
+
+# 2.27.0 (2023-05-05)
+
+
+### Features
+
+* **components/molecule/inputTags:** add a possibility to change responsive prop value ([c772d6e](https://github.com/SUI-Components/sui-components/commit/c772d6eb382ffd9a3609e9556a2889b17b159651))
+
+
+
+# 2.26.0 (2023-01-10)
+
+
+
+# 2.25.0 (2022-07-28)
+
+
+### Bug Fixes
+
+* **components/molecule/inputTags:** filter indexed value ([6640871](https://github.com/SUI-Components/sui-components/commit/66408718db0e6ec32e45c8207dc9feccee636283))
+
+
+
+# 2.24.0 (2022-07-28)
+
+
+### Bug Fixes
+
+* **components/molecule/inputTags:** mutation on asignation ([42fcf63](https://github.com/SUI-Components/sui-components/commit/42fcf63cd53f452eb8c4dd0d95ebf8bc70ca6e60))
+
+
+
+# 2.23.0 (2022-07-27)
+
+
+### Features
+
+* **components/molecule/inputTags:** improvements and refactor ([4de8a58](https://github.com/SUI-Components/sui-components/commit/4de8a58a61b1509047fe909e760eff5309bc834c))
+
+
+
+# 2.22.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/inputTags:** Avoid publishing huge CHANGELOG.md ([5abb460](https://github.com/SUI-Components/sui-components/commit/5abb46051a28a329dcdeea843102ac672fc71f84))
+
+
+
+# 2.21.0 (2021-11-10)
+
+
+### Bug Fixes
+
+* **components/molecule/inputTags:** upgrade @s-ui/react-atom-input@v5 ([161d6c2](https://github.com/SUI-Components/sui-components/commit/161d6c2d60314222e44efeee5151a14c30108914))
+
+
+
+# 2.20.0 (2021-10-28)
+
+
+### Features
+
+* **components/molecule/inputTags:** use mixin instead of extend for base class styles ([2242511](https://github.com/SUI-Components/sui-components/commit/2242511968892721caba72e54d8096e2abc2b2f1))
+
+
+
+# 2.19.0 (2021-10-11)
+
+
+### Bug Fixes
+
+* **components/molecule/inputTags:** update disabled state ([eb09899](https://github.com/SUI-Components/sui-components/commit/eb09899b81afd0b43fa633ba49b11018c7821f51)), closes [#1792](https://github.com/SUI-Components/sui-components/issues/1792)
+
+
+
 # 2.18.0 (2021-08-20)
 
 

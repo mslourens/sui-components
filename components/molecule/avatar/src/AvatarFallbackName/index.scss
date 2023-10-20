@@ -1,5 +1,11 @@
-$c-avatar-fallback-name: inherit !default;
+$base-class-fallback-name: #{$base-class}FallbackName;
 
-.sui-MoleculeAvatarFallbackName {
+#{$base-class-fallback-name} {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: $c-avatar-fallback-name;
+  text-transform: uppercase;
 }

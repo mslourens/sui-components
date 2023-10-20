@@ -1,12 +1,23 @@
 import {forwardRef} from 'react'
-import PropTypes from 'prop-types'
-import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
 
-import {SIZES, INPUT_STATES, noop, getClassNames} from '../../config'
+import PropTypes from 'prop-types'
+
+import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
+import PolymorphicElement from '@s-ui/react-primitive-polymorphic-element'
+
+import {
+  getClassNames,
+  INPUT_SHAPES,
+  INPUT_STATES,
+  noop,
+  SIZES
+} from '../../config.js'
+import isValidInputValue from '../../helpers/isValidInputValue.js'
 
 const Input = forwardRef(
   (
     {
+      as = 'input',
       disabled,
       readOnly,
       hideInput,
@@ -17,13 +28,13 @@ const Input = forwardRef(
       onFocus,
       placeholder,
       reference,
-      size = SIZES.MEDIUM,
+      size,
       errorState,
       state,
       type,
       value,
       charsSize,
-      tabIndex = -1,
+      tabIndex,
       ariaLabel,
       maxLength,
       minLength,
@@ -37,9 +48,12 @@ const Input = forwardRef(
       onEnter = noop,
       onEnterKey = 'Enter',
       onKeyDown = noop,
+      onKeyPress = noop,
       required,
       pattern,
-      inputMode
+      inputMode,
+      shape,
+      children
     },
     forwardedRef
   ) => {
@@ -55,8 +69,15 @@ const Input = forwardRef(
         target: {value, name}
       } = ev
       const {key} = ev
-      onKeyDown(ev, {value, name})
-      if (key === onEnterKey) onEnter(ev, {value, name})
+
+      if (isValidInputValue(event, {type, onEnterKey})) {
+        onKeyDown(ev, {value, name})
+        if (typeof onEnterKey === 'string') {
+          key === onEnterKey && onEnter(ev, {value, name})
+        } else if (Array.isArray(onEnterKey)) {
+          onEnterKey.includes(key) && onEnter(ev, {value, name})
+        }
+      }
     }
 
     const className = getClassNames({
@@ -66,11 +87,13 @@ const Input = forwardRef(
       noBorder,
       readOnly,
       errorState,
-      state
+      state,
+      shape
     })
 
     return (
-      <input
+      <PolymorphicElement
+        as={as}
         className={className}
         tabIndex={tabIndex}
         aria-label={ariaLabel}
@@ -82,6 +105,7 @@ const Input = forwardRef(
         onFocus={onFocus}
         onBlur={onBlur}
         onKeyDown={handleKeyDown}
+        onKeyPress={onKeyPress}
         placeholder={placeholder}
         ref={useMergeRefs(...[reference, forwardedRef].filter(Boolean))}
         type={type}
@@ -98,12 +122,15 @@ const Input = forwardRef(
         required={required}
         pattern={pattern}
         inputMode={inputMode}
+        children={as === 'input' ? undefined : children}
       />
     )
   }
 )
 
 Input.propTypes = {
+  /* Render the passed value as the correspondent HTML tag or the component if a function is passed */
+  as: PropTypes.elementType,
   /* This Boolean attribute prevents the user from interacting with the input */
   disabled: PropTypes.bool,
   /* This Boolean attribute prevents the user from interacting with the input but without disabled styles */
@@ -116,14 +143,19 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   /* onKeyDown callback */
   onKeyDown: PropTypes.func,
+  /* onKeyPress callback */
+  onKeyPress: PropTypes.func,
   /* onChange callback */
   onChange: PropTypes.func,
   /* onFocus callback */
   onFocus: PropTypes.func,
   /* onEnter callback */
   onEnter: PropTypes.func,
-  /* key to provoke the onEnter callback. Valid any value defined here → https://www.w3.org/TR/uievents-key/#named-key-attribute-values */
-  onEnterKey: PropTypes.string,
+  /* key(s) to provoke the onEnter callback. Valid any value defined here → https://www.w3.org/TR/uievents-key/#named-key-attribute-values */
+  onEnterKey: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ),
   /* A hint to the user of what can be entered in the control. The placeholder text must not contain carriage returns or line-feeds. */
   placeholder: PropTypes.string,
   /* 's' or 'm', default: 'm' */
@@ -169,7 +201,11 @@ Input.propTypes = {
   /** native pattern attribute */
   pattern: PropTypes.string,
   /** To select input keyboard mode on mobile. It can be 'numeric', 'decimal', 'email', etc */
-  inputMode: PropTypes.string
+  inputMode: PropTypes.string,
+  /** Sets the shape of the input field. It can be 'rounded', 'square' or 'circle' */
+  shape: PropTypes.oneOf(Object.values(INPUT_SHAPES)),
+  /** Nodes to be rendered inside the component */
+  children: PropTypes.node
 }
 
 export default Input

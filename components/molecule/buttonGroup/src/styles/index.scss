@@ -1,0 +1,21 @@
+$base-class: '.sui-MoleculeButtonGroup';
+
+#{$base-class} {
+  display: flex;
+
+  &--fullWidth {
+    display: flex;
+  }
+
+  &--spaced-medium {
+    gap: $g-m;
+  }
+
+  &--spaced-large {
+    gap: $g-l;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+}

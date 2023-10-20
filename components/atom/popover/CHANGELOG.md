@@ -1,5 +1,119 @@
 # CHANGELOG
 
+# 3.17.0 (2022-10-25)
+
+
+
+# 3.16.0 (2022-10-25)
+
+
+### Bug Fixes
+
+* **components/atom/popover:** arrow border color inherit from custom type ([4099bf8](https://github.com/SUI-Components/sui-components/commit/4099bf83b594a9dc4f20db4e8ef59257059db60d))
+
+
+
+# 3.15.0 (2022-10-18)
+
+
+### Bug Fixes
+
+* **components/atom/popover:** condition error ([4354727](https://github.com/SUI-Components/sui-components/commit/4354727a2456f8b349e191755bcd8b1c21a6b68a))
+
+
+
+# 3.14.0 (2022-10-18)
+
+
+
+# 3.13.0 (2022-10-07)
+
+
+### Features
+
+* **components/atom/popover:** add icon color type ([a6dac91](https://github.com/SUI-Components/sui-components/commit/a6dac91162387b0aa7e5fb99557d76f061ba034b))
+
+
+
+# 3.12.0 (2022-10-06)
+
+
+
+# 3.11.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/popover:** Avoid publishing huge CHANGELOG.md ([5d123b4](https://github.com/SUI-Components/sui-components/commit/5d123b4bd48c0f2c494daf9145008af7280f848c))
+
+
+
+# 3.10.0 (2022-05-23)
+
+
+### Bug Fixes
+
+* **components/atom/popover/demo:** do not publish ([2173668](https://github.com/SUI-Components/sui-components/commit/217366800ad2dbad799262166a833530bb190dc7))
+* **components/atom/popover:** bump ([c1dfdca](https://github.com/SUI-Components/sui-components/commit/c1dfdca454e27cc6d7782ef49988db320205f24a))
+* **components/atom/popover:** bump ([5d1403d](https://github.com/SUI-Components/sui-components/commit/5d1403db3d6503c43267f78bdc1778dcc4034976))
+
+
+
+# 3.8.0 (2022-04-12)
+
+
+### Features
+
+* **components/atom/popover:** create new prop to be able to change the background-color of the atom ([6556db6](https://github.com/SUI-Components/sui-components/commit/6556db6cc9642ef5100038bee4c68e7842838f1e))
+* **components/atom/popover:** fix demo ([a91433e](https://github.com/SUI-Components/sui-components/commit/a91433e75143a691bfca39f18d2f12b95286fd02))
+* **components/atom/popover:** improves code ([a0dc1af](https://github.com/SUI-Components/sui-components/commit/a0dc1af7e12f992986ac274721e1ed1dd952f100))
+* **components/atom/popover:** update demo ([88c0a0f](https://github.com/SUI-Components/sui-components/commit/88c0a0fc13227f41bb12557fbc862a4cefb0f711))
+
+
+
+# 1.1.0 (2022-04-05)
+
+
+### Bug Fixes
+
+* **components/atom/popover/demo:** resolve linting errors ([8428420](https://github.com/SUI-Components/sui-components/commit/8428420dbe8cf517decb5835c5a8ac3304affec3))
+
+
+
+# 3.7.0 (2022-03-08)
+
+
+### Bug Fixes
+
+* **components/atom/popover:** Avoid unexpected renders by not forcing the encapsulation of content i ([a8190ef](https://github.com/SUI-Components/sui-components/commit/a8190ef06e14b147362ab1b2558f11029fabc456))
+
+
+
+# 3.6.0 (2022-03-04)
+
+
+### Features
+
+* **components/atom/popover:** Improve variables naming ([e7824ce](https://github.com/SUI-Components/sui-components/commit/e7824ce491625d95566e90caaf2333135357ad89))
+* **components/atom/popover:** Retrieve scheduleUpdate function when rendering AtomPopover ([e33052f](https://github.com/SUI-Components/sui-components/commit/e33052f846061738ac0a9c7add2c9c4bdb7a2728))
+* **components/atom/popover:** Use a clearer function name ([fbd0009](https://github.com/SUI-Components/sui-components/commit/fbd000966a4a76b97c59da879082d23aa07da259))
+
+
+
+# 3.5.0 (2021-10-15)
+
+
+
+# 3.4.0 (2021-10-15)
+
+
+### Features
+
+* **components/atom/popover:** add z-index to popover placement box ([907bab0](https://github.com/SUI-Components/sui-components/commit/907bab03eaf10252d40d4965e0eadfc63d331012))
+* **components/atom/tooltip:** Wip ([2ce257d](https://github.com/SUI-Components/sui-components/commit/2ce257d40534784874fbc6ce861eea0600c37a93))
+
+
+
 # 3.3.0 (2021-07-19)
 
 

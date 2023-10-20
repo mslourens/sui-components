@@ -1,15 +1,11 @@
 import {useState} from 'react'
-import PropTypes from 'prop-types'
-import {ATOM_ICON_SIZES} from '@s-ui/react-atom-icon'
-import {IconStarOutline} from '../Icons'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-const BASE_CLASS = `sui-MoleculeRating-Star`
+import {ATOM_ICON_SIZES} from '@s-ui/react-atom-icon'
 
-const DEFAULTS = {
-  ratingValues: [1, 2, 3, 4, 5],
-  IconStarEmpty: IconStarOutline
-}
+import {BASE_CLASS, DEFAULTS_STAR_HOVER as DEFAULTS} from './settings.js'
 
 const MoleculeRatingStarHover = ({
   iconStar = DEFAULTS.IconStarEmpty,
@@ -31,7 +27,7 @@ const MoleculeRatingStarHover = ({
   const renderStars = () =>
     ratingValues.map(value => {
       const isActive = rating >= value || value <= selectedRating
-      const className = cx(BASE_CLASS, {
+      const className = cx(BASE_CLASS, 'is-hoverable', {
         [`is-active`]: isActive
       })
       return (

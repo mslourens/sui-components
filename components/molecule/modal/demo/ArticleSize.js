@@ -1,19 +1,21 @@
+import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
   Article,
+  Button,
+  Cell,
+  Code,
+  Grid,
   H2,
   Paragraph,
-  Code,
   RadioButton,
-  RadioButtonGroup,
-  Button,
-  Label,
-  Grid,
-  Cell
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
-import {useState} from 'react'
-import MoleculeModal, {MoleculeModalSizes} from '../src'
-import LoremIpsum from './LoremIpsum'
+
+import MoleculeModal, {MoleculeModalSizes} from '../src/index.js'
+import LoremIpsum from './LoremIpsum.js'
 
 const ArticleSize = ({className}) => {
   const [open, setOpen] = useState(false)
@@ -21,8 +23,8 @@ const ArticleSize = ({className}) => {
   const [count, setCount] = useState(3)
   const [fitContent, setFitContent] = useState(false)
 
-  const onChangeHandler = (_, value) => {
-    setOpen(value === undefined ? open : value)
+  const onChangeHandler = () => {
+    setOpen(!open)
   }
 
   const onCloseButtonHandler = () => {
@@ -53,17 +55,8 @@ const ArticleSize = ({className}) => {
   return (
     <Article className={className}>
       <H2>Sizes</H2>
-      <Grid cols={1} gutter={[8, 8]}>
-        <Cell>
-          <Label>isOpen</Label>
-        </Cell>
-        <Cell>
-          <RadioButtonGroup value={open} onChange={onChangeHandler}>
-            <RadioButton value label="true" checked={open === true} />
-            <RadioButton value={false} label="false" checked={open === false} />
-          </RadioButtonGroup>
-        </Cell>
-      </Grid>
+      <Button onClick={onChangeHandler}>Open modal</Button>
+
       <Paragraph>
         Sizes can be customized under the <Code>size</Code> prop.
       </Paragraph>

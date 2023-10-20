@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
-import {Article, H2, Paragraph, Code} from '@s-ui/documentation-library'
-import AtomPanel from '@s-ui/react-atom-panel'
-import {atomPanelColors} from '../../src'
+
+import {Article, Code, H2, Paragraph} from '@s-ui/documentation-library'
+
+import AtomPanel, {atomPanelColors} from '../../src/index.js'
 
 const ArticlePlaceholder = ({className}) => {
   return (
@@ -12,12 +13,12 @@ const ArticlePlaceholder = ({className}) => {
         This is the structure for the <Code>placeholder</Code>
       </Paragraph>
       <div style={{backgroundColor: 'white'}}>
-        <div style={{width: '200px', margin: 'auto'}}>
+        <div style={{width: '100px', margin: 'auto'}}>
           <AtomPanel
-            src="https://satyr.io/200/a3a3a3?delay=3g"
+            src="https://satyr.io/100/a3a3a3?delay=3g"
             color={atomPanelColors.BASE}
           >
-            <div style={{height: '210px'}} />
+            <div style={{height: '100px'}} />
           </AtomPanel>
         </div>
       </div>

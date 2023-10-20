@@ -1,15 +1,15 @@
 {
   "name": "@s-ui/react-behavior-sticky",
-  "version": "1.5.0",
+  "version": "1.9.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
-    "react-stickup": "1.7.2"
+    "react-stickup": "1.12"
   },
   "peerDependencies": {
     "@s-ui/component-dependencies": "1"

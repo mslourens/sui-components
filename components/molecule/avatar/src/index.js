@@ -1,26 +1,22 @@
-import {
-  Children,
-  isValidElement,
-  cloneElement,
-  useCallback,
-  forwardRef
-} from 'react'
+import {forwardRef, useCallback} from 'react'
+
 import cx from 'classnames'
 import PropTypes from 'prop-types'
+
 import AtomImage from '@s-ui/react-atom-image'
 import AtomSkeleton, {
-  ATOM_SKELETON_VARIANTS,
-  ATOM_SKELETON_ANIMATIONS
+  ATOM_SKELETON_ANIMATIONS,
+  ATOM_SKELETON_VARIANTS
 } from '@s-ui/react-atom-skeleton'
-import useConvertStringToHex from './useConvertStringToHex'
-import AvatarFallback from './AvatarFallback'
-import AvatarBadge, {
-  AVATAR_BADGE_STATUSES,
-  AVATAR_BADGE_PLACEMENTS,
-  AVATAR_BADGE_SIZES
-} from './AvatarBadge'
+import Injector from '@s-ui/react-primitive-injector'
 
-import {baseClassName, AVATAR_SIZES} from './settings'
+import AvatarBadge, {
+  AVATAR_BADGE_PLACEMENTS,
+  AVATAR_BADGE_SIZES,
+  AVATAR_BADGE_STATUSES
+} from './AvatarBadge/index.js'
+import AvatarFallback from './AvatarFallback/index.js'
+import {AVATAR_SIZES, baseClassName} from './settings.js'
 
 const MoleculeAvatar = forwardRef(
   (
@@ -37,19 +33,17 @@ const MoleculeAvatar = forwardRef(
       ),
       name,
       src,
+      fallbackColor,
       fallbackIcon,
       style,
       isLoading,
-      children: childrenProp,
+      imageProps = {},
+      children,
       ...others
     },
     forwardedRef
   ) => {
     const className = cx(baseClassName, `${baseClassName}--${size}`)
-    const backgroundColor = useConvertStringToHex(name)
-    const children = Children.toArray(childrenProp)
-      .filter(child => isValidElement(child))
-      .map(child => cloneElement(child, {size}))
 
     const renderContent = useCallback(() => {
       if (isLoading) {
@@ -57,31 +51,43 @@ const MoleculeAvatar = forwardRef(
       }
 
       const fallback = (
-        <AvatarFallback name={name} size={size} icon={fallbackIcon} />
+        <AvatarFallback
+          name={name}
+          size={size}
+          icon={fallbackIcon}
+          backgroundColor={fallbackColor}
+        />
       )
 
       return (
         <>
           {src ? (
-            <AtomImage src={src} alt={name} errorIcon={fallback} />
+            <AtomImage
+              src={src}
+              alt={name}
+              errorIcon={fallback}
+              {...imageProps}
+            />
           ) : (
             fallback
           )}
-          {!isLoading && children}
+          {!isLoading && <Injector size={size}>{children}</Injector>}
         </>
       )
-    }, [isLoading, skeleton, children, src, name, fallbackIcon, size])
+    }, [
+      children,
+      fallbackColor,
+      fallbackIcon,
+      isLoading,
+      name,
+      size,
+      skeleton,
+      src,
+      imageProps
+    ])
 
     return (
-      <span
-        style={{
-          ...(!src && {backgroundColor}),
-          ...style
-        }}
-        className={className}
-        {...others}
-        ref={forwardedRef}
-      >
+      <span style={style} className={className} {...others} ref={forwardedRef}>
         {renderContent()}
       </span>
     )
@@ -94,16 +100,23 @@ MoleculeAvatar.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
   style: PropTypes.object,
+  fallbackColor: PropTypes.string,
   fallbackIcon: PropTypes.element,
   skeleton: PropTypes.element,
   isLoading: PropTypes.bool,
+  imageProps: PropTypes.object,
   children: PropTypes.node,
   size: PropTypes.oneOf(Object.values(AVATAR_SIZES))
 }
 MoleculeAvatar.Badge = AvatarBadge
 
 export {AVATAR_SIZES as MOLECULE_AVATAR_SIZES}
+export {AVATAR_SIZES as moleculeAvatarSizes}
 export {AVATAR_BADGE_STATUSES as MOLECULE_AVATAR_BADGE_STATUSES}
+export {AVATAR_BADGE_STATUSES as moleculeAvatarBadgeStatuses}
 export {AVATAR_BADGE_PLACEMENTS as MOLECULE_AVATAR_BADGE_PLACEMENTS}
+export {AVATAR_BADGE_PLACEMENTS as moleculeAvatarBadgePlacements}
 export {AVATAR_BADGE_SIZES as MOLECULE_AVATAR_BADGE_SIZES}
+export {AVATAR_BADGE_SIZES as moleculeAvatarBadgeSizes}
+
 export default MoleculeAvatar

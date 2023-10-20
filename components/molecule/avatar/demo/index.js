@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types, no-unused-vars, no-console */
-import {H1, H2, Paragraph} from '@s-ui/documentation-library'
+import {H1, Paragraph} from '@s-ui/documentation-library'
 
-import ArticleDefault from './ArticleDefault'
-import ArticleLoading from './ArticleLoading'
-import ArticleSize from './ArticleSize'
-import ArticleName from './ArticleName'
-import ArticleImage from './ArticleImage'
-import ArticleBadge from './ArticleBadge'
-import ArticleRef from './ArticleRef'
+import ArticleBadge from './articles/ArticleBadge.js'
+import ArticleDefault from './articles/ArticleDefault.js'
+import ArticleImage from './articles/ArticleImage.js'
+import ArticleLoading from './articles/ArticleLoading.js'
+import ArticleName from './articles/ArticleName.js'
+import ArticleRef from './articles/ArticleRef.js'
+import ArticleSize from './articles/ArticleSize.js'
 
 import './index.scss'
 

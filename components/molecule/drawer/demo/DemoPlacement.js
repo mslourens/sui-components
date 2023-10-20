@@ -1,21 +1,24 @@
-import {useState, useRef} from 'react'
+import {useRef, useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
+  AntDesignIcon,
   Article,
+  Box,
+  Cell,
+  Code,
+  Grid,
   H2,
   H4,
   Paragraph,
-  RadioButton,
-  Code,
-  Cell,
-  Grid,
-  Box,
-  AntDesignIcon
+  RadioButton
 } from '@s-ui/documentation-library'
+
 import MoleculeDrawer, {
   MoleculeDrawerOverlay,
   moleculeDrawerPlacements
-} from '../src'
+} from '../src/index.js'
 
 const flexCenteredStyle = {
   display: 'flex',

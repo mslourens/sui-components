@@ -1,53 +1,86 @@
-import PropTypes from 'prop-types'
+import {forwardRef} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-import ActionableTag from './Actionable'
-import StandardTag from './Standard'
+import ActionableTag from './Actionable/index.js'
 import {
-  ACTIONABLE_ONLY_PROPS,
-  STANDARD_ONLY_PROPS,
-  SIZES,
+  DESIGNS,
+  getActionableProps,
+  getStandardProps,
+  ICON_PLACEMENTS,
   LINK_TYPES,
-  DESIGNS
-} from './constants'
-import {filterKeys} from './helpers'
+  SIZES
+} from './constants.js'
+import StandardTag from './Standard.js'
 
-const AtomTag = props => {
-  const {design, href, icon, onClick, responsive, size, type} = props
-  const isActionable = onClick || href
-  const classNames = cx(
-    'sui-AtomTag',
-    `sui-AtomTag-${size}`,
-    design && `sui-AtomTag--${design}`,
-    icon && 'sui-AtomTag-hasIcon',
-    responsive && 'sui-AtomTag--responsive',
-    type && `sui-AtomTag--${type}`
-  )
+const AtomTag = forwardRef(
+  (
+    {
+      design,
+      href,
+      icon,
+      iconPlacement = ICON_PLACEMENTS.LEFT,
+      onClick,
+      responsive,
+      size = SIZES.MEDIUM,
+      type,
+      readOnly,
+      disabled,
+      isFitted = false,
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const isActionable = onClick || href
 
-  /**
-   * Removes all actionable tag props from the react props
-   * @return {Object}
-   */
-  const getStandardProps = () => filterKeys(props, ACTIONABLE_ONLY_PROPS)
+    const classNames = cx(
+      'sui-AtomTag',
+      `sui-AtomTag-${size}`,
+      design && `sui-AtomTag--${design}`,
+      icon && 'sui-AtomTag-hasIcon',
+      responsive && 'sui-AtomTag--responsive',
+      type && `sui-AtomTag--${type}`,
+      isFitted && 'sui-AtomTag--isFitted'
+    )
 
-  /**
-   * Removes all standard tag props from the react props
-   * @return {Object}
-   */
-  const getActionableProps = () => filterKeys(props, STANDARD_ONLY_PROPS)
+    const [Component, getComponentProps] = isActionable
+      ? [ActionableTag, getActionableProps]
+      : [StandardTag, getStandardProps]
 
-  return isActionable ? (
-    <ActionableTag {...getActionableProps()} className={classNames} />
-  ) : (
-    <StandardTag {...getStandardProps()} className={classNames} />
-  )
-}
+    return (
+      <Component
+        {...getComponentProps({
+          design,
+          href,
+          icon,
+          iconPlacement,
+          onClick,
+          responsive,
+          size,
+          type,
+          readOnly,
+          disabled,
+          isFitted,
+          ...props
+        })}
+        ref={forwardedRef}
+        disabled={disabled}
+        readOnly={readOnly}
+        className={classNames}
+      />
+    )
+  }
+)
 
 AtomTag.displayName = 'AtomTag'
 
 AtomTag.propTypes = {
+  /* This Boolean attribute prevents the user from interacting with the input but without disabled styles */
+  readOnly: PropTypes.bool,
+  /* This Boolean attribute prevents the user from interacting with the input */
   disabled: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   icon: PropTypes.node,
   onClose: PropTypes.func,
   /**
@@ -77,11 +110,15 @@ AtomTag.propTypes = {
   /**
    * Actionable tags can have iconPlacement='right'
    */
-  iconPlacement: PropTypes.oneOf(['right', 'left']),
+  iconPlacement: PropTypes.oneOf(Object.values(ICON_PLACEMENTS)),
   /**
    * Tag size
    */
   size: PropTypes.oneOf(Object.values(SIZES)),
+  /**
+   * Tag title
+   */
+  title: PropTypes.string,
   /**
    * Tag type in order to color it as desired
    * from a high order component.
@@ -98,15 +135,15 @@ AtomTag.propTypes = {
   /**
    * Value of the tag to be returned on actionable tags
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
-
-AtomTag.defaultProps = {
-  iconPlacement: 'left',
-  size: SIZES.MEDIUM
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** element becomes border-margin-padding-less */
+  isFitted: PropTypes.bool
 }
 
 export default AtomTag
+
+export {ICON_PLACEMENTS as atomTagIconPlacements}
 export {DESIGNS as atomTagDesigns}
 export {LINK_TYPES as linkTypes}
+export {LINK_TYPES as atomTagLinkTypes}
 export {SIZES as atomTagSizes}

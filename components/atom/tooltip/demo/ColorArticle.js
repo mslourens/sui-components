@@ -1,14 +1,19 @@
-import {
-  H2,
-  Paragraph,
-  Code,
-  Article,
-  Grid,
-  Cell,
-  Label
-} from '@s-ui/documentation-library'
 import PropTypes from 'prop-types'
-import AtomTooltip, {AtomTooltipTriggers, AtomTooltipColors} from '../src'
+
+import {
+  Article,
+  Cell,
+  Code,
+  Grid,
+  H2,
+  Label,
+  Paragraph
+} from '@s-ui/documentation-library'
+
+import AtomTooltip, {
+  AtomTooltipColors,
+  AtomTooltipTriggers
+} from '../src/index.js'
 
 const ColorArticle = ({className, trigger}) => {
   return (

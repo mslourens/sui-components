@@ -1,0 +1,147 @@
+$base-class: '.sui-MoleculeProgressSteps';
+$content-class: '#{$base-class}-content';
+
+$base-class-stepper: '.sui-MoleculeStepper';
+$base-class-stepper-path: '#{$base-class-stepper}Step';
+$base-class-stepper-bar: '#{$base-class-stepper-path}Connector';
+
+#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  #{$base-class-stepper} {
+    max-width: $mw-progress-steps-path;
+    #{$base-class-stepper-bar} {
+      flex-basis: $sz-progress-steps-bar;
+      #{$base-class-stepper-bar}Line {
+        background: $c-progress-steps-bar;
+        border-color: $c-progress-steps-bar;
+        border-width: $bdw-progress-steps-bar;
+        height: $h-progress-steps-bar;
+        width: calc(
+          100% - #{2 * ($m-progress-steps-icon + $bdw-progress-steps-bar)}
+        );
+        margin: #{math.div(
+            $sz-progress-steps-icon - $bdw-progress-steps-bar -
+              $h-progress-steps-bar,
+            2
+          ) + $m-progress-steps-icon + $p-progress-steps-icon} $m-progress-steps-icon
+          0 $m-progress-steps-icon;
+      }
+    }
+    &:not(#{$base-class-stepper}--design-compressed) {
+      #{$base-class-stepper-path} {
+        max-width: $sz-progress-steps-icon + 2 * $p-progress-steps-icon;
+        #{$base-class-stepper-path}Icon {
+          height: $sz-progress-steps-icon;
+          width: $sz-progress-steps-icon;
+          margin: $m-progress-steps-icon;
+          padding: $p-progress-steps-icon;
+          flex-basis: $sz-progress-steps-icon;
+        }
+      }
+    }
+    #{$base-class-stepper-path} {
+      color: $c-progress-steps-label;
+      flex-basis: $sz-progress-steps-icon;
+      svg {
+        fill: $c-progress-steps-icon;
+      }
+      #{$base-class-stepper-path}Label {
+        width: $w-progress-steps-description;
+      }
+
+      &#{$base-class-stepper-path}--current,
+      &#{$base-class-stepper-path}--visited {
+        #{$base-class-stepper-path}Icon {
+          color: $c-progress-steps-visited;
+          svg {
+            fill: $c-progress-steps-visited;
+          }
+        }
+        #{$base-class-stepper-path}Label {
+          color: $c-progress-steps-label;
+        }
+      }
+      &#{$base-class-stepper-path}--visited {
+        + #{$base-class-stepper-bar} {
+          #{$base-class-stepper-bar}Line {
+            background: $c-progress-steps-visited;
+            border-color: $c-progress-steps-visited;
+            svg {
+              fill: $c-progress-steps-visited;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #{$content-class} {
+    display: flex;
+    overflow: hidden;
+    &-item {
+      margin-right: -100%;
+      flex-basis: 100%;
+      flex-shrink: 0;
+      &--active {
+        margin-right: 0;
+      }
+    }
+
+    &--fixed {
+      #{$content-class}-item {
+        visibility: hidden;
+        &--active {
+          visibility: inherit;
+        }
+      }
+    }
+
+    &--fluid {
+      display: inherit;
+      overflow: inherit;
+      #{$content-class}-item {
+        display: none;
+
+        &--active {
+          display: inherit;
+        }
+      }
+    }
+  }
+
+  &--vertical {
+    height: 100%;
+    flex-direction: row;
+    #{$base-class-stepper} {
+      &:not(#{$base-class-stepper}--design-compressed) {
+        #{$base-class-stepper-path} {
+          max-width: none;
+        }
+      }
+      &#{$base-class-stepper}--design-compressed {
+        #{$base-class-stepper-path}Label {
+          width: calc(
+            math.div($w-progress-steps-description, 2) - $sz-base * 2
+          );
+        }
+      }
+      #{$base-class-stepper-bar} {
+        flex-basis: $sz-progress-steps-bar;
+        #{$base-class-stepper-bar}Line {
+          width: $h-progress-steps-bar;
+          border-width: $bdw-progress-steps-bar;
+          height: calc(
+            100% - #{2 * ($m-progress-steps-icon + $bdw-progress-steps-bar)}
+          );
+          margin: $m-progress-steps-icon 0 $m-progress-steps-icon #{math.div(
+              $sz-progress-steps-icon - $bdw-progress-steps-bar -
+                $h-progress-steps-bar,
+              2
+            ) + $m-progress-steps-icon + $p-progress-steps-icon};
+        }
+      }
+    }
+  }
+}

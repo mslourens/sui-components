@@ -1,10 +1,25 @@
-import {useState, useEffect, useRef, useCallback} from 'react'
-import Button from '@s-ui/react-atom-button'
+import {
+  cloneElement,
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
+
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import {SIZES, PLACEMENTS} from './config'
 
-const BASE_CLASS = 'sui-MoleculeSelectPopover'
+import usePortal from '@s-ui/react-hook-use-portal'
+
+import {
+  BASE_CLASS,
+  getPlacement,
+  OVERLAY_TYPES,
+  PLACEMENTS,
+  SIZES
+} from './config.js'
+import RenderActions from './RenderActions.js'
 
 function usePrevious(value) {
   const ref = useRef()
@@ -14,7 +29,9 @@ function usePrevious(value) {
   return ref.current
 }
 
-function MoleculeSelectPopover({
+const popoverBaseClass = `${BASE_CLASS}-popover`
+
+const MoleculeSelectPopover = ({
   acceptButtonText,
   acceptButtonOptions,
   cancelButtonText,
@@ -22,53 +39,84 @@ function MoleculeSelectPopover({
   customButtonText,
   customButtonOptions,
   children,
+  forceClosePopover = false,
   fullWidth,
   hideActions,
   iconArrowDown: IconArrowDown,
+  isDisabled = false,
   isSelected = false,
   onAccept = () => {},
   onCancel = () => {},
-  onCustomAction = () => {},
+  onCancelButtonClick = () => {},
   onClose = () => {},
+  onCustomAction = () => {},
   onOpen = () => {},
-  placement = PLACEMENTS.RIGHT,
+  overlayContentRef = {},
+  overlayType = OVERLAY_TYPES.NONE,
+  placement,
   renderContentWrapper: renderContentWrapperProp,
+  renderSelect: renderSelectProp,
+  renderActions: renderActionsProp,
   selectText,
   size = 'm',
   title
-}) {
+}) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [popoverClassName, setPopoverClassName] = useState(
+    cx(`${popoverBaseClass}`, `${popoverBaseClass}--${getPlacement(placement)}`)
+  )
+
   const previousIsOpen = usePrevious(isOpen)
+  const selectRef = useRef()
+  const contentWrapperRef = useRef()
+  const {Portal} = usePortal({target: overlayContentRef.current})
+
+  const hasOverlay =
+    Boolean(overlayContentRef.current) && overlayType !== OVERLAY_TYPES.NONE
+
+  useEffect(() => {
+    forceClosePopover && setIsOpen(false)
+  }, [forceClosePopover])
 
   useEffect(() => {
     /**
      * Only run open events:
      *  - After first render
      *  - When isOpen actually changes
+     *  - When placement changes
      **/
     if (typeof previousIsOpen === 'undefined' || isOpen === previousIsOpen) {
       return
     }
+
+    const getPopoverClassName = () => {
+      if (
+        isOpen &&
+        [PLACEMENTS.AUTO_END, PLACEMENTS.AUTO_START].includes(placement)
+      ) {
+        const {left, right} =
+          contentWrapperRef.current?.getBoundingClientRect() || {}
+        const outFromTheLeftSide = left < 0
+        const outFromTheRightSide =
+          right > (window.innerWidth || document.documentElement.clientWidth)
+
+        if (outFromTheRightSide) {
+          return cx(`${popoverBaseClass}`, `${popoverBaseClass}--left`)
+        } else if (outFromTheLeftSide) {
+          return cx(`${popoverBaseClass}`, `${popoverBaseClass}--right`)
+        }
+      }
+
+      return cx(
+        `${popoverBaseClass}`,
+        `${popoverBaseClass}--${getPlacement(placement)}`
+      )
+    }
+
+    setPopoverClassName(getPopoverClassName())
     const openEvent = isOpen ? onOpen : onClose
     openEvent()
-  }, [isOpen, onClose, onOpen, previousIsOpen])
-
-  const selectRef = useRef()
-  const contentWrapperRef = useRef()
-
-  const selectClassName = cx(
-    `${BASE_CLASS}-select`,
-    `${BASE_CLASS}-select--${size}`,
-    {
-      'is-open': isOpen,
-      'is-selected': isSelected
-    }
-  )
-
-  const popoverClassName = cx(
-    `${BASE_CLASS}-popover`,
-    `${BASE_CLASS}-popover--${placement}`
-  )
+  }, [isOpen, onClose, onOpen, previousIsOpen, placement])
 
   const handleOnAccept = () => {
     setIsOpen(false)
@@ -77,6 +125,11 @@ function MoleculeSelectPopover({
 
   const handleOnCustomAction = () => {
     onCustomAction()
+  }
+
+  const handleCancelButtonClick = () => {
+    onCancelButtonClick()
+    handleOnCancel()
   }
 
   const handleOnCancel = useCallback(() => {
@@ -111,29 +164,73 @@ function MoleculeSelectPopover({
     setIsOpen(true)
   }
 
-  const renderActions = () => (
-    <>
-      {customButtonText ? (
-        <Button onClick={handleOnCustomAction} {...customButtonOptions}>
-          {customButtonText}
-        </Button>
-      ) : null}
-      {cancelButtonText ? (
-        <Button onClick={handleOnCancel} design="flat" {...cancelButtonOptions}>
-          {cancelButtonText}
-        </Button>
-      ) : null}
-      {acceptButtonText ? (
-        <Button onClick={handleOnAccept} {...acceptButtonOptions}>
-          {acceptButtonText}
-        </Button>
-      ) : null}
-    </>
-  )
+  const renderProp = (render, props) => {
+    return typeof render === 'function'
+      ? render(props)
+      : cloneElement(render, {
+          ...render.props,
+          ...props
+        })
+  }
+
+  const renderSelect = () => {
+    const newSelectProps = {
+      ref: selectRef,
+      className: cx(`${BASE_CLASS}-select`, `${BASE_CLASS}-select--${size}`, {
+        'is-open': isOpen,
+        'is-selected': isSelected
+      }),
+      onClick: handleOpenToggle
+    }
+
+    if (renderSelectProp) {
+      const newRenderSelectProps = {
+        ...newSelectProps,
+        isOpen,
+        onClick: renderSelectProp.props?.onClick
+          ? ev => {
+              renderSelectProp.props.onClick(ev)
+              handleOpenToggle(ev)
+            }
+          : handleOpenToggle
+      }
+
+      return renderProp(renderSelectProp, newRenderSelectProps)
+    }
+
+    return (
+      <div
+        className={cx(`${BASE_CLASS}-select`, `${BASE_CLASS}-select--${size}`, {
+          'is-open': isOpen,
+          'is-selected': isSelected
+        })}
+        {...newSelectProps}
+      >
+        <span className={`${BASE_CLASS}-selectText`}>{selectText}</span>
+        <div className={`${BASE_CLASS}-selectIcon`}>
+          <IconArrowDown />
+        </div>
+      </div>
+    )
+  }
 
   const renderContentWrapper = () => {
     const pieces = {
-      actions: renderActions(),
+      actions: (
+        <RenderActions
+          onCustomAction={handleOnCustomAction}
+          customButtonText={customButtonText}
+          customButtonOptions={customButtonOptions}
+          onCancel={handleCancelButtonClick}
+          cancelButtonText={cancelButtonText}
+          cancelButtonOptions={cancelButtonOptions}
+          onAccept={handleOnAccept}
+          acceptButtonOptions={acceptButtonOptions}
+          acceptButtonText={acceptButtonText}
+        >
+          {renderActionsProp}
+        </RenderActions>
+      ),
       content: children,
       contentWrapperRef, // required for `handleClickOutside` to work
       isOpen,
@@ -143,7 +240,9 @@ function MoleculeSelectPopover({
     /**
      * Custom content wrapper from render prop
      */
-    if (renderContentWrapperProp) return renderContentWrapperProp(pieces)
+    if (renderContentWrapperProp) {
+      return renderProp(renderContentWrapperProp, pieces)
+    }
 
     /**
      * Default content wrapper as a popover
@@ -152,36 +251,37 @@ function MoleculeSelectPopover({
       pieces.isOpen && (
         <div className={popoverClassName} ref={contentWrapperRef}>
           <div className={`${BASE_CLASS}-popoverContent`}>{pieces.content}</div>
-          {!hideActions && (
-            <div className={`${BASE_CLASS}-popoverActionBar`}>
-              {pieces.actions}
-            </div>
-          )}
+          {!hideActions && pieces.actions}
         </div>
       )
     )
   }
 
-  const classNames = cx(
-    BASE_CLASS,
-    fullWidth && `${BASE_CLASS}--fullWidth`,
-    renderContentWrapperProp && `${BASE_CLASS}--hasCustomWrapper`
-  )
-
   return (
-    <div className={classNames} title={title}>
+    <>
       <div
-        ref={selectRef}
-        className={selectClassName}
-        onClick={handleOpenToggle}
+        className={cx(
+          BASE_CLASS,
+          fullWidth && `${BASE_CLASS}--fullWidth`,
+          isDisabled && 'is-disabled',
+          renderContentWrapperProp && `${BASE_CLASS}--hasCustomWrapper`
+        )}
+        title={title}
       >
-        <span className={`${BASE_CLASS}-selectText`}>{selectText}</span>
-        <div className={`${BASE_CLASS}-selectIcon`}>
-          <IconArrowDown />
-        </div>
+        {renderSelect()}
+        {renderContentWrapper()}
       </div>
-      {renderContentWrapper()}
-    </div>
+      {hasOverlay && (
+        <Portal as={Fragment} isOpen={isOpen}>
+          <div
+            className={cx(
+              `${BASE_CLASS}-overlay`,
+              `${BASE_CLASS}-overlay--${overlayType}`
+            )}
+          />
+        </Portal>
+      )}
+    </>
   )
 }
 
@@ -203,21 +303,38 @@ MoleculeSelectPopover.propTypes = {
     negative: PropTypes.bool
   }),
   children: PropTypes.node.isRequired,
+  forceClosePopover: PropTypes.bool,
   fullWidth: PropTypes.bool,
   hideActions: PropTypes.bool,
   iconArrowDown: PropTypes.elementType.isRequired,
+  isDisabled: PropTypes.bool,
   isSelected: PropTypes.bool,
   onAccept: PropTypes.func,
   onCancel: PropTypes.func,
-  onCustomAction: PropTypes.func,
+  onCancelButtonClick: PropTypes.func,
   onClose: PropTypes.func,
+  onCustomAction: PropTypes.func,
   onOpen: PropTypes.func,
-  placement: PropTypes.string,
-  renderContentWrapper: PropTypes.func,
+  overlayContentRef: PropTypes.object,
+  overlayType: PropTypes.oneOf(Object.values(OVERLAY_TYPES)),
+  placement: PropTypes.oneOf([
+    PLACEMENTS.AUTO_END,
+    PLACEMENTS.AUTO_START,
+    PLACEMENTS.LEFT,
+    PLACEMENTS.RIGHT
+  ]),
+  renderContentWrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  renderSelect: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  renderActions: PropTypes.node,
   selectText: PropTypes.string.isRequired,
   size: PropTypes.string,
   title: PropTypes.string
 }
 
 export default MoleculeSelectPopover
-export {SIZES as selectPopoverSizes, PLACEMENTS as selectPopoverPlacements}
+export {
+  OVERLAY_TYPES as selectPopoverOverlayTypes,
+  PLACEMENTS as selectPopoverPlacements,
+  SIZES as selectPopoverSizes,
+  RenderActions
+}

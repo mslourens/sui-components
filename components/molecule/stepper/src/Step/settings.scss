@@ -1,0 +1,3 @@
+$w-stepper-separator-horizontal: calc(
+  100% - #{2 * ($m-stepper+ $bdw-stepper)}
+) !default;

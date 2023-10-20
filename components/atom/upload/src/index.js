@@ -1,27 +1,21 @@
-import {useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
-import loadable from '@loadable/component'
+import {useEffect, useState} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
-const Dropzone = loadable(() => import('react-dropzone'), {ssr: true})
-
-const STATUSES = {
-  ACTIVE: 'active',
-  UPLOAD: 'upload',
-  SUCCESS: 'success',
-  ERROR: 'error'
-}
-
-const BASE_CLASS = 'sui-AtomUpload'
-const CLASS_BLOCK_TEXT = `${BASE_CLASS}-blockText`
-const CLASS_BLOCK_TEXT_MAIN = `${CLASS_BLOCK_TEXT}-main`
-const CLASS_BLOCK_TEXT_SECONDARY = `${CLASS_BLOCK_TEXT}-secondary`
-
-const capitalize = text => text[0].toUpperCase() + text.substr(1)
+import {
+  BASE_CLASS,
+  capitalize,
+  CLASS_BLOCK_TEXT,
+  CLASS_BLOCK_TEXT_MAIN,
+  CLASS_BLOCK_TEXT_SECONDARY,
+  Dropzone,
+  STATUSES
+} from './settings.js'
 
 const AtomUpload = ({
   status,
-  onFilesSelection = () => {},
+  onFilesSelection,
   textExplanation,
   actionButton: Button,
   multiple,
@@ -35,7 +29,7 @@ const AtomUpload = ({
     setReady(true)
   }, [])
 
-  const renderStatusBlock = status => {
+  const renderStatusBlock = (status, getRootProps, getInputProps) => {
     const classNameIcon = `${BASE_CLASS}-icon${capitalize(status)}`
     const IconStatus = props[`icon${capitalize(status)}`]
     const textStatus = props[`text${capitalize(status)}`]
@@ -43,7 +37,11 @@ const AtomUpload = ({
     const hasTextExplanation = Boolean(textExplanation)
     const hasButton = Boolean(Button)
     return (
-      <div className={cx(BASE_CLASS, `${BASE_CLASS}--${status}`)}>
+      <div
+        className={cx(BASE_CLASS, `${BASE_CLASS}--${status}`)}
+        {...getRootProps()}
+      >
+        <input type="hiden" {...getInputProps()} />
         <span className={classNameIcon}>{IconStatus}</span>
         <div className={CLASS_BLOCK_TEXT}>
           <h4 className={CLASS_BLOCK_TEXT_MAIN}>{textStatus}</h4>
@@ -60,6 +58,21 @@ const AtomUpload = ({
 
   const hasValidStatus = Object.values(STATUSES).includes(status)
   const shouldRender = hasValidStatus && ready
+  const onDrop = handler => {
+    if (typeof handler === 'function') {
+      return (acceptedFiles, rejectedFiles, event) =>
+        handler(
+          acceptedFiles.map(file =>
+            Object.assign(file, {
+              preview: URL.createObjectURL(file)
+            })
+          ),
+          rejectedFiles,
+          event
+        )
+    }
+    return undefined
+  }
 
   return (
     shouldRender && (
@@ -69,9 +82,11 @@ const AtomUpload = ({
         disabled={status !== STATUSES.ACTIVE}
         maxSize={maxSize}
         multiple={multiple}
-        onDrop={onFilesSelection}
+        onDrop={onDrop(onFilesSelection)}
       >
-        {renderStatusBlock(status)}
+        {({getRootProps, getInputProps}) =>
+          renderStatusBlock(status, getRootProps, getInputProps)
+        }
       </Dropzone>
     )
   )

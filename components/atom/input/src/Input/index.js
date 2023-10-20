@@ -1,11 +1,12 @@
 import {forwardRef} from 'react'
+
 import PropTypes from 'prop-types'
 
-import InputButton from './Wrappers/Button/InputButton'
-import InputAddons from './Wrappers/Addons/InputAddons'
-import InputIcons from './Wrappers/Icons/InputIcons'
-
-import Input, {inputStates, inputSizes} from './Component'
+import {SIZES} from '../config.js'
+import Input, {inputSizes, inputStates} from './Component/index.js'
+import InputAddons from './Wrappers/Addons/InputAddons.js'
+import InputButton from './Wrappers/Button/InputButton.js'
+import InputIcons from './Wrappers/Icons/InputIcons.js'
 
 const BaseInput = forwardRef(
   (
@@ -18,20 +19,28 @@ const BaseInput = forwardRef(
       children,
       onClickLeftIcon,
       onClickRightIcon,
+      size = SIZES.MEDIUM,
       ...inputProps
     },
     forwardedRef
   ) => {
     return (
       <InputButton button={button}>
-        <InputAddons leftAddon={leftAddon} rightAddon={rightAddon}>
+        <InputAddons
+          leftAddon={leftAddon}
+          rightAddon={rightAddon}
+          shape={inputProps.shape}
+          size={size}
+        >
           <InputIcons
             leftIcon={leftIcon}
             rightIcon={rightIcon}
             onClickLeftIcon={onClickLeftIcon}
             onClickRightIcon={onClickRightIcon}
           >
-            <Input ref={forwardedRef} {...inputProps} />
+            <Input ref={forwardedRef} {...inputProps} size={size}>
+              {children}
+            </Input>
           </InputIcons>
         </InputAddons>
       </InputButton>
@@ -55,7 +64,9 @@ BaseInput.propTypes = {
   /* Left icon click callback */
   onClickLeftIcon: PropTypes.func,
   /* Right icon click callback */
-  onClickRightIcon: PropTypes.func
+  onClickRightIcon: PropTypes.func,
+  /* 'Sets the size of the inputAddon */
+  size: PropTypes.oneOf(Object.values(SIZES))
 }
 
 export default BaseInput

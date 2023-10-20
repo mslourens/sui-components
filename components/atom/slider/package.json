@@ -1,16 +1,15 @@
 {
   "name": "@s-ui/react-atom-slider",
-  "version": "1.21.0",
+  "version": "1.31.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build:js && npm run build:styles",
+    "prepublishOnly": "npm run build:js && npm run build:styles",
     "build:js": "babel --presets sui ./src --out-dir ./lib",
     "build:styles": "cpx './src/**/*.scss' ./lib"
   },
   "dependencies": {
-    "@loadable/component": "5.15.x",
-    "rc-slider": "8"
+    "rc-slider": "9"
   },
   "peerDependencies": {
     "@s-ui/component-dependencies": "1"

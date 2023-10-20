@@ -1,5 +1,202 @@
 # CHANGELOG
 
+# 1.41.0 (2023-09-20)
+
+
+### Bug Fixes
+
+* **components/molecule/selectPopover:** Prepare component to work with React 18 ([8ddc1f1](https://github.com/SUI-Components/sui-components/commit/8ddc1f1e4e2e00b732d57bbd93a8ce0e563a1861))
+
+
+
+# 1.40.0 (2023-09-05)
+
+
+### Features
+
+* **components/molecule/selectPopover/demo:** Don not wrap actions with MoleculeModalFooter ([9019c9a](https://github.com/SUI-Components/sui-components/commit/9019c9a9f67e5623d1818ca05b56a40b2178b16a))
+* **components/molecule/selectPopover/demo:** remove unneeded node ([51af938](https://github.com/SUI-Components/sui-components/commit/51af9389309cf3f3a1765cf984257a191998be6c))
+* **components/molecule/selectPopover:** force close popover behavior ([68e2f1b](https://github.com/SUI-Components/sui-components/commit/68e2f1b9f06cd68ed2be091c31677198a5d0f4d9))
+
+
+
+# 1.39.0 (2023-08-18)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add render action customizable section ([8bb7016](https://github.com/SUI-Components/sui-components/commit/8bb7016208ce40496d36792b6cc5d04b3d55b8a0))
+
+
+
+# 1.38.0 (2023-05-30)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add new variables: custom wrapper select icon ([9367eaa](https://github.com/SUI-Components/sui-components/commit/9367eaaf61f46f337f07d8d8351e2f8c5c21dc2d))
+* **components/molecule/selectPopover:** update variable name ([4e55943](https://github.com/SUI-Components/sui-components/commit/4e559432bd4ac9efe31ff5ed690f4de30962daa4))
+
+
+
+# 1.37.0 (2022-10-24)
+
+
+### Features
+
+* **components/molecule/selectPopover:** improve overlay behavior ([bbb8e0c](https://github.com/SUI-Components/sui-components/commit/bbb8e0c573fa85233ee932477130841bcb1d4ed2))
+
+
+
+# 1.36.0 (2022-10-21)
+
+
+### Features
+
+* **components/molecule/selectPopover:** disable pointer events only when overlay is open ([41cd1ee](https://github.com/SUI-Components/sui-components/commit/41cd1ee74804f42ac1ac3a10e3656c6b6f3e6314))
+* **components/molecule/selectPopover:** improve overlay outside click ([d8f65c5](https://github.com/SUI-Components/sui-components/commit/d8f65c5011b4df4921044832122ce6d1967674fe))
+
+
+
+# 1.35.0 (2022-10-20)
+
+
+
+# 1.34.0 (2022-10-19)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add overlay as react portal ([d7a504f](https://github.com/SUI-Components/sui-components/commit/d7a504f3d456deb0d0141432aaf3093b94fff70f))
+* **components/molecule/selectPopover:** improve overlay position ([8b3d146](https://github.com/SUI-Components/sui-components/commit/8b3d1467082797599ef562a425b9a66521015ad0))
+* **components/molecule/selectPopover:** overlayContentRef default value ([4c56ed7](https://github.com/SUI-Components/sui-components/commit/4c56ed77515511715cccb6318b46e4fef110437a))
+* **components/molecule/selectPopover:** remove unnecessary class ([d52489f](https://github.com/SUI-Components/sui-components/commit/d52489facc557cb481234347340a5998fea1f3f0))
+* **components/molecule/selectPopover:** show overlay from selected type ([6a8beb8](https://github.com/SUI-Components/sui-components/commit/6a8beb8860f8bb39df0716f3c5cd7736557ae78a))
+* **components/molecule/selectPopover:** show portal node only if select popover is open ([bc6e613](https://github.com/SUI-Components/sui-components/commit/bc6e613fc29b51ed9f09118ab3b25eda2913aef0))
+* **components/molecule/selectPopover:** update isOpen behavior ([a903d46](https://github.com/SUI-Components/sui-components/commit/a903d46848e6cc7515a9d20aeee5906299fac52c))
+
+
+
+# 1.33.0 (2022-08-25)
+
+
+### Features
+
+* **components/molecule/selectPopover:** Change cursor to pointer [#2294](https://github.com/SUI-Components/sui-components/issues/2294) ([df5c488](https://github.com/SUI-Components/sui-components/commit/df5c4880617fe018d35fc2b8d78570de85e5301e))
+
+
+
+# 1.32.0 (2022-07-26)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add an object as default to avoid problems when there is no ([66cf0ae](https://github.com/SUI-Components/sui-components/commit/66cf0ae0dfb6df0ad24475730e85122620847e22))
+
+
+
+# 1.31.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/accordion:** major canges for molecule/accordion ([b448e00](https://github.com/SUI-Components/sui-components/commit/b448e00c2eeb3522037997432480abcab142f943))
+* **components/molecule/selectPopover:** Avoid publishing huge CHANGELOG.md ([1a8fc00](https://github.com/SUI-Components/sui-components/commit/1a8fc00192a098e5cc8fe1fb6cff1a83a4fcba53))
+
+
+
+# 1.30.0 (2022-05-23)
+
+
+### Features
+
+* **components/molecule/selectPopover/demo:** Adapt demo for the autoplacement prop ([2015678](https://github.com/SUI-Components/sui-components/commit/201567807f4ce459f9c8ad87baeb8eb7af36f332))
+* **components/molecule/selectPopover/demo:** remove autoPlacement exmaple from the demo ([d583a48](https://github.com/SUI-Components/sui-components/commit/d583a48ded005e92bd2603578141718c1a1f75ba))
+* **components/molecule/selectPopover:** adapt demo to the new placements ([6737089](https://github.com/SUI-Components/sui-components/commit/67370899bba188f1bd0a6793eeae08ca2015556b))
+* **components/molecule/selectPopover:** Add autoplacement prop to the select popover ([542bb66](https://github.com/SUI-Components/sui-components/commit/542bb6631730d2b405d8d3850726e3e697f034db))
+* **components/molecule/selectPopover:** remove autoplacement prop ([d4e2f5e](https://github.com/SUI-Components/sui-components/commit/d4e2f5efc599d71c03882a461e554936ed776831))
+* **components/molecule/selectPopover:** set new placements congifuration ([8380035](https://github.com/SUI-Components/sui-components/commit/8380035a1822504d183a666e3a418fd0931e4bdb))
+
+
+
+# 1.29.0 (2022-05-02)
+
+
+### Features
+
+* **components/atom/polymorphicElement:** adds forwardRef ([b0cb80f](https://github.com/SUI-Components/sui-components/commit/b0cb80f0d2d2f86ccf8863c104813ecd60f18b7f))
+* **components/molecule/selectPopover:** define default selected bg color ([7c5726e](https://github.com/SUI-Components/sui-components/commit/7c5726e3a9c2ec02059a97bcfdd7654ff0b1fb4f))
+
+
+
+# 1.28.0 (2022-02-17)
+
+
+### Features
+
+* **components/molecule/selectPopover:** render select can trigger parent onClick prop ([af50978](https://github.com/SUI-Components/sui-components/commit/af509781636a006b7339efc07efdd126cd29e9e0))
+
+
+
+# 1.27.0 (2022-02-16)
+
+
+### Features
+
+* **components/molecule/selectPopover:** change handle name ([df7a693](https://github.com/SUI-Components/sui-components/commit/df7a6932e09972e5235004c0a1a9ca8c0b34b7c4))
+* **components/molecule/selectPopover:** change name ([5ba2fac](https://github.com/SUI-Components/sui-components/commit/5ba2fac94afc7ad5d6484354265f1b62147148e3))
+
+
+
+# 1.26.0 (2022-02-16)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add event onClickCancelButton ([b291522](https://github.com/SUI-Components/sui-components/commit/b291522891faa2ce9810416c530496dbb1aa1104))
+* **components/molecule/selectPopover:** comments PR ([17930a6](https://github.com/SUI-Components/sui-components/commit/17930a66e8b25207d7bb13960cd3c414f2dcd087))
+
+
+
+# 1.25.0 (2022-01-19)
+
+
+
+# 1.2.0 (2022-01-19)
+
+
+
+# 1.24.0 (2021-12-13)
+
+
+### Bug Fixes
+
+* **components/molecule/selectPopover:** fix warnings in console ([cb06421](https://github.com/SUI-Components/sui-components/commit/cb064212840f8a4d7397ad5107c5b91a6be3545f))
+
+
+
+# 1.23.0 (2021-11-29)
+
+
+### Features
+
+* **components/molecule/selectPopover:** add renderSelect prop ([52eaf61](https://github.com/SUI-Components/sui-components/commit/52eaf61c099730df0b578eef406244f39757a633))
+* **components/molecule/selectPopover:** render content wrapper when is react element ([fd345a4](https://github.com/SUI-Components/sui-components/commit/fd345a4718b5854ca8527e772d1673d955af5439))
+* **components/molecule/selectPopover:** update renderContentWrapper prop-type ([1bf1b24](https://github.com/SUI-Components/sui-components/commit/1bf1b24cf0a0f259ff6faded7381d53450166022))
+
+
+
+# 1.22.0 (2021-11-25)
+
+
+### Features
+
+* **components/molecule/selectPopover/demo:** update demo ([126d710](https://github.com/SUI-Components/sui-components/commit/126d710ad32052ebb63ac36ddac074d439bd82ad))
+* **components/molecule/selectPopover:** ad new variable background select ([a0f5ccc](https://github.com/SUI-Components/sui-components/commit/a0f5ccc8b5e8de00a303b7b8bd57a4e9ce8d5528))
+* **components/molecule/selectPopover:** Add isDisabled prop ([ef3a78d](https://github.com/SUI-Components/sui-components/commit/ef3a78d60e9b7fa224d57f4eb07f41592aa0f211))
+
+
+
 # 1.21.0 (2021-06-21)
 
 
@@ -14,8 +211,8 @@
 
 ### Features
 
-* **components/molecule/selectPopover:** add new renderContentWrapper prop ([a1a8556](https://github.com/SUI-Components/sui-components/commit/a1a8556f36d7c840a25e81be43260e9e80effb12))
 * **components/molecule/selectPopover/demo:** use actionsAreHidden in renderContentWrapper ([d783507](https://github.com/SUI-Components/sui-components/commit/d7835078efc2112f93c5f2d960165d353b2d587b))
+* **components/molecule/selectPopover:** add new renderContentWrapper prop ([a1a8556](https://github.com/SUI-Components/sui-components/commit/a1a8556f36d7c840a25e81be43260e9e80effb12))
 
 
 

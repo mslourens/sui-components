@@ -1,5 +1,108 @@
 # CHANGELOG
 
+# 1.31.0 (2022-10-26)
+
+
+### Features
+
+* **components/atom/slider:** add fullWidth prop ([2e766ac](https://github.com/SUI-Components/sui-components/commit/2e766ac76f541ace7ba857ed2712537ee1fd3a92))
+* **components/atom/slider:** remove console ([d069a1d](https://github.com/SUI-Components/sui-components/commit/d069a1df550410204ad9e0c487da1ea13e364a9b))
+* **components/atom/slider:** rename to isFullWidth ([4240527](https://github.com/SUI-Components/sui-components/commit/4240527a974518ffef3d76ee7d7a2be3fbfc7492))
+
+
+
+# 1.30.0 (2022-10-01)
+
+
+### Features
+
+* **components/atom/slider:** Remove -system ([4881c4b](https://github.com/SUI-Components/sui-components/commit/4881c4b79e5f2f4da5e6986c542ac36e253d1316))
+
+
+
+# 1.29.0 (2022-09-30)
+
+
+### Features
+
+* **components/atom/slider:** add z-index in tooltip ([8eeca33](https://github.com/SUI-Components/sui-components/commit/8eeca333bf1c944de479ed3c3383d5fba03b2dbc))
+* **Root:** Delete undefined dependencies ([c145905](https://github.com/SUI-Components/sui-components/commit/c145905350328925ba6fda2a462d7f8b508c8ea0))
+* **Root:** Merge commit ([d3735d0](https://github.com/SUI-Components/sui-components/commit/d3735d0644332e674d5a5b6291680697f0d6f7c4))
+
+
+
+# 1.28.0 (2022-07-06)
+
+
+### Features
+
+* **components/atom/slider:** update styles ([8ef2dfa](https://github.com/SUI-Components/sui-components/commit/8ef2dfa1d84d9981eb446f1752fc4017cea5ec84))
+
+
+
+# 1.27.0 (2022-06-20)
+
+
+### Features
+
+* **components/atom/slider:** Avoid publishing huge CHANGELOG.md ([009232c](https://github.com/SUI-Components/sui-components/commit/009232c2a118ddeaa3d8579ecb699ff938e242e2))
+
+
+
+# 1.26.0 (2022-02-23)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** fix handler ([ba4c6d2](https://github.com/SUI-Components/sui-components/commit/ba4c6d2aa8aa99e354ff22aa34a49a8be71342cd))
+* **components/atom/slider:** handle error fix ([93c62d2](https://github.com/SUI-Components/sui-components/commit/93c62d2c7bebd882fa10bde8912c79dcbcd92e7a)), closes [#1974](https://github.com/SUI-Components/sui-components/issues/1974)
+* **components/atom/slider:** slider handler fix ([5a0c2b9](https://github.com/SUI-Components/sui-components/commit/5a0c2b9cba4cb7cac1e2c25a5d97dd5cc73f316b))
+
+
+
+# 1.25.0 (2022-02-07)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** handler client side rendered only ([c9f16a8](https://github.com/SUI-Components/sui-components/commit/c9f16a8f3244f592da7a606a45f36beac456677c))
+
+
+
+# 1.24.0 (2022-01-25)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** add import file extensions and fixes a hook usage ([d96b25e](https://github.com/SUI-Components/sui-components/commit/d96b25e8326d9a2bd6c83fe48e100d4ef6eae76a))
+
+
+
+# 1.23.0 (2022-01-20)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** re-render for ssr ([9474990](https://github.com/SUI-Components/sui-components/commit/9474990c77f00ea7278b1aae40817e41d316b4f1))
+* **Root:** fix file extensions ([75a5b34](https://github.com/SUI-Components/sui-components/commit/75a5b341905c3ab8d18680952b25454905747285))
+
+
+### Features
+
+* **components/atom/slider:** fix rc-slider update integration ([86960b8](https://github.com/SUI-Components/sui-components/commit/86960b86294a3a7726d5ff70c25b8ead54b7c0a9))
+* **components/atom/slider:** update rc-slider dependency ([49fe1fb](https://github.com/SUI-Components/sui-components/commit/49fe1fbcf2d876551cfec27ced3ebd4fdb008ddf))
+
+
+
+# 1.22.0 (2021-12-13)
+
+
+### Bug Fixes
+
+* **components/atom/slider:** fix align items incorrect value ([17bbdd6](https://github.com/SUI-Components/sui-components/commit/17bbdd6fdfdb296acee8ef2d7db1e70bc39eec01))
+
+
+
 # 1.21.0 (2021-06-08)
 
 
@@ -201,7 +304,6 @@
 * **atom/slider:** add label formatter callback ([99088e5](https://github.com/SUI-Components/sui-components/commit/99088e5187a0a0aee82aa0b63fbd6bd043208848))
 * **atom/slider:** add value as label ([16df239](https://github.com/SUI-Components/sui-components/commit/16df239f8ce9083e67c21b24919178962677a48b))
 * **atom/slider:** custom marks ([60a3052](https://github.com/SUI-Components/sui-components/commit/60a30525bc72ed9fb8ca31995c86bc5746ac6d9e))
-* **atom/slider:** use hidetooltip prop in demo ([75f0ef3](https://github.com/SUI-Components/sui-components/commit/75f0ef33f3046c637df8d144dc25659cf5816079))
 
 
 

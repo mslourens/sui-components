@@ -1,5 +1,107 @@
 # CHANGELOG
 
+# 5.1.0 (2022-10-06)
+
+
+### Features
+
+* **components/organism/nestedCheckboxes:** remove unnecesary lines ([6339679](https://github.com/SUI-Components/sui-components/commit/633967945b38296dd61597aa8c748a0950540b0a))
+
+
+
+# 5.0.0 (2022-07-18)
+
+
+
+# 4.0.0 (2022-07-05)
+
+
+### Features
+
+* **components/molecule/checkboxField:** update to checkboxv3 ([4d4c9e1](https://github.com/SUI-Components/sui-components/commit/4d4c9e150ab03cdd0290f932a85ec1cde5e71e99))
+
+
+
+# 2.18.0 (2022-06-22)
+
+
+### Features
+
+* **components/molecule/checkboxField:** Avoid publishing huge CHANGELOG.md ([17b7ecc](https://github.com/SUI-Components/sui-components/commit/17b7ecc59163440a641e9fe95b3531509cf10da5))
+
+
+
+# 1.2.0 (2022-02-09)
+
+
+### Features
+
+* **components/molecule/checkboxField/demo:** Add articles for checkboxField ([ce60d7b](https://github.com/SUI-Components/sui-components/commit/ce60d7b0bc11663dc35fb0639c52be6c2753e6db))
+* **components/molecule/checkboxField/demo:** Add classname ([d19e149](https://github.com/SUI-Components/sui-components/commit/d19e149231a218517c7d990e79b1c79207443fde))
+* **components/molecule/checkboxField/demo:** minor fix ([5e0232b](https://github.com/SUI-Components/sui-components/commit/5e0232b73c662f3516ec34eb38c312971da3cf87))
+* **components/molecule/checkboxField/demo:** remove className ([7c6f327](https://github.com/SUI-Components/sui-components/commit/7c6f32783c980ed88a34aafaf78ffcff4879d483))
+
+
+
+# 2.17.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/molecule/checkboxField:** add disabled prop to atom checkbox ([f04dd2e](https://github.com/SUI-Components/sui-components/commit/f04dd2e227c9082834cb7a4e71a6d3b20115629b))
+
+
+
+# 2.16.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/molecule/checkboxField:** disabled was always true ([0088479](https://github.com/SUI-Components/sui-components/commit/0088479eab3c75d03c958af113b62d5dc9c59276))
+
+
+
+# 2.15.0 (2022-01-31)
+
+
+### Bug Fixes
+
+* **components/molecule/checkboxField:** add checkboxField disabled ([2b1de65](https://github.com/SUI-Components/sui-components/commit/2b1de6503146bf10d88f7480136fd472a12741f6))
+
+
+### Features
+
+* **components/molecule/checkboxField:** add disabled prop ([309ad69](https://github.com/SUI-Components/sui-components/commit/309ad69ef910719924e4843c7f3734af6ef44f28))
+
+
+
+# 2.14.0 (2021-11-30)
+
+
+### Features
+
+* **components/molecule/checkboxField:** Add specificity to molecule checkbox selector ([5f0a134](https://github.com/SUI-Components/sui-components/commit/5f0a13460ca2a3bf0f7b29a0e22deea59823a8bc))
+
+
+
+# 1.1.0 (2021-10-13)
+
+
+### Bug Fixes
+
+* **components/molecule/checkboxField/demo:** Centered text ([1627834](https://github.com/SUI-Components/sui-components/commit/16278349cf0a496d61487f10214eb9c5a11314e7))
+
+
+
+# 2.13.0 (2021-10-13)
+
+
+### Bug Fixes
+
+* **components/molecule/checkboxField:** feature/1733 ([be96386](https://github.com/SUI-Components/sui-components/commit/be963869f39e03a7167a272c2af2fb785b55c138))
+
+
+
 # 2.12.0 (2021-09-01)
 
 

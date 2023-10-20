@@ -2,9 +2,6 @@
 
 SUI Atom ActionButton
 
-![Atom Action Button Colors](./assets/action-button-colors.png)
-![Atom Action Button Sizes and States](./assets/action-button-sizes-states.png)
-
 ## Installation
 
 ```sh
@@ -16,7 +13,7 @@ $ npm install @s-ui/react-atom-action-button
 ### Basic usage
 
 ```js
-import ActionButton from '@s-ui/react-action-atom-button'
+import AtomActionButton from '@s-ui/react-atom-action-button'
 
 const Icon = () => {
   return (
@@ -25,9 +22,9 @@ const Icon = () => {
 }
 
 return (<div>
-  <ActionButton icon={Icon}>Normal</ActionButton>
-  <ActionButton icon={Icon} focused>Focused</ActionButton>
-  <ActionButton icon={Icon} size='large' disabled>Disabled, Large</ActionButton>
+  <AtomActionButton icon={Icon}>Normal</AtomActionButton>
+  <AtomActionButton icon={Icon} focused>Focused</AtomActionButton>
+  <AtomActionButton icon={Icon} size='large' disabled>Disabled, Large</AtomActionButton>
 </div>)
 
 ```

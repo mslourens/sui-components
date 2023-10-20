@@ -1,19 +1,26 @@
+import {useState} from 'react'
+
 import PropTypes from 'prop-types'
+
 import {
   Article,
-  H2,
-  Paragraph,
-  Code,
-  RadioButton,
-  RadioButtonGroup,
   Button,
-  Label,
+  Cell,
+  Code,
   Grid,
-  Cell
+  H2,
+  Label,
+  Paragraph,
+  RadioButton,
+  RadioButtonGroup
 } from '@s-ui/documentation-library'
-import {useState} from 'react'
-import {MoleculeModal, MoleculeModalFooter, MoleculeModalContent} from '../src'
-import LoremIpsum from './LoremIpsum'
+
+import {
+  MoleculeModal,
+  MoleculeModalContent,
+  MoleculeModalFooter
+} from '../src/index.js'
+import LoremIpsum from './LoremIpsum.js'
 
 const PROPS = {
   BASE: {
@@ -89,8 +96,8 @@ const ArticleModal = ({className}) => {
     }
   }
 
-  const onChangeHandler = (_, value) => {
-    setOpen(value === undefined ? open : value)
+  const onChangeHandler = () => {
+    setOpen(!open)
   }
 
   const onChangeEnableContentScrollHandler = (_, value) => {
@@ -230,17 +237,7 @@ const ArticleModal = ({className}) => {
       <Paragraph>
         It can be controlled using the <Code>isOpen</Code> boolean prop.
       </Paragraph>
-      <Grid cols={1} gutter={[8, 8]}>
-        <Cell>
-          <Label>isOpen</Label>
-        </Cell>
-        <Cell>
-          <RadioButtonGroup value={open} onChange={onChangeHandler}>
-            <RadioButton value label="true" checked={open === true} />
-            <RadioButton value={false} label="false" checked={open === false} />
-          </RadioButtonGroup>
-        </Cell>
-      </Grid>
+      <Button onClick={onChangeHandler}>Open modal</Button>
       {PropsSelector}
       <MoleculeModal
         isOpen={open}

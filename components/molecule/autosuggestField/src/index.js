@@ -1,24 +1,16 @@
 import {useRef} from 'react'
+
 import PropTypes from 'prop-types'
 
-import MoleculeField from '@s-ui/react-molecule-field'
 import MoleculeAutosuggest, {
-  MoleculeAutosuggestStates,
-  MoleculeAutosuggestDropdownListSizes
+  MoleculeAutosuggestDropdownListSizes,
+  MoleculeAutosuggestStates
 } from '@s-ui/react-molecule-autosuggest'
+import MoleculeField from '@s-ui/react-molecule-field'
 
-const getErrorState = ({successText, errorText}) => {
-  if (successText) return false
-  if (errorText) return true
-}
+import {getErrorState, getState} from './settings.js'
 
-const getState = ({successText, errorState, alertText}) => {
-  if (successText) return MoleculeAutosuggestStates.SUCCESS
-  if (errorState) return MoleculeAutosuggestStates.ERROR
-  if (alertText) return MoleculeAutosuggestStates.ALERT
-}
-
-function MoleculeAutosuggestField({
+const MoleculeAutosuggestField = ({
   alertText,
   children,
   errorText,
@@ -26,11 +18,12 @@ function MoleculeAutosuggestField({
   id,
   inline,
   label,
+  nodeLabel,
   onChange,
   successText,
   useContrastLabel,
   ...restProps
-}) {
+}) => {
   const refAutosuggest = useRef()
 
   const handleClick = () => {
@@ -45,6 +38,7 @@ function MoleculeAutosuggestField({
     <MoleculeField
       name={id}
       label={label}
+      nodeLabel={nodeLabel}
       successText={successText}
       errorText={errorText}
       alertText={alertText}
@@ -72,6 +66,9 @@ MoleculeAutosuggestField.displayName = 'MoleculeAutosuggestField'
 MoleculeAutosuggestField.propTypes = {
   /** Text to be displayed as label */
   label: PropTypes.string.isRequired,
+
+  /** React node to be displayed as label if there is not a label */
+  nodeLabel: PropTypes.element,
 
   /** used as label for attribute and Autosuggest element id */
   id: PropTypes.string,

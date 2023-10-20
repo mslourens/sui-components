@@ -1,29 +1,17 @@
 import PropTypes from 'prop-types'
-import LineProgressBar from './LineProgressBar'
-import CircleProgressBar from './CircleProgressBar'
-import LineDoubleProgressBar from './LineDoubleProgressBar'
 
-const TYPES = {
-  CIRCLE: 'circle',
-  LINE: 'line',
-  LINE_DOUBLE_BAR: 'lineDoubleBar'
-}
-
-const SIZES = {
-  LARGE: 'large',
-  SMALL: 'small'
-}
+import ProgressBarCircle from './ProgressBarCircle/index.js'
+import ProgressBarLine from './ProgressBarLine/index.js'
+import {LINE_CAPS, SIZES, STATUS, STROKE_SIZES, TYPES} from './settings.js'
 
 const AtomProgressBar = ({type, size, ...props}) => {
   switch (type) {
-    case TYPES.LINE:
-      return <LineProgressBar {...props} />
     case TYPES.CIRCLE:
-      return <CircleProgressBar size={size} {...props} />
+      return <ProgressBarCircle size={size} {...props} />
+    case TYPES.LINE:
     case TYPES.LINE_DOUBLE_BAR:
-      return <LineDoubleProgressBar size={size} {...props} />
     default:
-      return <LineProgressBar {...props} />
+      return <ProgressBarLine size={size} {...props} />
   }
 }
 
@@ -31,13 +19,20 @@ AtomProgressBar.displayName = 'AtomProgressBar'
 
 AtomProgressBar.propTypes = {
   type: PropTypes.oneOf(Object.values(TYPES)),
-  size: PropTypes.oneOf(Object.values(SIZES))
+  size: PropTypes.oneOf(Object.values(SIZES)),
+  status: PropTypes.oneOf(Object.values(STATUS))
 }
 
 AtomProgressBar.defaultProps = {
-  size: SIZES.LARGE,
-  type: TYPES.LINE
+  type: TYPES.LINE,
+  status: STATUS.PROGRESS
 }
 
 export default AtomProgressBar
-export {TYPES as atomProgressBarTypes, SIZES as atomProgressBarSizes}
+export {
+  LINE_CAPS as atomProgressBarLineCaps,
+  STROKE_SIZES as atomProgressBarStrokeSizes,
+  SIZES as atomProgressBarSizes,
+  STATUS as atomProgressBarStatus,
+  TYPES as atomProgressBarTypes
+}

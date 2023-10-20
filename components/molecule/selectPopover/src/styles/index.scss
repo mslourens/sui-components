@@ -1,0 +1,126 @@
+$base-class: '.sui-MoleculeSelectPopover ';
+
+#{$base-class} {
+  $self: &;
+  display: inline-block;
+  position: relative;
+
+  &.is-disabled {
+    opacity: $op-select-popover;
+    pointer-events: none;
+  }
+
+  &-select {
+    $select: &;
+    align-items: center;
+    background: $bgc-select-popover;
+    border: $bd-select-popover;
+    border-radius: $bdrs-select-popover;
+    box-sizing: $bxz-select-popover-select;
+    color: $c-select-popover;
+    cursor: $cur-select-popover-select;
+    display: flex;
+    justify-content: space-between;
+    max-width: $mw-select-popover;
+    padding: $p-m $p-l;
+    user-select: none;
+
+    &Text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &Icon {
+      margin-left: $m-m;
+    }
+
+    &:hover,
+    &.is-open {
+      background-color: $bgc-select-popover-hover;
+      border-color: $bdc-select-popover-hover;
+    }
+
+    &.is-open {
+      color: $c-select-popover--is-open;
+
+      #{$select}Icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.is-selected {
+      background-color: $bgc-select-popover-selected;
+      border-color: $bdc-select-popover-selected;
+      color: $c-select-popover-selected;
+    }
+
+    @each $type, $attr in $sizes-molecule-select-popover-heights {
+      &--#{$type} {
+        height: $attr;
+      }
+    }
+  }
+
+  &-popover {
+    background-color: $bgc-select-popover-content;
+    border: $bd-select-popover-content;
+    border-radius: $bdrs-select-popover-content;
+    box-shadow: $bxsh-select-popover;
+    margin-top: $m-m;
+    position: $p-select-popover;
+    min-width: $w-select-popover;
+    z-index: $z-select-popover-select-popover;
+
+    &ActionBar {
+      border-top: $bdt-select-popover-action-bar;
+      padding: $p-l;
+      text-align: right;
+    }
+
+    // placements
+    &--right {
+      left: $l-select-popover--right;
+    }
+
+    &--left {
+      right: $r-select-popover--left;
+    }
+  }
+
+  &--fullWidth {
+    display: block;
+
+    #{$self}-select {
+      max-width: none;
+    }
+  }
+
+  &--hasCustomWrapper {
+    #{$self}-selectIcon {
+      transform: $trf-select-popover-select-icon-has-custom-wrapper !important;
+    }
+
+    .is-open {
+      #{$self}-selectIcon {
+        transform: $trf-select-popover-select-icon-has-custom-wrapper--is-open !important;
+      }
+    }
+  }
+
+  &-overlay {
+    @each $name, $type in $molecule-select-popover-overlay-types {
+      &--#{$name} {
+        $bgc: map-get($type, bgc);
+        background-color: $bgc;
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: $op-select-popover-overlay;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+  }
+}

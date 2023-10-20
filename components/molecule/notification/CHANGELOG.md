@@ -1,5 +1,71 @@
 # CHANGELOG
 
+# 1.34.0 (2022-10-01)
+
+
+### Features
+
+* **components/molecule/notification:** Remove -system ([b84c52c](https://github.com/SUI-Components/sui-components/commit/b84c52c956db4b709039dc6739f60c48b5427a79))
+
+
+
+# 1.33.0 (2022-09-19)
+
+
+### Features
+
+* **components/molecule/notification:** create new variable to define background positive variation ([b77ec9b](https://github.com/SUI-Components/sui-components/commit/b77ec9ba9fd3eb965df744311d09bec895184490))
+* **components/molecule/notification:** refactor to use background colors set at theme to create pos ([70bd3b0](https://github.com/SUI-Components/sui-components/commit/70bd3b07365967e52164b10a9a2a00e43240a209))
+* **Root:** Delete undefined dependencies ([c145905](https://github.com/SUI-Components/sui-components/commit/c145905350328925ba6fda2a462d7f8b508c8ea0))
+* **Root:** Merge commit ([d3735d0](https://github.com/SUI-Components/sui-components/commit/d3735d0644332e674d5a5b6291680697f0d6f7c4))
+
+
+
+# 1.32.0 (2022-06-23)
+
+
+### Features
+
+* **components/molecule/notification:** Avoid publishing huge CHANGELOG.md ([a569ff6](https://github.com/SUI-Components/sui-components/commit/a569ff6e65f08d91d4b1600b9f6f3abf5768126c))
+
+
+
+# 1.31.0 (2022-04-04)
+
+
+### Bug Fixes
+
+* **components/molecule/notification:** Fix PR comments ([ae58515](https://github.com/SUI-Components/sui-components/commit/ae5851574d048124b9e9695964ad706147481a6b))
+* **components/molecule/notification:** Fix PR comments ([5386acd](https://github.com/SUI-Components/sui-components/commit/5386acde2bfeff860a7086bde479f7590ab9736e))
+* **components/molecule/notification:** Fix PR comments and add demo ([80c28b7](https://github.com/SUI-Components/sui-components/commit/80c28b7df2146bc44351f86bd82dbccc3421671f))
+* **components/molecule/notification:** Fix tests ([ed12a11](https://github.com/SUI-Components/sui-components/commit/ed12a111eb595da468f92edeaff5d82caf86dcd6))
+
+
+### Features
+
+* **components/molecule/notification:** Add items alignment feature ([9c3e113](https://github.com/SUI-Components/sui-components/commit/9c3e1135e3a673dcccc40ac9adfac84c2a3767f9))
+* **components/molecule/notification:** Fix lint ([df10e5d](https://github.com/SUI-Components/sui-components/commit/df10e5d6ab450c45e61b1ece86e5a15dba90d91c))
+
+
+
+# 1.30.0 (2022-02-11)
+
+
+### Bug Fixes
+
+* **components/molecule/notification:** fix demo and outline styles ([2066b3a](https://github.com/SUI-Components/sui-components/commit/2066b3a10d91a63af85b40ece5e69f303cc14e7c)), closes [#2013](https://github.com/SUI-Components/sui-components/issues/2013)
+
+
+
+# 1.29.0 (2021-10-27)
+
+
+### Bug Fixes
+
+* **components/molecule/notification:** fix type prop types ([c0e9413](https://github.com/SUI-Components/sui-components/commit/c0e9413ec3f2761990b2a3cda1667fb8e1fb8ca0))
+
+
+
 # 1.28.0 (2021-06-22)
 
 

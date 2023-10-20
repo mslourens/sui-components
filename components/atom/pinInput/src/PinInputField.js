@@ -1,10 +1,13 @@
-import {forwardRef, useEffect, useRef, useCallback, useMemo} from 'react'
-import PropTypes from 'prop-types'
+import {forwardRef, useCallback, useEffect, useMemo, useRef} from 'react'
+
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+
 import useMergeRefs from '@s-ui/react-hooks/lib/useMergeRefs'
+
+import {actions as pinInputActions} from './reducer/index.js'
 import {BASE_CLASSNAME, MASK} from './config.js'
-import {usePinInputContext} from './PinInputContext'
-import {actions as pinInputActions} from './reducer'
+import {usePinInputContext} from './PinInputContext.js'
 
 const CLASSNAME = `${BASE_CLASSNAME}Field`
 
@@ -63,7 +66,7 @@ const PinInputField = forwardRef(({isFullWidth, ...props}, forwardedRef) => {
     if (innerRef.current) {
       setElement(innerRef.current)
     }
-    return () => removeElement(innerRef.current)
+    return () => removeElement(innerRef.current) // eslint-disable-line react-hooks/exhaustive-deps
   }, [innerRef, setElement, removeElement])
 
   const onFocusHandler = () => {
@@ -72,10 +75,10 @@ const PinInputField = forwardRef(({isFullWidth, ...props}, forwardedRef) => {
     }
   }
 
-  const inputModeMemoized = useMemo(() => getInputMode({inputMode, mask}), [
-    mask,
-    inputMode
-  ])
+  const inputModeMemoized = useMemo(
+    () => getInputMode({inputMode, mask}),
+    [mask, inputMode]
+  )
 
   return (
     <input

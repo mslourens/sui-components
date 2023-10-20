@@ -1,37 +1,43 @@
-import {useRef, useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
+import {useCallback, useEffect, useState} from 'react'
 
-const BASE_CLASS = 'sui-MoleculeCollapsible'
-const CONTENT_CLASS = `${BASE_CLASS}-content`
-const CONTAINER_BUTTON_CLASS = `${BASE_CLASS}-container`
-const COLLAPSED_CLASS = 'is-collapsed'
-const BUTTON_CLASS = `${BASE_CLASS}-btn`
-const BUTTON_CONTENT_CLASS = `${BUTTON_CLASS}-content`
-const ICON_CLASS = `${BASE_CLASS}-icon`
-const MIN_HEIGHT = 100 // px
-const CONTENT_ALIGN = {
-  CENTER: 'center',
-  RIGHT: 'right'
-}
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+
+import {
+  BASE_CLASS,
+  BUTTON_CLASS,
+  BUTTON_CONTENT_CLASS,
+  BUTTON_TEXT_ALIGN,
+  COLLAPSED_CLASS,
+  CONTAINER_BUTTON_CLASS,
+  CONTENT_ALIGN,
+  CONTENT_CLASS,
+  ICON_CLASS,
+  MIN_HEIGHT
+} from './settings.js'
 
 const MoleculeCollapsible = ({
   onClose = () => {},
   onOpen = () => {},
+  alignButtonText,
   alignContainer,
   children,
   height = MIN_HEIGHT,
   icon,
+  isCollapsible = true,
   showText,
   hideText,
   withGradient = true,
   withOverflow = false,
   withTransition = true
 }) => {
-  const childrenContainer = useRef()
   const [collapsed, setCollapsed] = useState(true)
   const [showButton, setShowButton] = useState(true)
-  const [maxHeight, setMaxHeight] = useState(MIN_HEIGHT)
+  const [childrenHeight, setChildrenHeight] = useState(0)
+
+  const nodeCallback = useCallback(node => {
+    setChildrenHeight(node !== null ? node.getBoundingClientRect().height : 0)
+  }, [])
 
   const toggleCollapse = () => {
     if (showButton) {
@@ -40,13 +46,10 @@ const MoleculeCollapsible = ({
     }
   }
 
-  const offsetHeight = childrenContainer?.current?.offsetHeight
-
   useEffect(() => {
-    if (!offsetHeight) return
-    setShowButton(offsetHeight >= height)
-    setMaxHeight(offsetHeight)
-  }, [offsetHeight, height])
+    if (!childrenHeight || collapsed) return
+    setShowButton(isCollapsible && childrenHeight >= height)
+  }, [childrenHeight, collapsed, height, isCollapsible, setShowButton])
   const wrapperClassName = cx(`${BASE_CLASS}`, {
     [`${BASE_CLASS}--withGradient`]: withGradient,
     [COLLAPSED_CLASS]: collapsed
@@ -56,14 +59,16 @@ const MoleculeCollapsible = ({
   })
   const containerClassName = cx(`${CONTAINER_BUTTON_CLASS}`, {
     [`${CONTAINER_BUTTON_CLASS}--withGradient`]: withGradient,
-    [COLLAPSED_CLASS]: collapsed,
-    [`${CONTAINER_BUTTON_CLASS}--${alignContainer}`]: alignContainer
+    [`${CONTAINER_BUTTON_CLASS}--alignButtonText-${alignButtonText}`]:
+      alignButtonText,
+    [COLLAPSED_CLASS]: collapsed
   })
   const contentClassName = cx(`${CONTENT_CLASS}`, {
     [`${CONTENT_CLASS}--withTransition`]: withTransition,
-    [`${CONTENT_CLASS}--withOverflow`]: withOverflow
+    [`${CONTENT_CLASS}--withOverflow`]: withOverflow,
+    [`${CONTENT_CLASS}--alignContainer-${alignContainer}`]: alignContainer
   })
-  const containerHeight = collapsed ? `${height}px` : `${maxHeight}px`
+  const containerHeight = collapsed ? `${height}px` : `${childrenHeight}px`
 
   return (
     <div className={wrapperClassName}>
@@ -71,7 +76,7 @@ const MoleculeCollapsible = ({
         className={contentClassName}
         style={{maxHeight: !showButton ? 'none' : containerHeight}}
       >
-        <div ref={childrenContainer}>{children}</div>
+        <div ref={nodeCallback}>{children}</div>
       </div>
       {showButton && (
         <div className={containerClassName}>
@@ -95,6 +100,10 @@ MoleculeCollapsible.displayName = 'MoleculeCollapsible'
 
 MoleculeCollapsible.propTypes = {
   /**
+   * Button text align center || right || left
+   */
+  alignButtonText: PropTypes.oneOf(Object.values(BUTTON_TEXT_ALIGN)),
+  /**
    * Container align center || right
    */
   alignContainer: PropTypes.oneOf(Object.values(CONTENT_ALIGN)),
@@ -110,6 +119,10 @@ MoleculeCollapsible.propTypes = {
    * Icon to be added on the right of the content
    */
   icon: PropTypes.node.isRequired,
+  /**
+   * When expanded, make it collapsible (default) or not
+   */
+  isCollapsible: PropTypes.bool,
   /**
    * Text to show when content is collapsed
    */
@@ -142,4 +155,8 @@ MoleculeCollapsible.propTypes = {
 
 export default MoleculeCollapsible
 
-export {CONTENT_ALIGN}
+export {
+  CONTENT_ALIGN,
+  CONTENT_ALIGN as moleculeCollapsibleContentAlign,
+  BUTTON_TEXT_ALIGN as moleculeCollapsibleButtonAlign
+}

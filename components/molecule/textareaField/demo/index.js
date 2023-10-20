@@ -1,12 +1,46 @@
+import {useState} from 'react'
+
 import MoleculeTextareaField, {
   MoleculeTextareaSizes
 } from 'components/molecule/textareaField/src'
-import TextareaUpdatingValue from './updatingValue'
-import withState from './withState'
+
+import TextareaUpdatingValue from './updatingValue.js'
+import withState from './withState.js'
 
 const MoleculeTextareaFieldWithState = withState(MoleculeTextareaField)
 
+const computeExceedLengthErrorText = ({
+  currentLength,
+  maxLength,
+  exceedAmmount
+}) => {
+  return `${currentLength}/${maxLength} characters. You've exceeded by ${exceedAmmount} the maximum length.`
+}
+const maxChars = 5
+
 const Demo = () => {
+  const [value, setValue] = useState('Hola')
+  const [errorText, setErrorText] = useState('')
+
+  const handleErrorText = currentvalue => {
+    if (currentvalue.length - maxChars > 0) {
+      setErrorText(
+        computeExceedLengthErrorText({
+          currentLength: currentvalue.length,
+          maxLength: maxChars,
+          exceedAmmount: currentvalue.length - maxChars
+        })
+      )
+    } else {
+      setErrorText(undefined)
+    }
+  }
+
+  const onChangeHandler = (e, {value}) => {
+    setValue(value)
+    handleErrorText(value)
+  }
+
   return (
     <div className="sui-StudioPreview">
       <div className="sui-StudioPreview-content sui-StudioDemo-preview">
@@ -28,6 +62,21 @@ const Demo = () => {
               id="commentd"
               label="with NO placeholder"
               maxChars={100}
+            />
+          </div>
+        </div>
+        <div className="sui-Studio-wrapper--light">
+          <h2 className="sui-Studio-h2">Text exceed</h2>
+          <div>
+            <MoleculeTextareaField
+              errorText={errorText}
+              isMaxCharBlocked
+              id="commentd"
+              label="Text that exceed the maxChars"
+              maxChars={maxChars}
+              onChange={onChangeHandler}
+              placeholder="Please, write text that exceeds the maxLength..."
+              value={value}
             />
           </div>
         </div>
