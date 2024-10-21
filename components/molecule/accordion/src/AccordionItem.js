@@ -10,7 +10,7 @@ import {
   MoleculeAccordionItemHeader as AccordionItemHeader,
   MoleculeAccordionItemPanel as AccordionItemPanel
 } from './index.js'
-import {BASE_CLASS_ITEM, HEADER_ICON_POSITION} from './settings.js'
+import {BASE_CLASS_ITEM, HEADER_ICON_POSITION, HEADER_LABEL_WRAPS} from './settings.js'
 
 const AccordionItem = forwardRef(
   (
@@ -24,6 +24,7 @@ const AccordionItem = forwardRef(
       children,
       headerIcon,
       headerIconPosition,
+      headerLabelWrap,
       disabled,
       isExpanded,
       value,
@@ -54,6 +55,7 @@ const AccordionItem = forwardRef(
           icon={headerIcon}
           iconPosition={headerIconPosition}
           label={label}
+          labelWrap={headerLabelWrap}
           onClick={onClick}
         >
           {header}
@@ -83,20 +85,7 @@ AccordionItem.propTypes = {
   /** The elementType of the button header wrapper **/
   headerAs: PropTypes.elementType,
   /** the heading level **/
-  headerLevel: PropTypes.oneOf([
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    1,
-    2,
-    3,
-    4,
-    5,
-    6
-  ]),
+  headerLevel: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', 1, 2, 3, 4, 5, 6]),
   /** The elementType of the panel **/
   panelAs: PropTypes.elementType,
   /** child element **/
@@ -113,6 +102,8 @@ AccordionItem.propTypes = {
   headerIcon: PropTypes.node,
   /** where the icon is header positioned */
   headerIconPosition: PropTypes.oneOf(Object.values(HEADER_ICON_POSITION)),
+  /** Defines the wrap behavior of the header label */
+  headerLabelWrap: PropTypes.oneOf(Object.values(HEADER_LABEL_WRAPS)),
   /** controlled expanded accordion item behavior */
   isExpanded: PropTypes.bool,
   /** a required string indicating the content **/

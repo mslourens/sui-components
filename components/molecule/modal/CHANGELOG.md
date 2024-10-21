@@ -1,5 +1,45 @@
 # CHANGELOG
 
+# 1.52.0 (2024-05-08)
+
+
+### Bug Fixes
+
+* Export composable components ([7f33ba7](https://github.com/SUI-Components/sui-components/commit/7f33ba70cc3e21db9b5182bd745c951c0d89766c))
+
+
+
+# 1.51.0 (2024-05-06)
+
+
+### Bug Fixes
+
+* Dot not execute onClose when onClose handler changes ([36a3c19](https://github.com/SUI-Components/sui-components/commit/36a3c193175ec88550a53000c7f4300610020eca))
+
+
+
+# 1.50.0 (2024-05-06)
+
+
+
+# 1.49.0 (2024-04-25)
+
+
+### Bug Fixes
+
+* Do not launch multiple animations on Open/Close ([2dae5bc](https://github.com/SUI-Components/sui-components/commit/2dae5bc0a8eb3b541208ee892f9b5043138ed4f7))
+
+
+
+# 1.48.0 (2024-04-03)
+
+
+### Bug Fixes
+
+* Avoid call handleAnimationEnd twice ([aa64466](https://github.com/SUI-Components/sui-components/commit/aa64466071599203d2d468b3f5f6b92b1c7a770b))
+
+
+
 # 1.47.0 (2022-11-23)
 
 
@@ -483,6 +523,3 @@
 * **molecule/modal:** pR changes ([ec5be1b](https://github.com/SUI-Components/sui-components/commit/ec5be1b4d1ff9744f146cb7d29fca60736a74267))
 * **molecule/modal:** pR comments changes ([5828315](https://github.com/SUI-Components/sui-components/commit/58283157b5e753474949d650c2a34437f6f98c6a))
 * **molecule/modal:** update readme ([649c91c](https://github.com/SUI-Components/sui-components/commit/649c91c26830cd8da36080854db07abc52fc87fd))
-
-
-

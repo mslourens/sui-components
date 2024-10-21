@@ -1,5 +1,20 @@
 # CHANGELOG
 
+# 2.39.0 (2024-05-08)
+
+
+### Features
+
+* Add additional SCSS color variable for SUI tabs component ([b23f25e](https://github.com/SUI-Components/sui-components/commit/b23f25e15525674ff84e62f991b6687345aebfa3))
+* Adjust tabs highlighted-active border color variable name ([ebc3fff](https://github.com/SUI-Components/sui-components/commit/ebc3fff6bc314d7d8f9b6a75fc319d5891205154))
+* Remove accidental color change ([72f7712](https://github.com/SUI-Components/sui-components/commit/72f771203d6406530c5c9f8a8a4f18bc1df33f6a))
+
+
+
+# 2.38.0 (2024-05-06)
+
+
+
 # 2.37.0 (2022-10-13)
 
 
@@ -462,6 +477,3 @@
 ### Features
 
 * **molecule/tabs:** new component tabs UX complaint ([6e93456](https://github.com/SUI-Components/sui-components/commit/6e934568b7fdc33a43d5ccd71657dccdceb4679f))
-
-
-

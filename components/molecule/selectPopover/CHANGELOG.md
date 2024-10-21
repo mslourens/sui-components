@@ -1,5 +1,54 @@
 # CHANGELOG
 
+# 1.46.0 (2024-09-23)
+
+
+### Features
+
+* add remove button demo ([5a0acc3](https://github.com/SUI-Components/sui-components/commit/5a0acc3fab24e575b0493f3e0c9684880e2f399e))
+* add remove button feature ([77fe161](https://github.com/SUI-Components/sui-components/commit/77fe1617385e5c59aef8eed9f6f1c1581d187272))
+
+
+
+# 1.45.0 (2024-07-29)
+
+
+### Features
+
+* add id prop ([7ba9eeb](https://github.com/SUI-Components/sui-components/commit/7ba9eeb2d69356e943fed4fdb0f9e1de8e99b84a))
+
+
+
+# 1.44.0 (2024-06-26)
+
+
+### Features
+
+* add logic new prop shape ([842242f](https://github.com/SUI-Components/sui-components/commit/842242f29539ff5f84f4f8d324a5633061e6ae57))
+* add new config in Tests ([4b94139](https://github.com/SUI-Components/sui-components/commit/4b941398779021422c9579b916256d3dd642f77f))
+* add new prop shape to Demo component ([ab9445b](https://github.com/SUI-Components/sui-components/commit/ab9445b93a87efe3c956648cdb9d07c8aa66039e))
+
+
+
+# 1.43.0 (2024-04-02)
+
+
+### Bug Fixes
+
+* Rollback about event listeners logic ([509c0ea](https://github.com/SUI-Components/sui-components/commit/509c0ea25bd920e0c6e4c971badb1aa226ad5d7a))
+
+
+
+# 1.42.0 (2024-03-11)
+
+
+### Features
+
+* Avoid addEventListener unconditionally at selectPopover ([cfd3df1](https://github.com/SUI-Components/sui-components/commit/cfd3df17ca7fd875dadb937b14852430707a990f))
+* Lint file ([dc2935b](https://github.com/SUI-Components/sui-components/commit/dc2935b9d5bc4980ba662f13feacf78abe9696f4))
+
+
+
 # 1.41.0 (2023-09-20)
 
 
@@ -409,6 +458,3 @@
 * **molecule/selectPopover:** fix readme ([a375e4e](https://github.com/SUI-Components/sui-components/commit/a375e4ef3a0a5708916884f6e8bf4a138a2736d5))
 * **molecule/selectPopover:** generate component ([d51661b](https://github.com/SUI-Components/sui-components/commit/d51661b788df5ed465ba9953f8a22bef3d826021))
 * **molecule/selectPopover:** pr comments ([d953854](https://github.com/SUI-Components/sui-components/commit/d953854d9b362eb20d8952dc830ebba18d0a8b85))
-
-
-

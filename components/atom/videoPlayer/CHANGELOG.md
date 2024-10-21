@@ -1,5 +1,27 @@
 # CHANGELOG
 
+# 1.33.0 (2024-09-17)
+
+
+### Features
+
+* add loop and token ([f40ac61](https://github.com/SUI-Components/sui-components/commit/f40ac61a2edf9b36eeaf68a988319f8a52792aa9))
+
+
+
+# 1.32.0 (2024-09-16)
+
+
+### Features
+
+* Add loop attribute ([be67bb5](https://github.com/SUI-Components/sui-components/commit/be67bb5b24895789111a96b113cb06279dce6198))
+
+
+
+# 1.31.0 (2024-05-06)
+
+
+
 # 1.30.0 (2023-09-29)
 
 
@@ -268,6 +290,3 @@
 
 * **components/atom/videoPlayer:** Refactor and improve youtube videos playing ([e86d4ba](https://github.com/SUI-Components/sui-components/commit/e86d4ba72ba9e7ba6806c2b7b6566f600414fc13))
 * **components/atom/videoPlayer:** Start working in video player to play youtube videos ([bca1ede](https://github.com/SUI-Components/sui-components/commit/bca1ede07dbb0a01ac144a4b2d52decc371de12e))
-
-
-

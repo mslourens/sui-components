@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "Mono repo, multi package containing all SUI components.",
   "private": true,
-  "engines": {
-    "node": "18",
-    "npm": "8"
-  },
   "workspaces": [
     "components/**"
   ],
   "scripts": {
     "build": "sui-studio build",
+    "bundler:postinstall": "node ./node_modules/@s-ui/bundler/scripts/postinstall.js",
     "check:release": "sui-mono check",
     "clean": "rm -rf ./node_modules && rm -f package-lock.json",
     "co": "sui-mono commit",
@@ -23,15 +20,16 @@
     "lint:sass": "sui-lint sass",
     "respawn": "npm run clean && npm run phoenix && npm run install:themes",
     "install:themes": "node scripts/build-themes.js",
+    "install:ci": "npm ci --include=dev --no-found --no-audit && npx -y ultra-runner --raw --recursive prepublishOnly",
     "phoenix": "npx @s-ui/mono@2 phoenix && npx -y ultra-runner --raw --recursive prepublishOnly",
-    "phoenix:ci": "npx @s-ui/mono@2 phoenix && npx -y ultra-runner --raw --recursive prepublishOnly",
     "release": "sui-mono release",
     "start": "sui-studio start",
     "serve": "npm run build && npx http-server public",
-    "test": "sui-studio test -- --coverage",
+    "test": "sui-studio test -- --headless --coverage",
     "test:watch": "sui-studio test --watch",
     "pre-commit": "npm run lint:js  -- --staged && npm run lint:sass -- --staged",
-    "pre-push": "npm run test"
+    "pre-push": "npm run test",
+    "types:check": "tsc"
   },
   "repository": {
     "type": "git",
@@ -43,10 +41,16 @@
   "devDependencies": {
     "@s-ui/documentation-library": "1",
     "@s-ui/helpers": "1",
+    "@s-ui/js-compiler": "1",
     "@s-ui/lint": "4",
     "@s-ui/mono": "2",
     "@s-ui/precommit": "3",
     "@s-ui/studio": "11",
+    "@types/chai": "4.3.16",
+    "@types/chai-dom": "1.11.3",
+    "@types/classnames": "2.2.5",
+    "@types/mocha": "10.0.6",
+    "@types/react-dom": "18.3.0",
     "fs-extra": "10.0.1",
     "globby": "11.0.3",
     "sinon": "11.1.1",
@@ -55,8 +59,14 @@
   "dependencies": {
     "@s-ui/component-dependencies": "1"
   },
+  "overrides": {
+    "dset": "3.1.4",
+    "micromatch": "4.0.8",
+    "webpack": "5.94.0"
+  },
   "config": {
     "sui-bundler": {
+      "type": "typescript",
       "vendor": [
         "react",
         "react-dom"

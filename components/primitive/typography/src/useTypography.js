@@ -1,13 +1,7 @@
 import cx from 'classnames'
 import merge from 'lodash.merge'
 
-import {
-  BASE_CLASS,
-  DESIGN,
-  KIND,
-  TEXT_DECORATION_LINE,
-  VARIANT
-} from './config.js'
+import {BASE_CLASS, DESIGN, KIND, TEXT_DECORATION_LINE, VARIANT} from './config.js'
 
 const getInheritedProps = ({design, variant}) => {
   if (typeof KIND[design] === 'object') {
@@ -50,14 +44,12 @@ const getClassNames = ({
       [`${BASE_CLASS}-fontWeight-${fontWeight}`]: fontWeight !== undefined,
       [`${BASE_CLASS}-fontStyle-${fontStyle}`]: fontStyle !== undefined,
       [`${BASE_CLASS}-fontStretch-${fontStretch}`]: fontStretch !== undefined,
-      [`${BASE_CLASS}-letterSpacing-${letterSpacing}`]:
-        letterSpacing !== undefined,
+      [`${BASE_CLASS}-letterSpacing-${letterSpacing}`]: letterSpacing !== undefined,
       [`${BASE_CLASS}-lineHeight-${lineHeight}`]: lineHeight !== undefined,
-      [`${BASE_CLASS}-textDecorationLine-${textDecorationLine}`]:
-        textDecorationLine !== undefined,
-      [`${BASE_CLASS}-blurred-${isBlurred}`]: isBlurred !== undefined,
-      className
-    }
+      [`${BASE_CLASS}-textDecorationLine-${textDecorationLine}`]: textDecorationLine !== undefined,
+      [`${BASE_CLASS}-blurred-${isBlurred}`]: isBlurred !== undefined
+    },
+    className
   )
 }
 
@@ -99,6 +91,7 @@ const useTypography = ({
       isLinked
     })
   )
+
   return {
     ...props,
     ...{

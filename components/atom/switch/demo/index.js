@@ -5,6 +5,7 @@ import ArticleControlledAndUncontrolled from './articles/ArticleControlledAndUnc
 import ArticleDisabled from './articles/ArticleDisabled.js'
 import ArticleFullWidth from './articles/ArticleFullWidth.js'
 import ArticleIsFitted from './articles/ArticleIsFitted.js'
+import ArticleLoading from './articles/ArticleLoading.js'
 import ArticleSizes from './articles/ArticleSizes.js'
 import ArticleState from './articles/ArticleState.js'
 import ArticleToggle from './articles/ArticleToggle.js'
@@ -17,13 +18,11 @@ const Demo = () => {
       <div className="sui-StudioPreview-content sui-StudioDemo-preview">
         <H1>Switch</H1>
         <Paragraph>
-          The switch is the radio button when there’re only 2 exclusive options.
-          “On/off” is a common and clear example for explaining this component.
-          In order to collect the result of this switch there is a callback
-          `onToggle`, this callback receives a flag on `true` if select is
-          active. If you're using a `select` type of this component, `false`
-          means the first option and `true` the second one. There are two sizes
-          for this component: `default` and `large`.
+          The switch is the radio button when there’re only 2 exclusive options. “On/off” is a common and clear example
+          for explaining this component. In order to collect the result of this switch there is a callback `onToggle`,
+          this callback receives a flag on `true` if select is active. If you're using a `select` type of this
+          component, `false` means the first option and `true` the second one. There are two sizes for this component:
+          `default` and `large`.
         </Paragraph>
         <ArticleState className={CLASS_SECTION} />
         <br />
@@ -42,6 +41,8 @@ const Demo = () => {
         <ArticleToggle className={CLASS_SECTION} />
         <br />
         <ArticleFullWidth className={CLASS_SECTION} />
+        <br />
+        <ArticleLoading className={CLASS_SECTION} />
       </div>
     </div>
   )

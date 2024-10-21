@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+import ActionButtonLink from './ActionButtonLink.js'
+
 const ActionButtonWrapper = ({
   children,
   href,
@@ -8,18 +10,13 @@ const ActionButtonWrapper = ({
   isSubmit,
   isButton,
   link,
-  linkFactory: Link,
+  linkFactory: Link = ActionButtonLink,
   ...attrs
 }) => {
   if (isSubmit) attrs.type = 'submit'
   if (isButton) attrs.type = 'button'
   return link ? (
-    <Link
-      {...attrs}
-      href={href}
-      target={target}
-      rel={target === '_blank' ? 'noopener' : undefined}
-    >
+    <Link {...attrs} href={href} target={target} rel={target === '_blank' ? 'noopener' : undefined}>
       {children}
     </Link>
   ) : (
@@ -62,11 +59,6 @@ ActionButtonWrapper.propTypes = {
    * Target to be added on the HTML link
    */
   target: PropTypes.string
-}
-
-ActionButtonWrapper.defaultProps = {
-  // eslint-disable-next-line react/prop-types
-  linkFactory: ({children, ...rest} = {}) => <a {...rest}>{children}</a>
 }
 
 export default ActionButtonWrapper

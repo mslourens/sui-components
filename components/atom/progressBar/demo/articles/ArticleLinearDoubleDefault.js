@@ -14,16 +14,13 @@ import {
   RadioButtonGroup
 } from '@s-ui/documentation-library'
 
-import AtomProgressBar, {
-  atomProgressBarSizes,
-  atomProgressBarStatus,
-  atomProgressBarTypes
-} from '../../src/index.js'
+import AtomProgressBar, {atomProgressBarSizes, atomProgressBarStatus, atomProgressBarTypes} from '../../src/index.js'
 import {getShuffledValue} from '../settings.js'
 
 const ArticleLinearDoubleDefault = ({className}) => {
   const [value, setValue] = useState(50)
   const [isAnimated, setIsAnimated] = useState(true)
+  const [isBorderless, setIsBorderless] = useState(false)
   const [hideIndicator, setHideIndicator] = useState()
   const [indicatorBottom, setIndicatorBottom] = useState()
   const [indicatorTotal, setIndicatorTotal] = useState()
@@ -52,10 +49,7 @@ const ArticleLinearDoubleDefault = ({className}) => {
         </Cell>
         <Cell span={2}>
           <Button onClick={() => setValue(getShuffledValue())}>
-            <AntDesignIcon
-              icon="AiOutlineRetweet"
-              style={{fill: 'currentColor'}}
-            />
+            <AntDesignIcon icon="AiOutlineRetweet" style={{fill: 'currentColor'}} />
           </Button>
         </Cell>
         <Cell>
@@ -108,32 +102,22 @@ const ArticleLinearDoubleDefault = ({className}) => {
           <Label>size</Label>
         </Cell>
         <Cell>
-          <RadioButtonGroup
-            value={status}
-            onChange={(event, value) => setStatus(value)}
-          >
-            {[
-              ['undefined', undefined],
-              ...Object.entries(atomProgressBarStatus)
-            ].map(([, atomProgressBarStatusValue]) => (
-              <RadioButton
-                key={`${atomProgressBarStatusValue}`}
-                label={`${atomProgressBarStatusValue}`}
-                value={atomProgressBarStatusValue}
-                checked={status === atomProgressBarStatusValue}
-              />
-            ))}
+          <RadioButtonGroup value={status} onChange={(event, value) => setStatus(value)}>
+            {[['undefined', undefined], ...Object.entries(atomProgressBarStatus)].map(
+              ([, atomProgressBarStatusValue]) => (
+                <RadioButton
+                  key={`${atomProgressBarStatusValue}`}
+                  label={`${atomProgressBarStatusValue}`}
+                  value={atomProgressBarStatusValue}
+                  checked={status === atomProgressBarStatusValue}
+                />
+              )
+            )}
           </RadioButtonGroup>
         </Cell>
         <Cell>
-          <RadioButtonGroup
-            value={size}
-            onChange={(event, value) => setSize(value)}
-          >
-            {[
-              ['undefined', undefined],
-              ...Object.entries(atomProgressBarSizes)
-            ].map(([, atomProgressBarSizeValue]) => (
+          <RadioButtonGroup value={size} onChange={(event, value) => setSize(value)}>
+            {[['undefined', undefined], ...Object.entries(atomProgressBarSizes)].map(([, atomProgressBarSizeValue]) => (
               <RadioButton
                 key={`${atomProgressBarSizeValue}`}
                 label={`${atomProgressBarSizeValue}`}
@@ -144,6 +128,18 @@ const ArticleLinearDoubleDefault = ({className}) => {
           </RadioButtonGroup>
         </Cell>
         <Cell span={2}>
+          <Label>isBorderless</Label>
+        </Cell>
+        <Cell span={2}>
+          <RadioButton
+            onClick={() => {
+              setIsBorderless(!isBorderless)
+            }}
+            label={isBorderless ? 'true' : 'false'}
+            checked={isBorderless}
+          />
+        </Cell>
+        <Cell span={2}>
           <Label>result</Label>
         </Cell>
         <Cell span={2}>
@@ -151,6 +147,7 @@ const ArticleLinearDoubleDefault = ({className}) => {
             type={atomProgressBarTypes.LINE_DOUBLE_BAR}
             percentage={[value / 2, value]}
             isAnimatedOnChange={isAnimated}
+            isBorderless={isBorderless}
             status={status}
             size={size}
             hideIndicator={hideIndicator}

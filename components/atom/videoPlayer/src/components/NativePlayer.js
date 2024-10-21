@@ -14,6 +14,7 @@ const NativePlayer = forwardRef(
       autoPlay,
       controls,
       muted,
+      loop,
       onLoadVideo,
       playsInline,
       timeLimit,
@@ -62,10 +63,9 @@ const NativePlayer = forwardRef(
           controls={controls}
           onLoadedMetadata={onLoadedMetadata}
           playsInline={playsInline}
+          loop={loop}
         >
-          {videoSrc !== null && (
-            <source data-testid="videosrc" src={videoSrc} />
-          )}
+          {videoSrc !== null && <source data-testid="videosrc" src={videoSrc} />}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -82,7 +82,8 @@ NativePlayer.propTypes = {
   timeLimit: PropTypes.number,
   timeOffset: PropTypes.number,
   src: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  title: PropTypes.string
+  title: PropTypes.string,
+  loop: PropTypes.bool
 }
 
 export default NativePlayer

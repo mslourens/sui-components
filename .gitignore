@@ -1,5 +1,6 @@
 # project
 public/
+.sui/
 
 # environment
 .env
@@ -23,10 +24,9 @@ lib/
 */**/lib/
 npm-debug.log
 components/**/**/themes
-.npmrc
-package-lock.json
 */**/package-lock.json
 
 # coverage
 coverage/
 .coverage/
+.vim

@@ -30,6 +30,7 @@ describe(json.name, () => {
       'moleculeDropdownListDesigns',
       'moleculeDropdownListSizes',
       'moleculeDropdownListSelectHandler',
+      'moleculeDropdownListPositions',
       'default'
     ]
 
@@ -38,6 +39,7 @@ describe(json.name, () => {
       moleculeDropdownListDesigns,
       moleculeDropdownListSizes,
       moleculeDropdownListSelectHandler,
+      moleculeDropdownListPositions,
       default: MoleculeDropDownList,
       ...others
     } = library
@@ -79,8 +81,7 @@ describe(json.name, () => {
       const props = {
         className: 'extended-classNames'
       }
-      const findSentence = str => string =>
-        string.match(new RegExp(`S*${str}S*`))
+      const findSentence = str => string => string.match(new RegExp(`S*${str}S*`))
 
       // When
       const {container} = setup(props)
@@ -162,10 +163,7 @@ describe(json.name, () => {
                 {Array(5)
                   .fill()
                   .map((value, index) => (
-                    <MoleculeDropdownOption
-                      value={index.toString()}
-                      key={index}
-                    >
+                    <MoleculeDropdownOption value={index.toString()} key={index}>
                       {index}
                     </MoleculeDropdownOption>
                   ))}
@@ -190,10 +188,7 @@ describe(json.name, () => {
                 {Array(5)
                   .fill()
                   .map((value, index) => (
-                    <MoleculeDropdownOption
-                      value={index.toString()}
-                      key={index}
-                    >
+                    <MoleculeDropdownOption value={index.toString()} key={index}>
                       {index}
                     </MoleculeDropdownOption>
                   ))}
@@ -219,10 +214,7 @@ describe(json.name, () => {
                 {Array(5)
                   .fill()
                   .map((value, index) => (
-                    <MoleculeDropdownOption
-                      value={index.toString()}
-                      key={index}
-                    >
+                    <MoleculeDropdownOption value={index.toString()} key={index}>
                       {index}
                     </MoleculeDropdownOption>
                   ))}
@@ -246,10 +238,7 @@ describe(json.name, () => {
                 {Array(5)
                   .fill()
                   .map((value, index) => (
-                    <MoleculeDropdownOption
-                      value={index.toString()}
-                      key={index}
-                    >
+                    <MoleculeDropdownOption value={index.toString()} key={index}>
                       {index}
                     </MoleculeDropdownOption>
                   ))}
@@ -275,10 +264,7 @@ describe(json.name, () => {
                 {Array(5)
                   .fill()
                   .map((value, index) => (
-                    <MoleculeDropdownOption
-                      value={index.toString()}
-                      key={index}
-                    >
+                    <MoleculeDropdownOption value={index.toString()} key={index}>
                       {index}
                     </MoleculeDropdownOption>
                   ))}
@@ -434,11 +420,7 @@ describe(json.name, () => {
         // Then
         expect(response).to.equal(undefined)
         sinon.assert.callCount(spy, 1)
-        sinon.assert.calledWith(
-          spy,
-          undefined,
-          sinon.match({value: newValue, selected})
-        )
+        sinon.assert.calledWith(spy, undefined, sinon.match({value: newValue, selected}))
       })
 
       it('if the newValue selected does not exist in the selected state it must remove that value', () => {
@@ -474,11 +456,7 @@ describe(json.name, () => {
         // Then
         expect(response).to.equal(undefined)
         sinon.assert.callCount(spy, 1)
-        sinon.assert.calledWith(
-          spy,
-          undefined,
-          sinon.match({value: undefined, selected})
-        )
+        sinon.assert.calledWith(spy, undefined, sinon.match({value: undefined, selected}))
       })
     })
 
@@ -497,8 +475,7 @@ describe(json.name, () => {
         }
 
         // When
-        const eventHandler =
-          moleculeDropdownListSelectHandler.multiple(expected)
+        const eventHandler = moleculeDropdownListSelectHandler.multiple(expected)
 
         // Then
         expect(eventHandler).to.be.a('function')
@@ -517,11 +494,7 @@ describe(json.name, () => {
         // Then
         expect(response).to.equal(undefined)
         sinon.assert.callCount(spy, 1)
-        sinon.assert.calledWith(
-          spy,
-          undefined,
-          sinon.match({value: [...value, newValue], selected})
-        )
+        sinon.assert.calledWith(spy, undefined, sinon.match({value: [...value, newValue], selected}))
       })
 
       it('if the newValue selected does not exist in the selected state it must remove that value', () => {
@@ -538,8 +511,7 @@ describe(json.name, () => {
         }
 
         // When
-        const eventHandler =
-          moleculeDropdownListSelectHandler.multiple(expected)
+        const eventHandler = moleculeDropdownListSelectHandler.multiple(expected)
 
         // Then
         expect(eventHandler).to.be.a('function')
@@ -558,11 +530,7 @@ describe(json.name, () => {
         // Then
         expect(response).to.equal(undefined)
         sinon.assert.callCount(spy, 1)
-        sinon.assert.calledWith(
-          spy,
-          undefined,
-          sinon.match({value: value.filter(val => val !== newValue), selected})
-        )
+        sinon.assert.calledWith(spy, undefined, sinon.match({value: value.filter(val => val !== newValue), selected}))
       })
 
       it('if the newValue selected does not exist in the selected state it must remove that value and maintain the undefined selected state', () => {
@@ -579,8 +547,7 @@ describe(json.name, () => {
         }
 
         // When
-        const eventHandler =
-          moleculeDropdownListSelectHandler.multiple(expected)
+        const eventHandler = moleculeDropdownListSelectHandler.multiple(expected)
 
         // Then
         expect(eventHandler).to.be.a('function')
@@ -623,8 +590,7 @@ describe(json.name, () => {
         }
 
         // When
-        const eventHandler =
-          moleculeDropdownListSelectHandler.multiple(expected)
+        const eventHandler = moleculeDropdownListSelectHandler.multiple(expected)
 
         // Then
         expect(eventHandler).to.be.a('function')

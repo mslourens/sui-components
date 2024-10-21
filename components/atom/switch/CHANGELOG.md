@@ -1,5 +1,36 @@
 # CHANGELOG
 
+# 1.34.0 (2024-05-06)
+
+
+
+# 1.33.0 (2024-02-14)
+
+
+### Features
+
+* add new css variable for disabled atom switch ([9e7e4fc](https://github.com/SUI-Components/sui-components/commit/9e7e4fcd50366de83693da19ee456b03626c2e54))
+
+
+
+# 1.32.0 (2024-02-06)
+
+
+### Features
+
+* Add a scss token to customize switch focus border ([f1c37b4](https://github.com/SUI-Components/sui-components/commit/f1c37b49384f445825416c39fa209e97a9099e61))
+
+
+
+# 1.31.0 (2024-02-06)
+
+
+### Features
+
+* Add isLoading prop to atom switch ([d3f905b](https://github.com/SUI-Components/sui-components/commit/d3f905b6188bca207adb1f644faa10b2ab3427f8))
+
+
+
 # 1.30.0 (2023-05-15)
 
 
@@ -354,6 +385,3 @@
 * **atom/switch:** refactor class functions to instance functions ([282ec55](https://github.com/SUI-Components/sui-components/commit/282ec55316058958cc8f06f57110750cb4e0ba16))
 * **atom/switch:** remove some css rules that are not requried' ([378c71c](https://github.com/SUI-Components/sui-components/commit/378c71c12ff407bd40ca8097229f483bfbddb825))
 * **atom/switch:** switch component first version, with demo and all features included on paper ([58fc898](https://github.com/SUI-Components/sui-components/commit/58fc898dd85cb7c61630c01f20c20fa39869def5))
-
-
-

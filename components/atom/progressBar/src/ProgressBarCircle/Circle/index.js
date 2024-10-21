@@ -10,7 +10,7 @@ const Circle = ({
   modifier,
   percentage,
   size,
-  withAnimation,
+  withAnimation = true,
   mainStrokeWidth,
   progressStrokeWidth,
   strokeLineCap
@@ -46,9 +46,7 @@ const Circle = ({
     const style = {
       strokeDasharray: `${len}px ${len}px`,
       strokeDashoffset: `${((100 - percentage) / 100) * len}px`,
-      transition: withAnimation
-        ? `stroke-dashoffset ${transitionTime}s ease 0s, stroke ${transitionTime}s ease`
-        : ''
+      transition: withAnimation ? `stroke-dashoffset ${transitionTime}s ease 0s, stroke ${transitionTime}s ease` : ''
     }
     return {
       d,
@@ -104,10 +102,6 @@ Circle.propTypes = {
   strokeLineCap: PropTypes.string,
   /** size of the circle [small, large]  */
   size: PropTypes.oneOf(Object.values(SIZES)).isRequired
-}
-
-Circle.defaultProps = {
-  withAnimation: true
 }
 
 export default Circle

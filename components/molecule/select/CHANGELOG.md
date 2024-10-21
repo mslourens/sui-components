@@ -1,5 +1,47 @@
 # CHANGELOG
 
+# 1.73.0 (2024-06-13)
+
+
+### Bug Fixes
+
+* combination between input and dropdown-list sizes ([2bf612a](https://github.com/SUI-Components/sui-components/commit/2bf612ac5fbcf9ce999032608749c4919ab554d7))
+
+
+
+# 1.72.0 (2024-05-08)
+
+
+### Bug Fixes
+
+* add keysselection ([06ec35b](https://github.com/SUI-Components/sui-components/commit/06ec35b1e25f9d54e4728afc5f3d92a77f1521c0))
+
+
+
+# 1.71.0 (2024-05-06)
+
+
+
+# 1.70.0 (2024-04-02)
+
+
+### Bug Fixes
+
+* Rollback about event listeners logic ([bfecb98](https://github.com/SUI-Components/sui-components/commit/bfecb98f2d514b28cd772e4a9ae17f6efde5ef86))
+
+
+
+# 1.69.0 (2024-03-11)
+
+
+### Features
+
+* Add isOpenState as a dependency ([3348c66](https://github.com/SUI-Components/sui-components/commit/3348c66f554db4a1d6207637f48820814a3e942e))
+* Avoid addEventListener unconditionally at select ([7e66de8](https://github.com/SUI-Components/sui-components/commit/7e66de83e81d2c1b7af5b0ef1dc1b1e3831e8c77))
+* Lint file ([2505bda](https://github.com/SUI-Components/sui-components/commit/2505bda927959979efda26e5d19de8d58671710f))
+
+
+
 # 1.68.0 (2023-07-20)
 
 
@@ -692,6 +734,3 @@
 * **molecule/select:** use of withOpenToggle hoc ([8991cfa](https://github.com/SUI-Components/sui-components/commit/8991cfa39a849476eb830f5306032218f8504643))
 * **molecule/select:** uX imporvements ([8e4364e](https://github.com/SUI-Components/sui-components/commit/8e4364ea7ff2d414646b2b9c8353b89f5967b77f))
 * **molecule/select:** withToggle fixed isOpen ([93f1f12](https://github.com/SUI-Components/sui-components/commit/93f1f127e8450835b109358d6ece2aeab7e50530))
-
-
-

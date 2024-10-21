@@ -4,14 +4,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 
 import ActionableTag from './Actionable/index.js'
-import {
-  DESIGNS,
-  getActionableProps,
-  getStandardProps,
-  ICON_PLACEMENTS,
-  LINK_TYPES,
-  SIZES
-} from './constants.js'
+import {DESIGNS, getActionableProps, getStandardProps, ICON_PLACEMENTS, LINK_TYPES, SIZES} from './constants.js'
 import StandardTag from './Standard.js'
 
 const AtomTag = forwardRef(
@@ -36,8 +29,8 @@ const AtomTag = forwardRef(
 
     const classNames = cx(
       'sui-AtomTag',
-      `sui-AtomTag-${size}`,
-      design && `sui-AtomTag--${design}`,
+      `sui-AtomTag--size-${size}`,
+      design && `sui-AtomTag--design-${design}`,
       icon && 'sui-AtomTag-hasIcon',
       responsive && 'sui-AtomTag--responsive',
       type && `sui-AtomTag--${type}`,

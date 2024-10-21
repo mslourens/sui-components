@@ -82,8 +82,7 @@ describe(json.name, () => {
       const props = {
         className: 'extended-classNames'
       }
-      const findSentence = str => string =>
-        string.match(new RegExp(`S*${str}S*`))
+      const findSentence = str => string => string.match(new RegExp(`S*${str}S*`))
 
       // When
       const {container} = setup(props)
@@ -198,6 +197,33 @@ describe(json.name, () => {
         expect(Object.keys(actual).includes(expectedKey)).to.be.true
         expect(actual[expectedKey]).to.equal(expectedValue)
       })
+    })
+  })
+
+  describe('moleculeDrawerPageScrollable', () => {
+    it('should set the body overflow style to hidden when is opened and overflow to auto when is not opened', () => {
+      // Given
+      const props = {
+        isOpen: true,
+        isPageScrollable: false
+      }
+
+      // When
+      const {rerender} = render(<Component {...props} />)
+      const overflowStyleHidden = document.body.style.overflow
+
+      // Then
+      expect(overflowStyleHidden).to.be.equal('hidden')
+
+      // When
+      const newProps = {
+        isOpen: false
+      }
+      rerender(<Component {...newProps} />)
+      const overflowStyleAuto = document.body.style.overflow
+
+      // Then
+      expect(overflowStyleAuto).to.be.equal('auto')
     })
   })
 })

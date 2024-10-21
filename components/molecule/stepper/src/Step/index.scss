@@ -1,6 +1,7 @@
 @use 'sass:math';
 
 $base-class-step: #{$base-class}Step;
+$base-class-step-label: #{$base-class-step}Label;
 
 #{$base-class-step} {
   box-sizing: content-box;
@@ -16,13 +17,13 @@ $base-class-step: #{$base-class}Step;
       color: $c-gray-light;
     }
   }
-  #{$base-class-step}Label {
+  #{$base-class-step-label} {
     color: $c-gray-dark-2;
   }
 
   &--design {
     &-default {
-      #{$base-class-step}Label {
+      #{$base-class-step-label} {
         width: 100px;
         display: flex;
         align-items: center;
@@ -36,6 +37,7 @@ $base-class-step: #{$base-class}Step;
         display: flex;
         align-items: center;
         justify-content: center;
+        border: $bd-stepper-icon;
       }
       + #{$base-class-step}Connector {
         flex-shrink: 0;
@@ -66,16 +68,22 @@ $base-class-step: #{$base-class}Step;
       &#{$base-class-step}--alignment {
         &-vertical {
           max-height: 6 * $sz-base;
-          #{$base-class-step}Label {
+          #{$base-class-step-label} {
             text-align: start;
             justify-content: flex-start;
+            &:not(#{$base-class-step-label}--visible) {
+              display: none;
+            }
           }
         }
         &-horizontal {
           max-width: 6 * $sz-base;
-          #{$base-class-step}Label {
+          #{$base-class-step-label} {
             text-align: center;
             justify-content: center;
+            &:not(#{$base-class-step-label}--visible) {
+              display: none;
+            }
           }
         }
       }
@@ -85,6 +93,7 @@ $base-class-step: #{$base-class}Step;
       flex-shrink: 0;
       #{$base-class-step}Icon {
         background-color: $c-stepper-icon;
+        border: $bd-stepper-icon;
         border-radius: math.div($sz-base, 2);
       }
       + #{$base-class-step}Connector {
@@ -110,14 +119,19 @@ $base-class-step: #{$base-class}Step;
             width: $sz-base;
             height: 100%;
           }
-          #{$base-class-step}Label {
+          #{$base-class-step-label} {
             transform: rotate(180deg);
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            max-height: $w-stepper-label;
+            height: max-content;
             width: calc(math.div($w-stepper-label, 2) - $sz-base * 2);
-            display: flex;
+            display: none;
             align-items: flex-end;
+            &#{$base-class-step-label}--step-current-true {
+              &#{$base-class-step-label}--visible {
+                display: flex;
+              }
+            }
           }
         }
         &-horizontal {
@@ -125,11 +139,16 @@ $base-class-step: #{$base-class}Step;
           flex-direction: column-reverse;
           align-items: flex-start;
           gap: $sz-base;
-          #{$base-class-step}Label {
-            height: calc(math.div($w-stepper-label, 2) - $sz-base * 2);
-            max-width: $w-stepper-label;
-            display: flex;
+          #{$base-class-step-label} {
             align-items: flex-end;
+            display: none;
+            height: calc(math.div($w-stepper-label, 2) - $sz-base * 2);
+            width: max-content;
+            &#{$base-class-step-label}--step-current-true {
+              &#{$base-class-step-label}--visible {
+                display: flex;
+              }
+            }
           }
           #{$base-class-step}Icon {
             width: 100%;
@@ -152,6 +171,7 @@ $base-class-step: #{$base-class}Step;
       flex-shrink: 0;
       #{$base-class-step}Icon {
         background-color: $c-stepper-icon;
+        border: $bd-stepper-icon;
         border-radius: math.div($sz-base, 2);
       }
       + #{$base-class-step}Connector {
@@ -169,7 +189,7 @@ $base-class-step: #{$base-class}Step;
         #{$base-class-step}Icon {
           background-color: $c-stepper-visited;
         }
-        #{$base-class-step}Label {
+        #{$base-class-step-label} {
           color: $c-stepper-visited;
         }
       }
@@ -182,23 +202,29 @@ $base-class-step: #{$base-class}Step;
             width: $sz-base;
             height: 100%;
           }
-          #{$base-class-step}Label {
+          #{$base-class-step-label} {
             transform: rotate(180deg);
             writing-mode: vertical-rl;
             text-orientation: mixed;
             width: calc(math.div($w-stepper-label, 2) - $sz-base * 2);
             display: flex;
             align-items: flex-end;
+            &:not(#{$base-class-step-label}--visible) {
+              display: none;
+            }
           }
         }
         &-horizontal {
           width: math.div($w-stepper-label, 2);
           flex-direction: column-reverse;
           gap: $sz-base;
-          #{$base-class-step}Label {
+          #{$base-class-step-label} {
             height: calc(math.div($w-stepper-label, 2) - $sz-base * 2);
             display: flex;
             align-items: flex-end;
+            &:not(#{$base-class-step-label}--visible) {
+              display: none;
+            }
           }
           #{$base-class-step}Icon {
             width: 100%;

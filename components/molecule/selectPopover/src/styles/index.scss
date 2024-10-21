@@ -25,6 +25,22 @@ $base-class: '.sui-MoleculeSelectPopover ';
     padding: $p-m $p-l;
     user-select: none;
 
+    &--squared {
+      border-radius: $bdrs-select-popover-squared;
+    }
+
+    &--rounded {
+      border-radius: $bdrs-select-popover-rounded;
+    }
+
+    &--circular {
+      border-radius: $bdrs-select-popover-circular;
+    }
+
+    &--withRemoveOption {
+      padding: $p-select-popover-select-with-remove;
+    }
+
     &Text {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -33,6 +49,10 @@ $base-class: '.sui-MoleculeSelectPopover ';
 
     &Icon {
       margin-left: $m-m;
+
+      &--withRemoveOption {
+        display: flex;
+      }
     }
 
     &:hover,

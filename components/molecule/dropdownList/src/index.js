@@ -12,6 +12,7 @@ import {
   DEBOUNCE_TIME,
   DESIGNS,
   moleculeDropdownListSelectHandler,
+  POSITIONS,
   SIZES
 } from './config.js'
 import ExtendedChildren from './ExtendedChildren.js'
@@ -21,6 +22,7 @@ const MoleculeDropdownList = forwardRef(
     {
       children,
       onSelect,
+      position = POSITIONS.BOTTOM,
       alwaysRender = true,
       design = DESIGNS.SOLID,
       size = SIZES.SMALL,
@@ -40,6 +42,7 @@ const MoleculeDropdownList = forwardRef(
 
     const classNames = cx(
       BASE_CLASS,
+      `${BASE_CLASS}--position-${position}`,
       `${BASE_CLASS}--design-${design}`,
       `${BASE_CLASS}--${size}`,
       {
@@ -64,21 +67,20 @@ const MoleculeDropdownList = forwardRef(
       const index = getFocusedOptionIndex(options)
       if (key === 'ArrowDown' || key === 'ArrowUp') {
         if (index >= 0 || index <= numOptions) {
-          if (key === 'ArrowDown' && index < numOptions - 1)
-            options[index + 1].focus()
-          if (key === 'ArrowUp' && index > 0) options[index - 1].focus()
+          if (position === POSITIONS.TOP) {
+            if (key === 'ArrowDown' && index > 0) options[index - 1].focus()
+            if (key === 'ArrowUp' && index < numOptions - 1) options[index + 1].focus()
+          } else {
+            if (key === 'ArrowDown' && index < numOptions - 1) options[index + 1].focus()
+            if (key === 'ArrowUp' && index > 0) options[index - 1].focus()
+          }
         }
       } else {
         setTypedWord(value => value + key.toLowerCase())
         const word = typedWord + key.toLowerCase()
         const optionToFocusOn =
-          Array.from(options).find(
-            (option, i) =>
-              i >= index && option.innerText.toLowerCase().indexOf(word) === 0
-          ) ||
-          Array.from(options).find(
-            option => option.innerText.toLowerCase().indexOf(word) === 0
-          )
+          Array.from(options).find((option, i) => i >= index && option.innerText.toLowerCase().indexOf(word) === 0) ||
+          Array.from(options).find(option => option.innerText.toLowerCase().indexOf(word) === 0)
         optionToFocusOn && optionToFocusOn.focus()
       }
       typeof onKeyDown === 'function' && onKeyDown(event)
@@ -94,23 +96,11 @@ const MoleculeDropdownList = forwardRef(
     if (!visible && !alwaysRender) return null
 
     return (
-      <ul
-        ref={ref}
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-        className={classNames}
-        role="listbox"
-        aria-label={ariaLabel}
-      >
+      <ul ref={ref} tabIndex={0} onKeyDown={handleKeyDown} className={classNames} role="listbox" aria-label={ariaLabel}>
         {Children.toArray(children)
           .filter(Boolean)
           .map((child, index) => (
-            <ExtendedChildren
-              key={index}
-              value={value}
-              onSelect={onSelect}
-              {...props}
-            >
+            <ExtendedChildren key={index} value={value} onSelect={onSelect} {...props}>
               {child}
             </ExtendedChildren>
           ))}
@@ -143,6 +133,9 @@ MoleculeDropdownList.propTypes = {
   /** size (height) of the list */
   size: PropTypes.oneOf(Object.values(SIZES)),
 
+  /** position of the list (top, bottom) default bottom */
+  position: PropTypes.oneOf(Object.values(POSITIONS)),
+
   /** selected value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 
@@ -156,4 +149,5 @@ MoleculeDropdownList.propTypes = {
 export default MoleculeDropdownList
 export {DESIGNS as moleculeDropdownListDesigns}
 export {SIZES as moleculeDropdownListSizes}
+export {POSITIONS as moleculeDropdownListPositions}
 export {moleculeDropdownListSelectHandler}

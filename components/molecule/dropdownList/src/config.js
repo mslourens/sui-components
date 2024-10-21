@@ -13,16 +13,18 @@ export const SIZES = {
   LARGE: 'large'
 }
 
+export const POSITIONS = {
+  TOP: 'top',
+  BOTTOM: 'bottom'
+}
+
 export const moleculeDropdownListSelectHandler = {
   single:
     ({value, onSelect}) =>
     (event, {value: valueHandled, selected: selectedHandled, ...args}) => {
       typeof onSelect === 'function' &&
         onSelect(event, {
-          value:
-            selectedHandled || value !== valueHandled
-              ? valueHandled
-              : undefined,
+          value: selectedHandled || value !== valueHandled ? valueHandled : undefined,
           selected: selectedHandled,
           ...args
         })

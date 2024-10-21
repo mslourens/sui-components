@@ -1,5 +1,32 @@
 # CHANGELOG
 
+# 5.37.0 (2024-09-09)
+
+
+### Features
+
+* Enable full input features on Mask input type ([a02e5bc](https://github.com/SUI-Components/sui-components/commit/a02e5bc4f19e4b22f2eb422521cfe47a02f26b1b))
+
+
+
+# 5.36.0 (2023-11-17)
+
+
+### Features
+
+* **components/atom/input:** Add padding right to input password ([a0c8949](https://github.com/SUI-Components/sui-components/commit/a0c8949702885b203e24a59f96c2beb42a2d2b59))
+
+
+
+# 5.35.0 (2023-11-08)
+
+
+### Features
+
+* **components/atom/input:** Add onPaste & onCopy cb to atom input ([d149d5f](https://github.com/SUI-Components/sui-components/commit/d149d5f5d4f6e7f8e7e419ea20df52cb987353bc))
+
+
+
 # 5.34.0 (2023-09-28)
 
 
@@ -850,6 +877,3 @@
 * **atom/input:** propTypes ([32f7203](https://github.com/SUI-Components/sui-components/commit/32f7203429bd4ec723125895ba4baa286680f27c))
 * **atom/input:** rename from FormInput to AtomInput ([6d1efec](https://github.com/SUI-Components/sui-components/commit/6d1efece1c2e7000c9c3bb1ff59d5baf7106f4e5))
 * **molecule/inputField:** renaming from AtomInput to MoleculeInputField ([60d43aa](https://github.com/SUI-Components/sui-components/commit/60d43aa3dfa1dcd7bcdaa9847d696347f88ef88c))
-
-
-

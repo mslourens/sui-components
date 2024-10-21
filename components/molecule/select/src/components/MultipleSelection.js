@@ -19,7 +19,7 @@ const MoleculeSelectFieldMultiSelection = props => {
     iconArrowDown,
     iconCloseTag,
     refMoleculeSelect,
-    value: values,
+    value: values = [],
     placeholder,
     keysSelection,
     id,
@@ -47,11 +47,9 @@ const MoleculeSelectFieldMultiSelection = props => {
       if (ev.key !== undefined && !isKeySelection) onToggle(ev, {isOpen: false})
     }
 
-    const isValueSelectedAlreadySelected = () =>
-      values.includes(valueOptionSelected)
+    const isValueSelectedAlreadySelected = () => values.includes(valueOptionSelected)
 
-    const removeFromValues = () =>
-      values.filter(value => value !== valueOptionSelected)
+    const removeFromValues = () => values.filter(value => value !== valueOptionSelected)
 
     const addToValues = () => [...values, valueOptionSelected]
 
@@ -115,11 +113,7 @@ const MoleculeSelectFieldMultiSelection = props => {
         maxTags={maxTags}
         value=""
       >
-        <MoleculeInputTags
-          responsive={responsive}
-          inputMode={inputTypes.NONE}
-          tagSize={tagSize}
-        />
+        <MoleculeInputTags responsive={responsive} inputMode={inputTypes.NONE} tagSize={tagSize} />
       </MoleculeInputSelect>
       {hasSearch && <Search />}
       <MoleculeDropdownList
@@ -136,11 +130,6 @@ const MoleculeSelectFieldMultiSelection = props => {
   )
 }
 
-MoleculeSelectFieldMultiSelection.displayName =
-  'MoleculeSelectFieldMultiSelection'
-
-MoleculeSelectFieldMultiSelection.defaultProps = {
-  value: []
-}
+MoleculeSelectFieldMultiSelection.displayName = 'MoleculeSelectFieldMultiSelection'
 
 export default MoleculeSelectFieldMultiSelection

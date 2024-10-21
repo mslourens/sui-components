@@ -18,17 +18,14 @@ import {
   THUMB_SORTABLE_CLASS_NAME
 } from '../config.js'
 import {callbackUploadPhotoHandler} from '../fileTools.js'
-import {
-  base64ToBlob,
-  cropAndRotateImage,
-  formatToBase64
-} from '../photoTools.js'
+import {base64ToBlob, cropAndRotateImage, formatToBase64} from '../photoTools.js'
 import SkeletonCard from '../SkeletonCard/index.js'
 import ThumbCard from '../ThumbCard/index.js'
 import {PREVIEW_CARD_CLASS_NAME} from './config.js'
 
 const PhotosPreview = ({
   _callbackPhotosUploaded,
+  _onSortPhotoStart,
   _scrollToBottom,
   addMorePhotosIcon,
   addPhotoTextSkeleton,
@@ -55,6 +52,10 @@ const PhotosPreview = ({
     _callbackPhotosUploaded(files, {action: ACTIONS.SORT, data: event})
   }
 
+  const _onSortStart = event => {
+    _onSortPhotoStart(event)
+  }
+
   const _deleteItem = index => {
     const list = [...files]
     list.splice(index, 1)
@@ -73,11 +74,9 @@ const PhotosPreview = ({
     const list = [...files]
 
     if (rotationDirection === ROTATION_DIRECTION.clockwise) {
-      list[index].rotation =
-        list[index].rotation === 270 ? 0 : list[index].rotation + 90
+      list[index].rotation = list[index].rotation === 270 ? 0 : list[index].rotation + 90
     } else {
-      list[index].rotation =
-        list[index].rotation === 0 ? 270 : list[index].rotation - 90
+      list[index].rotation = list[index].rotation === 0 ? 270 : list[index].rotation - 90
     }
 
     cropAndRotateImage({
@@ -94,11 +93,7 @@ const PhotosPreview = ({
         list[index].blob = blob
         list[index].isModified = true
 
-        const {url} = await callbackUploadPhotoHandler(
-          blob,
-          callbackUploadPhoto,
-          list[index].url
-        )
+        const {url} = await callbackUploadPhotoHandler(blob, callbackUploadPhoto, list[index].url)
         list[index].url = url
 
         setFiles(list)
@@ -121,39 +116,37 @@ const PhotosPreview = ({
     formatToBase64({
       item: photoToRetry,
       options: defaultFormatToBase64Options
-    }).then(
-      ({blob, croppedBase64, url, hasErrors = DEFAULT_HAS_ERRORS_STATUS}) => {
-        if (hasErrors) {
-          setNotificationError({
-            isError: true,
-            text: errorInitialPhotoDownloadErrorText
-          })
-          _scrollToBottom()
-        } else {
-          setNotificationError(DEFAULT_NOTIFICATION_ERROR)
-        }
-        _files[index] = {
-          blob,
-          url,
-          hasErrors,
-          originalBase64: croppedBase64,
-          preview: croppedBase64,
-          rotation: DEFAULT_IMAGE_ROTATION_DEGREES,
-          isNew: false,
-          isModified: false
-        }
-
-        setFiles([..._files])
-        _callbackPhotosUploaded(_files, {
-          ACTION: ACTIONS.RETRY_UPLOAD,
-          data: {
-            itemIndex: index,
-            item: files[index]
-          }
+    }).then(({blob, croppedBase64, url, hasErrors = DEFAULT_HAS_ERRORS_STATUS}) => {
+      if (hasErrors) {
+        setNotificationError({
+          isError: true,
+          text: errorInitialPhotoDownloadErrorText
         })
-        setIsLoading(false)
+        _scrollToBottom()
+      } else {
+        setNotificationError(DEFAULT_NOTIFICATION_ERROR)
       }
-    )
+      _files[index] = {
+        blob,
+        url,
+        hasErrors,
+        originalBase64: croppedBase64,
+        preview: croppedBase64,
+        rotation: DEFAULT_IMAGE_ROTATION_DEGREES,
+        isNew: false,
+        isModified: false
+      }
+
+      setFiles([..._files])
+      _callbackPhotosUploaded(_files, {
+        ACTION: ACTIONS.RETRY_UPLOAD,
+        data: {
+          itemIndex: index,
+          item: files[index]
+        }
+      })
+      setIsLoading(false)
+    })
   }
 
   const thumbClassName = cx(THUMB_CLASS_NAME, {
@@ -163,11 +156,7 @@ const PhotosPreview = ({
   const thumbCards = files =>
     files.map((file, index) => {
       return (
-        <li
-          className={thumbClassName}
-          key={`${file?.preview}${index}`}
-          onClick={e => e.stopPropagation()}
-        >
+        <li className={thumbClassName} key={`${file?.preview}${index}`} onClick={e => e.stopPropagation()}>
           {file && (
             <ThumbCard
               iconSize={thumbIconSize}
@@ -190,8 +179,7 @@ const PhotosPreview = ({
     })
 
   const previewCardClass = cx(PREVIEW_CARD_CLASS_NAME, {
-    [`${PREVIEW_CARD_CLASS_NAME}--ratioDisabled`]:
-      outputImageAspectRatioDisabled
+    [`${PREVIEW_CARD_CLASS_NAME}--ratioDisabled`]: outputImageAspectRatioDisabled
   })
 
   return (
@@ -206,17 +194,13 @@ const PhotosPreview = ({
       setList={setFiles}
       animation={200}
       draggable={`.${THUMB_SORTABLE_CLASS_NAME}`}
+      onStart={event => _onSortStart(event)}
       onEnd={event => _onSortEnd(event)}
       delay={dragDelay}
     >
       <>
         {thumbCards(files)}
-        {!isPhotoUploaderFully() && (
-          <SkeletonCard
-            icon={addMorePhotosIcon()}
-            text={addPhotoTextSkeleton}
-          />
-        )}
+        {!isPhotoUploaderFully() && <SkeletonCard icon={addMorePhotosIcon()} text={addPhotoTextSkeleton} />}
       </>
     </ReactSortable>
   )
@@ -226,6 +210,7 @@ PhotosPreview.displayName = 'PhotosPreview'
 
 PhotosPreview.propTypes = {
   _callbackPhotosUploaded: PropTypes.func.isRequired,
+  _onSortPhotoStart: PropTypes.func.isRequired,
   _scrollToBottom: PropTypes.func.isRequired,
   addMorePhotosIcon: PropTypes.node.isRequired,
   addPhotoTextSkeleton: PropTypes.string.isRequired,

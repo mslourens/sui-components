@@ -1,5 +1,19 @@
 # CHANGELOG
 
+# 2.14.0 (2024-07-17)
+
+
+### Features
+
+* Add demo for isBorderless ([2bc9a1e](https://github.com/SUI-Components/sui-components/commit/2bc9a1e740da8ac58f692a58456fd44602453ac6))
+* Add hideBorder property ([2efa49b](https://github.com/SUI-Components/sui-components/commit/2efa49bac3c5ff66b013e0d978853650b9757a32))
+
+
+
+# 2.13.0 (2024-05-06)
+
+
+
 # 2.12.0 (2023-09-15)
 
 
@@ -251,6 +265,3 @@
 * **atom/progressBar:** fixed linter sass ([be2c3f8](https://github.com/SUI-Components/sui-components/commit/be2c3f8545d19d9fa3d6cf875ccfc202d1c300fb))
 * **atom/progressBar:** imporovements after code review ([c15c256](https://github.com/SUI-Components/sui-components/commit/c15c256ed09a877e32175950973df35729f68a18))
 * **atom/progressBar:** linter sass ([c03ec31](https://github.com/SUI-Components/sui-components/commit/c03ec31fed28408a04318ab37a885a3b728e9442))
-
-
-

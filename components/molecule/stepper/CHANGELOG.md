@@ -1,5 +1,70 @@
 # CHANGELOG
 
+# 2.14.0 (2024-09-30)
+
+
+### Bug Fixes
+
+* stepper label style aligment ([98a52fb](https://github.com/SUI-Components/sui-components/commit/98a52fb0ca4b3ff27c2d92b81a7610191c0753fe))
+
+
+
+# 2.13.0 (2024-09-09)
+
+
+### Bug Fixes
+
+* compressed text addon ([56be25c](https://github.com/SUI-Components/sui-components/commit/56be25c19b8477d08f235a572c0d0627be3ebd1e))
+
+
+### Features
+
+* add label to each step a11y ([01e6794](https://github.com/SUI-Components/sui-components/commit/01e6794407a436198fd586b86bd7a569df76cb1a))
+
+
+
+# 2.12.0 (2024-02-06)
+
+
+### Features
+
+* adjust styles ([79851df](https://github.com/SUI-Components/sui-components/commit/79851df07d3070949f40e70fd219bcb7be0ae31e))
+* improve compressed style UX ([b0d50c5](https://github.com/SUI-Components/sui-components/commit/b0d50c53506e71c29ab5e78a47b0f7c2cb8f6089))
+* make it work for vertical alignment ([b43aeee](https://github.com/SUI-Components/sui-components/commit/b43aeee899be80ae392cb2fd499199bb4eec2455))
+* making compressed label on single line ([fc0c1a3](https://github.com/SUI-Components/sui-components/commit/fc0c1a3506145427813515407c54f0933d86b257))
+* restore way label is rendered ([3dd2a68](https://github.com/SUI-Components/sui-components/commit/3dd2a6881f95174430b366a81799a423e96c7853))
+* use max-content as width for label ([ba57144](https://github.com/SUI-Components/sui-components/commit/ba571447cef752c41801447d2dc04dcff47da259))
+
+
+
+# 2.11.0 (2024-01-30)
+
+
+### Features
+
+* **components/molecule/stepper:** add token for border stepper icon ([a708793](https://github.com/SUI-Components/sui-components/commit/a708793f90cc5a494fe7afb0f996558317b81c08))
+
+
+
+# 2.10.0 (2023-10-31)
+
+
+### Bug Fixes
+
+* **components/molecule/stepper:** minor ([33ebec0](https://github.com/SUI-Components/sui-components/commit/33ebec0d5dc7b0995e9f02f46083a731dcdc0a55))
+* **components/molecule/stepper:** minor corner case ([19e8bfa](https://github.com/SUI-Components/sui-components/commit/19e8bfa433736efd2e3f4c5c740670b801f928e7))
+
+
+
+# 2.9.0 (2023-10-24)
+
+
+### Bug Fixes
+
+* **components/molecule/stepper:** fix minimum error label wich brokes the page when translating it v ([08fc86e](https://github.com/SUI-Components/sui-components/commit/08fc86ef7847b9286bfbaa4ebe3b5d9e04c7679c))
+
+
+
 # 2.8.0 (2023-05-25)
 
 
@@ -107,6 +172,3 @@
 * **components/molecule/stepper:** tokenize ([38f584d](https://github.com/SUI-Components/sui-components/commit/38f584db45f1673004490344a2630e8ec8605a71))
 * **components/molecule/stepper:** wip ([eb155d1](https://github.com/SUI-Components/sui-components/commit/eb155d13b21eedb1c76abc0b0139ac4563ef901e))
 * **components/molecule/stepper:** WIP first initial approach ([8325988](https://github.com/SUI-Components/sui-components/commit/8325988ed81ae4d21fe4a9abde5d61e40c7adee5))
-
-
-

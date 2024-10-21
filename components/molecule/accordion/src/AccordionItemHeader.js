@@ -14,7 +14,8 @@ import {
   BASE_CLASS_ITEM_HEADER,
   getBehavior,
   getIcon,
-  HEADER_ICON_POSITION
+  HEADER_ICON_POSITION,
+  HEADER_LABEL_WRAPS
 } from './settings.js'
 
 const AccordionItemHeader = forwardRef(
@@ -29,6 +30,7 @@ const AccordionItemHeader = forwardRef(
       animationDuration: animationDurationProp,
       value,
       label,
+      labelWrap: labelWrapProp,
       level,
       disabled,
       onClick
@@ -43,6 +45,7 @@ const AccordionItemHeader = forwardRef(
       headerIconExpanded: iconExpandedContext,
       headerIconCollapsed: iconCollapsedContext,
       headerIconPosition: iconPositionContext,
+      headerLabelWrap: labelWrapContext,
       animationDuration: animationDurationContext
     } = useAccordionContext({value})
     const handleClick = event => {
@@ -61,6 +64,7 @@ const AccordionItemHeader = forwardRef(
     )
     const iconPosition = iconPositionProp || iconPositionContext
     const animationDuration = animationDurationProp || animationDurationContext
+    const labelWrap = labelWrapProp || labelWrapContext
     const isHeadingElement = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(As)
     return (
       <Poly
@@ -71,15 +75,11 @@ const AccordionItemHeader = forwardRef(
             ref: forwardedRef
           }),
           ...(!isHeadingElement && !isFragmentProp && {role: 'heading'}),
-          ...(!isHeadingElement &&
-            level &&
-            !isFragmentProp && {'aria-level': level}),
+          ...(!isHeadingElement && level && !isFragmentProp && {'aria-level': level}),
           ...(!isFragmentProp && {'data-expanded': isExpanded}),
           ...(!isFragmentProp && {
             style: {
-              transition: `border-radius 0s linear ${
-                isExpanded ? 0 : animationDuration
-              }ms`
+              transition: `border-radius 0s linear ${isExpanded ? 0 : animationDuration}ms`
             }
           })
         }}
@@ -103,6 +103,7 @@ const AccordionItemHeader = forwardRef(
             headerIconExpanded={iconExpandedContext}
             headerIconCollapsed={iconCollapsedContext}
             headerIconPosition={iconPositionContext}
+            headerLabelWrap={labelWrapContext}
             disabled={disabled}
             animationDuration={animationDuration}
             icon={icon}
@@ -111,6 +112,7 @@ const AccordionItemHeader = forwardRef(
             value={value}
             isExpanded={values.includes(value)}
             label={label}
+            labelWrap={labelWrap}
           >
             {children}
           </Injector>
@@ -141,6 +143,8 @@ AccordionItemHeader.propTypes = {
   iconPosition: PropTypes.oneOf(Object.values(HEADER_ICON_POSITION)),
   /** appropriate for the information architecture of the page **/
   label: PropTypes.string.isRequired,
+  /** Defines the wrap behavior of the label */
+  labelWrap: PropTypes.oneOf(Object.values(HEADER_LABEL_WRAPS)),
   /** the unique value of the element **/
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** the heading level **/

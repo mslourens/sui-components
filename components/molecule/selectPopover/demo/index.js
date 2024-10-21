@@ -4,6 +4,7 @@ import {useRef, useState} from 'react'
 import MoleculeSelectPopover, {
   selectPopoverOverlayTypes,
   selectPopoverPlacements,
+  selectPopoverShapes,
   selectPopoverSizes
 } from 'components/molecule/selectPopover/src/index.js'
 
@@ -23,12 +24,7 @@ const demoExample = [
   {id: 'nested-03', label: 'Alquiler con opción a compra', checked: false}
 ]
 
-const CustomRenderActions = ({
-  cancelButtonText,
-  onCancel,
-  onAccept,
-  acceptButtonText
-}) => {
+const CustomRenderActions = ({cancelButtonText, onCancel, onAccept, acceptButtonText}) => {
   return (
     <>
       <button onClick={onAccept}>{acceptButtonText}</button>
@@ -41,6 +37,7 @@ const CustomRenderActions = ({
 const Demo = () => {
   const [items, setItems] = useState(demoExample)
   const [unconfirmedItems, setUnconfirmedItems] = useState(demoExample)
+  const [shape, setShape] = useState(selectPopoverShapes.CIRCULAR)
   const [size, setSize] = useState(selectPopoverSizes.MEDIUM)
   const [placement, setPlacement] = useState(selectPopoverPlacements.RIGHT)
   const [hasEvents, setHasEvents] = useState(false)
@@ -54,6 +51,7 @@ const Demo = () => {
   const [hasCustomRenderActions, setCustomRenderActions] = useState(false)
   const [hasForceClosePopover, setHasForceClosePopover] = useState(false)
   const [forceClosePopover, setForceClosePopover] = useState(false)
+  const [hasRemoveOption, setHasRemoveOption] = useState(false)
 
   const overlayContentRef = useRef()
 
@@ -93,13 +91,12 @@ const Demo = () => {
         isOpen={isOpen}
         onClose={handleClose}
       >
-        <MoleculeModal.Content withoutIndentation>
-          {content}
-        </MoleculeModal.Content>
+        <MoleculeModal.Content withoutIndentation>{content}</MoleculeModal.Content>
         {!actionsAreHidden && actions}
       </MoleculeModal>
     )
   }
+  console.log(unconfirmedItems)
 
   const checkedItems = items.filter(item => item.checked)
   const isSelected = checkedItems.length > 0
@@ -111,6 +108,20 @@ const Demo = () => {
       <div className="sui-StudioPreview-content sui-StudioDemo-preview">
         <h1>Select Popover</h1>
         <h3>Props</h3>
+        <label>Shape</label>
+        <MoleculeSelect
+          value={shape}
+          onChange={(ev, {value}) => setShape(value)}
+          placeholder="Select a shape..."
+          iconArrowDown={<IconArrowDown />}
+        >
+          {Object.keys(selectPopoverShapes).map(key => (
+            <MoleculeSelectOption key={key} value={selectPopoverShapes[key]}>
+              {key}
+            </MoleculeSelectOption>
+          ))}
+        </MoleculeSelect>
+        <br />
         <label>Size</label>
         <MoleculeSelect
           value={size}
@@ -135,10 +146,7 @@ const Demo = () => {
           iconArrowDown={<IconArrowDown />}
         >
           {Object.keys(selectPopoverPlacements).map(key => (
-            <MoleculeSelectOption
-              key={key}
-              value={selectPopoverPlacements[key]}
-            >
+            <MoleculeSelectOption key={key} value={selectPopoverPlacements[key]}>
               {key}
             </MoleculeSelectOption>
           ))}
@@ -154,10 +162,7 @@ const Demo = () => {
           iconArrowDown={<IconArrowDown />}
         >
           {Object.keys(selectPopoverOverlayTypes).map(key => (
-            <MoleculeSelectOption
-              key={key}
-              value={selectPopoverOverlayTypes[key]}
-            >
+            <MoleculeSelectOption key={key} value={selectPopoverOverlayTypes[key]}>
               {key}
             </MoleculeSelectOption>
           ))}
@@ -165,41 +170,25 @@ const Demo = () => {
         <br />
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={hasEvents}
-              onChange={ev => setHasEvents(ev.target.checked)}
-            />
+            <input type="checkbox" checked={hasEvents} onChange={ev => setHasEvents(ev.target.checked)} />
             With events (onOpen & onClose)
           </label>
         </div>
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={isFullWidth}
-              onChange={ev => setIsFullWidth(ev.target.checked)}
-            />
+            <input type="checkbox" checked={isFullWidth} onChange={ev => setIsFullWidth(ev.target.checked)} />
             Full width
           </label>
         </div>
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={actionsAreHidden}
-              onChange={ev => setActionsAreHidden(ev.target.checked)}
-            />
+            <input type="checkbox" checked={actionsAreHidden} onChange={ev => setActionsAreHidden(ev.target.checked)} />
             Actions are hidden
           </label>
         </div>
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={addCustomButton}
-              onChange={ev => setAddCustomButton(ev.target.checked)}
-            />
+            <input type="checkbox" checked={addCustomButton} onChange={ev => setAddCustomButton(ev.target.checked)} />
             Add custom button
           </label>
         </div>
@@ -215,21 +204,13 @@ const Demo = () => {
         </div>
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={renderSelect}
-              onChange={ev => setRenderSelect(ev.target.checked)}
-            />
+            <input type="checkbox" checked={renderSelect} onChange={ev => setRenderSelect(ev.target.checked)} />
             Render select like a button
           </label>
         </div>
         <div>
           <label>
-            <input
-              type="checkbox"
-              checked={isDisabled}
-              onChange={ev => setIsDisabled(ev.target.checked)}
-            />
+            <input type="checkbox" checked={isDisabled} onChange={ev => setIsDisabled(ev.target.checked)} />
             Disabled
           </label>
         </div>
@@ -253,16 +234,36 @@ const Demo = () => {
             Force close popover
           </label>
         </div>
+        <div>
+          <label>
+            <input type="checkbox" checked={hasRemoveOption} onChange={ev => setHasRemoveOption(ev.target.checked)} />
+            With remove option
+          </label>
+        </div>
 
         <h3>Component</h3>
         <MoleculeSelectPopover
           acceptButtonText="Aceptar"
+          acceptButtonOptions={{disabled: unconfirmedItems.every(item => !item.checked)}}
           cancelButtonText="Cancelar"
           customButtonText={addCustomButton && 'Borrar'}
           customButtonOptions={{
             design: 'outline',
             negative: false,
             color: 'accent'
+          }}
+          removeButtonOptions={{
+            design: 'flat',
+            shape: 'circular',
+            size: 'medium',
+            rightIcon: IconClose,
+            isShown: isSelected,
+            negative: false,
+            onClick: () => {
+              setItems(demoExample)
+              setUnconfirmedItems(demoExample)
+              setForceClosePopover({})
+            }
           }}
           renderContentWrapper={customContentWrapper && renderContentWrapper}
           renderSelect={renderSelect && <button>Now I'm a button!</button>}
@@ -281,10 +282,9 @@ const Demo = () => {
           overlayType={overlayType}
           placement={placement}
           selectText={selectText}
+          shape={shape}
           size={size}
-          renderActions={
-            hasCustomRenderActions ? <CustomRenderActions /> : undefined
-          }
+          renderActions={hasCustomRenderActions ? <CustomRenderActions /> : undefined}
         >
           <div className="demo-content">
             <h3>Tipo de operación</h3>
@@ -309,28 +309,23 @@ const Demo = () => {
         </MoleculeSelectPopover>
         <div className="demo-overlay-content" ref={overlayContentRef}>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-            recusandae labore numquam aliquam? Neque unde excepturi nam labore
-            velit a accusantium alias sunt quos voluptatem vel similique,
-            pariatur fugiat voluptate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae labore numquam aliquam? Neque unde
+            excepturi nam labore velit a accusantium alias sunt quos voluptatem vel similique, pariatur fugiat
+            voluptate.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-            incidunt animi a dignissimos aliquid voluptas quo quisquam adipisci
-            distinctio accusamus, officiis amet mollitia error, dolore vero
-            similique nihil? Corrupti, quaerat.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, incidunt animi a dignissimos aliquid
+            voluptas quo quisquam adipisci distinctio accusamus, officiis amet mollitia error, dolore vero similique
+            nihil? Corrupti, quaerat.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam
-            possimus cumque ut sunt? Quo aperiam id magni placeat iusto, quidem
-            corporis enim, iste ad sapiente distinctio dicta, voluptatem minima
-            fuga!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam possimus cumque ut sunt? Quo aperiam id
+            magni placeat iusto, quidem corporis enim, iste ad sapiente distinctio dicta, voluptatem minima fuga!
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
-            sint ratione architecto iste sapiente repudiandae inventore fugit
-            expedita deleniti! Debitis maiores corrupti ducimus id cum veniam
-            distinctio eos fuga repellat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sint ratione architecto iste sapiente
+            repudiandae inventore fugit expedita deleniti! Debitis maiores corrupti ducimus id cum veniam distinctio eos
+            fuga repellat.
           </p>
         </div>
       </div>

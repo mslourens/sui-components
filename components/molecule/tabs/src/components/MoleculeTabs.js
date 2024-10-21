@@ -5,21 +5,15 @@ import PropTypes from 'prop-types'
 
 import useOnScreen from '@s-ui/react-hooks/lib/useOnScreen'
 
-import {
-  BASE_CLASS,
-  CLASS_CONTENT,
-  CLASS_SCROLLER,
-  TYPES,
-  VARIANTS
-} from '../config.js'
+import {BASE_CLASS, CLASS_CONTENT, CLASS_SCROLLER, TYPES, VARIANTS} from '../config.js'
 
 const MoleculeTabs = ({
   autoScrollIntoView = true,
   children,
   id = 'molecule-tab-content',
   onChange,
-  type,
-  variant
+  type = TYPES.HORIZONTAL,
+  variant = VARIANTS.CLASSIC
 }) => {
   const className = cx(BASE_CLASS, {
     [`${BASE_CLASS}--${variant}`]: variant,
@@ -64,9 +58,7 @@ const MoleculeTabs = ({
         ref={outerRef}
         className={CLASS_SCROLLER}
         role="tablist"
-        aria-orientation={
-          isVerticalOrientation ? TYPES.VERTICAL : TYPES.HORIZONTAL
-        }
+        aria-orientation={isVerticalOrientation ? TYPES.VERTICAL : TYPES.HORIZONTAL}
       >
         {extendedChildren}
       </ul>
@@ -95,12 +87,6 @@ MoleculeTabs.propTypes = {
 
   /** type */
   type: PropTypes.oneOf(Object.values(TYPES))
-}
-
-MoleculeTabs.defaultProps = {
-  variant: VARIANTS.CLASSIC,
-  type: TYPES.HORIZONTAL,
-  onChange: () => {}
 }
 
 export default MoleculeTabs

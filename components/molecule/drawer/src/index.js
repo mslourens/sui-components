@@ -21,6 +21,7 @@ const MoleculeDrawer = forwardRef(
       animationDuration = moleculeDrawerAnimationDuration.FAST,
       children,
       isOpen = false,
+      isPageScrollable = true,
       onOpen,
       onClose,
       placement = moleculeDrawerPlacements.LEFT,
@@ -37,19 +38,35 @@ const MoleculeDrawer = forwardRef(
       }
     }, [target])
 
+    useEffect(() => {
+      if (isOpen && !isPageScrollable) blockScrollPage()
+      else if (!isOpen && !isPageScrollable) enableScrollPage()
+
+      if (!isPageScrollable) return () => enableScrollPage()
+    }, [isOpen, isPageScrollable])
+
+    const closeDrawer = event => {
+      if (!isPageScrollable) enableScrollPage()
+
+      onClose(event, {isOpen: false})
+    }
+
     useEventListener('keydown', event => {
       if (isOpen === false) return
       if (event.key === 'Escape') {
-        onClose(event, {isOpen: false})
+        closeDrawer(event)
       }
     })
 
     useEventListener('mousedown', event => {
       if (isOpen === false || !forwardedRef || !closeOnOutsideClick) return
       if (!forwardedRef.current.contains(event.target)) {
-        onClose(event, {isOpen: false})
+        closeDrawer(event)
       }
     })
+
+    const blockScrollPage = () => (document.body.style.overflow = 'hidden')
+    const enableScrollPage = () => (document.body.style.overflow = 'auto')
 
     return (
       <div
@@ -60,8 +77,7 @@ const MoleculeDrawer = forwardRef(
           `${DRAWER_CONTENT_CLASS}--animationDuration-${animationDuration}`,
           `${DRAWER_CONTENT_CLASS}--state-${isOpen ? 'opened' : 'closed'}`,
           {
-            [`${DRAWER_CONTENT_CLASS}--placement`]:
-              typeof target === 'undefined'
+            [`${DRAWER_CONTENT_CLASS}--placement`]: typeof target === 'undefined'
           }
         )}
         ref={forwardedRef}
@@ -75,13 +91,13 @@ const MoleculeDrawer = forwardRef(
 MoleculeDrawer.displayName = 'MoleculeDrawer'
 MoleculeDrawer.propTypes = {
   /** Duration in seconds for open/close animation */
-  animationDuration: PropTypes.oneOf(
-    Object.values(moleculeDrawerAnimationDuration)
-  ),
+  animationDuration: PropTypes.oneOf(Object.values(moleculeDrawerAnimationDuration)),
   /** content **/
   children: PropTypes.node,
   /** Tells if the drawer is open or not */
   isOpen: PropTypes.bool,
+  /** false to prevent scroll body */
+  isPageScrollable: PropTypes.bool,
   /** On open callback triggered after animation */
   onOpen: PropTypes.func,
   /** On close callback triggered after animation */

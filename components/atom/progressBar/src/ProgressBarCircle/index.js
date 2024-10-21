@@ -4,37 +4,25 @@ import PropTypes from 'prop-types'
 import {LINE_CAPS, SIZES, STATUS} from '../settings.js'
 import Circle from './Circle/index.js'
 import Indicator from './Indicator.js'
-import {
-  BASE_CLASS_NAME,
-  SIZE_TO_WIDTH_LINE_MAP,
-  STROKE_SIZE_MAP
-} from './settings.js'
+import {BASE_CLASS_NAME, SIZE_TO_WIDTH_LINE_MAP, STROKE_SIZE_MAP} from './settings.js'
 
 const ProgressBarCircle = ({
   percentage,
-  status,
+  status = STATUS.PROGRESS,
   errorIcon,
-  size,
-  isAnimatedOnChange,
-  hideIndicator,
+  size = SIZES.LARGE,
+  isAnimatedOnChange = false,
+  hideIndicator = false,
   children,
   mainStrokeSize,
   progressStrokeSize,
-  strokeLineCap
+  strokeLineCap = LINE_CAPS.SQUARE
 }) => {
-  const mainStrokeWidth =
-    STROKE_SIZE_MAP[mainStrokeSize] || SIZE_TO_WIDTH_LINE_MAP[size]
-  const progressStrokeWidth =
-    STROKE_SIZE_MAP[progressStrokeSize] || SIZE_TO_WIDTH_LINE_MAP[size]
+  const mainStrokeWidth = STROKE_SIZE_MAP[mainStrokeSize] || SIZE_TO_WIDTH_LINE_MAP[size]
+  const progressStrokeWidth = STROKE_SIZE_MAP[progressStrokeSize] || SIZE_TO_WIDTH_LINE_MAP[size]
 
   return (
-    <div
-      className={cx(
-        BASE_CLASS_NAME,
-        `${BASE_CLASS_NAME}--${size}`,
-        `${BASE_CLASS_NAME}--${status}`
-      )}
-    >
+    <div className={cx(BASE_CLASS_NAME, `${BASE_CLASS_NAME}--${size}`, `${BASE_CLASS_NAME}--${status}`)}>
       <Circle
         baseClassName={BASE_CLASS_NAME}
         mainStrokeWidth={mainStrokeWidth}
@@ -46,12 +34,7 @@ const ProgressBarCircle = ({
         withAnimation={isAnimatedOnChange}
       />
       {!hideIndicator && (
-        <Indicator
-          percentage={percentage}
-          size={size}
-          status={status}
-          errorIcon={errorIcon}
-        >
+        <Indicator percentage={percentage} size={size} status={status} errorIcon={errorIcon}>
           {children}
         </Indicator>
       )}
@@ -91,14 +74,6 @@ ProgressBarCircle.propTypes = {
 
   /** Component to render inside the circle instead of the current progress */
   children: PropTypes.node
-}
-
-ProgressBarCircle.defaultProps = {
-  isAnimatedOnChange: false,
-  strokeLineCap: LINE_CAPS.SQUARE,
-  status: STATUS.PROGRESS,
-  hideIndicator: false,
-  size: SIZES.LARGE
 }
 
 export default ProgressBarCircle

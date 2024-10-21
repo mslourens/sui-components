@@ -3,7 +3,8 @@ import {forwardRef} from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-import ButtonSpinnerIcon from './buttonSpinnerIcon/index.js'
+import PrimitiveLoadingIcon from '@s-ui/react-primitive-loading-icon'
+
 import Button from './Button.js'
 import ButtonIcon from './ButtonIcon.js'
 import {
@@ -40,7 +41,7 @@ const AtomButton = forwardRef((props, ref) => {
     link,
     leftIcon,
     loadingText,
-    loader = <ButtonSpinnerIcon />,
+    loader = <PrimitiveLoadingIcon />,
     rightIcon,
     size,
     title,
@@ -61,9 +62,7 @@ const AtomButton = forwardRef((props, ref) => {
     groupPosition && focused && `${CLASS}-group--focused`,
     groupPosition && selected && `${CLASS}-group--selected`,
     size && CLASSES[size],
-    getModifiers({...props, disabled: disabled || isLoading}).map(
-      key => CLASSES[key]
-    ),
+    getModifiers({...props, disabled: disabled || isLoading}).map(key => CLASSES[key]),
     !children && CLASSES.empty,
     {[`${CLASS}--${shape}`]: Object.values(SHAPES).includes(shape)},
     {
@@ -90,30 +89,17 @@ const AtomButton = forwardRef((props, ref) => {
       <span className={`${CLASS}-inner`}>
         {isLoading ? (
           <>
-            <ButtonIcon
-              position={
-                loadingText ? ICON_POSITIONS.LEFT : ICON_POSITIONS.CENTER
-              }
-              size={size}
-            >
+            <ButtonIcon position={loadingText ? ICON_POSITIONS.LEFT : ICON_POSITIONS.CENTER} size={size}>
               {loader}
             </ButtonIcon>
-            {children && loadingText ? (
-              loadingText
-            ) : (
-              <span className={`${CLASS}-text`}>{children}</span>
-            )}
+            {children && loadingText ? loadingText : <span className={`${CLASS}-content`}>{children}</span>}
           </>
         ) : (
           <>
             <ButtonIcon position={ICON_POSITIONS.LEFT} size={size}>
               {leftIcon}
             </ButtonIcon>
-            {leftIcon || rightIcon ? (
-              <span className={`${CLASS}-text`}>{children}</span>
-            ) : (
-              children
-            )}
+            <span className={`${CLASS}-content`}>{children}</span>
             <ButtonIcon position={ICON_POSITIONS.RIGHT} size={size}>
               {rightIcon}
             </ButtonIcon>

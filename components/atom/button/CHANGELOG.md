@@ -1,5 +1,54 @@
 # CHANGELOG
 
+# 1.96.0 (2024-05-22)
+
+
+### Bug Fixes
+
+* compatibility with node20 ([c923754](https://github.com/SUI-Components/sui-components/commit/c923754eb6dcb2b29026924ad67a5191bcc2cf15))
+
+
+
+# 1.95.0 (2024-05-09)
+
+
+### Bug Fixes
+
+* inherit css properties on a nested html element ([d52b402](https://github.com/SUI-Components/sui-components/commit/d52b402e1e75c480a618941f887cea3d5f100e73))
+
+
+
+# 1.94.0 (2024-05-08)
+
+
+### Features
+
+* Allow SUI button to have an alternate colors for oultine, flat and lin ([e69822e](https://github.com/SUI-Components/sui-components/commit/e69822e6698179f324ebb539e783c70f158f47c2))
+
+
+
+# 1.93.0 (2024-05-06)
+
+
+
+# 1.92.0 (2024-02-06)
+
+
+### Features
+
+* Require iconLoading on the atom button component ([afe9d6b](https://github.com/SUI-Components/sui-components/commit/afe9d6b2c7ab5e1bf768af438ab005ea2b0998d2))
+
+
+
+# 1.91.0 (2023-12-18)
+
+
+### Bug Fixes
+
+* **components/atom/button:** google translate ([5edf26e](https://github.com/SUI-Components/sui-components/commit/5edf26ed6e47cfb342ef143f517c54e7fb67cf57))
+
+
+
 # 1.90.0 (2023-05-17)
 
 
@@ -923,6 +972,3 @@
 ### Performance Improvements
 
 * **atom/button:** mAke classes to be constructed once ([628e6a7](https://github.com/SUI-Components/sui-components/commit/628e6a7653f84c9b62eb66e3f97dd7aa7588b565))
-
-
-

@@ -27,6 +27,7 @@ describe(json.name, () => {
     const libraryExportedMembers = [
       'moleculeButtonGroupSizes',
       'moleculeButtonGroupDesigns',
+      'moleculeButtonGroupDisplay',
       'moleculeButtonGroupSpaced',
       'default'
     ]
@@ -35,6 +36,7 @@ describe(json.name, () => {
     const {
       moleculeButtonGroupSizes,
       moleculeButtonGroupDesigns,
+      moleculeButtonGroupDisplay,
       moleculeButtonGroupSpaced,
       default: MoleculeButtonGroup,
       ...others
@@ -50,10 +52,7 @@ describe(json.name, () => {
     it('should render without crashing', () => {
       // Given
       const props = {
-        children: [
-          <AtomButton key={0}>A</AtomButton>,
-          <AtomButton key={1}>B</AtomButton>
-        ]
+        children: [<AtomButton key={0}>A</AtomButton>, <AtomButton key={1}>B</AtomButton>]
       }
 
       // When
@@ -68,10 +67,7 @@ describe(json.name, () => {
     it('should NOT render null', () => {
       // Given
       const props = {
-        children: [
-          <AtomButton key={0}>A</AtomButton>,
-          <AtomButton key={1}>B</AtomButton>
-        ]
+        children: [<AtomButton key={0}>A</AtomButton>, <AtomButton key={1}>B</AtomButton>]
       }
 
       // When
@@ -85,14 +81,10 @@ describe(json.name, () => {
     it.skip('should NOT extend classNames', () => {
       // Given
       const props = {
-        children: [
-          <AtomButton key={0}>A</AtomButton>,
-          <AtomButton key={1}>B</AtomButton>
-        ],
+        children: [<AtomButton key={0}>A</AtomButton>, <AtomButton key={1}>B</AtomButton>],
         className: 'extended-classNames'
       }
-      const findSentence = str => string =>
-        string.match(new RegExp(`S*${str}S*`))
+      const findSentence = str => string => string.match(new RegExp(`S*${str}S*`))
 
       // When
       const {container} = setup(props)
